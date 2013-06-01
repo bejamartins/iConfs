@@ -10,10 +10,10 @@
 
 @implementation Conference
 
--(Conference*)initWithData: (NSString*)cID name: (NSString*)n logo_path:(NSString*)lp bluePrint:(NSMutableDictionary*)bp{
+-(Conference*)initWithData: (NSString*)cID name: (NSString*)n image:(UIImage *)lp bluePrint:(NSMutableDictionary *)bp:(NSString*)lp bluePrint:(NSMutableDictionary*)bp{
     self.confID = cID;
     self.confName = n;
-    self.logo_path = lp;
+    self.image = lp;
     self.bluePrints = bp;
     //NSMutableDictionary *authors = [[NSMutableDictionary alloc] init];
     return self;
@@ -285,8 +285,8 @@
     return [self.eventsList copy];
 }
 
--(void)changeLogoPath:(NSString*)lp{
-    self.logo_path = lp;
+-(void)changeLogo:(UIImage*)lp{
+    self.image = lp;
 }
 
 -(void)changeConferenceName:(NSString*)n{

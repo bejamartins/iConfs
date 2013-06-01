@@ -20,7 +20,7 @@
 @interface Conference : NSObject
 {
 @protected
-    NSString* logo_path;
+    UIImage* image;
     NSString* confID;
     NSString* confName;
     NSMutableDictionary* events;
@@ -37,7 +37,7 @@
 }
 
 //Path to the logo of the conference
-@property (nonatomic) NSString* logo_path;
+@property (nonatomic) UIImage* image;
 
 //ID of the conference
 @property (nonatomic) NSString* confID;
@@ -84,7 +84,7 @@
  @param bp list of path to the blueprints of the conference floors
  @returns a newly initialized object
  */
--(Conference*)initWithData: (NSString*)cID name: (NSString*)n logo_path:(NSString*)lp bluePrint:(NSMutableDictionary*)bp;
+-(Conference*)initWithData: (NSString*)cID name: (NSString*)n image:(UIImage*)lp bluePrint:(NSMutableDictionary*)bp;
 
 /**
  Adds an author to the conference
@@ -233,11 +233,11 @@
 -(NSArray*)getAllEvents;
 
 /**
- Changes the logo path of the conference
- @param lp new logo path
+ Changes the logo of the conference
+ @param lp new logo
  @returns
  */
--(void)changeLogoPath:(NSString*)lp;
+-(void)changeLogo:(UIImage*)lp;
 
 /**
  Changes the conference name

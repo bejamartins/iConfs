@@ -118,20 +118,20 @@
 
 //get array with confs IDs
 //use dictionary from getConfs
--(NSArray *)getConfsIDFromServer:(NSDictionary *)confs{
-    NSArray *array=[confs valueForKey:@"ID"];
+-(NSArray *)getConfsIDFromServer:(NSDictionary *)confsRaw{
+    NSArray *array=[confsRaw valueForKey:@"ID"];
     return array;
 }
 //get array with confs Names
 //use dictionary from getConfs
--(NSArray *)getConfsNameFromServer:(NSDictionary *)confs{
-    NSArray *array=[confs valueForKey:@"Name"];
+-(NSArray *)getConfsNameFromServer:(NSDictionary *)confsRaw{
+    NSArray *array=[confsRaw valueForKey:@"Name"];
     return array;
 }
 //get image corresponding to confID
 //use singular ID from getConfsID
--(UIImage *)getConfImageFromServer:(NSString *)conf{
-    NSString* imgPath=[NSString stringWithFormat:@"%@%@%@",@"http://193.136.122.141/",conf,@"/confLogo.jpg"];
+-(UIImage *)getConfImageFromServer:(NSString *)confID{
+    NSString* imgPath=[NSString stringWithFormat:@"%@%@%@",@"http://193.136.122.141/",confID,@"/confLogo.jpg"];
     NSURL* imgURL=[NSURL URLWithString:imgPath];
     
     NSData* imgData=[NSData dataWithContentsOfURL:imgURL];
@@ -180,17 +180,28 @@
         NSArray* dataIDs = [self getConfsIDFromServer: fetch];
         NSArray* dataNames = [self getConfsNameFromServer: fetch];
         
-        //Tratar aqui das imagens
+        if(dataIDs == NULL || dataNames == NULL){
+            return false;
+        }
         
+        //Tratar aqui das imagens
+        UIImage* currentImg;
         //NSMutableArray* conferences = [[NSMutableArray alloc] init];;
         Conference* current;
         for (int i=0; i < [dataIDs count]; i++) {
             current = [Conference new];
-            current = [current initWithData: dataIDs[i] name: dataNames[i] logo_path: NULL /*alterar depois*/ bluePrint: NULL];
-            [self addToAllConference: current];
+            current = [current initWithData: dataIDs[i] name: dataNames[i] image: NULL /*alterar depois*/ bluePrint: NULL];
+            if ([self addToAllConference: current] == true){
+                currentImg = [self getConfImageFromServer:dataIDs[i]];
+                if(currentImg == NULL){
+                    return false;
+                }
+                [((Conference*)[allConferences lastObject]) changeLogo: currentImg];
+            }
         }
+        return true;
     }
-    return true;
+    
 }
 
 @end
