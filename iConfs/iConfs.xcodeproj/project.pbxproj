@@ -43,6 +43,11 @@
 		A07887F2175A3CE500C1D90C /* MenuViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A07887D7175A3CE500C1D90C /* MenuViewController.m */; };
 		A07887F3175A3CE500C1D90C /* ManageConfCell.m in Sources */ = {isa = PBXBuildFile; fileRef = A07887D9175A3CE500C1D90C /* ManageConfCell.m */; };
 		A07887F4175A3CE500C1D90C /* MainStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A07887DA175A3CE500C1D90C /* MainStoryboard.storyboard */; };
+		A07887FA175A3DAA00C1D90C /* 11.png in Resources */ = {isa = PBXBuildFile; fileRef = A07887F5175A3DAA00C1D90C /* 11.png */; };
+		A07887FB175A3DAA00C1D90C /* pulpito.png in Resources */ = {isa = PBXBuildFile; fileRef = A07887F6175A3DAA00C1D90C /* pulpito.png */; };
+		A07887FC175A3DAA00C1D90C /* checkbox-checked.png in Resources */ = {isa = PBXBuildFile; fileRef = A07887F7175A3DAA00C1D90C /* checkbox-checked.png */; };
+		A07887FD175A3DAA00C1D90C /* checkbox.png in Resources */ = {isa = PBXBuildFile; fileRef = A07887F8175A3DAA00C1D90C /* checkbox.png */; };
+		A07887FE175A3DAA00C1D90C /* conf.jpg in Resources */ = {isa = PBXBuildFile; fileRef = A07887F9175A3DAA00C1D90C /* conf.jpg */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -110,6 +115,11 @@
 		A07887D8175A3CE500C1D90C /* ManageConfCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ManageConfCell.h; sourceTree = "<group>"; };
 		A07887D9175A3CE500C1D90C /* ManageConfCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ManageConfCell.m; sourceTree = "<group>"; };
 		A07887DA175A3CE500C1D90C /* MainStoryboard.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = MainStoryboard.storyboard; sourceTree = "<group>"; };
+		A07887F5175A3DAA00C1D90C /* 11.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 11.png; sourceTree = "<group>"; };
+		A07887F6175A3DAA00C1D90C /* pulpito.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = pulpito.png; sourceTree = "<group>"; };
+		A07887F7175A3DAA00C1D90C /* checkbox-checked.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "checkbox-checked.png"; sourceTree = "<group>"; };
+		A07887F8175A3DAA00C1D90C /* checkbox.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = checkbox.png; sourceTree = "<group>"; };
+		A07887F9175A3DAA00C1D90C /* conf.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = conf.jpg; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -218,6 +228,11 @@
 		A078878F175A3C7800C1D90C /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				A07887F5175A3DAA00C1D90C /* 11.png */,
+				A07887F6175A3DAA00C1D90C /* pulpito.png */,
+				A07887F7175A3DAA00C1D90C /* checkbox-checked.png */,
+				A07887F8175A3DAA00C1D90C /* checkbox.png */,
+				A07887F9175A3DAA00C1D90C /* conf.jpg */,
 				A0788790175A3C7800C1D90C /* iConfs-Info.plist */,
 				A0788791175A3C7800C1D90C /* InfoPlist.strings */,
 				A0788794175A3C7800C1D90C /* main.m */,
@@ -285,6 +300,11 @@
 				A078879D175A3C7800C1D90C /* Default@2x.png in Resources */,
 				A078879F175A3C7800C1D90C /* Default-568h@2x.png in Resources */,
 				A07887F4175A3CE500C1D90C /* MainStoryboard.storyboard in Resources */,
+				A07887FA175A3DAA00C1D90C /* 11.png in Resources */,
+				A07887FB175A3DAA00C1D90C /* pulpito.png in Resources */,
+				A07887FC175A3DAA00C1D90C /* checkbox-checked.png in Resources */,
+				A07887FD175A3DAA00C1D90C /* checkbox.png in Resources */,
+				A07887FE175A3DAA00C1D90C /* conf.jpg in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
