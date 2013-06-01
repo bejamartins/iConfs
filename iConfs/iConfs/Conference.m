@@ -10,7 +10,7 @@
 
 @implementation Conference
 
--(Conference*)initWithData: (int)cID name: (NSString*)n logo_path:(NSString*)lp bluePrint:(NSMutableDictionary*)bp{
+-(Conference*)initWithData: (NSString*)cID name: (NSString*)n logo_path:(NSString*)lp bluePrint:(NSMutableDictionary*)bp{
     self.confID = cID;
     self.confName = n;
     self.logo_path = lp;
@@ -312,7 +312,7 @@
     }
 }
     
--(int)getID{
+-(NSString*)getID{
     return confID;
 }
 

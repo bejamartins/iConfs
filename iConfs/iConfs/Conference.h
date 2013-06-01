@@ -21,7 +21,7 @@
 {
 @protected
     NSString* logo_path;
-    int confID;
+    NSString* confID;
     NSString* confName;
     NSMutableDictionary* events;
     NSMutableArray* news;
@@ -40,7 +40,7 @@
 @property (nonatomic) NSString* logo_path;
 
 //ID of the conference
-@property (nonatomic) int confID;
+@property (nonatomic) NSString* confID;
 
 //Name of he conference
 @property (nonatomic) NSString* confName;
@@ -84,7 +84,7 @@
  @param bp list of path to the blueprints of the conference floors
  @returns a newly initialized object
  */
--(Conference*)initWithData: (int)cID name: (NSString*)n logo_path:(NSString*)lp bluePrint:(NSMutableDictionary*)bp;
+-(Conference*)initWithData: (NSString*)cID name: (NSString*)n logo_path:(NSString*)lp bluePrint:(NSMutableDictionary*)bp;
 
 /**
  Adds an author to the conference
@@ -265,7 +265,7 @@
  Gets conference ID
  @returns conference ID
  */
--(int)getID;
+-(NSString*)getID;
 
 @end
 
