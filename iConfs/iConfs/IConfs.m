@@ -186,7 +186,7 @@
         Conference* current;
         for (int i=0; i < [dataIDs count]; i++) {
             current = [Conference new];
-            [current initWithData: dataIDs[i] name: dataNames[i] logo_path: NULL /*alterar depois*/ bluePrint: NULL];
+            current = [current initWithData: dataIDs[i] name: dataNames[i] logo_path: NULL /*alterar depois*/ bluePrint: NULL];
             [self addToAllConference: current];
         }
     }
