@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		28D97F38175BFF8300AA3A80 /* Post-it-note-transparent.png in Resources */ = {isa = PBXBuildFile; fileRef = 28D97F37175BFF8300AA3A80 /* Post-it-note-transparent.png */; };
 		A0788787175A3C7800C1D90C /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A0788786175A3C7800C1D90C /* UIKit.framework */; };
 		A0788789175A3C7800C1D90C /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A0788788175A3C7800C1D90C /* Foundation.framework */; };
 		A078878B175A3C7800C1D90C /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A078878A175A3C7800C1D90C /* CoreGraphics.framework */; };
@@ -51,6 +52,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		28D97F37175BFF8300AA3A80 /* Post-it-note-transparent.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Post-it-note-transparent.png"; sourceTree = "<group>"; };
 		A0788783175A3C7800C1D90C /* iConfs.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = iConfs.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A0788786175A3C7800C1D90C /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		A0788788175A3C7800C1D90C /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -230,6 +232,7 @@
 			children = (
 				A07887F5175A3DAA00C1D90C /* 11.png */,
 				A07887F6175A3DAA00C1D90C /* pulpito.png */,
+				28D97F37175BFF8300AA3A80 /* Post-it-note-transparent.png */,
 				A07887F7175A3DAA00C1D90C /* checkbox-checked.png */,
 				A07887F8175A3DAA00C1D90C /* checkbox.png */,
 				A07887F9175A3DAA00C1D90C /* conf.jpg */,
@@ -305,6 +308,7 @@
 				A07887FC175A3DAA00C1D90C /* checkbox-checked.png in Resources */,
 				A07887FD175A3DAA00C1D90C /* checkbox.png in Resources */,
 				A07887FE175A3DAA00C1D90C /* conf.jpg in Resources */,
+				28D97F38175BFF8300AA3A80 /* Post-it-note-transparent.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -458,6 +462,7 @@
 				A07887A7175A3C7800C1D90C /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 
