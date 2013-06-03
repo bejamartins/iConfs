@@ -134,7 +134,7 @@
     NSString* imgPath=[NSString stringWithFormat:@"%@%@%@",@"http://193.136.122.141/",confID,@"/confLogo.jpg"];
     NSURL* imgURL=[NSURL URLWithString:imgPath];
     
-    NSData* imgData=[NSData dataWithContentsOfURL:imgURL];
+    NSData* imgData=[NSData dataWithContentsOfURL:imgURL options:kNilOptions error:NULL];
     UIImage* img =[UIImage imageWithData:imgData];
     
     return img;
@@ -150,12 +150,12 @@
     
     NSData *data;
     NSURLResponse *response;
-    NSError *error;
+   // NSError *error;
     
-    data=[NSURLConnection sendSynchronousRequest: request returningResponse: &response error: &error];
+    data=[NSURLConnection sendSynchronousRequest: request returningResponse: &response error: NULL];
     
     
-    NSDictionary *json = [NSJSONSerialization JSONObjectWithData:data options:kNilOptions error:&error];
+    NSDictionary *json = [NSJSONSerialization JSONObjectWithData:data options:kNilOptions error:NULL];
     
     //get all the values with key=ID
     //NSArray *array=[json valueForKey:@"ID"];
