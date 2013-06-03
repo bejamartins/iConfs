@@ -8,11 +8,12 @@
 
 #import "ManageViewController.h"
 #import "ManageConfCell.h"
+#import "IConfs.h"
 
 @interface ManageViewController ()
 {
-    NSMutableArray *myConfs;
-    NSMutableArray *otherConfs;
+    NSArray *myConfs;
+    NSArray *otherConfs;
     NSMutableArray *myConfsName;
     NSMutableArray *otherConfsName;
 }
@@ -42,9 +43,13 @@
     [[self RemConfButton] setHidden:NO];
     [[self RemConfButton] setUserInteractionEnabled:YES];
     
+    IConfs *main = [IConfs alloc];
+    myConfs = [NSArray alloc];
+    myConfs = [main getMyConferences];
+    
     myConfsName = [[NSMutableArray alloc] initWithObjects:@"Conf1", @"Conf2", @"Conf3", @"Conf4", nil];
     otherConfsName = [[NSMutableArray alloc] initWithObjects:@"Conf5", @"Conf6", nil];
-    myConfs = [[NSMutableArray alloc] initWithObjects:@"conf.jpg", @"conf.jpg", @"conf.jpg", @"conf.jpg", nil];
+    //myConfs = [[NSArray alloc] initWithObjects:@"conf.jpg", @"conf.jpg", @"conf.jpg", @"conf.jpg", nil];
     otherConfs = [[NSMutableArray alloc] initWithObjects:@"2.jpg", @"2.jpg", nil];
 }
 
@@ -83,8 +88,11 @@
     }
     
     if ([[self Options] selectedSegmentIndex] == 0) {
-        [[cell IconConf] setImage:[UIImage imageNamed:[myConfs objectAtIndex:[indexPath row]]]];
-        [[cell LabelConf] setText:[myConfsName objectAtIndex:[indexPath row]]];
+        [[cell IconConf] setImage:[UIImage imageNamed:[[myConfs objectAtIndex:[indexPath row]] getImagePath]]];
+        [[cell LabelConf] setText:[[myConfs objectAtIndex:[indexPath row]] getImagePath]];
+        
+        //[[cell IconConf] setImage:[UIImage imageNamed:[myConfs objectAtIndex:[indexPath row]]]];
+        //[[cell LabelConf] setText:[myConfsName objectAtIndex:[indexPath row]]];
     }else{
         [[cell IconConf] setImage:[UIImage imageNamed:[otherConfs objectAtIndex:[indexPath row]]]];
         [[cell LabelConf] setText:[otherConfsName objectAtIndex:[indexPath row]]];
