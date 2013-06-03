@@ -16,6 +16,7 @@
     NSArray *otherConfs;
     NSMutableArray *myConfsName;
     NSMutableArray *otherConfsName;
+    IConfs *Main;
 }
 @end
 
@@ -43,9 +44,10 @@
     [[self RemConfButton] setHidden:NO];
     [[self RemConfButton] setUserInteractionEnabled:YES];
     
-    IConfs *main = [IConfs alloc];
+    Main = [IConfs alloc];
     myConfs = [NSArray alloc];
-    myConfs = [main getMyConferences];
+    [Main fetchConferences];
+    myConfs = [Main getMyConferences];
     
     myConfsName = [[NSMutableArray alloc] initWithObjects:@"Conf1", @"Conf2", @"Conf3", @"Conf4", nil];
     otherConfsName = [[NSMutableArray alloc] initWithObjects:@"Conf5", @"Conf6", nil];
@@ -89,7 +91,7 @@
     
     if ([[self Options] selectedSegmentIndex] == 0) {
         [[cell IconConf] setImage:[UIImage imageNamed:[[myConfs objectAtIndex:[indexPath row]] getImagePath]]];
-        [[cell LabelConf] setText:[[myConfs objectAtIndex:[indexPath row]] getImagePath]];
+        [[cell LabelConf] setText:[[myConfs objectAtIndex:[indexPath row]] getName]];
         
         //[[cell IconConf] setImage:[UIImage imageNamed:[myConfs objectAtIndex:[indexPath row]]]];
         //[[cell LabelConf] setText:[myConfsName objectAtIndex:[indexPath row]]];
