@@ -204,4 +204,15 @@
     
 }
 
+-(NSArray*)getRestOfConfs{
+    NSMutableArray* ret;
+    for (int i=0; i<[allConferences count]; i++) {
+        if([conferences indexOfObject:[allConferences objectAtIndex:i]] == NSNotFound){
+            [ret addObject: [allConferences objectAtIndex:i]];
+        }
+    }
+    return ret;
+    
+}
+
 @end

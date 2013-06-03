@@ -86,4 +86,10 @@
  */
 -(BOOL)fetchConferences;
 
+/**
+ Returns the list of conferences not subscribbed by the user
+ @returns list of conferences not subscribbed by the user
+ */
+-(NSArray*)getRestOfConfs;
+
 @end
