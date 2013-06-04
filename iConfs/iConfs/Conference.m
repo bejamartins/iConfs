@@ -316,5 +316,14 @@
     return confID;
 }
 
+-(UIImage*)getLogo{
+    return image;
+}
+
+-(NSString*)getName{
+    return confName;
+}
+
+
 @end
 

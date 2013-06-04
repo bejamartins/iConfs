@@ -67,7 +67,7 @@
 
 -(BOOL)addConference:(Conference*)c{
     BOOL isHere = false;
-    for (int i=0; i<[agenda count]; i++) {
+    for (int i=0; i<[conferences count]; i++) {
         if (((Conference*)[conferences objectAtIndex:i]).getID == c.getID){
             isHere = true;
             break;
@@ -82,7 +82,7 @@
 
 -(BOOL)addToAllConference:(Conference*)c{
     BOOL isHere = false;
-    for (int i=0; i<[agenda count]; i++) {
+    for (int i=0; i<[allConferences count]; i++) {
         if (((Conference*)[allConferences objectAtIndex:i]).getID == c.getID){
             isHere = true;
             break;
@@ -213,6 +213,20 @@
     }
     return ret;
     
+}
+
+-(NSString*)getfetchedIDs{
+    NSMutableString* ret;
+    //ret = @"IDs: ";
+    [ret  appendString: @"IDs: "];
+    NSDictionary* fetch = [self getConfsFromServer];
+    NSArray* dataIDs = [self getConfsIDFromServer: fetch];
+    for(int i=0; i<[dataIDs count]; i++){
+        [ret  appendString: dataIDs[i]];
+        [ret  appendString: @", "];
+    }
+    
+    return ret;
 }
 
 @end

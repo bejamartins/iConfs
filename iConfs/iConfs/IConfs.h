@@ -92,4 +92,6 @@
  */
 -(NSArray*)getRestOfConfs;
 
+-(NSString*)getfetchedIDs;
+
 @end
