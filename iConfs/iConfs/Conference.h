@@ -267,5 +267,17 @@
  */
 -(NSString*)getID;
 
+/**
+ Gets the logo of the conference
+ @returns conference logo
+ */
+-(UIImage*)getLogo;
+
+/**
+ Gets the name of the conference
+ @returns conference name
+ */
+-(NSString*)getName;
+
 @end
 

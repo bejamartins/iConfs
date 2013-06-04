@@ -11,6 +11,7 @@
 		707B7C15175D62CD00E4747A /* ECSlidingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 707B7C12175D62CD00E4747A /* ECSlidingViewController.m */; };
 		707B7C16175D62CD00E4747A /* UIImage+ImageWithUIView.m in Sources */ = {isa = PBXBuildFile; fileRef = 707B7C14175D62CD00E4747A /* UIImage+ImageWithUIView.m */; };
 		707B7C19175D6E2B00E4747A /* InitViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 707B7C18175D6E2B00E4747A /* InitViewController.m */; };
+		A0570151175E2848000FED8F /* TestingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A0570150175E2848000FED8F /* TestingViewController.m */; };
 		A0788787175A3C7800C1D90C /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A0788786175A3C7800C1D90C /* UIKit.framework */; };
 		A0788789175A3C7800C1D90C /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A0788788175A3C7800C1D90C /* Foundation.framework */; };
 		A078878B175A3C7800C1D90C /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A078878A175A3C7800C1D90C /* CoreGraphics.framework */; };
@@ -62,6 +63,8 @@
 		707B7C14175D62CD00E4747A /* UIImage+ImageWithUIView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+ImageWithUIView.m"; sourceTree = "<group>"; };
 		707B7C17175D6E2B00E4747A /* InitViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InitViewController.h; sourceTree = "<group>"; };
 		707B7C18175D6E2B00E4747A /* InitViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InitViewController.m; sourceTree = "<group>"; };
+		A057014F175E2847000FED8F /* TestingViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TestingViewController.h; sourceTree = "<group>"; };
+		A0570150175E2848000FED8F /* TestingViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TestingViewController.m; sourceTree = "<group>"; };
 		A0788783175A3C7800C1D90C /* iConfs.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = iConfs.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A0788786175A3C7800C1D90C /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		A0788788175A3C7800C1D90C /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -245,6 +248,8 @@
 				A07887D8175A3CE500C1D90C /* ManageConfCell.h */,
 				A07887D9175A3CE500C1D90C /* ManageConfCell.m */,
 				A07887DA175A3CE500C1D90C /* MainStoryboard.storyboard */,
+				A057014F175E2847000FED8F /* TestingViewController.h */,
+				A0570150175E2848000FED8F /* TestingViewController.m */,
 				A07887A0175A3C7800C1D90C /* iConfs.xcdatamodeld */,
 				A078878F175A3C7800C1D90C /* Supporting Files */,
 			);
@@ -373,6 +378,7 @@
 				707B7C15175D62CD00E4747A /* ECSlidingViewController.m in Sources */,
 				707B7C16175D62CD00E4747A /* UIImage+ImageWithUIView.m in Sources */,
 				707B7C19175D6E2B00E4747A /* InitViewController.m in Sources */,
+				A0570151175E2848000FED8F /* TestingViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

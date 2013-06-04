@@ -12,7 +12,13 @@
 
 
 -(IConfs*)initiConfs: (NSArray*)aConferences{
-    allConferences = [aConferences copy];
+    //allConferences = [aConferences copy];
+    //allConferences = [NSMutableArray new];
+    allConferences = [[NSMutableArray alloc] init];
+    if(aConferences != NULL){
+        allConferences = [aConferences copy];
+    }
+    conferences = [NSMutableArray new];
     return self;
 }
 
@@ -67,8 +73,8 @@
 
 -(BOOL)addConference:(Conference*)c{
     BOOL isHere = false;
-    for (int i=0; i<[agenda count]; i++) {
-        if (((Conference*)[conferences objectAtIndex:i]).getID == c.getID){
+    for (int i=0; i<[conferences count]; i++) {
+        if ([((Conference*)[conferences objectAtIndex:i]).getID isEqualToString: c.getID]){
             isHere = true;
             break;
         }
@@ -82,8 +88,8 @@
 
 -(BOOL)addToAllConference:(Conference*)c{
     BOOL isHere = false;
-    for (int i=0; i<[agenda count]; i++) {
-        if (((Conference*)[allConferences objectAtIndex:i]).getID == c.getID){
+    for (int i=0; i<[allConferences count]; i++) {
+        if ([((Conference*)[allConferences objectAtIndex:i]).getID isEqualToString: c.getID]){
             isHere = true;
             break;
         }
@@ -199,6 +205,7 @@
                 [((Conference*)[allConferences lastObject]) changeLogo: currentImg];
             }
         }
+        NSLog(@"DataIDs: %@", allConferences);
         return true;
     }
     
@@ -206,6 +213,7 @@
 
 -(NSArray*)getRestOfConfs{
     NSMutableArray* ret;
+    ret = [NSMutableArray new];
     for (int i=0; i<[allConferences count]; i++) {
         if([conferences indexOfObject:[allConferences objectAtIndex:i]] == NSNotFound){
             [ret addObject: [allConferences objectAtIndex:i]];
@@ -213,6 +221,21 @@
     }
     return ret;
     
+}
+
+-(NSString*)getfetchedIDs{
+    NSMutableString* ret;
+    //ret = @"IDs: ";
+    [ret  appendString: @"IDs: "];
+    NSDictionary* fetch = [self getConfsFromServer];
+    NSArray* dataIDs = [self getConfsIDFromServer: fetch];
+    NSString* tmp=@"";
+    NSLog(@"DataIDs: %@", dataIDs);
+    for(int i=0; i<[dataIDs count]; i++){
+        tmp= [NSString stringWithFormat:@"%@%@%@",tmp, @", ",[dataIDs objectAtIndex:i]];
+    }
+    
+    return tmp;
 }
 
 @end

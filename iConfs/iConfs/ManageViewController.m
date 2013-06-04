@@ -16,8 +16,6 @@
 {
     NSArray *myConfs;
     NSArray *otherConfs;
-    NSMutableArray *myConfsName;
-    NSMutableArray *otherConfsName;
     IConfs *Main;
 }
 @end
@@ -47,14 +45,19 @@
     [[self RemConfButton] setUserInteractionEnabled:YES];
     
     Main = [IConfs alloc];
+    Main = [Main initiConfs:NULL];
     myConfs = [NSArray alloc];
-    [Main fetchConferences];
-    myConfs = [Main getMyConferences];
+    otherConfs = [NSArray alloc];
     
-    myConfsName = [[NSMutableArray alloc] initWithObjects:@"Conf1", @"Conf2", @"Conf3", @"Conf4", nil];
-    otherConfsName = [[NSMutableArray alloc] initWithObjects:@"Conf5", @"Conf6", nil];
+    if (![Main fetchConferences]) {
+        [[self VerifyButton] setHidden:YES];
+        [[self VerifyButton] setUserInteractionEnabled:NO];
+    }
+    myConfs = [Main getAllConferences];
+    otherConfs = [Main getRestOfConfs];
+    
     //myConfs = [[NSArray alloc] initWithObjects:@"conf.jpg", @"conf.jpg", @"conf.jpg", @"conf.jpg", nil];
-    otherConfs = [[NSMutableArray alloc] initWithObjects:@"2.jpg", @"2.jpg", nil];
+    //otherConfs = [[NSMutableArray alloc] initWithObjects:@"2.jpg", @"2.jpg", nil];
     
     [[[self view] layer] setShadowOpacity:0.75f];
     [[[self view] layer] setShadowRadius:10.0f];
@@ -102,14 +105,18 @@
     }
     
     if ([[self Options] selectedSegmentIndex] == 0) {
-        [[cell IconConf] setImage:[UIImage imageNamed:[[myConfs objectAtIndex:[indexPath row]] getImagePath]]];
-        [[cell LabelConf] setText:[[myConfs objectAtIndex:[indexPath row]] getName]];
+        [[cell IconConf] setImage:[((Conference*)[myConfs objectAtIndex:[indexPath row]]) getLogo]];
+        [[cell LabelConf] setText:[((Conference*)[myConfs objectAtIndex:[indexPath row]]) getName]];
         
         //[[cell IconConf] setImage:[UIImage imageNamed:[myConfs objectAtIndex:[indexPath row]]]];
         //[[cell LabelConf] setText:[myConfsName objectAtIndex:[indexPath row]]];
     }else{
-        [[cell IconConf] setImage:[UIImage imageNamed:[otherConfs objectAtIndex:[indexPath row]]]];
-        [[cell LabelConf] setText:[otherConfsName objectAtIndex:[indexPath row]]];
+        
+        [[cell IconConf] setImage:[((Conference*)[otherConfs objectAtIndex:[indexPath row]]) getLogo]];
+        [[cell LabelConf] setText:[((Conference*)[otherConfs objectAtIndex:[indexPath row]]) getName]];
+        
+        //[[cell IconConf] setImage:[UIImage imageNamed:[otherConfs objectAtIndex:[indexPath row]]]];
+        //[[cell LabelConf] setText:[otherConfsName objectAtIndex:[indexPath row]]];
     }
     
     [[cell LabelConf] setTextAlignment:NSTextAlignmentCenter];
@@ -132,6 +139,7 @@
     
     [[self ConfsCollection] reloadData];
 }
+
 - (IBAction)addConfs:(id)sender {
 }
 

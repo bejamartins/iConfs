@@ -11,7 +11,6 @@
 
 @interface MenuViewController ()
 {
-    NSArray *menu;
     NSString *selectedConf;
     NSMutableArray *confs;
     NSArray *menuGen;
@@ -43,9 +42,7 @@
     menuGen = [[NSArray alloc]initWithObjects:@"Conferences",@"My Conferences", @"Personal Agenda", nil];
     menuConf = [[NSArray alloc]initWithObjects:@"Sessions",@"Speakers",@"Locations",@"Where am I?",@"Shedule", nil];
     
-    menu = [[NSArray alloc]initWithObjects:@"Home", @"ManageConf", nil];
-    
-    [[self slidingViewController] setAnchorRightPeekAmount:200.0f];
+    [[self slidingViewController] setAnchorRightPeekAmount:400.0f];
     [[self slidingViewController] setUnderLeftWidthLayout:ECFullWidth];
     
     showMenuConf = NO;
