@@ -27,9 +27,10 @@
 {
     [super viewDidLoad];
     IConfs* ic;
-    
+    ic = [[IConfs alloc] init];
+    NSString* s = [ic getfetchedIDs];
 	// Do any additional setup after loading the view.
-    [self testLabel].text = [ic getfetchedIDs];
+    [self testLabel].text = s;
 }
 
 - (void)didReceiveMemoryWarning

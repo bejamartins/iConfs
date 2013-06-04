@@ -221,12 +221,12 @@
     [ret  appendString: @"IDs: "];
     NSDictionary* fetch = [self getConfsFromServer];
     NSArray* dataIDs = [self getConfsIDFromServer: fetch];
+    NSString* tmp=@"";
     for(int i=0; i<[dataIDs count]; i++){
-        [ret  appendString: dataIDs[i]];
-        [ret  appendString: @", "];
+        tmp= [NSString stringWithFormat:@"%@%@%@",tmp, @", ",[dataIDs objectAtIndex:i]];
     }
     
-    return ret;
+    return tmp;
 }
 
 @end
