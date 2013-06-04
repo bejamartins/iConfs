@@ -45,6 +45,7 @@
     [[self RemConfButton] setUserInteractionEnabled:YES];
     
     Main = [IConfs alloc];
+    Main = [Main initiConfs:NULL];
     myConfs = [NSArray alloc];
     otherConfs = [NSArray alloc];
     

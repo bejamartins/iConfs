@@ -16,6 +16,16 @@
     self.image = lp;
     self.bluePrints = bp;
     //NSMutableDictionary *authors = [[NSMutableDictionary alloc] init];
+    self.events = [[NSMutableDictionary alloc] init];
+    self.news = [[NSMutableArray alloc] init];
+    self.authors = [[NSMutableDictionary alloc] init];
+    self.organizers = [[NSMutableDictionary alloc] init];
+    self.speakers = [[NSMutableDictionary alloc] init];
+    self.notifications = [[NSMutableArray alloc] init];
+    self.bluePrints = [[NSMutableDictionary alloc] init];
+    self.sessions = [[NSMutableArray alloc] init];
+    self.workshops = [[NSMutableArray alloc] init];
+    self.eventsList = [[NSMutableArray alloc] init];
     return self;
 }
 
