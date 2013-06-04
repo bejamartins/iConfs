@@ -7,9 +7,11 @@
 //
 
 #import "MenuViewController.h"
+#import "ECSlidingViewController.h"
 
 @interface MenuViewController ()
 {
+    NSArray *menu;
     NSString *selectedConf;
     NSMutableArray *confs;
     NSArray *menuGen;
@@ -33,12 +35,15 @@
 {
     [super viewDidLoad];
 	// Do any additional setup after loading the view.
-    self.MenuView.dataSource = self;
-    self.MenuView.delegate = self;
     
     confs = [[NSMutableArray alloc]initWithObjects:@"Conf 1",@"Conf 2", nil];
-    menuGen = [[NSArray alloc]initWithObjects:@"Add Conference",@"My Conferences", @"Personal Agenda", nil];
+    menuGen = [[NSArray alloc]initWithObjects:@"Manage Conferences",@"My Conferences", @"Personal Agenda", nil];
     menuConf = [[NSArray alloc]initWithObjects:@"Sessions",@"Speakers",@"Locations",@"Where am I?",@"Shedule", nil];
+    
+    menu = [[NSArray alloc]initWithObjects:@"Home", @"ManageConf", nil];
+    
+    [[self slidingViewController] setAnchorRightPeekAmount:200.0f];
+    [[self slidingViewController] setUnderLeftWidthLayout:ECFullWidth];
     
     showMenuConf = NO;
 }
@@ -75,29 +80,39 @@
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellID forIndexPath:indexPath];
     
     if (cell == nil) {
-        cell = [[UITableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellID];
+        cell = [[UITableViewCell alloc]initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:cellID];
     }
     
     if ([indexPath section] == 0)
         cell.textLabel.text = menuGen[indexPath.row];
-    else if ([indexPath section] == 1 && showMenuConf)
+    else if ([indexPath section] == 1)
         cell.textLabel.text = menuConf[indexPath.row];
-    else if ([indexPath section] == 2){
+    else if ([indexPath section] == 2)
         cell.textLabel.text = confs[indexPath.row];
-    }
     
     
-    cell.textLabel.textAlignment = NSTextAlignmentCenter;
+    //cell.textLabel.textAlignment = NSTextAlignmentCenter;
     
     return cell;
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    NSString *str;
-    UITableViewCell *cell = [self.MenuView cellForRowAtIndexPath:indexPath];
+    //NSString *str;
+    //UITableViewCell *cell = [self.MenuView cellForRowAtIndexPath:indexPath];
     
-    if ([indexPath section] == 0){
+    NSString *iD = [NSString stringWithFormat:@"%@", [self.MenuView cellForRowAtIndexPath:indexPath].textLabel];
+    
+    UIViewController *newTopViewController = [[self storyboard]instantiateViewControllerWithIdentifier:iD];
+    
+    [[self slidingViewController] anchorTopViewOffScreenTo:ECRight animations:nil onComplete:^{
+        CGRect frame = [[[[self slidingViewController] topViewController] view] frame];
+        [[self slidingViewController] setTopViewController:newTopViewController];
+        [[[[self slidingViewController] topViewController] view] setFrame:frame];
+        [[self slidingViewController] resetTopView];
+    }];
+    
+/*    if ([indexPath section] == 0){
         str = [[cell textLabel] text];
         showMenuConf = NO;
         [self.MenuView reloadSections:[NSIndexSet indexSetWithIndex:1] withRowAnimation:UITableViewRowAnimationFade];
@@ -108,7 +123,7 @@
         selectedConf = [[cell textLabel] text];
         showMenuConf = YES;
         [self.MenuView reloadSections:[NSIndexSet indexSetWithIndex:1] withRowAnimation:UITableViewRowAnimationFade];
-    }
+    }*/
 }
 
 @end

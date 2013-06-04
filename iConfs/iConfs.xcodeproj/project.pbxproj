@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		28D97F38175BFF8300AA3A80 /* Post-it-note-transparent.png in Resources */ = {isa = PBXBuildFile; fileRef = 28D97F37175BFF8300AA3A80 /* Post-it-note-transparent.png */; };
+		707B7C15175D62CD00E4747A /* ECSlidingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 707B7C12175D62CD00E4747A /* ECSlidingViewController.m */; };
+		707B7C16175D62CD00E4747A /* UIImage+ImageWithUIView.m in Sources */ = {isa = PBXBuildFile; fileRef = 707B7C14175D62CD00E4747A /* UIImage+ImageWithUIView.m */; };
 		A0788787175A3C7800C1D90C /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A0788786175A3C7800C1D90C /* UIKit.framework */; };
 		A0788789175A3C7800C1D90C /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A0788788175A3C7800C1D90C /* Foundation.framework */; };
 		A078878B175A3C7800C1D90C /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A078878A175A3C7800C1D90C /* CoreGraphics.framework */; };
@@ -53,6 +55,10 @@
 
 /* Begin PBXFileReference section */
 		28D97F37175BFF8300AA3A80 /* Post-it-note-transparent.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Post-it-note-transparent.png"; sourceTree = "<group>"; };
+		707B7C11175D62CD00E4747A /* ECSlidingViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ECSlidingViewController.h; sourceTree = "<group>"; };
+		707B7C12175D62CD00E4747A /* ECSlidingViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ECSlidingViewController.m; sourceTree = "<group>"; };
+		707B7C13175D62CD00E4747A /* UIImage+ImageWithUIView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+ImageWithUIView.h"; sourceTree = "<group>"; };
+		707B7C14175D62CD00E4747A /* UIImage+ImageWithUIView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+ImageWithUIView.m"; sourceTree = "<group>"; };
 		A0788783175A3C7800C1D90C /* iConfs.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = iConfs.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A0788786175A3C7800C1D90C /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		A0788788175A3C7800C1D90C /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -139,9 +145,22 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		707B7C10175D62CD00E4747A /* ECSlidingViewController */ = {
+			isa = PBXGroup;
+			children = (
+				707B7C11175D62CD00E4747A /* ECSlidingViewController.h */,
+				707B7C12175D62CD00E4747A /* ECSlidingViewController.m */,
+				707B7C13175D62CD00E4747A /* UIImage+ImageWithUIView.h */,
+				707B7C14175D62CD00E4747A /* UIImage+ImageWithUIView.m */,
+			);
+			name = ECSlidingViewController;
+			path = iConfs/ECSlidingViewController;
+			sourceTree = "<group>";
+		};
 		A078877A175A3C7800C1D90C = {
 			isa = PBXGroup;
 			children = (
+				707B7C10175D62CD00E4747A /* ECSlidingViewController */,
 				A078878E175A3C7800C1D90C /* iConfs */,
 				A0788785175A3C7800C1D90C /* Frameworks */,
 				A0788784175A3C7800C1D90C /* Products */,
@@ -346,6 +365,8 @@
 				A07887F1175A3CE500C1D90C /* ManageViewController.m in Sources */,
 				A07887F2175A3CE500C1D90C /* MenuViewController.m in Sources */,
 				A07887F3175A3CE500C1D90C /* ManageConfCell.m in Sources */,
+				707B7C15175D62CD00E4747A /* ECSlidingViewController.m in Sources */,
+				707B7C16175D62CD00E4747A /* UIImage+ImageWithUIView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
