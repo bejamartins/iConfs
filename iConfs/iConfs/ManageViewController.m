@@ -9,6 +9,8 @@
 #import "ManageViewController.h"
 #import "ManageConfCell.h"
 #import "IConfs.h"
+#import "ECSlidingViewController.h"
+#import "MenuViewController.h"
 
 @interface ManageViewController ()
 {
@@ -53,6 +55,16 @@
     otherConfsName = [[NSMutableArray alloc] initWithObjects:@"Conf5", @"Conf6", nil];
     //myConfs = [[NSArray alloc] initWithObjects:@"conf.jpg", @"conf.jpg", @"conf.jpg", @"conf.jpg", nil];
     otherConfs = [[NSMutableArray alloc] initWithObjects:@"2.jpg", @"2.jpg", nil];
+    
+    [[[self view] layer] setShadowOpacity:0.75f];
+    [[[self view] layer] setShadowRadius:10.0f];
+    [[[self view] layer] setShadowColor:[UIColor blackColor].CGColor];
+    
+    if (![[[self slidingViewController] underLeftViewController] isKindOfClass:[MenuViewController class]]) {
+        [[self slidingViewController] setUnderLeftViewController:[[self storyboard]instantiateViewControllerWithIdentifier:@"Menu"]];
+        
+        [[self view] addGestureRecognizer:[self slidingViewController].panGesture];
+    }
 }
 
 - (void)didReceiveMemoryWarning

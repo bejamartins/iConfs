@@ -36,8 +36,11 @@
     [super viewDidLoad];
 	// Do any additional setup after loading the view.
     
+    [[self MenuView] setDelegate:self];
+    [[self MenuView] setDataSource:self];
+    
     confs = [[NSMutableArray alloc]initWithObjects:@"Conf 1",@"Conf 2", nil];
-    menuGen = [[NSArray alloc]initWithObjects:@"Manage Conferences",@"My Conferences", @"Personal Agenda", nil];
+    menuGen = [[NSArray alloc]initWithObjects:@"Conferences",@"My Conferences", @"Personal Agenda", nil];
     menuConf = [[NSArray alloc]initWithObjects:@"Sessions",@"Speakers",@"Locations",@"Where am I?",@"Shedule", nil];
     
     menu = [[NSArray alloc]initWithObjects:@"Home", @"ManageConf", nil];
@@ -84,11 +87,11 @@
     }
     
     if ([indexPath section] == 0)
-        cell.textLabel.text = menuGen[indexPath.row];
+        cell.textLabel.text = [NSString stringWithFormat:@"%@", [menuGen objectAtIndex:[indexPath row]]];
     else if ([indexPath section] == 1)
-        cell.textLabel.text = menuConf[indexPath.row];
+        cell.textLabel.text = [NSString stringWithFormat:@"%@", [menuConf objectAtIndex:[indexPath row]]];
     else if ([indexPath section] == 2)
-        cell.textLabel.text = confs[indexPath.row];
+        cell.textLabel.text = [NSString stringWithFormat:@"%@", [confs objectAtIndex:[indexPath row]]];
     
     
     //cell.textLabel.textAlignment = NSTextAlignmentCenter;
@@ -101,7 +104,7 @@
     //NSString *str;
     //UITableViewCell *cell = [self.MenuView cellForRowAtIndexPath:indexPath];
     
-    NSString *iD = [NSString stringWithFormat:@"%@", [self.MenuView cellForRowAtIndexPath:indexPath].textLabel];
+    NSString *iD = [NSString stringWithFormat:@"%@", [self.MenuView cellForRowAtIndexPath:indexPath].textLabel.text];
     
     UIViewController *newTopViewController = [[self storyboard]instantiateViewControllerWithIdentifier:iD];
     

@@ -9,6 +9,9 @@
 #import "HomeViewController.h"
 #import "CustomCellOne.h"
 #import "CustomCellTwo.h"
+#import "ECSlidingViewController.h"
+#import "MenuViewController.h"
+
 @interface HomeViewController (){
     NSArray *arrayOfImages;
     NSArray *arrayOfDescriptions;
@@ -34,6 +37,16 @@
     
     arrayOfImages= [[NSArray alloc]initWithObjects:@"conf.jpg", @"conf.jpg", @"conf.jpg",nil];
     arrayOfDescriptions=[[NSArray alloc]initWithObjects:@"First",@"Second",@"Third", nil];
+    
+    [[[self view] layer] setShadowOpacity:0.75f];
+    [[[self view] layer] setShadowRadius:10.0f];
+    [[[self view] layer] setShadowColor:[UIColor blackColor].CGColor];
+    
+    if (![[[self slidingViewController] underLeftViewController] isKindOfClass:[MenuViewController class]]) {
+        [[self slidingViewController] setUnderLeftViewController:[[self storyboard]instantiateViewControllerWithIdentifier:@"Menu"]];
+        
+        [[self view] addGestureRecognizer:[self slidingViewController].panGesture];
+    }
 }
 
 - (void)didReceiveMemoryWarning
