@@ -10,7 +10,7 @@
 
 @implementation Conference
 
--(Conference*)initWithData: (NSString*)cID name: (NSString*)n image:(UIImage *)lp bluePrint:(NSMutableDictionary *)bp:(NSString*)lp bluePrint:(NSMutableDictionary*)bp{
+-(Conference*)initWithData: (NSString*)cID name: (NSString*)n image:(UIImage *)lp bluePrint:(NSMutableDictionary *)bp{
     self.confID = cID;
     self.confName = n;
     self.image = lp;
