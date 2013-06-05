@@ -28,7 +28,7 @@
     [super viewDidLoad];
 	// Do any additional setup after loading the view.
     
-    [self setTopViewController:[self.storyboard  instantiateViewControllerWithIdentifier:@"Home"]];
+    self.TopViewController = [self.storyboard  instantiateViewControllerWithIdentifier:@"Home"];
 }
 
 - (void)didReceiveMemoryWarning

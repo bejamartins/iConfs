@@ -43,10 +43,10 @@
     [[[self view] layer] setShadowColor:[UIColor blackColor].CGColor];
     
     if (![[[self slidingViewController] underLeftViewController] isKindOfClass:[MenuViewController class]]) {
-        [[self slidingViewController] setUnderLeftViewController:[[self storyboard]instantiateViewControllerWithIdentifier:@"Menu"]];
-        
-        [[self view] addGestureRecognizer:[self slidingViewController].panGesture];
+        [self slidingViewController].UnderLeftViewController = [[self storyboard]instantiateViewControllerWithIdentifier:@"Menu"];
     }
+    
+    [[self view] addGestureRecognizer:[self slidingViewController].panGesture];
 }
 
 - (void)didReceiveMemoryWarning
