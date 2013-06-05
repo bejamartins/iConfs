@@ -985,14 +985,14 @@
                                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                         </view>
                                         <constraints>
-                                            <constraint firstItem="Fpy-hY-NxR" firstAttribute="leading" secondItem="p9A-qv-4pC" secondAttribute="leading" type="default" id="JTd-Eh-7p1"/>
-                                            <constraint firstAttribute="bottom" secondItem="Fpy-hY-NxR" secondAttribute="bottom" constant="20" type="default" id="M9P-zk-zdU"/>
-                                            <constraint firstAttribute="bottom" secondItem="qLB-VD-q4M" secondAttribute="bottom" constant="68" id="Q94-2R-4T8"/>
-                                            <constraint firstItem="lgF-uG-1U4" firstAttribute="leading" secondItem="p9A-qv-4pC" secondAttribute="leading" type="default" id="Z8D-O4-81v"/>
-                                            <constraint firstItem="qLB-VD-q4M" firstAttribute="trailing" secondItem="p9A-qv-4pC" secondAttribute="trailing" type="default" id="a1M-sL-mrK"/>
-                                            <constraint firstItem="lgF-uG-1U4" firstAttribute="trailing" secondItem="p9A-qv-4pC" secondAttribute="trailing" type="default" id="abE-M1-STa"/>
+                                            <constraint firstItem="qLB-VD-q4M" firstAttribute="trailing" secondItem="p9A-qv-4pC" secondAttribute="trailing" type="default" id="0xH-rq-Dr1"/>
+                                            <constraint firstItem="Fpy-hY-NxR" firstAttribute="centerX" secondItem="qLB-VD-q4M" secondAttribute="centerX" type="default" id="Lxx-uN-Aa5"/>
+                                            <constraint firstItem="qLB-VD-q4M" firstAttribute="leading" secondItem="p9A-qv-4pC" secondAttribute="leading" type="default" id="PWY-G8-9bA"/>
+                                            <constraint firstItem="qLB-VD-q4M" firstAttribute="trailing" secondItem="lgF-uG-1U4" secondAttribute="trailing" type="default" id="Vcj-Az-dqE"/>
+                                            <constraint firstItem="qLB-VD-q4M" firstAttribute="leading" secondItem="lgF-uG-1U4" secondAttribute="leading" type="default" id="cbi-jX-UyD"/>
                                             <constraint firstItem="lgF-uG-1U4" firstAttribute="top" secondItem="p9A-qv-4pC" secondAttribute="top" type="default" id="ffB-tH-XMJ"/>
-                                            <constraint firstItem="qLB-VD-q4M" firstAttribute="leading" secondItem="p9A-qv-4pC" secondAttribute="leading" type="default" id="lo3-IM-dWN"/>
+                                            <constraint firstAttribute="bottom" secondItem="Fpy-hY-NxR" secondAttribute="bottom" constant="20" type="default" id="qQq-bT-rfb"/>
+                                            <constraint firstItem="qLB-VD-q4M" firstAttribute="top" secondItem="lgF-uG-1U4" secondAttribute="bottom" constant="8" symbolic="YES" type="default" id="vdY-yH-1zd"/>
                                         </constraints>
                                         <connections>
                                             <outlet property="company" destination="Fpy-hY-NxR" id="hpX-To-ZME"/>
@@ -1161,6 +1161,7 @@
         <class className="ManageViewController" superclassName="UIViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/ManageViewController.h"/>
             <relationships>
+                <relationship kind="action" name="SelectedOption:"/>
                 <relationship kind="action" name="addConfs:"/>
                 <relationship kind="action" name="remConfs:"/>
                 <relationship kind="outlet" name="AddConfButton" candidateClass="UIButton"/>
@@ -1182,7 +1183,9 @@
         <class className="PeopleC2" superclassName="UIViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/PeopleC2.h"/>
             <relationships>
+                <relationship kind="action" name="segmentedChanged:"/>
                 <relationship kind="outlet" name="peopleCollection" candidateClass="UICollectionView"/>
+                <relationship kind="outlet" name="segment" candidateClass="UISegmentedControl"/>
             </relationships>
         </class>
         <class className="PeopleCell" superclassName="UICollectionViewCell">
@@ -1248,7 +1251,7 @@
         <simulatedScreenMetrics key="destination"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
-        <segue reference="Y1b-aR-8Jh"/>
         <segue reference="3I6-Mu-9PS"/>
+        <segue reference="Y1b-aR-8Jh"/>
     </inferredMetricsTieBreakers>
 </document>

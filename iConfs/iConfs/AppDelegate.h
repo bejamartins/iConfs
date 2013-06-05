@@ -7,9 +7,16 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "AppDelegateProtocol.h"
 
-@interface AppDelegate : UIResponder <UIApplicationDelegate>
+@class IConfs;
+
+@interface AppDelegate : UIResponder <UIApplicationDelegate>{
+    IConfs* appData;
+}
 
 @property (strong, nonatomic) UIWindow *window;
+
+@property (nonatomic, retain) IConfs* appData;
 
 @end

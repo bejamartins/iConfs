@@ -7,8 +7,12 @@
 //
 
 #import "AppDelegate.h"
+#import "AppDelegateProtocol.h"
+#import "IConfs.h"
 
 @implementation AppDelegate
+
+@synthesize appData;
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
@@ -41,6 +45,14 @@
 - (void)applicationWillTerminate:(UIApplication *)application
 {
     // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
+}
+
+#pragma mark - Memory management
+
+- (id) init;
+{
+	self.appData = [[IConfs alloc]initiConfs:NULL];
+	return [super init];
 }
 
 @end

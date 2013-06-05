@@ -110,8 +110,6 @@
     targetVC.showPerson=showPeople;
 }
 
-//[self.peopleCollection reloadData];
-
 
 
 
@@ -120,7 +118,7 @@
     showPeople= [[self segment] selectedSegmentIndex];
     [self.peopleCollection reloadData];
 
-    }
+}
 
 
 @end

@@ -9,8 +9,9 @@
 #import <Foundation/Foundation.h>
 #import "Event.h"
 #import "Conference.h"
+#import "AppDataObject.h"
 
-@interface IConfs : NSObject
+@interface IConfs : AppDataObject
 {
     @protected
     NSMutableArray* conferences;

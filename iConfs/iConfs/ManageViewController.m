@@ -8,19 +8,28 @@
 
 #import "ManageViewController.h"
 #import "ManageConfCell.h"
-#import "IConfs.h"
 #import "ECSlidingViewController.h"
 #import "MenuViewController.h"
+#import "AppDelegateProtocol.h"
+#import "IConfs.h"
 
 @interface ManageViewController ()
 {
     NSArray *myConfs;
     NSArray *otherConfs;
-    IConfs *Main;
+    IConfs *theAppData;
 }
 @end
 
 @implementation ManageViewController
+
+- (IConfs*) appData;
+{
+	id<AppDelegateProtocol> theDelegate = (id<AppDelegateProtocol>) [UIApplication sharedApplication].delegate;
+	IConfs* theAppDataObject;
+	theAppDataObject = (IConfs*)[theDelegate appData];
+	return theAppDataObject;
+}
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -44,16 +53,11 @@
     [[self RemConfButton] setHidden:NO];
     [[self RemConfButton] setUserInteractionEnabled:YES];
     
-    Main = [IConfs alloc];
-    Main = [Main initiConfs:NULL];
-    myConfs = [NSArray alloc];
-    otherConfs = [NSArray alloc];
+    theAppData = [self appData];
     
-    [Main fetchConferences];
-    myConfs = [Main getMyConferences];
-    otherConfs = [Main getRestOfConfs];
-    
-    
+    [theAppData fetchConferences];
+    myConfs = [theAppData getMyConferences];
+    otherConfs = [theAppData getRestOfConfs];
     
     [[[self view] layer] setShadowOpacity:0.75f];
     [[[self view] layer] setShadowRadius:10.0f];
