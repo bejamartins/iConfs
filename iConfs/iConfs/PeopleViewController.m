@@ -8,6 +8,7 @@
 
 #import "PeopleViewController.h"
 #import "PeopleCell.h"
+#import "PersonViewController.h"
 
 @interface PeopleViewController ()
 {
@@ -44,7 +45,7 @@
     searchItem = NO;
     
     imageArray = [[NSArray alloc]initWithObjects:@"conf.jpg", @"conf.jpg", @"conf.jpg",nil];
-    nameArray = [[NSArray alloc]initWithObjects:@"First",@"Second",@"Third", nil];
+    nameArray = [[NSArray alloc]initWithObjects:@"Person 1",@"Person 2",@"Person 3", nil];
     companyArray = [[NSArray alloc]initWithObjects:@"FCT",@"UNL",@"DI - FCT", nil];
 }
 
@@ -120,6 +121,20 @@
     [[self PeopleCollection]reloadData];
 }
 
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+   // UIViewController *destination = segue.destinationViewController;
+    PersonViewController *personView=segue.destinationViewController;
+    if ([segue.identifier isEqualToString:@"segueFromCell"]) {
+        NSIndexPath *a= [sender indexPath];
+      //  personView.IndexAux=a.item ;
+        personView.IndexAux=1;
+        //    NSInteger aux= [[sender indexPath] row];
+//  personView->passPicture=[imageArray objectAtIndex:1];
+ //       personView->name=[nameArray objectAtIndex:1];
+   //     personView->index=1;
+    }
+    
+}
 - (IBAction)moreInfo:(id)sender {
   
     
