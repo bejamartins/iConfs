@@ -1037,7 +1037,9 @@
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="bar" destination="twv-Dd-0Kq" id="Pgb-1G-UKL"/>
                         <outlet property="peopleCollection" destination="yEn-GH-oKM" id="IzP-at-Ft3"/>
+                        <outlet property="realBar" destination="hR3-15-uuO" id="dJi-3v-bZG"/>
                         <outlet property="segment" destination="3UT-Zz-2zn" id="hEP-X6-YC2"/>
                         <segue destination="Lxi-Zv-Vg4" kind="modal" identifier="toPerson" id="Y1b-aR-8Jh"/>
                     </connections>
@@ -1128,6 +1130,124 @@
         <image name="checkbox.png" width="16" height="16"/>
         <image name="pulpito.png" width="375" height="375"/>
     </resources>
+    <classes>
+        <class className="CustomCellOne" superclassName="UICollectionViewCell">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/CustomCellOne.h"/>
+            <relationships>
+                <relationship kind="outlet" name="Description" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="Image" candidateClass="UIImageView"/>
+            </relationships>
+        </class>
+        <class className="ECSlidingViewController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/ECSlidingViewController.h"/>
+        </class>
+        <class className="HomeViewController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/HomeViewController.h"/>
+            <relationships>
+                <relationship kind="outlet" name="CollectionOne" candidateClass="UICollectionView"/>
+                <relationship kind="outlet" name="ct" candidateClass="UICollectionView"/>
+            </relationships>
+        </class>
+        <class className="InitViewController" superclassName="ECSlidingViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/InitViewController.h"/>
+        </class>
+        <class className="ManageConfCell" superclassName="UICollectionViewCell">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/ManageConfCell.h"/>
+            <relationships>
+                <relationship kind="action" name="checkingButton:"/>
+                <relationship kind="outlet" name="CheckButton" candidateClass="UIButton"/>
+                <relationship kind="outlet" name="IconConf" candidateClass="UIImageView"/>
+                <relationship kind="outlet" name="LabelConf" candidateClass="UILabel"/>
+            </relationships>
+        </class>
+        <class className="ManageViewController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/ManageViewController.h"/>
+            <relationships>
+                <relationship kind="action" name="addConfs:"/>
+                <relationship kind="action" name="remConfs:"/>
+                <relationship kind="outlet" name="AddConfButton" candidateClass="UIButton"/>
+                <relationship kind="outlet" name="ConfsCollection" candidateClass="UICollectionView"/>
+                <relationship kind="outlet" name="Options" candidateClass="UISegmentedControl"/>
+                <relationship kind="outlet" name="RemConfButton" candidateClass="UIButton"/>
+            </relationships>
+        </class>
+        <class className="MenuViewController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/MenuViewController.h"/>
+            <relationships>
+                <relationship kind="action" name="homeButtonPressed:"/>
+                <relationship kind="outlet" name="MenuView" candidateClass="UITableView"/>
+            </relationships>
+        </class>
+        <class className="NSLayoutConstraint" superclassName="NSObject">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/NSLayoutConstraint.h"/>
+        </class>
+        <class className="PeopleC2" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/PeopleC2.h"/>
+            <relationships>
+                <relationship kind="action" name="segmentedChanged:"/>
+                <relationship kind="outlet" name="bar" candidateClass="UINavigationItem"/>
+                <relationship kind="outlet" name="peopleCollection" candidateClass="UICollectionView"/>
+                <relationship kind="outlet" name="realBar" candidateClass="UINavigationItem"/>
+                <relationship kind="outlet" name="segment" candidateClass="UISegmentedControl"/>
+                <relationship kind="outlet" name="segmentControl" candidateClass="UIBarButtonItem"/>
+            </relationships>
+        </class>
+        <class className="PeopleCell" superclassName="UICollectionViewCell">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/PeopleCell.h"/>
+            <relationships>
+                <relationship kind="action" name="moreInfo:"/>
+                <relationship kind="outlet" name="Company" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="Image" candidateClass="UIImageView"/>
+                <relationship kind="outlet" name="MoreInfoButton" candidateClass="UIButton"/>
+                <relationship kind="outlet" name="Name" candidateClass="UILabel"/>
+            </relationships>
+        </class>
+        <class className="PeopleViewController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/PeopleViewController.h"/>
+            <relationships>
+                <relationship kind="action" name="selectedOption:"/>
+                <relationship kind="outlet" name="Options" candidateClass="UISegmentedControl"/>
+                <relationship kind="outlet" name="PeopleCollection" candidateClass="UICollectionView"/>
+                <relationship kind="outlet" name="Search" candidateClass="UISearchBar"/>
+                <relationship kind="outlet" name="collection" candidateClass="UICollectionView"/>
+            </relationships>
+        </class>
+        <class className="PersonViewController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/PersonViewController.h"/>
+            <relationships>
+                <relationship kind="outlet" name="bar" candidateClass="UINavigationItem"/>
+                <relationship kind="outlet" name="biography" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="navigationBar" candidateClass="UINavigationItem"/>
+                <relationship kind="outlet" name="picture" candidateClass="UIImageView"/>
+                <relationship kind="outlet" name="session_theme" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="session_when" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="session_where" candidateClass="UIButton"/>
+            </relationships>
+        </class>
+        <class className="Teste" superclassName="UICollectionViewCell">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/Teste.h"/>
+            <relationships>
+                <relationship kind="outlet" name="company" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="name" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="picture" candidateClass="UIImageView"/>
+            </relationships>
+        </class>
+        <class className="TestingViewController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/TestingViewController.h"/>
+            <relationships>
+                <relationship kind="outlet" name="testLabel" candidateClass="UILabel"/>
+            </relationships>
+        </class>
+        <class className="UICollectionReusableView" superclassName="UIView">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/UICollectionReusableView.h"/>
+        </class>
+        <class className="UICollectionViewCell" superclassName="UICollectionReusableView">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/UICollectionViewCell.h"/>
+        </class>
+        <class className="UICollectionViewFlowLayout" superclassName="UICollectionViewLayout">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/UICollectionViewFlowLayout.h"/>
+        </class>
+    </classes>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar" statusBarStyle="blackTranslucent"/>
         <simulatedOrientationMetrics key="orientation"/>

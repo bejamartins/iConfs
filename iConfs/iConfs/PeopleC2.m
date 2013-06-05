@@ -25,6 +25,8 @@
     NSArray *authors;
     NSArray *organization;
 
+    IBOutlet UINavigationItem *realBar;
+    IBOutlet UINavigationItem *bar;
     IBOutlet UIBarButtonItem *segmentControl;
     
 }
@@ -41,6 +43,8 @@
 
 - (void)viewDidLoad
 {
+    [realBar setTitle:@"Speakers"];
+
     [[self peopleCollection]setDelegate:self];
     [[self peopleCollection]setDataSource:self];
     imageArray = [[NSArray alloc]initWithObjects:@"speaker.jpg", @"author.jpg", @"conf.jpg",nil];
@@ -119,7 +123,15 @@
     
     showPeople= [[self segment] selectedSegmentIndex];
     [self.peopleCollection reloadData];
-
+    NSString *title;
+    if(showPeople==0){
+    title=@"Speakers";}
+    else if (showPeople==1){
+    title=@"Authors";
+    }
+    else{title=@"Organization";}
+    
+    [realBar setTitle:title];
     }
 
 
