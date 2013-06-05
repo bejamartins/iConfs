@@ -924,6 +924,21 @@
                         <rect key="frame" x="0.0" y="20" width="768" height="1004"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
+                            <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" barStyle="blackTranslucent" translatesAutoresizingMaskIntoConstraints="NO" id="bi5-J0-q15">
+                                <items>
+                                    <barButtonItem style="plain" systemItem="search" id="IB8-ZF-sKz"/>
+                                    <barButtonItem style="plain" id="K1e-yf-upV">
+                                        <textField key="customView" opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" minimumFontSize="17" id="GTc-Qt-3c3">
+                                            <rect key="frame" x="42" y="7" width="187" height="30"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                            <textInputTraits key="textInputTraits"/>
+                                        </textField>
+                                    </barButtonItem>
+                                    <barButtonItem width="146" style="plain" systemItem="fixedSpace" id="aKC-Tb-MLC"/>
+                                    <barButtonItem title="Sort by" style="plain" id="nIg-9X-ksX"/>
+                                </items>
+                            </toolbar>
                             <collectionView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" minimumZoomScale="0.0" maximumZoomScale="0.0" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="yEn-GH-oKM">
                                 <color key="backgroundColor" cocoaTouchSystemColor="scrollViewTexturedBackgroundColor"/>
                                 <constraints>
@@ -987,39 +1002,25 @@
                                     </collectionViewCell>
                                 </cells>
                             </collectionView>
-                            <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" barStyle="blackTranslucent" translatesAutoresizingMaskIntoConstraints="NO" id="bi5-J0-q15">
-                                <items>
-                                    <barButtonItem style="plain" systemItem="search" id="IB8-ZF-sKz"/>
-                                    <barButtonItem style="plain" id="K1e-yf-upV">
-                                        <textField key="customView" opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" minimumFontSize="17" id="GTc-Qt-3c3">
-                                            <rect key="frame" x="42" y="7" width="187" height="30"/>
-                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                            <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                            <textInputTraits key="textInputTraits"/>
-                                        </textField>
-                                    </barButtonItem>
-                                    <barButtonItem width="146" style="plain" systemItem="fixedSpace" id="aKC-Tb-MLC"/>
-                                    <barButtonItem title="Sort by" style="plain" id="nIg-9X-ksX"/>
-                                    <barButtonItem style="plain" id="piB-CA-f9a">
-                                        <segmentedControl key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="bar" selectedSegmentIndex="0" id="aCZ-KT-xnJ">
-                                            <rect key="frame" x="464" y="8" width="270" height="30"/>
-                                            <segments>
-                                                <segment title="Speakers"/>
-                                                <segment title="Authors"/>
-                                                <segment title="Organization"/>
-                                            </segments>
-                                            <connections>
-                                                <action selector="selectedOption:" destination="1RG-f5-rQn" eventType="valueChanged" id="GHx-pN-MxA"/>
-                                            </connections>
-                                        </segmentedControl>
-                                    </barButtonItem>
-                                </items>
-                            </toolbar>
                             <navigationBar contentMode="scaleToFill" barStyle="blackTranslucent" translatesAutoresizingMaskIntoConstraints="NO" id="twv-Dd-0Kq">
                                 <items>
                                     <navigationItem title="Title" id="hR3-15-uuO"/>
                                 </items>
                             </navigationBar>
+                            <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="bar" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="3UT-Zz-2zn">
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="270" id="FYc-cV-mCG"/>
+                                </constraints>
+                                <segments>
+                                    <segment title="Speakers"/>
+                                    <segment title="Authors"/>
+                                    <segment title="Organization"/>
+                                </segments>
+                                <connections>
+                                    <action selector="segmentedChanged:" destination="lT5-Md-sch" eventType="valueChanged" id="XpD-78-mkM"/>
+                                    <action selector="selectedOption:" destination="1RG-f5-rQn" eventType="valueChanged" id="aXN-XF-R7B"/>
+                                </connections>
+                            </segmentedControl>
                         </subviews>
                         <color key="backgroundColor" cocoaTouchSystemColor="scrollViewTexturedBackgroundColor"/>
                         <constraints>
@@ -1030,11 +1031,14 @@
                             <constraint firstItem="yEn-GH-oKM" firstAttribute="leading" secondItem="qhX-oV-lRO" secondAttribute="leading" constant="50" id="RMe-rs-jXZ"/>
                             <constraint firstItem="bi5-J0-q15" firstAttribute="trailing" secondItem="qhX-oV-lRO" secondAttribute="trailing" type="default" id="dE2-78-h4k"/>
                             <constraint firstItem="twv-Dd-0Kq" firstAttribute="trailing" secondItem="qhX-oV-lRO" secondAttribute="trailing" type="default" id="gyR-d3-CEY"/>
+                            <constraint firstAttribute="bottom" secondItem="3UT-Zz-2zn" secondAttribute="bottom" constant="9" id="ktH-oL-4Kz"/>
                             <constraint firstItem="twv-Dd-0Kq" firstAttribute="top" secondItem="qhX-oV-lRO" secondAttribute="top" type="default" id="qta-aV-f1w"/>
+                            <constraint firstAttribute="trailing" secondItem="3UT-Zz-2zn" secondAttribute="trailing" constant="14" id="xKD-XJ-iYP"/>
                         </constraints>
                     </view>
                     <connections>
                         <outlet property="peopleCollection" destination="yEn-GH-oKM" id="IzP-at-Ft3"/>
+                        <outlet property="segment" destination="3UT-Zz-2zn" id="hEP-X6-YC2"/>
                         <segue destination="Lxi-Zv-Vg4" kind="modal" identifier="toPerson" id="Y1b-aR-8Jh"/>
                     </connections>
                 </viewController>
@@ -1245,6 +1249,6 @@
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
         <segue reference="Y1b-aR-8Jh"/>
-        <segue reference="4T1-Kb-aeY"/>
+        <segue reference="3I6-Mu-9PS"/>
     </inferredMetricsTieBreakers>
 </document>

@@ -12,16 +12,23 @@
 
 @interface PeopleC2 (){
     NSInteger item;
+    NSInteger showPeople;
 }
 
-    
+
 @end
 
 @implementation PeopleC2{
     NSArray *imageArray;
-    NSArray *nameArray;
     NSArray *companyArray;
+    NSArray *speakers;
+    NSArray *authors;
+    NSArray *organization;
+
+    IBOutlet UIBarButtonItem *segmentControl;
+    
 }
+@synthesize peopleCollection,segment;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -36,8 +43,12 @@
 {
     [[self peopleCollection]setDelegate:self];
     [[self peopleCollection]setDataSource:self];
-    imageArray = [[NSArray alloc]initWithObjects:@"conf.jpg", @"conf.jpg", @"conf.jpg",nil];
-    nameArray = [[NSArray alloc]initWithObjects:@"Person 1",@"Person 2",@"Person 3", nil];
+    imageArray = [[NSArray alloc]initWithObjects:@"speaker.jpg", @"author.jpg", @"conf.jpg",nil];
+    speakers = [[NSArray alloc]initWithObjects:@"Speaker 1",@"Speaker 2",@"Speaker 3", nil];
+    authors = [[NSArray alloc]initWithObjects:@"Author 1",@"Author 2",@"Author 3", nil];
+    organization = [[NSArray alloc]initWithObjects:@"Person 1",@"Person 2",@"Person 3", nil];
+
+
     companyArray = [[NSArray alloc]initWithObjects:@"FCT",@"UNL",@"DI - FCT", nil];
 
     [super viewDidLoad];
@@ -58,11 +69,24 @@
 }
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath{
     static NSString *CellIdentifier=@"Cell";
+    
     Teste *cell=[collectionView dequeueReusableCellWithReuseIdentifier:CellIdentifier forIndexPath:indexPath];
-  
-    [[cell picture]setImage:[UIImage imageNamed:[imageArray objectAtIndex:indexPath.item]]];
-    [[cell name]setText:[nameArray objectAtIndex:indexPath.item]];
-    [[cell company]setText:[companyArray objectAtIndex:indexPath.item]];
+    [[cell picture]setImage:[UIImage imageNamed:[imageArray objectAtIndex:showPeople]]];
+
+    if (showPeople==0) {
+        [[cell name]setText:[speakers objectAtIndex:indexPath.item]];
+        [[cell company]setText:[companyArray objectAtIndex:indexPath.item]];
+    }
+    else if (showPeople==1){
+        [[cell name]setText:[authors objectAtIndex:indexPath.item]];
+        [[cell company]setText:[companyArray objectAtIndex:indexPath.item]];
+    }
+    else{
+        [[cell name]setText:[organization objectAtIndex:indexPath.item]];
+        [[cell company]setText:[companyArray objectAtIndex:indexPath.item]];
+
+    }
+   
 
 
     
@@ -83,8 +107,20 @@
     PersonViewController *targetVC = (PersonViewController *)segue.destinationViewController;
     
     targetVC.IndexAux=item;//if to set any public variable for example image for the imageview
+    targetVC.showPerson=showPeople;
 }
 
+//[self.peopleCollection reloadData];
+
+
+
+
+- (IBAction)segmentedChanged:(id)sender {
+    
+    showPeople= [[self segment] selectedSegmentIndex];
+    [self.peopleCollection reloadData];
+
+    }
 
 
 @end
