@@ -328,6 +328,7 @@
 }
 
 -(UIImage*)getLogo{
+    NSLog(@"img: %@",image);
     return image;
 }
 
