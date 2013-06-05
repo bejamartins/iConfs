@@ -125,7 +125,7 @@
    // UIViewController *destination = segue.destinationViewController;
     PersonViewController *personView=segue.destinationViewController;
     if ([segue.identifier isEqualToString:@"segueFromCell"]) {
-        NSIndexPath *a= [sender indexPath];
+      //  NSIndexPath *a= [sender indexPath];
       //  personView.IndexAux=a.item ;
         personView.IndexAux=1;
         //    NSInteger aux= [[sender indexPath] row];
