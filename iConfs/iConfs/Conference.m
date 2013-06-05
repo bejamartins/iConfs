@@ -26,6 +26,7 @@
     self.sessions = [[NSMutableArray alloc] init];
     self.workshops = [[NSMutableArray alloc] init];
     self.eventsList = [[NSMutableArray alloc] init];
+    self.image = [[UIImage alloc] init];
     return self;
 }
 
