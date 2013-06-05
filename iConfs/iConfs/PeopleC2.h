@@ -10,5 +10,7 @@
 
 @interface PeopleC2 : UIViewController<UICollectionViewDataSource,UICollectionViewDelegate>
 @property (strong, nonatomic) IBOutlet UICollectionView *peopleCollection;
+- (IBAction)segmentedChanged:(id)sender;
+@property (strong, nonatomic) IBOutlet UISegmentedControl *segment;
 
 @end
