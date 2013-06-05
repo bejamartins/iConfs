@@ -621,6 +621,7 @@
                         <outlet property="Options" destination="ZFs-iT-m0Y" id="Mfp-th-Jln"/>
                         <outlet property="PeopleCollection" destination="RAa-Er-mcR" id="Irq-M1-LYd"/>
                         <outlet property="Search" destination="E02-vX-n9D" id="01B-nm-Fsg"/>
+                        <outlet property="collection" destination="RAa-Er-mcR" id="Ok5-j2-9ut"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="I0z-ge-gV8" userLabel="First Responder" sceneMemberID="firstResponder"/>

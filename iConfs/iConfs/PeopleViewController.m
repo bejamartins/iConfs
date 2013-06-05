@@ -24,6 +24,7 @@
 
 @implementation PeopleViewController
 
+@synthesize collection;
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
@@ -127,7 +128,9 @@
     if ([segue.identifier isEqualToString:@"segueFromCell"]) {
       //  NSIndexPath *a= [sender indexPath];
       //  personView.IndexAux=a.item ;
-        personView.IndexAux=1;
+         NSArray *ips = [self.collection indexPathsForSelectedItems];
+        NSIndexPath *ip = [ips objectAtIndex:0];
+        personView.IndexAux=[ip item];
         //    NSInteger aux= [[sender indexPath] row];
 //  personView->passPicture=[imageArray objectAtIndex:1];
  //       personView->name=[nameArray objectAtIndex:1];
