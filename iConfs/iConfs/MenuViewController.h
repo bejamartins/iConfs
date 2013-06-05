@@ -7,10 +7,12 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "IConfs.h"
 
 @interface MenuViewController : UIViewController<UITableViewDataSource, UITableViewDelegate>
 
 @property (weak, nonatomic) IBOutlet UITableView *MenuView;
+@property IConfs *app;
 
 - (IBAction)homeButtonPressed:(id)sender;
 @end

@@ -18,9 +18,12 @@
     NSArray *confs;
     BOOL showMenuConf;
 }
+
 @end
 
 @implementation MenuViewController
+
+@synthesize app;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -39,7 +42,7 @@
     [[self MenuView] setDelegate:self];
     [[self MenuView] setDataSource:self];
     
-    IConfs *app = [[IConfs alloc] init];
+    app = [[IConfs alloc] init];
     [app fetchConferences];
     
     menuGen = [[NSArray alloc] initWithObjects:@"Manage Conferences", @"Personal Agenda", nil];
@@ -102,8 +105,6 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    //NSString *str;
-    //UITableViewCell *cell = [self.MenuView cellForRowAtIndexPath:indexPath];
     
     NSString *iD = [NSString stringWithFormat:@"%@", [self.MenuView cellForRowAtIndexPath:indexPath].textLabel.text];
     
@@ -112,6 +113,10 @@
     if ([indexPath section] == 0){
         showMenuConf = NO;
         [[self MenuView] deselectRowAtIndexPath:indexPath animated:NO];
+        
+        if ([indexPath row] == 0) {
+            
+        }
         
         [[self slidingViewController] anchorTopViewOffScreenTo:ECRight animations:nil onComplete:^{
             CGRect frame = [[[[self slidingViewController] topViewController] view] frame];
