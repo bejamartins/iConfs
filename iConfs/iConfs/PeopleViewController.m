@@ -19,11 +19,13 @@
     NSMutableArray *nameSearchArray;
     NSMutableArray *companySearchArray;
     BOOL searchItem;
+    NSIndexPath *currentIndexPath;
 }
 @end
 
 @implementation PeopleViewController
 
+@synthesize collection;
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
@@ -121,17 +123,25 @@
     [[self PeopleCollection]reloadData];
 }
 
+- (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath{
+    currentIndexPath = indexPath;
+    NSLog(@"Entrei no método da célula");
+}
+
+
+
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+    NSLog(@"Entrei no método do segue");
+
    // UIViewController *destination = segue.destinationViewController;
     PersonViewController *personView=segue.destinationViewController;
     if ([segue.identifier isEqualToString:@"segueFromCell"]) {
-      //  NSIndexPath *a= [sender indexPath];
-      //  personView.IndexAux=a.item ;
-        personView.IndexAux=1;
-        //    NSInteger aux= [[sender indexPath] row];
-//  personView->passPicture=[imageArray objectAtIndex:1];
- //       personView->name=[nameArray objectAtIndex:1];
-   //     personView->index=1;
+       // NSIndexPath *a= [sender indexPath];
+     //   personView.IndexAux=a.item ;
+         NSInteger i=[currentIndexPath row];
+        personView.IndexAux=i;
+       
+
     }
     
 }

@@ -17,6 +17,9 @@
     NSArray *nameArray;
     NSArray *companyArray;
     NSArray *biographies;
+    NSArray *speakers;
+    NSArray *authors;
+    NSArray *organization;
 }
 @property (strong, nonatomic) IBOutlet UINavigationItem *navigationBar;
 
@@ -26,6 +29,7 @@
 @property (strong, nonatomic) IBOutlet UILabel *session_when;
 @property (strong, nonatomic) IBOutlet UILabel *session_theme;
 @property NSInteger IndexAux;
+@property NSInteger showPerson;
 
 
 
