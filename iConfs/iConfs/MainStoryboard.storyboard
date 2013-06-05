@@ -1037,7 +1037,9 @@
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="bar" destination="twv-Dd-0Kq" id="Pgb-1G-UKL"/>
                         <outlet property="peopleCollection" destination="yEn-GH-oKM" id="IzP-at-Ft3"/>
+                        <outlet property="realBar" destination="hR3-15-uuO" id="dJi-3v-bZG"/>
                         <outlet property="segment" destination="3UT-Zz-2zn" id="hEP-X6-YC2"/>
                         <segue destination="Lxi-Zv-Vg4" kind="modal" identifier="toPerson" id="Y1b-aR-8Jh"/>
                     </connections>

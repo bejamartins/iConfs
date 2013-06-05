@@ -324,15 +324,16 @@
 }
     
 -(NSString*)getID{
-    return confID;
+    return self.confID;
 }
 
 -(UIImage*)getLogo{
-    return image;
+    NSLog(@"img: %@",self.image);
+    return self.image;
 }
 
 -(NSString*)getName{
-    return confName;
+    return self.confName;
 }
 
 
