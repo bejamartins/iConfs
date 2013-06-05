@@ -41,7 +41,6 @@
 
 - (void)viewDidLoad
 {
-   // showPeople=0;
     [[self peopleCollection]setDelegate:self];
     [[self peopleCollection]setDataSource:self];
     imageArray = [[NSArray alloc]initWithObjects:@"speaker.jpg", @"author.jpg", @"conf.jpg",nil];
@@ -108,6 +107,7 @@
     PersonViewController *targetVC = (PersonViewController *)segue.destinationViewController;
     
     targetVC.IndexAux=item;//if to set any public variable for example image for the imageview
+    targetVC.showPerson=showPeople;
 }
 
 //[self.peopleCollection reloadData];

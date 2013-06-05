@@ -15,7 +15,7 @@
 
 @implementation PersonViewController
 
-@synthesize picture,session_theme,session_when,session_where,biography,IndexAux,navigationBar,bar;
+@synthesize picture,session_theme,session_when,session_where,biography,IndexAux,navigationBar,bar,showPerson;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -28,16 +28,25 @@
 
 - (void)viewDidLoad
 {
-    biographies =[[NSArray alloc]initWithObjects:@"First Bio", @"Second Bio",@"Third Bio",nil];
-    imageArray = [[NSArray alloc]initWithObjects:@"conf.jpg", @"conf.jpg", @"conf.jpg",nil];
-    nameArray = [[NSArray alloc]initWithObjects:@"Person 1",@"Person 2",@"Person 3", nil];
-    companyArray = [[NSArray alloc]initWithObjects:@"FCT",@"UNL",@"DI - FCT", nil];
+    biographies =[[NSArray alloc]initWithObjects:@"Speaker Bio", @"Author Bio",@"Person Bio",nil];
+    imageArray = [[NSArray alloc]initWithObjects:@"speaker.jpg", @"author.jpg", @"conf.jpg",nil];
+    speakers = [[NSArray alloc]initWithObjects:@"Speaker 1",@"Speaker 2",@"Speaker 3", nil];
+    authors = [[NSArray alloc]initWithObjects:@"Author 1",@"Author 2",@"Author 3", nil];
+    organization = [[NSArray alloc]initWithObjects:@"Person 1",@"Person 2",@"Person 3", nil];
     
-    UIImage *a= [UIImage imageNamed: [imageArray objectAtIndex:IndexAux] ];
+    UIImage *a= [UIImage imageNamed: [imageArray objectAtIndex:showPerson] ];
     [picture setImage:a];
-    NSString *navigationTitle=[nameArray objectAtIndex:IndexAux];
+    NSString *navigationTitle;
+    if(showPerson==0)
+    navigationTitle=[speakers objectAtIndex:IndexAux];
+    else if(showPerson==1){
+        navigationTitle=[authors objectAtIndex:IndexAux];}
+    else{
+        navigationTitle=[organization objectAtIndex:IndexAux];
+    }
+
     [bar setTitle:navigationTitle];
-    [biography setText:[ biographies objectAtIndex:IndexAux]];
+    [biography setText:[ biographies objectAtIndex:showPerson]];
    
     //[picture setImage:passPicture];
     [super viewDidLoad];
