@@ -1186,8 +1186,11 @@
             <source key="sourceIdentifier" type="project" relativePath="./Classes/PeopleC2.h"/>
             <relationships>
                 <relationship kind="action" name="segmentedChanged:"/>
+                <relationship kind="outlet" name="bar" candidateClass="UINavigationItem"/>
                 <relationship kind="outlet" name="peopleCollection" candidateClass="UICollectionView"/>
+                <relationship kind="outlet" name="realBar" candidateClass="UINavigationItem"/>
                 <relationship kind="outlet" name="segment" candidateClass="UISegmentedControl"/>
+                <relationship kind="outlet" name="segmentControl" candidateClass="UIBarButtonItem"/>
             </relationships>
         </class>
         <class className="PeopleCell" superclassName="UICollectionViewCell">

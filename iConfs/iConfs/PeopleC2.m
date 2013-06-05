@@ -114,15 +114,20 @@
     targetVC.showPerson=showPeople;
 }
 
-
-
-
 - (IBAction)segmentedChanged:(id)sender {
     
     showPeople= [[self segment] selectedSegmentIndex];
     [self.peopleCollection reloadData];
-
-}
+    NSString *title;
+    if(showPeople==0){
+    title=@"Speakers";}
+    else if (showPeople==1){
+    title=@"Authors";
+    }
+    else{title=@"Organization";}
+    
+    [realBar setTitle:title];
+    }
 
 
 @end
