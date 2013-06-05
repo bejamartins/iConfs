@@ -14,7 +14,6 @@
 @property (weak, nonatomic) IBOutlet UISegmentedControl *Options;
 @property (weak, nonatomic) IBOutlet UIButton *AddConfButton;
 @property (weak, nonatomic) IBOutlet UIButton *RemConfButton;
-@property (weak, nonatomic) IBOutlet UIButton *VerifyButton;
 
 - (IBAction)addConfs:(id)sender;
 - (IBAction)remConfs:(id)sender;

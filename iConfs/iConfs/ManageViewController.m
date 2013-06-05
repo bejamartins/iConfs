@@ -49,11 +49,8 @@
     myConfs = [NSArray alloc];
     otherConfs = [NSArray alloc];
     
-    if (![Main fetchConferences]) {
-        [[self VerifyButton] setHidden:YES];
-        [[self VerifyButton] setUserInteractionEnabled:NO];
-    }
-    myConfs = [Main getAllConferences];
+    [Main fetchConferences];
+    myConfs = [Main getMyConferences];
     otherConfs = [Main getRestOfConfs];
     
     //myConfs = [[NSArray alloc] initWithObjects:@"conf.jpg", @"conf.jpg", @"conf.jpg", @"conf.jpg", nil];
@@ -65,9 +62,9 @@
     
     if (![[[self slidingViewController] underLeftViewController] isKindOfClass:[MenuViewController class]]) {
         [[self slidingViewController] setUnderLeftViewController:[[self storyboard]instantiateViewControllerWithIdentifier:@"Menu"]];
-        
-        [[self view] addGestureRecognizer:[self slidingViewController].panGesture];
     }
+    
+    [[self view] addGestureRecognizer:[self slidingViewController].panGesture];
 }
 
 - (void)didReceiveMemoryWarning
