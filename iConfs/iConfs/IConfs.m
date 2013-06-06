@@ -102,12 +102,12 @@
 }
 
 
--(BOOL)removeConference:(int)confID{
+-(BOOL)removeConference:(NSString*)confID{
     BOOL isHere = false;
     //NSObject toRemove;
     int index;
     for (int i=0; i<[conferences count]; i++) {
-        if (((Event*)[conferences objectAtIndex:i]).getID == confID){
+        if ([((Conference*)[conferences objectAtIndex:i]).getID isEqualToString: confID]){
             isHere = true;
             index = i;
             break;

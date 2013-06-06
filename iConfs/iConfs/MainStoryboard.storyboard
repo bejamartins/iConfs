@@ -1282,6 +1282,7 @@
         <class className="ManageViewController" superclassName="UIViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/ManageViewController.h"/>
             <relationships>
+                <relationship kind="action" name="SelectedOption:"/>
                 <relationship kind="action" name="addConfs:"/>
                 <relationship kind="action" name="remConfs:"/>
                 <relationship kind="outlet" name="AddConfButton" candidateClass="UIButton"/>
@@ -1304,8 +1305,11 @@
             <source key="sourceIdentifier" type="project" relativePath="./Classes/PeopleC2.h"/>
             <relationships>
                 <relationship kind="action" name="segmentedChanged:"/>
+                <relationship kind="outlet" name="bar" candidateClass="UINavigationItem"/>
                 <relationship kind="outlet" name="peopleCollection" candidateClass="UICollectionView"/>
+                <relationship kind="outlet" name="realBar" candidateClass="UINavigationItem"/>
                 <relationship kind="outlet" name="segment" candidateClass="UISegmentedControl"/>
+                <relationship kind="outlet" name="segmentControl" candidateClass="UIBarButtonItem"/>
             </relationships>
         </class>
         <class className="PeopleCell" superclassName="UICollectionViewCell">
@@ -1363,6 +1367,9 @@
         </class>
         <class className="UICollectionViewFlowLayout" superclassName="UICollectionViewLayout">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/UICollectionViewFlowLayout.h"/>
+        </class>
+        <class className="UICollectionViewLayout" superclassName="NSObject">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/UICollectionViewLayout.h"/>
         </class>
         <class className="newConferenceContainer" superclassName="UIViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/newConferenceContainer.h"/>
