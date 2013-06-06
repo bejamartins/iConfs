@@ -23,6 +23,7 @@
 		707B7C15175D62CD00E4747A /* ECSlidingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 707B7C12175D62CD00E4747A /* ECSlidingViewController.m */; };
 		707B7C16175D62CD00E4747A /* UIImage+ImageWithUIView.m in Sources */ = {isa = PBXBuildFile; fileRef = 707B7C14175D62CD00E4747A /* UIImage+ImageWithUIView.m */; };
 		707B7C19175D6E2B00E4747A /* InitViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 707B7C18175D6E2B00E4747A /* InitViewController.m */; };
+		70A591EB1760D61500CE2041 /* menuButton.png in Resources */ = {isa = PBXBuildFile; fileRef = 70A591EA1760D61500CE2041 /* menuButton.png */; };
 		A0570151175E2848000FED8F /* TestingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A0570150175E2848000FED8F /* TestingViewController.m */; };
 		A0788787175A3C7800C1D90C /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A0788786175A3C7800C1D90C /* UIKit.framework */; };
 		A0788789175A3C7800C1D90C /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A0788788175A3C7800C1D90C /* Foundation.framework */; };
@@ -108,6 +109,7 @@
 		707B7C14175D62CD00E4747A /* UIImage+ImageWithUIView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+ImageWithUIView.m"; sourceTree = "<group>"; };
 		707B7C17175D6E2B00E4747A /* InitViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InitViewController.h; sourceTree = "<group>"; };
 		707B7C18175D6E2B00E4747A /* InitViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InitViewController.m; sourceTree = "<group>"; };
+		70A591EA1760D61500CE2041 /* menuButton.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = menuButton.png; sourceTree = "<group>"; };
 		A057014F175E2847000FED8F /* TestingViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TestingViewController.h; sourceTree = "<group>"; };
 		A0570150175E2848000FED8F /* TestingViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TestingViewController.m; sourceTree = "<group>"; };
 		A0788783175A3C7800C1D90C /* iConfs.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = iConfs.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -330,7 +332,16 @@
 		A078878F175A3C7800C1D90C /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
-				707B3FE61760CF1E0069716F /* menuButton.png */,
+				70A591EA1760D61500CE2041 /* menuButton.png */,
+				A0817F261760A7650065E30A /* 1.jpg */,
+				A0817F271760A7650065E30A /* 2.jpg */,
+				A0817F281760A7650065E30A /* 3.jpg */,
+				A0817F291760A7650065E30A /* 5.jpg */,
+				A0817F2A1760A7650065E30A /* 6.jpg */,
+				A0817F2B1760A7650065E30A /* 7.jpg */,
+				A0817F2C1760A7650065E30A /* 8.jpg */,
+				A0817F2D1760A7650065E30A /* 9.jpg */,
+				A0817F2E1760A7650065E30A /* 10.jpg */,
 				A07887F5175A3DAA00C1D90C /* 11.png */,
 				A0817F381760A7700065E30A /* author.jpg */,
 				A0817F3A1760A8240065E30A /* inforum.jpg */,
@@ -417,6 +428,20 @@
 				28CF7719175FC2EE0070B4D5 /* speaker.jpg in Resources */,
 				28CF771A175FC2EE0070B4D5 /* author.jpg in Resources */,
 				707B3FE71760CF1E0069716F /* menuButton.png in Resources */,
+				A0817F2F1760A7650065E30A /* 1.jpg in Resources */,
+				A0817F301760A7650065E30A /* 2.jpg in Resources */,
+				A0817F311760A7650065E30A /* 3.jpg in Resources */,
+				A0817F321760A7650065E30A /* 5.jpg in Resources */,
+				A0817F331760A7650065E30A /* 6.jpg in Resources */,
+				A0817F341760A7650065E30A /* 7.jpg in Resources */,
+				A0817F351760A7650065E30A /* 8.jpg in Resources */,
+				A0817F361760A7650065E30A /* 9.jpg in Resources */,
+				A0817F371760A7650065E30A /* 10.jpg in Resources */,
+				A0817F391760A7700065E30A /* author.jpg in Resources */,
+				A0817F3D1760A8240065E30A /* inforum.jpg in Resources */,
+				A0817F3E1760A8240065E30A /* musepat.jpg in Resources */,
+				A0817F3F1760A8240065E30A /* speaker.jpg in Resources */,
+				70A591EB1760D61500CE2041 /* menuButton.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
