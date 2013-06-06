@@ -8,6 +8,7 @@
 
 #import "MenuViewController.h"
 #import "ECSlidingViewController.h"
+#import "AppDelegateProtocol.h"
 #import "IConfs.h"
 
 @interface MenuViewController ()
@@ -17,13 +18,22 @@
     NSArray *menuConf;
     NSArray *confs;
     BOOL showMenuConf;
+    IConfs *theAppData;
 }
 
 @end
 
 @implementation MenuViewController
 
-@synthesize app;
+#pragma - Data Fetch Method
+
+- (IConfs*) appData;
+{
+	id<AppDelegateProtocol> theDelegate = (id<AppDelegateProtocol>) [UIApplication sharedApplication].delegate;
+	IConfs* theAppDataObject;
+	theAppDataObject = (IConfs*)[theDelegate appData];
+	return theAppDataObject;
+}
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -42,12 +52,11 @@
     [[self MenuView] setDelegate:self];
     [[self MenuView] setDataSource:self];
     
-    app = [[IConfs alloc] init];
-    [app fetchConferences];
+    theAppData = [self appData];
     
     menuGen = [[NSArray alloc] initWithObjects:@"Manage Conferences", @"Personal Agenda", nil];
     menuConf = [[NSArray alloc] initWithObjects:@"Sessions",@"Speakers",@"Locations",@"Where am I?",@"Shedule", nil];
-    confs = [[NSArray alloc] initWithArray:[app getMyConferences]];
+    confs = [[NSArray alloc] initWithArray:[theAppData getMyConferences]];
     
     [[self slidingViewController] setAnchorRightPeekAmount:450.0f];
     [[self slidingViewController] setUnderLeftWidthLayout:ECFullWidth];

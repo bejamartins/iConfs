@@ -23,6 +23,8 @@
 
 @implementation ManageViewController
 
+#pragma - Data Fetch Method
+
 - (IConfs*) appData;
 {
 	id<AppDelegateProtocol> theDelegate = (id<AppDelegateProtocol>) [UIApplication sharedApplication].delegate;
@@ -107,16 +109,10 @@
     if ([[self Options] selectedSegmentIndex] == 0) {
         [[cell IconConf] setImage:[((Conference*)[myConfs objectAtIndex:[indexPath row]]) getLogo]];
         [[cell LabelConf] setText:[((Conference*)[myConfs objectAtIndex:[indexPath row]]) getName]];
-        
-        //[[cell IconConf] setImage:[UIImage imageNamed:[myConfs objectAtIndex:[indexPath row]]]];
-        //[[cell LabelConf] setText:[myConfsName objectAtIndex:[indexPath row]]];
     }else{
         
         [[cell IconConf] setImage:[((Conference*)[otherConfs objectAtIndex:[indexPath row]]) getLogo]];
         [[cell LabelConf] setText:[((Conference*)[otherConfs objectAtIndex:[indexPath row]]) getName]];
-        
-        //[[cell IconConf] setImage:[UIImage imageNamed:[otherConfs objectAtIndex:[indexPath row]]]];
-        //[[cell LabelConf] setText:[otherConfsName objectAtIndex:[indexPath row]]];
     }
     
     [[cell LabelConf] setTextAlignment:NSTextAlignmentCenter];
@@ -141,9 +137,38 @@
 }
 
 - (IBAction)addConfs:(id)sender {
+    NSArray *paths = [[self ConfsCollection] indexPathsForVisibleItems];
+    ManageConfCell *cell;
+    
+    for (int i = 0; i < [paths count]; i++) {
+        cell = (ManageConfCell*)[[self ConfsCollection] cellForItemAtIndexPath:[paths objectAtIndex:i]];
+        if ([cell checked]) {
+            [theAppData addConference:[otherConfs objectAtIndex:[(NSIndexPath*)[paths objectAtIndex:i] row]]];
+        }
+    }
+    
+    myConfs = [theAppData getMyConferences];
+    otherConfs = [theAppData getRestOfConfs];
+    
+    [[self ConfsCollection] reloadData];
 }
 
 - (IBAction)remConfs:(id)sender {
+    NSArray *paths = [[self ConfsCollection] indexPathsForVisibleItems];
+    ManageConfCell *cell;
+    
+    for (int i = 0; i < [paths count]; i++) {
+        cell = (ManageConfCell*)[[self ConfsCollection] cellForItemAtIndexPath:[paths objectAtIndex:i]];
+        if ([cell checked]) {
+            [theAppData removeConference:[(Conference*)[myConfs objectAtIndex:[(NSIndexPath*)[paths objectAtIndex:i] row]] getID]];
+        }
+        
+    }
+    
+    myConfs = [theAppData getMyConferences];
+    otherConfs = [theAppData getRestOfConfs];
+    
+    [[self ConfsCollection] reloadData];
 }
 
 @end
