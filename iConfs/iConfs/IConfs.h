@@ -79,7 +79,7 @@
  @param confID conference ID to remove
  @returns true, if the conference is deleted, false if is not subscribbed
  */
--(BOOL)removeConference:(int)confID;
+-(BOOL)removeConference:(NSString*)confID;
 
 /**
  Fetch conferences from the server
