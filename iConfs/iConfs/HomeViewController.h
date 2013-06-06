@@ -12,5 +12,6 @@
 
 @property (weak, nonatomic) IBOutlet UICollectionView *CollectionOne;
 
+@property (strong, nonatomic) UIButton *MenuButton;
 
 @end
