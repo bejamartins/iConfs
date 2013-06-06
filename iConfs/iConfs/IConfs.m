@@ -7,6 +7,7 @@
 //
 
 #import "IConfs.h"
+#import "ZipArchive.h"
 
 @implementation IConfs
 
@@ -236,6 +237,156 @@
     }
     
     return tmp;
+}
+
+
+//////////////////////////////////
+//////////////////////////////////
+//////////////////////////////////
+//////////////////////////////////
+
+/*
+ getConfFiles part
+ */
+
+//gets the conf batch from the server and saves them to disk
+//also removes artifacts in case of error
+//uses the 3 functions below: getConf, getConfFiles and saveConf
+-(BOOL)addConf:(NSString*)confID{
+    
+    NSData* tmpData=[self getConf:confID];
+    if(tmpData!=NULL){
+        NSDictionary* tmpConf=[self parseJSON:tmpData];
+        [self saveConf:tmpConf:tmpData];
+        if([self getConfFiles:confID]==false){
+            [self deleteConf:confID];
+            return false;
+        }
+    }else return false;
+    return true;
+}
+
+//recebe toda a info relativa a uma conferencia cujo ID eh
+//confID. Usado para fazer o "download" da conferencia no
+//manage conferences, pode ser usado tambem para guardar updates
+//de notificacoes e ratings
+- (NSData*)getConf:(NSString*)confID{
+    NSString* post=[NSString stringWithFormat:@"%@%@%@",@"Conf=",confID,@"&SubmitCheck=Sent"];
+    
+    //NSLog(@"post is: %@", post);
+    
+    NSData* postData=[post dataUsingEncoding:NSASCIIStringEncoding allowLossyConversion:NO];
+    NSString* postLength=[NSString stringWithFormat:@"%d",[postData length]];
+    
+    NSMutableURLRequest* request=[[NSMutableURLRequest alloc] init];
+    [request setURL:[NSURL URLWithString:@"http://193.136.122.141/confGet.php"]];
+    [request setHTTPMethod:@"POST"];
+    [request setValue:postLength forHTTPHeaderField:@"Content-Length"];
+    [request setValue:@"application/x-www-form-urlencoded" forHTTPHeaderField:@"Content-Type"];
+    [request setHTTPBody:postData];
+    
+    // NSURLConnection* conn=[[NSURLConnection alloc]initWithRequest:request delegate:self];
+    // NSData* data =[[conn] sendSy
+    NSURLResponse* response;
+    return[NSURLConnection sendSynchronousRequest:request returningResponse:&response error:NULL];
+    
+    // NSLog(@"test:%@",conn);
+    // NSData* data= conn;
+    // NSDictionary* json;
+    // NSLog(@"test:%@",data);
+    //  NSLog(@"Json:%@", json);
+    //  NSString* test=[[NSString alloc]initWithData:data encoding:NSUTF8StringEncoding];
+    //  NSLog(@"String:%@",test);
+    
+}
+
+//used to created the NSDictionary with the JSON, receives NSData
+-(NSDictionary*) parseJSON:(NSData*)confData{
+    return [NSJSONSerialization JSONObjectWithData:confData options:kNilOptions error:NULL];
+}
+
+//saves conference files (zip) from server to folder confID inside documents
+//receives confID
+- (BOOL)getConfFiles:(NSString*)confID{
+    NSString* post=[NSString stringWithFormat:@"%@%@%@",@"Conf=",confID,@"&SubmitCheck=Sent"];
+    
+    //NSLog(@"post is: %@", post);
+    
+    NSData* postData=[post dataUsingEncoding:NSASCIIStringEncoding allowLossyConversion:NO];
+    NSString* postLength=[NSString stringWithFormat:@"%d",[postData length]];
+    
+    NSMutableURLRequest* request=[[NSMutableURLRequest alloc] init];
+    [request setURL:[NSURL URLWithString:@"http://193.136.122.141/filesGet.php"]];
+    [request setHTTPMethod:@"POST"];
+    [request setValue:postLength forHTTPHeaderField:@"Content-Length"];
+    [request setValue:@"application/x-www-form-urlencoded" forHTTPHeaderField:@"Content-Type"];
+    [request setHTTPBody:postData];
+    
+    
+    NSURLResponse* response;
+    NSData* data=[NSURLConnection sendSynchronousRequest:request returningResponse:&response error:NULL];
+    
+    //NSLog(@"Data is: %@",data);
+    if (data!=NULL){
+        NSString* savePath=[NSString stringWithFormat:@"%@%@%@",[NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES)objectAtIndex:0],@"/",confID];
+        
+        NSString* saveZip=[NSString stringWithFormat:@"%@%@",savePath,@".zip"];
+        //guarda zip
+        [data writeToFile:saveZip atomically:YES];
+        
+        //faz unzip
+        ZipArchive* zipArchive=[[ZipArchive alloc]init];
+        [zipArchive UnzipOpenFile:saveZip];
+        [zipArchive UnzipFileTo:savePath overWrite:YES];
+        [zipArchive UnzipCloseFile];
+        //[zipArchive release];
+        //elimina zip
+        NSFileManager* fileManager=[NSFileManager defaultManager];
+        [fileManager removeItemAtPath:saveZip error:NULL];
+        
+        return true;
+    }else return false;
+    
+}
+
+//saves conf from NSDictionary to the documents folder with name confID.json
+-(BOOL)saveConf:(NSDictionary*)conf : (NSData*)confData{
+    //NSLog(@"conf:%@",conf);
+    NSString* savePath=[NSString stringWithFormat:@"%@%@%@%@",[NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES)objectAtIndex:0],@"/",[[[conf objectForKey:@"conf"]valueForKey:@"ID"]objectAtIndex:0],@".json"];
+    //guarda conf
+    [confData writeToFile:savePath atomically:YES];
+    
+    return true;
+    
+}
+
+//deletes confID.json and confID folder
+-(BOOL)deleteConf:(NSString*)confID{
+    
+    NSString* savePath=[NSString stringWithFormat:@"%@%@%@%@",[NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES)objectAtIndex:0],@"/",confID,@".json"];
+    NSFileManager* fileManager=[NSFileManager defaultManager];
+    return [fileManager removeItemAtPath:savePath error:NULL];
+}
+
+//loads nsdata from file with name confID (.json) in documents
+-(NSData*)loadData:(NSString*)confID{
+    NSString* loadPath=[NSString stringWithFormat:@"%@%@%@%@",[NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES)objectAtIndex:0],@"/",confID,@".json"];
+    return [NSData dataWithContentsOfFile:loadPath options:kNilOptions error:NULL];
+    
+}
+
+
+//loads file from app with confIDs NSArray
+//creates NSData new file if none found
+-(NSArray*)loadConfsIDs{
+    NSString* loadPath=[NSString stringWithFormat:@"%@%@",[NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES)objectAtIndex:0],@"/confs.json"];
+    NSData* tmpData =[NSData dataWithContentsOfFile:loadPath options:kNilOptions error:NULL];
+    
+    if(tmpData==NULL){//no file or could not retrieve then create new one
+        [[NSData new] writeToFile:loadPath atomically:YES];
+        return NULL;
+    }
+    return [NSKeyedUnarchiver unarchiveObjectWithData:tmpData];
 }
 
 @end
