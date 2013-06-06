@@ -18,13 +18,13 @@
 @synthesize collection;
 
 /*
-// Only override drawRect: if you perform custom drawing.
-// An empty implementation adversely affects performance during animation.
-- (void)drawRect:(CGRect)rect
-{
-    // Drawing code
-}
-*/
+ // Only override drawRect: if you perform custom drawing.
+ // An empty implementation adversely affects performance during animation.
+ - (void)drawRect:(CGRect)rect
+ {
+ // Drawing code
+ }
+ */
 
 
 - (void)viewDidLoad
@@ -35,7 +35,7 @@
     //[[self.collection]setDataSource: self];
     self.view.backgroundColor=[UIColor colorWithPatternImage:[UIImage imageNamed:@"6.jpg"]];
     self.collection.backgroundColor=[UIColor colorWithPatternImage:[UIImage imageNamed:@"6.jpg"]];
-
+    
     
     
     conferencesLogos= [[NSArray alloc]initWithObjects:@"inforum.jpg", @"musepat.jpg", @"conf.jpg",nil];
@@ -51,7 +51,7 @@
     return [conferencesNames count];
 }
 -(UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath{
-    static NSString *CellIdentifier=@"cellConference";
+    static NSString *CellIdentifier=@"conferenceCell";
     
     
     
@@ -71,7 +71,7 @@
     NSLog(@"Entrei no método da célula");
     NSLog(@"Name= %@", name);
     NSLog(@"Name Em Conference (did....)= %@", conference.conferenceName);
-
+    
 }
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
@@ -81,13 +81,13 @@
     if ([segue.identifier isEqualToString:@"toConference"]) {
         // NSIndexPath *a= [sender indexPath];
         //   personView.IndexAux=a.item ;
-         conference=segue.destinationViewController;
+        conference=segue.destinationViewController;
         
         NSLog(@"VOU MUDAR O NOME NO PREPARE!");
-
+        
         [conference changeName: name];
         NSLog(@"Name Segue= %@", conference.conferenceName);
-
+        
     }
 }
 

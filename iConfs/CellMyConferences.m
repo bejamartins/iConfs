@@ -2,7 +2,7 @@
 //  CellMyConferences.m
 //  iConfs
 //
-//  Created by Ana T on 05/06/13.
+//  Created by Ana T on 06/06/13.
 //  Copyright (c) 2013 Eduardo Joel Pereira Beja Martins. All rights reserved.
 //
 

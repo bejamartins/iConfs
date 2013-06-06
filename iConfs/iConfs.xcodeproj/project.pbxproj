@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		285FF4B71760BC0E001135E1 /* CellMyConferences.m in Sources */ = {isa = PBXBuildFile; fileRef = 285FF4B61760BC0E001135E1 /* CellMyConferences.m */; };
+		285FF4BA1760BE0C001135E1 /* newConferenceContainer.m in Sources */ = {isa = PBXBuildFile; fileRef = 285FF4B91760BE0C001135E1 /* newConferenceContainer.m */; };
+		285FF4BD1760BE6A001135E1 /* ConferenceScreenViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 285FF4BC1760BE6A001135E1 /* ConferenceScreenViewController.m */; };
 		28A3A890175E9CAA0002BC93 /* PersonViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 28A3A88F175E9CAA0002BC93 /* PersonViewController.m */; };
 		28CF7713175F8E240070B4D5 /* PeopleC2.m in Sources */ = {isa = PBXBuildFile; fileRef = 28CF7712175F8E240070B4D5 /* PeopleC2.m */; };
 		28CF7716175F8FD10070B4D5 /* Teste.m in Sources */ = {isa = PBXBuildFile; fileRef = 28CF7715175F8FD10070B4D5 /* Teste.m */; };
@@ -75,6 +78,12 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		285FF4B51760BC0E001135E1 /* CellMyConferences.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CellMyConferences.h; path = ../CellMyConferences.h; sourceTree = "<group>"; };
+		285FF4B61760BC0E001135E1 /* CellMyConferences.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CellMyConferences.m; path = ../CellMyConferences.m; sourceTree = "<group>"; };
+		285FF4B81760BE0C001135E1 /* newConferenceContainer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = newConferenceContainer.h; path = ../newConferenceContainer.h; sourceTree = "<group>"; };
+		285FF4B91760BE0C001135E1 /* newConferenceContainer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = newConferenceContainer.m; path = ../newConferenceContainer.m; sourceTree = "<group>"; };
+		285FF4BB1760BE6A001135E1 /* ConferenceScreenViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ConferenceScreenViewController.h; path = ../ConferenceScreenViewController.h; sourceTree = "<group>"; };
+		285FF4BC1760BE6A001135E1 /* ConferenceScreenViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ConferenceScreenViewController.m; path = ../ConferenceScreenViewController.m; sourceTree = "<group>"; };
 		28A3A88E175E9CAA0002BC93 /* PersonViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PersonViewController.h; path = ../PersonViewController.h; sourceTree = "<group>"; };
 		28A3A88F175E9CAA0002BC93 /* PersonViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PersonViewController.m; path = ../PersonViewController.m; sourceTree = "<group>"; };
 		28CF7711175F8E240070B4D5 /* PeopleC2.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PeopleC2.h; sourceTree = "<group>"; };
@@ -164,10 +173,6 @@
 		A07887F7175A3DAA00C1D90C /* checkbox-checked.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "checkbox-checked.png"; sourceTree = "<group>"; };
 		A07887F8175A3DAA00C1D90C /* checkbox.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = checkbox.png; sourceTree = "<group>"; };
 		A07887F9175A3DAA00C1D90C /* conf.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = conf.jpg; sourceTree = "<group>"; };
-		A0817F221760A62E0065E30A /* CellMyConferences.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CellMyConferences.h; sourceTree = "<group>"; };
-		A0817F231760A62E0065E30A /* CellMyConferences.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CellMyConferences.m; sourceTree = "<group>"; };
-		A0817F241760A6520065E30A /* newConferenceContainer.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = newConferenceContainer.h; sourceTree = "<group>"; };
-		A0817F251760A6520065E30A /* newConferenceContainer.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = newConferenceContainer.m; sourceTree = "<group>"; };
 		A0817F261760A7650065E30A /* 1.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = 1.jpg; sourceTree = "<group>"; };
 		A0817F271760A7650065E30A /* 2.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = 2.jpg; sourceTree = "<group>"; };
 		A0817F281760A7650065E30A /* 3.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = 3.jpg; sourceTree = "<group>"; };
@@ -249,9 +254,13 @@
 				A07887AA175A3CE500C1D90C /* IConfs.h */,
 				A07887AB175A3CE500C1D90C /* IConfs.m */,
 				A07887AC175A3CE500C1D90C /* Event.h */,
+				285FF4B51760BC0E001135E1 /* CellMyConferences.h */,
+				285FF4B61760BC0E001135E1 /* CellMyConferences.m */,
 				A07887AD175A3CE500C1D90C /* Event.m */,
 				28A3A88E175E9CAA0002BC93 /* PersonViewController.h */,
 				28A3A88F175E9CAA0002BC93 /* PersonViewController.m */,
+				285FF4B81760BE0C001135E1 /* newConferenceContainer.h */,
+				285FF4B91760BE0C001135E1 /* newConferenceContainer.m */,
 				28CF7717175FC2ED0070B4D5 /* speaker.jpg */,
 				28CF7718175FC2ED0070B4D5 /* author.jpg */,
 				A07887AE175A3CE500C1D90C /* News.h */,
@@ -284,8 +293,6 @@
 				A07887C9175A3CE500C1D90C /* PeopleCell.m */,
 				A07887CA175A3CE500C1D90C /* PeopleViewController.h */,
 				A07887CB175A3CE500C1D90C /* PeopleViewController.m */,
-				A0817F221760A62E0065E30A /* CellMyConferences.h */,
-				A0817F231760A62E0065E30A /* CellMyConferences.m */,
 				A07887CC175A3CE500C1D90C /* AppDelegate.h */,
 				A07887CD175A3CE500C1D90C /* AppDelegate.m */,
 				A07887CE175A3CE500C1D90C /* CustomCellTwo.h */,
@@ -300,9 +307,9 @@
 				A07887D7175A3CE500C1D90C /* MenuViewController.m */,
 				A07887D8175A3CE500C1D90C /* ManageConfCell.h */,
 				A07887D9175A3CE500C1D90C /* ManageConfCell.m */,
-				A0817F241760A6520065E30A /* newConferenceContainer.h */,
-				A0817F251760A6520065E30A /* newConferenceContainer.m */,
 				A07887DA175A3CE500C1D90C /* MainStoryboard.storyboard */,
+				285FF4BB1760BE6A001135E1 /* ConferenceScreenViewController.h */,
+				285FF4BC1760BE6A001135E1 /* ConferenceScreenViewController.m */,
 				28CF7711175F8E240070B4D5 /* PeopleC2.h */,
 				28CF7712175F8E240070B4D5 /* PeopleC2.m */,
 				28CF7714175F8FD10070B4D5 /* Teste.h */,
@@ -473,6 +480,9 @@
 				28CF7713175F8E240070B4D5 /* PeopleC2.m in Sources */,
 				28CF7716175F8FD10070B4D5 /* Teste.m in Sources */,
 				707522FB175FDF7C002F8708 /* AppDataObject.m in Sources */,
+				285FF4B71760BC0E001135E1 /* CellMyConferences.m in Sources */,
+				285FF4BA1760BE0C001135E1 /* newConferenceContainer.m in Sources */,
+				285FF4BD1760BE6A001135E1 /* ConferenceScreenViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
