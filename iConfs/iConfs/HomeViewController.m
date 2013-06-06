@@ -25,6 +25,8 @@
 
 @implementation HomeViewController
 
+@synthesize MenuButton;
+
 - (void)viewDidLoad
 {
     [super viewDidLoad];
@@ -47,12 +49,25 @@
     }
     //ERRO!
     [[self view] addGestureRecognizer:[self slidingViewController].panGesture];
+    
+    [self setMenuButton:[UIButton buttonWithType:UIButtonTypeCustom]];
+    
+    [MenuButton setFrame:CGRectMake(8, 10, 34, 24)];
+    [MenuButton setBackgroundImage:[UIImage imageNamed:@"menuButton.png"] forState:UIControlStateNormal];
+    [MenuButton addTarget:self action:@selector(revealMenu:) forControlEvents:UIControlEventTouchUpInside];
+    
+    [[self view] addSubview:MenuButton];
 }
 
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+- (IBAction)revealMenu:(id)sender
+{
+    [[self slidingViewController] anchorTopViewTo:ECRight];
 }
 
 #pragma mark - Collection datasource and delegate

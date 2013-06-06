@@ -55,7 +55,7 @@
     theAppData = [self appData];
     
     menuGen = [[NSArray alloc] initWithObjects:@"Manage Conferences", @"Personal Agenda", nil];
-    menuConf = [[NSArray alloc] initWithObjects:@"Sessions",@"Speakers",@"Locations",@"Where am I?",@"Shedule", nil];
+    menuConf = [[NSArray alloc] initWithObjects:@"Sessions",@"Speakers",@"Locations",@"Where am I?", nil];
     confs = [[NSArray alloc] initWithArray:[theAppData getMyConferences]];
     
     [[self slidingViewController] setAnchorRightPeekAmount:450.0f];
@@ -101,7 +101,7 @@
     
     if ([indexPath section] == 0)
         cell.textLabel.text = [NSString stringWithFormat:@"%@", [menuGen objectAtIndex:[indexPath row]]];
-    else if ([indexPath section] == 1)
+    else if ([indexPath section] == 1 && showMenuConf)
         cell.textLabel.text = [NSString stringWithFormat:@"%@", [menuConf objectAtIndex:[indexPath row]]];
     else if ([indexPath section] == 2)
         cell.textLabel.text = [NSString stringWithFormat:@"%@", [((Conference*)[confs objectAtIndex:[indexPath row]]) getName]];
@@ -115,17 +115,20 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     
-    NSString *iD = [NSString stringWithFormat:@"%@", [self.MenuView cellForRowAtIndexPath:indexPath].textLabel.text];
+    //NSString *iD = [NSString stringWithFormat:@"%@", [self.MenuView cellForRowAtIndexPath:indexPath].textLabel.text];
     
-    UIViewController *newTopViewController = [[self storyboard]instantiateViewControllerWithIdentifier:iD];
+    //UIViewController *newTopViewController = [[self storyboard]instantiateViewControllerWithIdentifier:iD];
     
     if ([indexPath section] == 0){
         showMenuConf = NO;
-        [[self MenuView] deselectRowAtIndexPath:indexPath animated:NO];
+        NSString *iD = [NSString stringWithFormat:@"%@", [self.MenuView cellForRowAtIndexPath:indexPath].textLabel.text];
         
-        if ([indexPath row] == 0) {
-            
-        }
+        UIViewController *newTopViewController = [[self storyboard]instantiateViewControllerWithIdentifier:iD];
+        
+        [[self MenuView] reloadData];
+        
+        [[[self MenuView] cellForRowAtIndexPath:indexPath] setHighlighted:YES];
+        //[[self MenuView] selectRowAtIndexPath:indexPath animated:NO scrollPosition:UITableViewScrollPositionNone];
         
         [[self slidingViewController] anchorTopViewOffScreenTo:ECRight animations:nil onComplete:^{
             CGRect frame = [[[[self slidingViewController] topViewController] view] frame];
@@ -134,6 +137,10 @@
             [[self slidingViewController] resetTopView];
         }];
     }else if ([indexPath section] == 1){
+        NSString *iD = [NSString stringWithFormat:@"%@", [self.MenuView cellForRowAtIndexPath:indexPath].textLabel.text];
+        
+        UIViewController *newTopViewController = [[self storyboard]instantiateViewControllerWithIdentifier:iD];
+        
         [[self MenuView] deselectRowAtIndexPath:indexPath animated:NO];
         
         [[self slidingViewController] anchorTopViewOffScreenTo:ECRight animations:nil onComplete:^{
@@ -145,7 +152,8 @@
     }else{
         selectedConf = (Conference*)[confs objectAtIndex:[indexPath row]];
         showMenuConf = YES;
-        [self.MenuView reloadSections:[NSIndexSet indexSetWithIndex:1] withRowAnimation:UITableViewRowAnimationFade];
+        [[self MenuView] reloadData];
+        [[[self MenuView] cellForRowAtIndexPath:indexPath] setHighlighted:YES];
     }
 }
 
