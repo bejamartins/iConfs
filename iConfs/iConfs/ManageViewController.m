@@ -151,6 +151,7 @@
     otherConfs = [theAppData getRestOfConfs];
     
     [[self ConfsCollection] reloadData];
+    [[self slidingViewController] setUnderLeftViewController:[[self storyboard]instantiateViewControllerWithIdentifier:@"Menu"]];
 }
 
 - (IBAction)remConfs:(id)sender {
@@ -169,6 +170,7 @@
     otherConfs = [theAppData getRestOfConfs];
     
     [[self ConfsCollection] reloadData];
+    [[self slidingViewController] setUnderLeftViewController:[[self storyboard]instantiateViewControllerWithIdentifier:@"Menu"]];
 }
 
 @end
