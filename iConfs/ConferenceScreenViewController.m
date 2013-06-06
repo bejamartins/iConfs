@@ -9,6 +9,7 @@
 #import "ConferenceScreenViewController.h"
 
 @interface ConferenceScreenViewController ()
+//@property (strong, nonatomic) IBOutlet UINavigationItem *bar;
 @property (strong, nonatomic) IBOutlet UINavigationItem *bar;
 
 @end

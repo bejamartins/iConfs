@@ -119,7 +119,7 @@
             <objects>
                 <viewController storyboardIdentifier="Manage Conferences" useStoryboardIdentifierAsRestorationIdentifier="YES" id="G2f-QB-2BG" customClass="ManageViewController" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="OHa-w8-2jE">
-                        <rect key="frame" x="0.0" y="20" width="768" height="1004"/>
+                        <rect key="frame" x="0.0" y="0.0" width="768" height="1024"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" minimumZoomScale="0.0" maximumZoomScale="0.0" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="kCN-D8-e3X">
@@ -260,7 +260,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ZOm-z2-qav" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="800" y="-98"/>
+            <point key="canvasLocation" x="-704" y="588"/>
         </scene>
         <!--Home View Controller - Detail-->
         <scene sceneID="XYA-ba-idY">
@@ -1016,7 +1016,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="kHb-M7-WLm" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-1316" y="1327"/>
+            <point key="canvasLocation" x="-2208" y="3131"/>
         </scene>
         <!--View Controller - My Conferences-->
         <scene sceneID="Iud-Hx-Hlt">
@@ -1123,7 +1123,7 @@
                                             <subviews>
                                                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="clZ-fi-eU8">
                                                     <constraints>
-                                                        <constraint firstAttribute="height" constant="179" id="rcs-67-lQF"/>
+                                                        <constraint firstAttribute="height" constant="180" id="NvR-Z7-025"/>
                                                     </constraints>
                                                 </imageView>
                                                 <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Label" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="449" translatesAutoresizingMaskIntoConstraints="NO" id="n90-E3-Q3I">
@@ -1149,6 +1149,7 @@
                                         <connections>
                                             <outlet property="conferenceLabel" destination="n90-E3-Q3I" id="SfE-Bs-Qyx"/>
                                             <outlet property="conferenceLogo" destination="clZ-fi-eU8" id="hE8-HR-5CA"/>
+                                            <segue destination="28v-4d-CKz" kind="modal" identifier="toConference" id="61G-Gz-dlr"/>
                                         </connections>
                                     </collectionViewCell>
                                 </cells>
@@ -1175,6 +1176,9 @@
                                 <state key="highlighted">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
+                                <connections>
+                                    <segue destination="G2f-QB-2BG" kind="modal" id="DLp-Rf-FV1"/>
+                                </connections>
                             </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -1197,6 +1201,35 @@
             </objects>
             <point key="canvasLocation" x="-1415" y="472"/>
         </scene>
+        <!--Conference Screen View Controller-->
+        <scene sceneID="ozO-rM-rny">
+            <objects>
+                <viewController id="28v-4d-CKz" customClass="ConferenceScreenViewController" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="cQz-z0-F8O">
+                        <rect key="frame" x="0.0" y="0.0" width="768" height="1024"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <subviews>
+                            <navigationBar contentMode="scaleToFill" barStyle="blackTranslucent" translatesAutoresizingMaskIntoConstraints="NO" id="NZD-Do-mcj">
+                                <items>
+                                    <navigationItem title="Title" id="SoA-Qf-g4T"/>
+                                </items>
+                            </navigationBar>
+                        </subviews>
+                        <color key="backgroundColor" cocoaTouchSystemColor="scrollViewTexturedBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="NZD-Do-mcj" firstAttribute="leading" secondItem="cQz-z0-F8O" secondAttribute="leading" type="default" id="6Tf-w7-hMe"/>
+                            <constraint firstItem="NZD-Do-mcj" firstAttribute="top" secondItem="cQz-z0-F8O" secondAttribute="top" type="default" id="C8v-j3-Fsb"/>
+                            <constraint firstItem="NZD-Do-mcj" firstAttribute="trailing" secondItem="cQz-z0-F8O" secondAttribute="trailing" type="default" id="W5F-SQ-lhT"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="bar" destination="SoA-Qf-g4T" id="wDP-M5-BuH"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="VZc-aM-CTx" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-2150" y="1700"/>
+        </scene>
     </scenes>
     <resources>
         <image name="Post-it-note-transparent.png" width="556" height="580"/>
@@ -1209,6 +1242,12 @@
             <relationships>
                 <relationship kind="outlet" name="conferenceLabel" candidateClass="UILabel"/>
                 <relationship kind="outlet" name="conferenceLogo" candidateClass="UIImageView"/>
+            </relationships>
+        </class>
+        <class className="ConferenceScreenViewController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/ConferenceScreenViewController.h"/>
+            <relationships>
+                <relationship kind="outlet" name="bar" candidateClass="UINavigationItem"/>
             </relationships>
         </class>
         <class className="CustomCellOne" superclassName="UICollectionViewCell">
@@ -1282,6 +1321,7 @@
         <class className="PeopleViewController" superclassName="UIViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/PeopleViewController.h"/>
             <relationships>
+                <relationship kind="action" name="moreInfo:"/>
                 <relationship kind="action" name="selectedOption:"/>
                 <relationship kind="outlet" name="Options" candidateClass="UISegmentedControl"/>
                 <relationship kind="outlet" name="PeopleCollection" candidateClass="UICollectionView"/>
