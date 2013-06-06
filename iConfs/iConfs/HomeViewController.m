@@ -45,7 +45,7 @@
     if (![[[self slidingViewController] underLeftViewController] isKindOfClass:[MenuViewController class]]) {
         [self slidingViewController].UnderLeftViewController = [[self storyboard]instantiateViewControllerWithIdentifier:@"Menu"];
     }
-    
+    //ERRO!
     [[self view] addGestureRecognizer:[self slidingViewController].panGesture];
 }
 

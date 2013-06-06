@@ -69,6 +69,8 @@
         [[self slidingViewController] setUnderLeftViewController:[[self storyboard]instantiateViewControllerWithIdentifier:@"Menu"]];
     }
     
+    //erro
+    
     [[self view] addGestureRecognizer:[self slidingViewController].panGesture];
 }
 
