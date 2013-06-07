@@ -13,4 +13,7 @@
 - (IBAction)segmentedChanged:(id)sender;
 @property (strong, nonatomic) IBOutlet UISegmentedControl *segment;
 
+@property (strong, nonatomic) UIButton *MenuButton;
+@property (strong, nonatomic) IBOutlet UIToolbar *Search;
+
 @end

@@ -9,10 +9,16 @@
 #import "PeopleC2.h"
 #import "Teste.h"
 #import "PersonViewController.h"
+#import "ECSlidingViewController.h"
+#import "MenuViewController.h"
 
 @interface PeopleC2 (){
     NSInteger item;
     NSInteger showPeople;
+    NSMutableArray *imageSearchArray;
+    NSMutableArray *nameSearchArray;
+    NSMutableArray *companySearchArray;
+    BOOL searchItem;
 }
 
 
@@ -31,6 +37,7 @@
     
 }
 @synthesize peopleCollection,segment;
+@synthesize MenuButton;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -57,6 +64,24 @@
 
     [super viewDidLoad];
 	// Do any additional setup after loading the view.
+    
+    [[[self view] layer] setShadowOpacity:0.75f];
+    [[[self view] layer] setShadowRadius:10.0f];
+    [[[self view] layer] setShadowColor:[UIColor blackColor].CGColor];
+    
+    if (![[[self slidingViewController] underLeftViewController] isKindOfClass:[MenuViewController class]]) {
+        [self slidingViewController].UnderLeftViewController = [[self storyboard]instantiateViewControllerWithIdentifier:@"Menu"];
+    }
+    //ERRO!
+    [[self view] addGestureRecognizer:[self slidingViewController].panGesture];
+    
+    [self setMenuButton:[UIButton buttonWithType:UIButtonTypeCustom]];
+    
+    [MenuButton setFrame:CGRectMake(8, 10, 34, 24)];
+    [MenuButton setBackgroundImage:[UIImage imageNamed:@"menuButton.png"] forState:UIControlStateNormal];
+    [MenuButton addTarget:self action:@selector(revealMenu:) forControlEvents:UIControlEventTouchUpInside];
+    
+    [[self view] addSubview:MenuButton];
 }
 
 - (void)didReceiveMemoryWarning
@@ -64,6 +89,12 @@
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
+
+- (IBAction)revealMenu:(id)sender
+{
+    [[self slidingViewController] anchorTopViewTo:ECRight];
+}
+
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section{
     return [imageArray count];
 }
@@ -129,5 +160,9 @@
     [realBar setTitle:title];
     }
 
+- (void)searchBar:(UISearchBar *)searchBar textDidChange:(NSString *)searchText
+{
+
+}
 
 @end

@@ -31,6 +31,6 @@
 @property NSInteger IndexAux;
 @property NSInteger showPerson;
 
-
+@property (strong, nonatomic) UIButton *MenuButton;
 
 @end
