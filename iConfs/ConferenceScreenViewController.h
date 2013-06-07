@@ -12,6 +12,8 @@
 
 @property NSString *conferenceName;
 
+@property UIButton *MenuButton;
+
 -(void)changeName:(NSString *)name;
 
 @end

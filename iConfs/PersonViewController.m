@@ -7,6 +7,8 @@
 //
 
 #import "PersonViewController.h"
+#import "ECSlidingViewController.h"
+#import "MenuViewController.h"
 
 @interface PersonViewController ()
 @property (strong, nonatomic) IBOutlet UINavigationItem *bar;
@@ -15,7 +17,7 @@
 
 @implementation PersonViewController
 
-@synthesize picture,session_theme,session_when,session_where,biography,IndexAux,navigationBar,bar,showPerson;
+@synthesize picture,session_theme,session_when,session_where,biography,IndexAux,navigationBar,bar,showPerson, MenuButton;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -51,12 +53,32 @@
     //[picture setImage:passPicture];
     [super viewDidLoad];
 	// Do any additional setup after loading the view.
+    
+    [[[self view] layer] setShadowOpacity:0.75f];
+    [[[self view] layer] setShadowRadius:10.0f];
+    [[[self view] layer] setShadowColor:[UIColor blackColor].CGColor];
+    
+    if (![[[self slidingViewController] underLeftViewController] isKindOfClass:[MenuViewController class]]) {
+        [self slidingViewController].UnderLeftViewController = [[self storyboard]instantiateViewControllerWithIdentifier:@"Menu"];
+    }
+    
+    [self setMenuButton:[UIButton buttonWithType:UIButtonTypeCustom]];
+    
+    [MenuButton setFrame:CGRectMake(8, 10, 34, 24)];
+    [MenuButton setBackgroundImage:[UIImage imageNamed:@"menuButton.png"] forState:UIControlStateNormal];
+    [MenuButton addTarget:self action:@selector(revealMenu:) forControlEvents:UIControlEventTouchUpInside];
+    
 }
 
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+- (IBAction)revealMenu:(id)sender
+{
+    [[self slidingViewController] anchorTopViewTo:ECRight];
 }
 
 @end

@@ -339,19 +339,6 @@
                                     <segue destination="k9g-po-Fnm" kind="modal" id="fLT-gc-LRp"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="CAn-52-ib0">
-                                <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
-                                <state key="normal" title="People">
-                                    <color key="titleColor" red="0.19607843459999999" green="0.30980393290000002" blue="0.52156865600000002" alpha="1" colorSpace="calibratedRGB"/>
-                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                                <state key="highlighted">
-                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                                <connections>
-                                    <segue destination="lT5-Md-sch" kind="modal" id="mr4-T1-r5D"/>
-                                </connections>
-                            </button>
                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="News Feed" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mUf-oo-pfF">
                                 <constraints>
                                     <constraint firstAttribute="height" constant="21" id="28F-GT-aI0"/>
@@ -367,30 +354,6 @@
                             <containerView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Nyl-is-rBf">
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                             </containerView>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="kdB-uA-1em">
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="168" id="SZt-pf-6tH"/>
-                                    <constraint firstAttribute="height" constant="129" id="dyF-pY-n0X"/>
-                                </constraints>
-                                <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
-                                <state key="normal" title="Suggested Conference">
-                                    <color key="titleColor" red="0.19607843459999999" green="0.30980393290000002" blue="0.52156865600000002" alpha="1" colorSpace="calibratedRGB"/>
-                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                                <state key="highlighted">
-                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                            </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3LD-ok-pR7">
-                                <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
-                                <state key="normal" title="Manage Conferences">
-                                    <color key="titleColor" red="0.19607843459999999" green="0.30980393290000002" blue="0.52156865600000002" alpha="1" colorSpace="calibratedRGB"/>
-                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                                <state key="highlighted">
-                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                            </button>
                             <containerView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="pdW-gR-6p6">
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                                 <connections>
@@ -401,29 +364,21 @@
                         <color key="backgroundColor" cocoaTouchSystemColor="scrollViewTexturedBackgroundColor"/>
                         <constraints>
                             <constraint firstItem="Nyl-is-rBf" firstAttribute="leading" secondItem="tmA-vE-w1H" secondAttribute="leading" constant="323" id="0jI-BQ-k86"/>
-                            <constraint firstItem="kdB-uA-1em" firstAttribute="trailing" secondItem="3LD-ok-pR7" secondAttribute="trailing" type="default" id="1TP-8R-2ar"/>
                             <constraint firstItem="vaR-37-i9Q" firstAttribute="trailing" secondItem="RqT-X1-FGV" secondAttribute="trailing" type="default" id="35Z-Oh-fU9"/>
                             <constraint firstItem="pdW-gR-6p6" firstAttribute="top" secondItem="tmA-vE-w1H" secondAttribute="top" constant="398" id="5KT-o1-15u"/>
-                            <constraint firstItem="3LD-ok-pR7" firstAttribute="trailing" secondItem="CAn-52-ib0" secondAttribute="trailing" type="default" id="8T6-3E-EVq"/>
                             <constraint firstItem="RqT-X1-FGV" firstAttribute="leading" secondItem="tmA-vE-w1H" secondAttribute="leading" constant="53" id="D6A-wk-xCw"/>
                             <constraint firstItem="vaR-37-i9Q" firstAttribute="baseline" secondItem="mUf-oo-pfF" secondAttribute="baseline" type="default" id="FaT-iQ-cIC"/>
                             <constraint firstItem="pdW-gR-6p6" firstAttribute="leading" secondItem="RqT-X1-FGV" secondAttribute="leading" type="default" id="GDu-eN-Mbq"/>
                             <constraint firstAttribute="bottom" secondItem="pdW-gR-6p6" secondAttribute="bottom" constant="302" id="Mm8-zW-ycQ"/>
-                            <constraint firstItem="3LD-ok-pR7" firstAttribute="leading" secondItem="kdB-uA-1em" secondAttribute="leading" type="default" id="Qnl-iu-VpF"/>
                             <constraint firstItem="vaR-37-i9Q" firstAttribute="centerY" secondItem="mUf-oo-pfF" secondAttribute="centerY" type="default" id="RdN-Cp-LD6"/>
                             <constraint firstItem="Sig-cw-E4I" firstAttribute="top" secondItem="tmA-vE-w1H" secondAttribute="top" constant="768" id="TV4-Dz-czU"/>
-                            <constraint firstItem="CAn-52-ib0" firstAttribute="top" secondItem="3LD-ok-pR7" secondAttribute="bottom" constant="8" symbolic="YES" type="default" id="U6L-aV-s2w"/>
                             <constraint firstAttribute="trailing" secondItem="Sig-cw-E4I" secondAttribute="trailing" constant="469" id="ckB-EI-45U"/>
                             <constraint firstItem="RqT-X1-FGV" firstAttribute="top" secondItem="tmA-vE-w1H" secondAttribute="top" constant="74" id="f2M-0t-2FX"/>
                             <constraint firstAttribute="bottom" secondItem="Nyl-is-rBf" secondAttribute="bottom" constant="20" symbolic="YES" type="default" id="fgQ-sB-Vr1"/>
-                            <constraint firstItem="3LD-ok-pR7" firstAttribute="leading" secondItem="CAn-52-ib0" secondAttribute="leading" type="default" id="iy9-mp-DwY"/>
-                            <constraint firstAttribute="trailing" secondItem="kdB-uA-1em" secondAttribute="trailing" constant="12" id="k7M-Pn-acj"/>
                             <constraint firstItem="pdW-gR-6p6" firstAttribute="leading" secondItem="Sig-cw-E4I" secondAttribute="leading" type="default" id="niD-Dl-w7p"/>
                             <constraint firstItem="Nyl-is-rBf" firstAttribute="top" secondItem="Sig-cw-E4I" secondAttribute="top" type="default" id="nib-VB-kGt"/>
                             <constraint firstAttribute="bottom" secondItem="Sig-cw-E4I" secondAttribute="bottom" constant="20" symbolic="YES" type="default" id="obg-zX-YEs"/>
                             <constraint firstItem="vaR-37-i9Q" firstAttribute="top" secondItem="tmA-vE-w1H" secondAttribute="top" constant="344" id="qXg-Tt-cqO"/>
-                            <constraint firstAttribute="bottom" secondItem="CAn-52-ib0" secondAttribute="bottom" constant="10" id="qZG-Yc-qDS"/>
-                            <constraint firstItem="3LD-ok-pR7" firstAttribute="top" secondItem="kdB-uA-1em" secondAttribute="bottom" constant="8" symbolic="YES" type="default" id="uzI-dx-Afa"/>
                             <constraint firstAttribute="trailing" secondItem="Nyl-is-rBf" secondAttribute="trailing" constant="195" id="w2h-6f-t9Z"/>
                             <constraint firstItem="mUf-oo-pfF" firstAttribute="leading" secondItem="tmA-vE-w1H" secondAttribute="leading" constant="66" id="zIu-aY-hBV"/>
                             <constraint firstItem="vaR-37-i9Q" firstAttribute="trailing" secondItem="pdW-gR-6p6" secondAttribute="trailing" type="default" id="zar-z1-oeP"/>
@@ -788,13 +743,7 @@
                             </imageView>
                             <navigationBar contentMode="scaleToFill" barStyle="blackTranslucent" translatesAutoresizingMaskIntoConstraints="NO" id="kTa-4f-VNL">
                                 <items>
-                                    <navigationItem title="Title" id="jwR-Xr-CuC">
-                                        <barButtonItem key="leftBarButtonItem" title="Back" id="W07-bz-XlO">
-                                            <connections>
-                                                <segue destination="lT5-Md-sch" kind="modal" id="4T1-Kb-aeY"/>
-                                            </connections>
-                                        </barButtonItem>
-                                    </navigationItem>
+                                    <navigationItem title="Title" id="jwR-Xr-CuC"/>
                                 </items>
                             </navigationBar>
                         </subviews>
@@ -843,21 +792,19 @@
         <!--PeopleC2-->
         <scene sceneID="Wh3-4o-kg2">
             <objects>
-                <viewController id="lT5-Md-sch" customClass="PeopleC2" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="People" useStoryboardIdentifierAsRestorationIdentifier="YES" id="lT5-Md-sch" customClass="PeopleC2" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="qhX-oV-lRO">
                         <rect key="frame" x="0.0" y="20" width="768" height="1004"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
                             <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" barStyle="blackTranslucent" translatesAutoresizingMaskIntoConstraints="NO" id="bi5-J0-q15">
                                 <items>
-                                    <barButtonItem style="plain" systemItem="search" id="IB8-ZF-sKz"/>
-                                    <barButtonItem style="plain" id="K1e-yf-upV">
-                                        <textField key="customView" opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" minimumFontSize="17" id="GTc-Qt-3c3">
-                                            <rect key="frame" x="42" y="7" width="187" height="30"/>
-                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                            <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                    <barButtonItem style="plain" id="cfc-tY-cCa">
+                                        <searchBar key="customView" contentMode="redraw" barStyle="blackTranslucent" id="V4d-be-v1h">
+                                            <rect key="frame" x="12" y="0.0" width="399" height="44"/>
+                                            <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
                                             <textInputTraits key="textInputTraits"/>
-                                        </textField>
+                                        </searchBar>
                                     </barButtonItem>
                                     <barButtonItem width="146" style="plain" systemItem="fixedSpace" id="aKC-Tb-MLC"/>
                                     <barButtonItem title="Sort by" style="plain" id="nIg-9X-ksX"/>
@@ -961,6 +908,7 @@
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="Search" destination="bi5-J0-q15" id="3YR-dc-MLs"/>
                         <outlet property="bar" destination="twv-Dd-0Kq" id="Pgb-1G-UKL"/>
                         <outlet property="peopleCollection" destination="yEn-GH-oKM" id="IzP-at-Ft3"/>
                         <outlet property="realBar" destination="hR3-15-uuO" id="dJi-3v-bZG"/>
@@ -1155,7 +1103,7 @@
         <!--Conference Screen View Controller-->
         <scene sceneID="ozO-rM-rny">
             <objects>
-                <viewController id="28v-4d-CKz" customClass="ConferenceScreenViewController" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="Conference" useStoryboardIdentifierAsRestorationIdentifier="YES" id="28v-4d-CKz" customClass="ConferenceScreenViewController" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="cQz-z0-F8O">
                         <rect key="frame" x="0.0" y="0.0" width="768" height="1024"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -1165,12 +1113,42 @@
                                     <navigationItem title="Title" id="SoA-Qf-g4T"/>
                                 </items>
                             </navigationBar>
+                            <containerView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="OUe-mh-KJl">
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                                <connections>
+                                    <segue destination="SO3-oV-dYo" kind="embed" id="Y4K-uY-Wal"/>
+                                </connections>
+                            </containerView>
+                            <containerView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="zic-Iv-Q4p">
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                                <connections>
+                                    <segue destination="c4s-Cp-tlR" kind="embed" id="uyU-nR-QeQ"/>
+                                </connections>
+                            </containerView>
+                            <containerView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="0QI-0c-GUL">
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                                <connections>
+                                    <segue destination="Lmn-kb-p46" kind="embed" id="Ont-WG-bDY"/>
+                                </connections>
+                            </containerView>
                         </subviews>
                         <color key="backgroundColor" cocoaTouchSystemColor="scrollViewTexturedBackgroundColor"/>
                         <constraints>
+                            <constraint firstAttribute="bottom" secondItem="zic-Iv-Q4p" secondAttribute="bottom" constant="506" id="6KU-xL-vbS"/>
                             <constraint firstItem="NZD-Do-mcj" firstAttribute="leading" secondItem="cQz-z0-F8O" secondAttribute="leading" type="default" id="6Tf-w7-hMe"/>
+                            <constraint firstItem="zic-Iv-Q4p" firstAttribute="top" secondItem="cQz-z0-F8O" secondAttribute="top" constant="103" id="BZi-jJ-IQs"/>
                             <constraint firstItem="NZD-Do-mcj" firstAttribute="top" secondItem="cQz-z0-F8O" secondAttribute="top" type="default" id="C8v-j3-Fsb"/>
+                            <constraint firstItem="zic-Iv-Q4p" firstAttribute="leading" secondItem="cQz-z0-F8O" secondAttribute="leading" constant="50" id="ET8-8P-mhZ"/>
+                            <constraint firstItem="0QI-0c-GUL" firstAttribute="leading" secondItem="cQz-z0-F8O" secondAttribute="leading" constant="424" id="HcB-m9-45x"/>
                             <constraint firstItem="NZD-Do-mcj" firstAttribute="trailing" secondItem="cQz-z0-F8O" secondAttribute="trailing" type="default" id="W5F-SQ-lhT"/>
+                            <constraint firstAttribute="bottom" secondItem="0QI-0c-GUL" secondAttribute="bottom" constant="296" id="XYs-ec-g8S"/>
+                            <constraint firstAttribute="trailing" secondItem="OUe-mh-KJl" secondAttribute="trailing" constant="384" id="eMJ-ZW-Lc1"/>
+                            <constraint firstItem="OUe-mh-KJl" firstAttribute="top" secondItem="cQz-z0-F8O" secondAttribute="top" constant="562" id="laG-l7-Sls"/>
+                            <constraint firstItem="OUe-mh-KJl" firstAttribute="leading" secondItem="cQz-z0-F8O" secondAttribute="leading" constant="20" symbolic="YES" type="default" id="q1Y-h3-g2v"/>
+                            <constraint firstItem="0QI-0c-GUL" firstAttribute="top" secondItem="OUe-mh-KJl" secondAttribute="top" type="default" id="sBk-gS-KAM"/>
+                            <constraint firstAttribute="trailing" secondItem="0QI-0c-GUL" secondAttribute="trailing" constant="32" id="tQf-4u-Nj7"/>
+                            <constraint firstAttribute="bottom" secondItem="OUe-mh-KJl" secondAttribute="bottom" constant="82" id="vKq-8f-H4e"/>
+                            <constraint firstAttribute="trailing" secondItem="zic-Iv-Q4p" secondAttribute="trailing" constant="7" id="vbc-V8-BzP"/>
                         </constraints>
                     </view>
                     <connections>
@@ -1195,10 +1173,23 @@
                 <relationship kind="outlet" name="conferenceLogo" candidateClass="UIImageView"/>
             </relationships>
         </class>
+        <class className="CellNewsInsideConference" superclassName="UICollectionViewCell">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/CellNewsInsideConference.h"/>
+            <relationships>
+                <relationship kind="outlet" name="picture" candidateClass="UIImageView"/>
+                <relationship kind="outlet" name="title" candidateClass="UILabel"/>
+            </relationships>
+        </class>
         <class className="ConferenceScreenViewController" superclassName="UIViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/ConferenceScreenViewController.h"/>
             <relationships>
                 <relationship kind="outlet" name="bar" candidateClass="UINavigationItem"/>
+            </relationships>
+        </class>
+        <class className="Conference_News" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/Conference_News.h"/>
+            <relationships>
+                <relationship kind="outlet" name="collection" candidateClass="UICollectionView"/>
             </relationships>
         </class>
         <class className="CustomCellOne" superclassName="UICollectionViewCell">
@@ -1255,6 +1246,7 @@
             <source key="sourceIdentifier" type="project" relativePath="./Classes/PeopleC2.h"/>
             <relationships>
                 <relationship kind="action" name="segmentedChanged:"/>
+                <relationship kind="outlet" name="Search" candidateClass="UIToolbar"/>
                 <relationship kind="outlet" name="peopleCollection" candidateClass="UICollectionView"/>
                 <relationship kind="outlet" name="segment" candidateClass="UISegmentedControl"/>
             </relationships>
