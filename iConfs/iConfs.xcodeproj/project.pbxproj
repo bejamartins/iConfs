@@ -27,6 +27,12 @@
 		707B7C16175D62CD00E4747A /* UIImage+ImageWithUIView.m in Sources */ = {isa = PBXBuildFile; fileRef = 707B7C14175D62CD00E4747A /* UIImage+ImageWithUIView.m */; };
 		707B7C19175D6E2B00E4747A /* InitViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 707B7C18175D6E2B00E4747A /* InitViewController.m */; };
 		A0570151175E2848000FED8F /* TestingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A0570150175E2848000FED8F /* TestingViewController.m */; };
+		A05A74FA1760F6CF00F021BD /* ioapi.c in Sources */ = {isa = PBXBuildFile; fileRef = A05A74F01760F6CF00F021BD /* ioapi.c */; };
+		A05A74FB1760F6CF00F021BD /* mztools.c in Sources */ = {isa = PBXBuildFile; fileRef = A05A74F21760F6CF00F021BD /* mztools.c */; };
+		A05A74FC1760F6CF00F021BD /* unzip.c in Sources */ = {isa = PBXBuildFile; fileRef = A05A74F41760F6CF00F021BD /* unzip.c */; };
+		A05A74FD1760F6CF00F021BD /* zip.c in Sources */ = {isa = PBXBuildFile; fileRef = A05A74F61760F6CF00F021BD /* zip.c */; };
+		A05A74FE1760F6CF00F021BD /* ZipArchive.mm in Sources */ = {isa = PBXBuildFile; fileRef = A05A74F91760F6CF00F021BD /* ZipArchive.mm */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		A05A75001760F7F600F021BD /* libz.1.2.5.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = A05A74FF1760F7F600F021BD /* libz.1.2.5.dylib */; };
 		A0788787175A3C7800C1D90C /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A0788786175A3C7800C1D90C /* UIKit.framework */; };
 		A0788789175A3C7800C1D90C /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A0788788175A3C7800C1D90C /* Foundation.framework */; };
 		A078878B175A3C7800C1D90C /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A078878A175A3C7800C1D90C /* CoreGraphics.framework */; };
@@ -118,6 +124,18 @@
 		707B7C18175D6E2B00E4747A /* InitViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InitViewController.m; sourceTree = "<group>"; };
 		A057014F175E2847000FED8F /* TestingViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TestingViewController.h; sourceTree = "<group>"; };
 		A0570150175E2848000FED8F /* TestingViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TestingViewController.m; sourceTree = "<group>"; };
+		A05A74EF1760F6CF00F021BD /* crypt.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = crypt.h; sourceTree = "<group>"; };
+		A05A74F01760F6CF00F021BD /* ioapi.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = ioapi.c; sourceTree = "<group>"; };
+		A05A74F11760F6CF00F021BD /* ioapi.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ioapi.h; sourceTree = "<group>"; };
+		A05A74F21760F6CF00F021BD /* mztools.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = mztools.c; sourceTree = "<group>"; };
+		A05A74F31760F6CF00F021BD /* mztools.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = mztools.h; sourceTree = "<group>"; };
+		A05A74F41760F6CF00F021BD /* unzip.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = unzip.c; sourceTree = "<group>"; };
+		A05A74F51760F6CF00F021BD /* unzip.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = unzip.h; sourceTree = "<group>"; };
+		A05A74F61760F6CF00F021BD /* zip.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = zip.c; sourceTree = "<group>"; };
+		A05A74F71760F6CF00F021BD /* zip.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = zip.h; sourceTree = "<group>"; };
+		A05A74F81760F6CF00F021BD /* ZipArchive.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZipArchive.h; sourceTree = "<group>"; };
+		A05A74F91760F6CF00F021BD /* ZipArchive.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = ZipArchive.mm; sourceTree = "<group>"; };
+		A05A74FF1760F7F600F021BD /* libz.1.2.5.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.1.2.5.dylib; path = usr/lib/libz.1.2.5.dylib; sourceTree = SDKROOT; };
 		A0788783175A3C7800C1D90C /* iConfs.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = iConfs.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A0788786175A3C7800C1D90C /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		A0788788175A3C7800C1D90C /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -203,6 +221,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A05A75001760F7F600F021BD /* libz.1.2.5.dylib in Frameworks */,
 				A0788787175A3C7800C1D90C /* UIKit.framework in Frameworks */,
 				A0788789175A3C7800C1D90C /* Foundation.framework in Frameworks */,
 				A078878B175A3C7800C1D90C /* CoreGraphics.framework in Frameworks */,
@@ -225,9 +244,26 @@
 			path = iConfs/ECSlidingViewController;
 			sourceTree = "<group>";
 		};
+		A05A74EE1760F6CF00F021BD /* minizip */ = {
+			isa = PBXGroup;
+			children = (
+				A05A74EF1760F6CF00F021BD /* crypt.h */,
+				A05A74F01760F6CF00F021BD /* ioapi.c */,
+				A05A74F11760F6CF00F021BD /* ioapi.h */,
+				A05A74F21760F6CF00F021BD /* mztools.c */,
+				A05A74F31760F6CF00F021BD /* mztools.h */,
+				A05A74F41760F6CF00F021BD /* unzip.c */,
+				A05A74F51760F6CF00F021BD /* unzip.h */,
+				A05A74F61760F6CF00F021BD /* zip.c */,
+				A05A74F71760F6CF00F021BD /* zip.h */,
+			);
+			path = minizip;
+			sourceTree = "<group>";
+		};
 		A078877A175A3C7800C1D90C = {
 			isa = PBXGroup;
 			children = (
+				A05A74FF1760F7F600F021BD /* libz.1.2.5.dylib */,
 				707B7C10175D62CD00E4747A /* ECSlidingViewController */,
 				A078878E175A3C7800C1D90C /* iConfs */,
 				A0788785175A3C7800C1D90C /* Frameworks */,
@@ -257,6 +293,9 @@
 		A078878E175A3C7800C1D90C /* iConfs */ = {
 			isa = PBXGroup;
 			children = (
+				A05A74EE1760F6CF00F021BD /* minizip */,
+				A05A74F81760F6CF00F021BD /* ZipArchive.h */,
+				A05A74F91760F6CF00F021BD /* ZipArchive.mm */,
 				707B7C17175D6E2B00E4747A /* InitViewController.h */,
 				707B7C18175D6E2B00E4747A /* InitViewController.m */,
 				A07887AC175A3CE500C1D90C /* Event.h */,
