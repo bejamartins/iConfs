@@ -157,12 +157,10 @@
         
         UIViewController *newTopViewController = [[self storyboard]instantiateViewControllerWithIdentifier:iD];
         
-        [[self slidingViewController] anchorTopViewOffScreenTo:ECRight animations:nil onComplete:^{
-            CGRect frame = [[[[self slidingViewController] topViewController] view] frame];
-            [[self slidingViewController] setTopViewController:newTopViewController];
-            [[[[self slidingViewController] topViewController] view] setFrame:frame];
-            [[self slidingViewController] resetTopView];
-        }];
+        CGRect frame = [[[[self slidingViewController] topViewController] view] frame];
+        [[self slidingViewController] setTopViewController:newTopViewController];
+        [[[[self slidingViewController] topViewController] view] setFrame:frame];
+        [[self slidingViewController] resetTopView];
 
         [[self MenuView] reloadData];
         [[[self MenuView] cellForRowAtIndexPath:indexPath] setHighlighted:YES];

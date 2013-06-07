@@ -22,6 +22,8 @@
 
 @implementation PeopleViewController
 
+@synthesize MenuButton;
+
 @synthesize collection;
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -46,12 +48,35 @@
     confSearchPeople = [[NSMutableArray alloc] init];
     
     confPeople = [[(MenuViewController*)[[self slidingViewController] underLeftViewController] selectedConf] getAuthors];
+    
+    [[[self view] layer] setShadowOpacity:0.75f];
+    [[[self view] layer] setShadowRadius:10.0f];
+    [[[self view] layer] setShadowColor:[UIColor blackColor].CGColor];
+    
+    if (![[[self slidingViewController] underLeftViewController] isKindOfClass:[MenuViewController class]]) {
+        [[self slidingViewController] setUnderLeftViewController:[[self storyboard]instantiateViewControllerWithIdentifier:@"Menu"]];
+    }
+    
+    [[self view] addGestureRecognizer:[self slidingViewController].panGesture];
+    
+    [self setMenuButton:[UIButton buttonWithType:UIButtonTypeCustom]];
+    
+    [MenuButton setFrame:CGRectMake(8, 10, 34, 24)];
+    [MenuButton setBackgroundImage:[UIImage imageNamed:@"menuButton.png"] forState:UIControlStateNormal];
+    [MenuButton addTarget:self action:@selector(revealMenu:) forControlEvents:UIControlEventTouchUpInside];
+    
+    [[self view] addSubview:MenuButton];
 }
 
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+- (IBAction)revealMenu:(id)sender
+{
+    [[self slidingViewController] anchorTopViewTo:ECRight];
 }
 
 #pragma - Collection View Methods
