@@ -539,6 +539,11 @@
 				285FF4BD1760BE6A001135E1 /* ConferenceScreenViewController.m in Sources */,
 				28ADEE1B1760C7E60059F458 /* Conference.m in Sources */,
 				28ADEE1E1760C7FB0059F458 /* IConfs.m in Sources */,
+				A05A74FA1760F6CF00F021BD /* ioapi.c in Sources */,
+				A05A74FB1760F6CF00F021BD /* mztools.c in Sources */,
+				A05A74FC1760F6CF00F021BD /* unzip.c in Sources */,
+				A05A74FD1760F6CF00F021BD /* zip.c in Sources */,
+				A05A74FE1760F6CF00F021BD /* ZipArchive.mm in Sources */,
 				28ADEE211760D2D80059F458 /* Conference-News.m in Sources */,
 				28ADEE241760D4140059F458 /* CellNewsInsideConference.m in Sources */,
 			);
