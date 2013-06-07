@@ -13,7 +13,6 @@
 
 @interface MenuViewController ()
 {
-    Conference *selectedConf;
     NSArray *menuGen;
     NSArray *menuConf;
     NSArray *confs;
@@ -24,6 +23,8 @@
 @end
 
 @implementation MenuViewController
+
+@synthesize selectedConf;
 
 #pragma - Data Fetch Method
 
@@ -55,7 +56,7 @@
     theAppData = [self appData];
     
     menuGen = [[NSArray alloc] initWithObjects:@"Manage Conferences", @"Personal Agenda", nil];
-    menuConf = [[NSArray alloc] initWithObjects:@"Sessions",@"Speakers",@"Locations",@"Where am I?", nil];
+    menuConf = [[NSArray alloc] initWithObjects:@"Sessions",@"People",@"Locations",@"Where am I?", nil];
     confs = [[NSArray alloc] initWithArray:[theAppData getMyConferences]];
     
     [[self slidingViewController] setAnchorRightPeekAmount:450.0f];
@@ -128,7 +129,6 @@
         [[self MenuView] reloadData];
         
         [[[self MenuView] cellForRowAtIndexPath:indexPath] setHighlighted:YES];
-        //[[self MenuView] selectRowAtIndexPath:indexPath animated:NO scrollPosition:UITableViewScrollPositionNone];
         
         [[self slidingViewController] anchorTopViewOffScreenTo:ECRight animations:nil onComplete:^{
             CGRect frame = [[[[self slidingViewController] topViewController] view] frame];
@@ -167,4 +167,5 @@
         [[self slidingViewController] resetTopView];
     }];
 }
+
 @end
