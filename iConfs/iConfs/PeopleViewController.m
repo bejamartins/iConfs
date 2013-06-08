@@ -9,21 +9,20 @@
 #import "PeopleViewController.h"
 #import "PeopleCell.h"
 #import "PersonViewController.h"
+#import "ECSlidingViewController.h"
+#import "MenuViewController.h"
 
 @interface PeopleViewController ()
 {
-    NSArray *imageArray;
-    NSArray *nameArray;
-    NSArray *companyArray;
-    NSMutableArray *imageSearchArray;
-    NSMutableArray *nameSearchArray;
-    NSMutableArray *companySearchArray;
+    NSArray *confPeople;
+    NSMutableArray *confSearchPeople;
     BOOL searchItem;
-    NSIndexPath *currentIndexPath;
 }
 @end
 
 @implementation PeopleViewController
+
+@synthesize MenuButton;
 
 @synthesize collection;
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
@@ -46,15 +45,38 @@
     
     searchItem = NO;
     
-    imageArray = [[NSArray alloc]initWithObjects:@"conf.jpg", @"conf.jpg", @"conf.jpg",nil];
-    nameArray = [[NSArray alloc]initWithObjects:@"Person 1",@"Person 2",@"Person 3", nil];
-    companyArray = [[NSArray alloc]initWithObjects:@"FCT",@"UNL",@"DI - FCT", nil];
+    confSearchPeople = [[NSMutableArray alloc] init];
+    
+    confPeople = [[(MenuViewController*)[[self slidingViewController] underLeftViewController] selectedConf] getAuthors];
+    
+    [[[self view] layer] setShadowOpacity:0.75f];
+    [[[self view] layer] setShadowRadius:10.0f];
+    [[[self view] layer] setShadowColor:[UIColor blackColor].CGColor];
+    
+    if (![[[self slidingViewController] underLeftViewController] isKindOfClass:[MenuViewController class]]) {
+        [[self slidingViewController] setUnderLeftViewController:[[self storyboard]instantiateViewControllerWithIdentifier:@"Menu"]];
+    }
+    
+    [[self view] addGestureRecognizer:[self slidingViewController].panGesture];
+    
+    [self setMenuButton:[UIButton buttonWithType:UIButtonTypeCustom]];
+    
+    [MenuButton setFrame:CGRectMake(8, 10, 34, 24)];
+    [MenuButton setBackgroundImage:[UIImage imageNamed:@"menuButton.png"] forState:UIControlStateNormal];
+    [MenuButton addTarget:self action:@selector(revealMenu:) forControlEvents:UIControlEventTouchUpInside];
+    
+    [[self view] addSubview:MenuButton];
 }
 
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+- (IBAction)revealMenu:(id)sender
+{
+    [[self slidingViewController] anchorTopViewTo:ECRight];
 }
 
 #pragma - Collection View Methods
@@ -65,9 +87,9 @@
 
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section{
     if (!searchItem)
-        return [imageArray count];
+        return [confPeople count];
     else
-        return [imageSearchArray count];
+        return [confSearchPeople count];
 }
 
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath{
@@ -76,16 +98,29 @@
     PeopleCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:CellIdentifier forIndexPath:indexPath];
     
     if (!searchItem) {
-        [[cell Image]setImage:[UIImage imageNamed:[imageArray objectAtIndex:indexPath.item]]];
-        [[cell Name]setText:[nameArray objectAtIndex:indexPath.item]];
-        [[cell Company]setText:[companyArray objectAtIndex:indexPath.item]];
+        [[cell Image]setImage:[UIImage imageNamed:[(Person*)[confPeople objectAtIndex:[indexPath row]] getImagePath]]];
+        [[cell Name]setText:[(Person*)[confPeople objectAtIndex:[indexPath row]] getName]];
+        [[cell Company]setText:[(Person*)[confPeople objectAtIndex:[indexPath row]] getWork]];
     }else {
-        [[cell Image]setImage:[UIImage imageNamed:[imageSearchArray objectAtIndex:[indexPath row]]]];
-        [[cell Name]setText:[nameSearchArray objectAtIndex:[indexPath row]]];
-        [[cell Company]setText:[companySearchArray objectAtIndex:[indexPath row]]];
+        [[cell Image]setImage:[UIImage imageNamed:[(Person*)[confSearchPeople objectAtIndex:[indexPath row]] getImagePath]]];
+        [[cell Name]setText:[(Person*)[confSearchPeople objectAtIndex:[indexPath row]] getName]];
+        [[cell Company]setText:[(Person*)[confSearchPeople objectAtIndex:[indexPath row]] getWork]];
     }
     
     return cell;
+}
+
+- (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath{
+    UIViewController *newTopViewController = [[self storyboard]instantiateViewControllerWithIdentifier:@"Person"];
+    if (searchItem) {
+        [(PersonViewController*)newTopViewController setShownPerson:[confSearchPeople objectAtIndex:[indexPath row]]];
+    }else
+        [(PersonViewController*)newTopViewController setShownPerson:[confPeople objectAtIndex:[indexPath row]]];
+    
+    CGRect frame = [[[[self slidingViewController] topViewController] view] frame];
+    [[self slidingViewController] setTopViewController:newTopViewController];
+    [[[[self slidingViewController] topViewController] view] setFrame:frame];
+    [[self slidingViewController] resetTopView];
 }
 
 #pragma - Search Bar Methods
@@ -97,21 +132,18 @@
     }else {
         searchItem = YES;
         
-        imageSearchArray = [[NSMutableArray alloc]init];
-        nameSearchArray = [[NSMutableArray alloc]init];
-        companySearchArray = [[NSMutableArray alloc]init];
+        NSString *strName = [[NSString alloc]init];
+        NSString *strCompany = [[NSString alloc]init];
         
-        NSString *str = [[NSString alloc]init];
-        
-        for (int i = 0; i < [nameArray count]; i++) {
-            str = [nameArray objectAtIndex:i];
+        for (int i = 0; i < [confPeople count]; i++) {
+            strName = [[confPeople objectAtIndex:i] getName];
+            strCompany = [[confPeople objectAtIndex:i] getWork];
             
-            NSRange stringRange = [str rangeOfString:searchText options:NSCaseInsensitiveSearch];
+            NSRange stringRangeName = [strName rangeOfString:searchText options:NSCaseInsensitiveSearch];
+            NSRange stringRangeCompany = [strCompany rangeOfString:searchText options:NSCaseInsensitiveSearch];
             
-            if (stringRange.location != NSNotFound) {
-                [nameSearchArray addObject:str];
-                [imageSearchArray addObject:[imageArray objectAtIndex:i]];
-                [companySearchArray addObject:[companyArray objectAtIndex:i]];
+            if (stringRangeName.location != NSNotFound || stringRangeCompany.location != NSNotFound) {
+                [confSearchPeople addObject:[confPeople objectAtIndex:i]];
             }
         }
     }
@@ -119,36 +151,17 @@
     [[self PeopleCollection]reloadData];
 }
 
+#pragma - Segmented Button Methods
+
 - (IBAction)selectedOption:(id)sender {
+    if ([[self Options] selectedSegmentIndex] == 0)
+        confPeople = [[(MenuViewController*)[[self slidingViewController] underLeftViewController] selectedConf] getAuthors];
+    else if ([[self Options] selectedSegmentIndex] == 1)
+        confPeople = [[(MenuViewController*)[[self slidingViewController] underLeftViewController] selectedConf] getAuthors];
+    else
+        confPeople = [[(MenuViewController*)[[self slidingViewController] underLeftViewController] selectedConf] getOrganizers];
+    
     [[self PeopleCollection]reloadData];
-}
-
-- (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath{
-    currentIndexPath = indexPath;
-    NSLog(@"Entrei no método da célula");
-}
-
-
-
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    NSLog(@"Entrei no método do segue");
-
-   // UIViewController *destination = segue.destinationViewController;
-    PersonViewController *personView=segue.destinationViewController;
-    if ([segue.identifier isEqualToString:@"segueFromCell"]) {
-       // NSIndexPath *a= [sender indexPath];
-     //   personView.IndexAux=a.item ;
-         NSInteger i=[currentIndexPath row];
-        personView.IndexAux=i;
-       
-
-    }
-    
-}
-- (IBAction)moreInfo:(id)sender {
-  
-    
-    
 }
 
 @end

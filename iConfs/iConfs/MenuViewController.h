@@ -11,7 +11,10 @@
 
 @interface MenuViewController : UIViewController<UITableViewDataSource, UITableViewDelegate>
 
+@property (strong, nonatomic) Conference *selectedConf;
+
 @property (weak, nonatomic) IBOutlet UITableView *MenuView;
 
 - (IBAction)homeButtonPressed:(id)sender;
+
 @end

@@ -13,7 +13,5 @@
 @property (weak, nonatomic) IBOutlet UIImageView *Image;
 @property (weak, nonatomic) IBOutlet UILabel *Name;
 @property (weak, nonatomic) IBOutlet UILabel *Company;
-@property (weak, nonatomic) IBOutlet UIButton *MoreInfoButton;
 
-- (IBAction)moreInfo:(id)sender;
 @end

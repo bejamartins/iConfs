@@ -296,12 +296,15 @@
 				A05A74EE1760F6CF00F021BD /* minizip */,
 				A05A74F81760F6CF00F021BD /* ZipArchive.h */,
 				A05A74F91760F6CF00F021BD /* ZipArchive.mm */,
+				707522F9175FDF7C002F8708 /* AppDataObject.h */,
+				707522FA175FDF7C002F8708 /* AppDataObject.m */,
+				707AB509175FE67E00A2B85A /* AppDelegateProtocol.h */,
 				707B7C17175D6E2B00E4747A /* InitViewController.h */,
 				707B7C18175D6E2B00E4747A /* InitViewController.m */,
 				A07887AC175A3CE500C1D90C /* Event.h */,
+				A07887AD175A3CE500C1D90C /* Event.m */,
 				285FF4B51760BC0E001135E1 /* CellMyConferences.h */,
 				285FF4B61760BC0E001135E1 /* CellMyConferences.m */,
-				A07887AD175A3CE500C1D90C /* Event.m */,
 				28ADEE191760C7E60059F458 /* Conference.h */,
 				28ADEE1A1760C7E60059F458 /* Conference.m */,
 				28ADEE1C1760C7FB0059F458 /* IConfs.h */,
@@ -371,9 +374,6 @@
 				A0570150175E2848000FED8F /* TestingViewController.m */,
 				A07887A0175A3C7800C1D90C /* iConfs.xcdatamodeld */,
 				A078878F175A3C7800C1D90C /* Supporting Files */,
-				707522F9175FDF7C002F8708 /* AppDataObject.h */,
-				707522FA175FDF7C002F8708 /* AppDataObject.m */,
-				707AB509175FE67E00A2B85A /* AppDelegateProtocol.h */,
 			);
 			path = iConfs;
 			sourceTree = "<group>";

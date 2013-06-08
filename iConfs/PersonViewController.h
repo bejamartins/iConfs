@@ -7,6 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "Person.h"
 
 @interface PersonViewController : UIViewController{
 @public
@@ -21,8 +22,10 @@
     NSArray *authors;
     NSArray *organization;
 }
-@property (strong, nonatomic) IBOutlet UINavigationItem *navigationBar;
 
+@property (strong, nonatomic) Person *shownPerson;
+
+@property (strong, nonatomic) IBOutlet UINavigationItem *navigationBar;
 @property (strong, nonatomic) IBOutlet UIImageView *picture;
 @property (strong, nonatomic) IBOutlet UILabel *biography;
 @property (strong, nonatomic) IBOutlet UIButton *session_where;

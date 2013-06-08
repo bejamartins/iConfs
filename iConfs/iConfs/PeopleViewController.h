@@ -13,7 +13,9 @@
 @property (weak, nonatomic) IBOutlet UICollectionView *PeopleCollection;
 @property (weak, nonatomic) IBOutlet UISegmentedControl *Options;
 @property (weak, nonatomic) IBOutlet UISearchBar *Search;
-
 @property (strong, nonatomic) IBOutlet UICollectionView *collection;
+@property (strong, nonatomic) UIButton *MenuButton;
+
 - (IBAction)selectedOption:(id)sender;
+
 @end
