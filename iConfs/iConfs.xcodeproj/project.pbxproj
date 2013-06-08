@@ -10,6 +10,7 @@
 		280F37321763E9DE00E72424 /* note_paper_left.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 280F372F1763E9DE00E72424 /* note_paper_left.jpg */; };
 		280F37331763E9DE00E72424 /* note_paper.png in Resources */ = {isa = PBXBuildFile; fileRef = 280F37301763E9DE00E72424 /* note_paper.png */; };
 		280F37341763E9DE00E72424 /* blank_paper.png in Resources */ = {isa = PBXBuildFile; fileRef = 280F37311763E9DE00E72424 /* blank_paper.png */; };
+		280F37371763F4F600E72424 /* SessionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 280F37361763F4F600E72424 /* SessionViewController.m */; };
 		285FF4B71760BC0E001135E1 /* CellMyConferences.m in Sources */ = {isa = PBXBuildFile; fileRef = 285FF4B61760BC0E001135E1 /* CellMyConferences.m */; };
 		285FF4BA1760BE0C001135E1 /* newConferenceContainer.m in Sources */ = {isa = PBXBuildFile; fileRef = 285FF4B91760BE0C001135E1 /* newConferenceContainer.m */; };
 		285FF4BD1760BE6A001135E1 /* ConferenceScreenViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 285FF4BC1760BE6A001135E1 /* ConferenceScreenViewController.m */; };
@@ -94,6 +95,8 @@
 		280F372F1763E9DE00E72424 /* note_paper_left.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = note_paper_left.jpg; sourceTree = "<group>"; };
 		280F37301763E9DE00E72424 /* note_paper.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = note_paper.png; sourceTree = "<group>"; };
 		280F37311763E9DE00E72424 /* blank_paper.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = blank_paper.png; sourceTree = "<group>"; };
+		280F37351763F4F600E72424 /* SessionViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SessionViewController.h; sourceTree = "<group>"; };
+		280F37361763F4F600E72424 /* SessionViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SessionViewController.m; sourceTree = "<group>"; };
 		285FF4B51760BC0E001135E1 /* CellMyConferences.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CellMyConferences.h; path = ../CellMyConferences.h; sourceTree = "<group>"; };
 		285FF4B61760BC0E001135E1 /* CellMyConferences.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CellMyConferences.m; path = ../CellMyConferences.m; sourceTree = "<group>"; };
 		285FF4B81760BE0C001135E1 /* newConferenceContainer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = newConferenceContainer.h; path = ../newConferenceContainer.h; sourceTree = "<group>"; };
@@ -321,6 +324,8 @@
 				285FF4B91760BE0C001135E1 /* newConferenceContainer.m */,
 				28CF7717175FC2ED0070B4D5 /* speaker.jpg */,
 				280F372F1763E9DE00E72424 /* note_paper_left.jpg */,
+				280F37351763F4F600E72424 /* SessionViewController.h */,
+				280F37361763F4F600E72424 /* SessionViewController.m */,
 				280F37301763E9DE00E72424 /* note_paper.png */,
 				280F37311763E9DE00E72424 /* blank_paper.png */,
 				28CF7718175FC2ED0070B4D5 /* author.jpg */,
@@ -558,6 +563,7 @@
 				A05A74FE1760F6CF00F021BD /* ZipArchive.mm in Sources */,
 				28ADEE211760D2D80059F458 /* Conference-News.m in Sources */,
 				28ADEE241760D4140059F458 /* CellNewsInsideConference.m in Sources */,
+				280F37371763F4F600E72424 /* SessionViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
