@@ -20,6 +20,8 @@
         allConferences = [aConferences copy];
     }
     conferences = [NSMutableArray new];
+    conferencesDic = [[NSMutableDictionary alloc] init];
+    allConferencesDic = [[NSMutableDictionary alloc] init];
     return self;
 }
 
@@ -71,6 +73,23 @@
     return [conferences copy];
 }
 
+
+
+/*-(BOOL)addConference:(NSString*)confID{
+    BOOL isHere = false;
+    for (int i=0; i<[conferences count]; i++) {
+        if ([((Conference*)[conferences objectAtIndex:i]).getID isEqualToString: c.getID]){
+            isHere = true;
+            break;
+        }
+    }
+    if(isHere == false){
+        [self addConf: confID];
+        [conferences addObject: c];
+        return true;
+    }
+    else return false;
+}*/
 
 -(BOOL)addConference:(Conference*)c{
     BOOL isHere = false;
@@ -205,11 +224,17 @@
                 }
                 [((Conference*)[allConferences lastObject]) changeLogo: currentImg];
             }
+            [allConferencesDic setObject:[allConferences lastObject]  forKey: ((Conference*)[allConferences lastObject]).getID];
         }
-        NSLog(@"DataIDs: %@", allConferences);
+        //NSLog(@"DataIDs: %@", allConferences);
         return true;
     }
     
+}
+
+-(BOOL)fetchConferencesFull{
+    //NSDictionary* fetch = [self getConfsFromServer];
+    return false;
 }
 
 -(NSArray*)getRestOfConfs{
@@ -259,7 +284,7 @@
         NSDictionary* tmpConf=[self parseJSON:tmpData];
         [self saveConf:tmpConf:tmpData];
         if([self getConfFiles:confID]==false){
-            [self deleteConf:confID];
+            [self deleteConfFromDrive:confID];
             return false;
         }
     }else return false;
@@ -299,6 +324,28 @@
     //  NSLog(@"String:%@",test);
     
 }
+
+
+-(Conference*)jsonToConference:(NSString*)confID{
+    Conference* conf;
+    //conf = [[Conference alloc] init];
+    conf = [allConferencesDic valueForKey:confID];
+    NSDictionary* raw;
+    raw = [self parseJSON: [self loadDataFromDrive: confID]];
+    //NSLog(@"json:%@",raw);
+    //[[json objectForKey:@"conf"] objectAtIndex:0]valueForKey:@"ID";
+    NSArray* notif = [raw valueForKey:@"notif"];
+    Notification* n;
+    for (int i = 0; i<[notif count]; i++) {
+        n = [[Notification alloc] init];
+        n = [n initWithData: [notif[i] valueForKey:@"Title"] text: [notif[i] valueForKey:@"Description"] date: (NSDate*)[notif[i] valueForKey:@"TimeStamp"]];
+        
+    }
+    
+    return conf;
+    
+}
+
 
 //used to created the NSDictionary with the JSON, receives NSData
 -(NSDictionary*) parseJSON:(NSData*)confData{
@@ -361,7 +408,7 @@
 }
 
 //deletes confID.json and confID folder
--(BOOL)deleteConf:(NSString*)confID{
+-(BOOL)deleteConfFromDrive:(NSString*)confID{
     
     NSString* savePath=[NSString stringWithFormat:@"%@%@%@%@",[NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES)objectAtIndex:0],@"/",confID,@".json"];
     NSFileManager* fileManager=[NSFileManager defaultManager];
@@ -369,7 +416,7 @@
 }
 
 //loads nsdata from file with name confID (.json) in documents
--(NSData*)loadData:(NSString*)confID{
+-(NSData*)loadDataFromDrive:(NSString*)confID{
     NSString* loadPath=[NSString stringWithFormat:@"%@%@%@%@",[NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES)objectAtIndex:0],@"/",confID,@".json"];
     return [NSData dataWithContentsOfFile:loadPath options:kNilOptions error:NULL];
     
@@ -387,6 +434,119 @@
         return NULL;
     }
     return [NSKeyedUnarchiver unarchiveObjectWithData:tmpData];
+}
+
+//Saves NSArray with confIDs to file
+-(BOOL)saveConfsIDs:(NSArray*)confIDs{
+    NSString* savePath=[NSString stringWithFormat:@"%@%@",[NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES)objectAtIndex:0],@"/confs.json"];
+    
+    return[confIDs writeToFile:savePath atomically:YES];
+}
+
+
+//getRating given confID and sessionID
+//returns -1 if cannot fetch
+-(double)getRating:(NSString*)confID : (NSString*)sessionID{
+    
+    NSString* post=[NSString stringWithFormat:@"%@%@%@%@%@",@"Conf=",confID,@"&&Session=",sessionID,@"&SubmitCheck=Sent"];
+    NSData* postData=[post dataUsingEncoding:NSASCIIStringEncoding allowLossyConversion:NO];
+    NSString* postLength=[NSString stringWithFormat:@"%d",[postData length]];
+    
+    NSMutableURLRequest* request=[[NSMutableURLRequest alloc] init];
+    [request setURL:[NSURL URLWithString:@"http://193.136.122.141/ratingGet.php"]];
+    [request setHTTPMethod:@"POST"];
+    [request setValue:postLength forHTTPHeaderField:@"Content-Length"];
+    [request setValue:@"application/x-www-form-urlencoded" forHTTPHeaderField:@"Content-Type"];
+    [request setHTTPBody:postData];
+    
+    
+    NSURLResponse* response;
+    NSData* data=[NSURLConnection sendSynchronousRequest:request returningResponse:&response error:NULL];
+    
+    if(data!=NULL){
+        NSDictionary*json=[NSJSONSerialization JSONObjectWithData:data options:kNilOptions error:NULL];
+        
+        double trouble= [[[json valueForKey:@"Rating"] objectAtIndex:0] doubleValue];
+        // NSLog(@"rating:%f",trouble);
+        return trouble;
+    }else return -1;
+    
+}
+
+//getRating given confID and sessionID
+//returns true if rating sent else false
+-(BOOL)setRating:(NSString*)confID : (NSString*)sessionID : (NSInteger)rating{
+    
+    NSString* post=[NSString stringWithFormat:@"%@%@%@%@%@%ld%@",@"Conf=",confID,@"&&Session=",sessionID,@"&&Rating=",(long)rating,@"&SubmitCheck=Sent"];
+    NSData* postData=[post dataUsingEncoding:NSASCIIStringEncoding allowLossyConversion:NO];
+    NSString* postLength=[NSString stringWithFormat:@"%d",[postData length]];
+    
+    NSMutableURLRequest* request=[[NSMutableURLRequest alloc] init];
+    [request setURL:[NSURL URLWithString:@"http://193.136.122.141/ratingSet.php"]];
+    [request setHTTPMethod:@"POST"];
+    [request setValue:postLength forHTTPHeaderField:@"Content-Length"];
+    [request setValue:@"application/x-www-form-urlencoded" forHTTPHeaderField:@"Content-Type"];
+    [request setHTTPBody:postData];
+    
+    
+    NSURLResponse* response;
+    NSData* data=[NSURLConnection sendSynchronousRequest:request returningResponse:&response error:NULL];
+    
+    if(data!=NULL){
+        return YES;
+    }else return NO;
+}
+
+//getNotifs in NSDictionary for confID where notifDate > timeStamp
+//timeStamp will only count the first 10 digits ex.:1356998400
+//may return empty dictionary if none found
+//returns null if cannot fetch
+//NOTA IMPORTANTE QUE NAO POSSO PARAR DE REFERIR
+//CUIDADO COM AS HORAS EM CONCRETO VISTO O SERVIDOR FUNCIONAR COM AS HORAS PORTUGUESAS
+//O QUE IMPLICA QUE TEM DAYLIGHT SAVINGS LIGADO DE MOMENTO, LOGO TEEM DE TIRAR 1 (UMA)
+//HORA AOS TIMESTAMP QUE ENVIAREM, OU SEJA VALOR-3600
+//ALSO, NAO SE ESQUECAM QUE O PEDIDO EH PARA VALORES MAIORES QUE X, NAO MAIORES OU IGUAIS
+-(NSDictionary*)getNotifs:(NSString*)confID : (long)timeStamp{
+    //NSLog(@"test:%ld",timeStamp);
+    NSString* post=[NSString stringWithFormat:@"%@%@%@%ld%@",@"Conf=",confID,@"&&TS=",timeStamp,@"&SubmitCheck=Sent"];
+    NSData* postData=[post dataUsingEncoding:NSASCIIStringEncoding allowLossyConversion:NO];
+    NSString* postLength=[NSString stringWithFormat:@"%d",[postData length]];
+    
+    NSMutableURLRequest* request=[[NSMutableURLRequest alloc] init];
+    [request setURL:[NSURL URLWithString:@"http://193.136.122.141/notifGet.php"]];
+    [request setHTTPMethod:@"POST"];
+    [request setValue:postLength forHTTPHeaderField:@"Content-Length"];
+    [request setValue:@"application/x-www-form-urlencoded" forHTTPHeaderField:@"Content-Type"];
+    [request setHTTPBody:postData];
+    
+    
+    NSURLResponse* response;
+    NSData* data=[NSURLConnection sendSynchronousRequest:request returningResponse:&response error:NULL];
+    
+    if(data!=NULL){
+        NSDictionary*json=[NSJSONSerialization JSONObjectWithData:data options:kNilOptions error:NULL];
+        // NSLog(@"testNotifs:%@",json);
+        return json;
+    }else return NULL;
+    
+}
+
+//dado o confID e a variavel imagePath (ex.: @"confImage.jpg") devolve a imagem respectiva
+// ou null caso nao a consiga encontrar/aceder
+-(UIImage*)loadImageFromDrive:(NSString*)confID : (NSString*)imagePath{
+    
+    NSString* imgPath=[NSString stringWithFormat:@"%@%@%@%@%@",[NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES)objectAtIndex:0],@"/",confID,@"/",imagePath];
+    
+    NSData* imgData=[NSData dataWithContentsOfFile:imgPath options:kNilOptions error:NULL];
+    UIImage* img;
+    if (imgData == NULL)
+        img = NULL;
+    else
+        img =[UIImage imageWithData:imgData];
+    
+    return img;
+    
+    
 }
 
 @end
