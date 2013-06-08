@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		280F37321763E9DE00E72424 /* note_paper_left.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 280F372F1763E9DE00E72424 /* note_paper_left.jpg */; };
+		280F37331763E9DE00E72424 /* note_paper.png in Resources */ = {isa = PBXBuildFile; fileRef = 280F37301763E9DE00E72424 /* note_paper.png */; };
+		280F37341763E9DE00E72424 /* blank_paper.png in Resources */ = {isa = PBXBuildFile; fileRef = 280F37311763E9DE00E72424 /* blank_paper.png */; };
 		285FF4B71760BC0E001135E1 /* CellMyConferences.m in Sources */ = {isa = PBXBuildFile; fileRef = 285FF4B61760BC0E001135E1 /* CellMyConferences.m */; };
 		285FF4BA1760BE0C001135E1 /* newConferenceContainer.m in Sources */ = {isa = PBXBuildFile; fileRef = 285FF4B91760BE0C001135E1 /* newConferenceContainer.m */; };
 		285FF4BD1760BE6A001135E1 /* ConferenceScreenViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 285FF4BC1760BE6A001135E1 /* ConferenceScreenViewController.m */; };
@@ -88,6 +91,9 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		280F372F1763E9DE00E72424 /* note_paper_left.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = note_paper_left.jpg; sourceTree = "<group>"; };
+		280F37301763E9DE00E72424 /* note_paper.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = note_paper.png; sourceTree = "<group>"; };
+		280F37311763E9DE00E72424 /* blank_paper.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = blank_paper.png; sourceTree = "<group>"; };
 		285FF4B51760BC0E001135E1 /* CellMyConferences.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CellMyConferences.h; path = ../CellMyConferences.h; sourceTree = "<group>"; };
 		285FF4B61760BC0E001135E1 /* CellMyConferences.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CellMyConferences.m; path = ../CellMyConferences.m; sourceTree = "<group>"; };
 		285FF4B81760BE0C001135E1 /* newConferenceContainer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = newConferenceContainer.h; path = ../newConferenceContainer.h; sourceTree = "<group>"; };
@@ -314,6 +320,9 @@
 				285FF4B81760BE0C001135E1 /* newConferenceContainer.h */,
 				285FF4B91760BE0C001135E1 /* newConferenceContainer.m */,
 				28CF7717175FC2ED0070B4D5 /* speaker.jpg */,
+				280F372F1763E9DE00E72424 /* note_paper_left.jpg */,
+				280F37301763E9DE00E72424 /* note_paper.png */,
+				280F37311763E9DE00E72424 /* blank_paper.png */,
 				28CF7718175FC2ED0070B4D5 /* author.jpg */,
 				A07887AE175A3CE500C1D90C /* News.h */,
 				A07887AF175A3CE500C1D90C /* News.m */,
@@ -491,6 +500,9 @@
 				A0817F3E1760A8240065E30A /* musepat.jpg in Resources */,
 				A0817F3F1760A8240065E30A /* speaker.jpg in Resources */,
 				28ADEE261760E2330059F458 /* menuButton.png in Resources */,
+				280F37321763E9DE00E72424 /* note_paper_left.jpg in Resources */,
+				280F37331763E9DE00E72424 /* note_paper.png in Resources */,
+				280F37341763E9DE00E72424 /* blank_paper.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
