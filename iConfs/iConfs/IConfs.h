@@ -10,6 +10,7 @@
 #import "Event.h"
 #import "Conference.h"
 #import "AppDataObject.h"
+#import "Notification.h"
 
 @interface IConfs : AppDataObject
 {
@@ -17,6 +18,8 @@
     NSMutableArray* conferences;
     NSMutableArray* allConferences;
     NSMutableArray* agenda;
+    NSMutableDictionary* conferencesDic;
+    NSMutableDictionary* allConferencesDic;
 }
 
 //Subscribed conferences
