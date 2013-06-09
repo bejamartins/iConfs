@@ -35,4 +35,20 @@
     // Dispose of any resources that can be recreated.
 }
 
+- (IBAction)showInPlant:(id)sender {
+}
+
+- (IBAction)addToAgenda:(id)sender {
+}
+
+- (void) setSessionName:(NSString *)sessionName{
+    [self.sessionName setText:sessionName] ;
+}
+- (void) setSessionWhen:(NSString *)sessionWhen{
+    [self.sessionWhen setText:sessionWhen];
+}
+- (void) setSessionWhere:(NSString *)sessionWhere{
+    [self.sessionWhere setText:sessionWhere];
+}
+
 @end

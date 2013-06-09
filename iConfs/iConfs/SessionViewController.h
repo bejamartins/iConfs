@@ -9,5 +9,11 @@
 #import <UIKit/UIKit.h>
 
 @interface SessionViewController : UIViewController
+@property (strong, nonatomic) IBOutlet UILabel *abstract;
+- (IBAction)showInPlant:(id)sender;
+- (IBAction)addToAgenda:(id)sender;
+@property (strong, nonatomic) IBOutlet UILabel *sessionName;
+@property (strong, nonatomic) IBOutlet UILabel *sessionWhen;
+@property (strong, nonatomic) IBOutlet UILabel *sessionWhere;
 
 @end
