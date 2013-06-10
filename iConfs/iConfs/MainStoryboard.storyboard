@@ -98,7 +98,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="NCl-1b-KlZ" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-1013" y="-1236"/>
+            <point key="canvasLocation" x="407" y="-1324"/>
         </scene>
         <!--Init View Controller-->
         <scene sceneID="Kcf-kb-cVM">
@@ -1013,7 +1013,7 @@
         <!--Session View Controller-->
         <scene sceneID="huh-1o-Wis">
             <objects>
-                <viewController id="a27-0X-YAW" customClass="SessionViewController" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="Session" useStoryboardIdentifierAsRestorationIdentifier="YES" id="a27-0X-YAW" customClass="SessionViewController" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="ghZ-sl-UPG">
                         <rect key="frame" x="0.0" y="20" width="768" height="1004"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -1404,7 +1404,6 @@
                                     <constraint firstAttribute="height" constant="209" id="Kqe-So-QgS"/>
                                     <constraint firstAttribute="width" constant="677" id="WB2-XU-vK6"/>
                                 </constraints>
-                                <inset key="contentInset" minX="0.0" minY="0.0" maxX="0.0" maxY="44"/>
                                 <collectionViewFlowLayout key="collectionViewLayout" scrollDirection="horizontal" minimumLineSpacing="10" minimumInteritemSpacing="10" id="n6g-cw-AfE">
                                     <size key="itemSize" width="269" height="191"/>
                                     <size key="headerReferenceSize" width="0.0" height="0.0"/>
@@ -1514,7 +1513,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="7q1-y1-7x5" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-1654" y="6146"/>
+            <point key="canvasLocation" x="1422" y="4578"/>
         </scene>
         <!--View Controller-->
         <scene sceneID="hBo-Hc-tOb">
@@ -1545,7 +1544,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ehG-HM-zbY" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1113" y="-126"/>
+            <point key="canvasLocation" x="1798" y="-979"/>
         </scene>
         <!--View Controller-->
         <scene sceneID="oiW-kf-HRW">
@@ -1593,7 +1592,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="sQ4-DB-Ym4" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="630" y="1400"/>
+            <point key="canvasLocation" x="133" y="4999"/>
         </scene>
         <!--Conference News-->
         <scene sceneID="3HU-Oh-PK2">
@@ -1725,7 +1724,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="4LM-cb-1GX" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="85" y="18"/>
+            <point key="canvasLocation" x="-1415" y="6217"/>
         </scene>
         <!--View Controller-->
         <scene sceneID="idn-AP-6TP">
@@ -2051,7 +2050,7 @@
                                         </connections>
                                     </collectionViewCell>
                                     <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="room_place" id="Ys6-P9-jWC" customClass="PlaceRoomCell">
-                                        <rect key="frame" x="243" y="0.0" width="192" height="153"/>
+                                        <rect key="frame" x="242.5" y="0.0" width="192" height="153"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                         <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
                                             <rect key="frame" x="0.0" y="0.0" width="192" height="153"/>
@@ -2182,6 +2181,13 @@
         <class className="InitViewController" superclassName="ECSlidingViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/InitViewController.h"/>
         </class>
+        <class className="MAWeekView" superclassName="UIView">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/MAWeekView.h"/>
+            <relationships>
+                <relationship kind="outlet" name="dataSource"/>
+                <relationship kind="outlet" name="delegate"/>
+            </relationships>
+        </class>
         <class className="ManageConfCell" superclassName="UICollectionViewCell">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/ManageConfCell.h"/>
             <relationships>
@@ -2233,10 +2239,10 @@
             <source key="sourceIdentifier" type="project" relativePath="./Classes/PeopleViewController.h"/>
             <relationships>
                 <relationship kind="action" name="selectedOption:"/>
+                <relationship kind="outlet" name="NavBar" candidateClass="UINavigationBar"/>
                 <relationship kind="outlet" name="Options" candidateClass="UISegmentedControl"/>
                 <relationship kind="outlet" name="PeopleCollection" candidateClass="UICollectionView"/>
                 <relationship kind="outlet" name="Search" candidateClass="UISearchBar"/>
-                <relationship kind="outlet" name="collection" candidateClass="UICollectionView"/>
             </relationships>
         </class>
         <class className="PersonViewController" superclassName="UIViewController">
@@ -2274,6 +2280,7 @@
             <relationships>
                 <relationship kind="action" name="addToAgenda:"/>
                 <relationship kind="action" name="showInPlant:"/>
+                <relationship kind="outlet" name="MenuButton" candidateClass="UIButton"/>
                 <relationship kind="outlet" name="abstract" candidateClass="UILabel"/>
                 <relationship kind="outlet" name="sessionName" candidateClass="UILabel"/>
                 <relationship kind="outlet" name="sessionWhen" candidateClass="UILabel"/>
