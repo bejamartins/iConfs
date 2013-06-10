@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="2.0" toolsVersion="3084" systemVersion="12D78" targetRuntime="iOS.CocoaTouch.iPad" propertyAccessControl="none" useAutolayout="YES" initialViewController="lYD-OE-yDx">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="2.0" toolsVersion="3084" systemVersion="12E55" targetRuntime="iOS.CocoaTouch.iPad" propertyAccessControl="none" useAutolayout="YES" initialViewController="lYD-OE-yDx">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="2083"/>
     </dependencies>
@@ -1100,8 +1100,8 @@
                                             <action selector="addToAgenda:" destination="a27-0X-YAW" id="DDm-k3-da3"/>
                                         </connections>
                                     </barButtonItem>
-                                    <barButtonItem width="67" style="plain" systemItem="fixedSpace" id="dBq-P0-Dzm"/>
-                                    <barButtonItem title="Show in Plant" id="a1H-lw-pOV">
+                                    <barButtonItem width="47" style="plain" systemItem="fixedSpace" id="dBq-P0-Dzm"/>
+                                    <barButtonItem title="Show In Blueprint" id="a1H-lw-pOV">
                                         <connections>
                                             <action selector="showInPlant:" destination="a27-0X-YAW" id="AoA-kF-jn5"/>
                                         </connections>
@@ -1403,7 +1403,6 @@
                                     <constraint firstAttribute="height" constant="209" id="Kqe-So-QgS"/>
                                     <constraint firstAttribute="width" constant="677" id="WB2-XU-vK6"/>
                                 </constraints>
-                                <inset key="contentInset" minX="0.0" minY="0.0" maxX="0.0" maxY="44"/>
                                 <collectionViewFlowLayout key="collectionViewLayout" scrollDirection="horizontal" minimumLineSpacing="10" minimumInteritemSpacing="10" id="n6g-cw-AfE">
                                     <size key="itemSize" width="269" height="191"/>
                                     <size key="headerReferenceSize" width="0.0" height="0.0"/>
@@ -1431,13 +1430,13 @@
                                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                         </view>
                                         <constraints>
-                                            <constraint firstItem="3vI-GZ-dkf" firstAttribute="bottom" secondItem="sgN-EF-ICv" secondAttribute="bottom" type="default" id="4Vn-K1-XCn"/>
-                                            <constraint firstItem="3vI-GZ-dkf" firstAttribute="trailing" secondItem="sgN-EF-ICv" secondAttribute="trailing" type="default" id="DB6-fI-xMt"/>
-                                            <constraint firstItem="lWR-1h-Abe" firstAttribute="trailing" secondItem="sgN-EF-ICv" secondAttribute="trailing" type="default" id="Dp7-Oz-aTh"/>
-                                            <constraint firstItem="lWR-1h-Abe" firstAttribute="leading" secondItem="sgN-EF-ICv" secondAttribute="leading" type="default" id="bah-YF-GFf"/>
-                                            <constraint firstItem="lWR-1h-Abe" firstAttribute="top" secondItem="sgN-EF-ICv" secondAttribute="top" type="default" id="cAR-lU-BCF"/>
-                                            <constraint firstItem="3vI-GZ-dkf" firstAttribute="top" secondItem="lWR-1h-Abe" secondAttribute="bottom" constant="8" symbolic="YES" type="default" id="chv-OO-dtZ"/>
-                                            <constraint firstItem="3vI-GZ-dkf" firstAttribute="leading" secondItem="sgN-EF-ICv" secondAttribute="leading" type="default" id="hDX-Db-Ajp"/>
+                                            <constraint firstItem="lWR-1h-Abe" firstAttribute="trailing" secondItem="sgN-EF-ICv" secondAttribute="trailing" type="default" id="4da-K5-OsZ"/>
+                                            <constraint firstItem="3vI-GZ-dkf" firstAttribute="bottom" secondItem="sgN-EF-ICv" secondAttribute="bottom" type="default" id="92G-Zn-9kY"/>
+                                            <constraint firstItem="3vI-GZ-dkf" firstAttribute="leading" secondItem="sgN-EF-ICv" secondAttribute="leading" type="default" id="9QY-TO-qp5"/>
+                                            <constraint firstItem="lWR-1h-Abe" firstAttribute="leading" secondItem="sgN-EF-ICv" secondAttribute="leading" type="default" id="GDl-jY-FyZ"/>
+                                            <constraint firstItem="3vI-GZ-dkf" firstAttribute="trailing" secondItem="sgN-EF-ICv" secondAttribute="trailing" type="default" id="VOA-3E-FbW"/>
+                                            <constraint firstItem="lWR-1h-Abe" firstAttribute="top" secondItem="sgN-EF-ICv" secondAttribute="top" type="default" id="fAR-TF-teb"/>
+                                            <constraint firstItem="3vI-GZ-dkf" firstAttribute="top" secondItem="lWR-1h-Abe" secondAttribute="bottom" constant="8" symbolic="YES" type="default" id="gKy-Pv-Gf7"/>
                                         </constraints>
                                         <connections>
                                             <outlet property="floorName" destination="3vI-GZ-dkf" id="BwO-1c-XZI"/>
@@ -1510,6 +1509,10 @@
                         </constraints>
                     </view>
                     <toolbarItems/>
+                    <connections>
+                        <outlet property="collection" destination="zpT-Os-KDw" id="vEV-pV-MdB"/>
+                        <outlet property="searchBar" destination="wsU-Xz-Yin" id="MiU-lY-HW0"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="7q1-y1-7x5" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -2016,7 +2019,7 @@
                                         </connections>
                                     </collectionViewCell>
                                     <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="room_place" id="Ys6-P9-jWC" customClass="PlaceRoomCell">
-                                        <rect key="frame" x="243" y="0.0" width="192" height="153"/>
+                                        <rect key="frame" x="242.5" y="0.0" width="192" height="153"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                         <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
                                             <rect key="frame" x="0.0" y="0.0" width="192" height="153"/>
@@ -2087,6 +2090,10 @@
     <classes>
         <class className="BluePrintsViewController" superclassName="UIViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/BluePrintsViewController.h"/>
+            <relationships>
+                <relationship kind="outlet" name="collection" candidateClass="UICollectionView"/>
+                <relationship kind="outlet" name="searchBar" candidateClass="UISearchBar"/>
+            </relationships>
         </class>
         <class className="CellMyConferences" superclassName="UICollectionViewCell">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/CellMyConferences.h"/>
