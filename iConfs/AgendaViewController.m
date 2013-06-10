@@ -1,22 +1,22 @@
 //
-//  SessionViewController.m
+//  AgendaViewController.m
 //  iConfs
 //
-//  Created by Ana T on 09/06/13.
+//  Created by Jareth on 6/10/13.
 //  Copyright (c) 2013 Eduardo Joel Pereira Beja Martins. All rights reserved.
 //
 
-#import "SessionViewController.h"
+#import "AgendaViewController.h"
 #import "ECSlidingViewController.h"
 #import "MenuViewController.h"
 
-@interface SessionViewController ()
+@interface AgendaViewController ()
 
 @end
 
-@implementation SessionViewController
+@implementation AgendaViewController
 
-@synthesize Session, MenuButton;
+@synthesize MenuButton;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -37,7 +37,7 @@
     [[[self view] layer] setShadowColor:[UIColor blackColor].CGColor];
     
     if (![[[self slidingViewController] underLeftViewController] isKindOfClass:[MenuViewController class]]) {
-        [self slidingViewController].UnderLeftViewController = [[self storyboard]instantiateViewControllerWithIdentifier:@"Menu"];
+        [[self slidingViewController] setUnderLeftViewController:[[self storyboard]instantiateViewControllerWithIdentifier:@"Menu"]];
     }
     
     [[self view] addGestureRecognizer:[self slidingViewController].panGesture];
@@ -51,31 +51,15 @@
     [[self view] addSubview:MenuButton];
 }
 
-- (void)didReceiveMemoryWarning
-{
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
-}
-
 - (IBAction)revealMenu:(id)sender
 {
     [[self slidingViewController] anchorTopViewTo:ECRight];
 }
 
-- (IBAction)showInPlant:(id)sender {
-}
-
-- (IBAction)addToAgenda:(id)sender {
-}
-
-- (void) setSessionName:(NSString *)sessionName{
-    [self.sessionName setText:sessionName] ;
-}
-- (void) setSessionWhen:(NSString *)sessionWhen{
-    [self.sessionWhen setText:sessionWhen];
-}
-- (void) setSessionWhere:(NSString *)sessionWhere{
-    [self.sessionWhere setText:sessionWhere];
+- (void)didReceiveMemoryWarning
+{
+    [super didReceiveMemoryWarning];
+    // Dispose of any resources that can be recreated.
 }
 
 @end
