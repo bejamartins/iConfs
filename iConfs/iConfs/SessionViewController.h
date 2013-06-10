@@ -7,6 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "Event.h"
 
 @interface SessionViewController : UIViewController
 @property (strong, nonatomic) IBOutlet UILabel *abstract;
@@ -15,5 +16,8 @@
 @property (strong, nonatomic) IBOutlet UILabel *sessionName;
 @property (strong, nonatomic) IBOutlet UILabel *sessionWhen;
 @property (strong, nonatomic) IBOutlet UILabel *sessionWhere;
+@property (strong, nonatomic) IBOutlet UIButton *MenuButton;
+
+@property Event *Session;
 
 @end

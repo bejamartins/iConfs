@@ -24,7 +24,6 @@
 
 @synthesize MenuButton;
 
-@synthesize collection;
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
@@ -154,13 +153,17 @@
 #pragma - Segmented Button Methods
 
 - (IBAction)selectedOption:(id)sender {
-    if ([[self Options] selectedSegmentIndex] == 0)
+    if ([[self Options] selectedSegmentIndex] == 0) {
         confPeople = [[(MenuViewController*)[[self slidingViewController] underLeftViewController] selectedConf] getAuthors];
-    else if ([[self Options] selectedSegmentIndex] == 1)
+        [[[self NavBar] topItem] setTitle:@"Speakers"];
+    }else if ([[self Options] selectedSegmentIndex] == 1) {
         confPeople = [[(MenuViewController*)[[self slidingViewController] underLeftViewController] selectedConf] getAuthors];
-    else
+        [[[self NavBar] topItem] setTitle:@"Authors"];
+    }else {
         confPeople = [[(MenuViewController*)[[self slidingViewController] underLeftViewController] selectedConf] getOrganizers];
-    
+        [[[self NavBar] topItem] setTitle:@"Organizers"];
+    }
+
     [[self PeopleCollection]reloadData];
 }
 

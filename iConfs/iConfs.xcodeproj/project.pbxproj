@@ -27,7 +27,22 @@
 		28CF7719175FC2EE0070B4D5 /* speaker.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 28CF7717175FC2ED0070B4D5 /* speaker.jpg */; };
 		28CF771A175FC2EE0070B4D5 /* author.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 28CF7718175FC2ED0070B4D5 /* author.jpg */; };
 		28D97F38175BFF8300AA3A80 /* Post-it-note-transparent.png in Resources */ = {isa = PBXBuildFile; fileRef = 28D97F37175BFF8300AA3A80 /* Post-it-note-transparent.png */; };
+		7074AAEB17667BD700197584 /* EventKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7074AAEA17667BD700197584 /* EventKit.framework */; };
 		707522FB175FDF7C002F8708 /* AppDataObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 707522FA175FDF7C002F8708 /* AppDataObject.m */; };
+		7078016B17667E2000B3C4D4 /* AgendaViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7078016A17667E2000B3C4D4 /* AgendaViewController.m */; };
+		707ADEC61765522F00AADD9C /* MAEventKitDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = 707ADEC51765522F00AADD9C /* MAEventKitDataSource.m */; };
+		707ADED81765524200AADD9C /* WeekViewExampleController.m in Sources */ = {isa = PBXBuildFile; fileRef = 707ADECA1765524200AADD9C /* WeekViewExampleController.m */; };
+		707ADED91765524200AADD9C /* DayViewExampleController.m in Sources */ = {isa = PBXBuildFile; fileRef = 707ADECC1765524200AADD9C /* DayViewExampleController.m */; };
+		707ADEDA1765524200AADD9C /* TapDetectingView.m in Sources */ = {isa = PBXBuildFile; fileRef = 707ADECE1765524200AADD9C /* TapDetectingView.m */; };
+		707ADEDB1765524200AADD9C /* MAEvent.m in Sources */ = {isa = PBXBuildFile; fileRef = 707ADED01765524200AADD9C /* MAEvent.m */; };
+		707ADEDC1765524200AADD9C /* MAGridView.m in Sources */ = {isa = PBXBuildFile; fileRef = 707ADED21765524200AADD9C /* MAGridView.m */; };
+		707ADEDD1765524200AADD9C /* MAWeekView.m in Sources */ = {isa = PBXBuildFile; fileRef = 707ADED41765524200AADD9C /* MAWeekView.m */; };
+		707ADEDE1765524200AADD9C /* MADayView.m in Sources */ = {isa = PBXBuildFile; fileRef = 707ADED61765524200AADD9C /* MADayView.m */; };
+		707ADEE41765529D00AADD9C /* ma_leftArrow.png in Resources */ = {isa = PBXBuildFile; fileRef = 707ADEDF1765529D00AADD9C /* ma_leftArrow.png */; };
+		707ADEE51765529D00AADD9C /* ma_leftArrow@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 707ADEE01765529D00AADD9C /* ma_leftArrow@2x.png */; };
+		707ADEE61765529D00AADD9C /* ma_rightArrow.png in Resources */ = {isa = PBXBuildFile; fileRef = 707ADEE11765529D00AADD9C /* ma_rightArrow.png */; };
+		707ADEE71765529D00AADD9C /* ma_rightArrow@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 707ADEE21765529D00AADD9C /* ma_rightArrow@2x.png */; };
+		707ADEE81765529D00AADD9C /* ma_topBackground.png in Resources */ = {isa = PBXBuildFile; fileRef = 707ADEE31765529D00AADD9C /* ma_topBackground.png */; };
 		707B3FE71760CF1E0069716F /* menuButton.png in Resources */ = {isa = PBXBuildFile; fileRef = 707B3FE61760CF1E0069716F /* menuButton.png */; };
 		707B7C15175D62CD00E4747A /* ECSlidingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 707B7C12175D62CD00E4747A /* ECSlidingViewController.m */; };
 		707B7C16175D62CD00E4747A /* UIImage+ImageWithUIView.m in Sources */ = {isa = PBXBuildFile; fileRef = 707B7C14175D62CD00E4747A /* UIImage+ImageWithUIView.m */; };
@@ -127,9 +142,33 @@
 		28CF7717175FC2ED0070B4D5 /* speaker.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = speaker.jpg; sourceTree = "<group>"; };
 		28CF7718175FC2ED0070B4D5 /* author.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = author.jpg; sourceTree = "<group>"; };
 		28D97F37175BFF8300AA3A80 /* Post-it-note-transparent.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Post-it-note-transparent.png"; sourceTree = "<group>"; };
+		7074AAEA17667BD700197584 /* EventKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = EventKit.framework; path = System/Library/Frameworks/EventKit.framework; sourceTree = SDKROOT; };
 		707522F9175FDF7C002F8708 /* AppDataObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppDataObject.h; sourceTree = "<group>"; };
 		707522FA175FDF7C002F8708 /* AppDataObject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppDataObject.m; sourceTree = "<group>"; };
+		7078016917667E2000B3C4D4 /* AgendaViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AgendaViewController.h; path = ../AgendaViewController.h; sourceTree = "<group>"; };
+		7078016A17667E2000B3C4D4 /* AgendaViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AgendaViewController.m; path = ../AgendaViewController.m; sourceTree = "<group>"; };
 		707AB509175FE67E00A2B85A /* AppDelegateProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppDelegateProtocol.h; sourceTree = "<group>"; };
+		707ADEC41765522F00AADD9C /* MAEventKitDataSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MAEventKitDataSource.h; sourceTree = "<group>"; };
+		707ADEC51765522F00AADD9C /* MAEventKitDataSource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MAEventKitDataSource.m; sourceTree = "<group>"; };
+		707ADEC91765524200AADD9C /* WeekViewExampleController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WeekViewExampleController.h; sourceTree = "<group>"; };
+		707ADECA1765524200AADD9C /* WeekViewExampleController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WeekViewExampleController.m; sourceTree = "<group>"; };
+		707ADECB1765524200AADD9C /* DayViewExampleController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DayViewExampleController.h; sourceTree = "<group>"; };
+		707ADECC1765524200AADD9C /* DayViewExampleController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DayViewExampleController.m; sourceTree = "<group>"; };
+		707ADECD1765524200AADD9C /* TapDetectingView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TapDetectingView.h; sourceTree = "<group>"; };
+		707ADECE1765524200AADD9C /* TapDetectingView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TapDetectingView.m; sourceTree = "<group>"; };
+		707ADECF1765524200AADD9C /* MAEvent.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MAEvent.h; sourceTree = "<group>"; };
+		707ADED01765524200AADD9C /* MAEvent.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MAEvent.m; sourceTree = "<group>"; };
+		707ADED11765524200AADD9C /* MAGridView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MAGridView.h; sourceTree = "<group>"; };
+		707ADED21765524200AADD9C /* MAGridView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MAGridView.m; sourceTree = "<group>"; };
+		707ADED31765524200AADD9C /* MAWeekView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MAWeekView.h; sourceTree = "<group>"; };
+		707ADED41765524200AADD9C /* MAWeekView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MAWeekView.m; sourceTree = "<group>"; };
+		707ADED51765524200AADD9C /* MADayView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MADayView.h; sourceTree = "<group>"; };
+		707ADED61765524200AADD9C /* MADayView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MADayView.m; sourceTree = "<group>"; };
+		707ADEDF1765529D00AADD9C /* ma_leftArrow.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ma_leftArrow.png; sourceTree = "<group>"; };
+		707ADEE01765529D00AADD9C /* ma_leftArrow@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "ma_leftArrow@2x.png"; sourceTree = "<group>"; };
+		707ADEE11765529D00AADD9C /* ma_rightArrow.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ma_rightArrow.png; sourceTree = "<group>"; };
+		707ADEE21765529D00AADD9C /* ma_rightArrow@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "ma_rightArrow@2x.png"; sourceTree = "<group>"; };
+		707ADEE31765529D00AADD9C /* ma_topBackground.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ma_topBackground.png; sourceTree = "<group>"; };
 		707B3FE61760CF1E0069716F /* menuButton.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = menuButton.png; sourceTree = "<group>"; };
 		707B7C11175D62CD00E4747A /* ECSlidingViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ECSlidingViewController.h; sourceTree = "<group>"; };
 		707B7C12175D62CD00E4747A /* ECSlidingViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ECSlidingViewController.m; sourceTree = "<group>"; };
@@ -236,6 +275,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				7074AAEB17667BD700197584 /* EventKit.framework in Frameworks */,
 				A05A75001760F7F600F021BD /* libz.1.2.5.dylib in Frameworks */,
 				A0788787175A3C7800C1D90C /* UIKit.framework in Frameworks */,
 				A0788789175A3C7800C1D90C /* Foundation.framework in Frameworks */,
@@ -296,50 +336,52 @@
 		289745FF1764DF7100CB2022 /* Interfaces */ = {
 			isa = PBXGroup;
 			children = (
-				28A3A88E175E9CAA0002BC93 /* PersonViewController.h */,
+				7078016917667E2000B3C4D4 /* AgendaViewController.h */,
+				7078016A17667E2000B3C4D4 /* AgendaViewController.m */,
+				285FF4B51760BC0E001135E1 /* CellMyConferences.h */,
+				285FF4B61760BC0E001135E1 /* CellMyConferences.m */,
+				28ADEE221760D4140059F458 /* CellNewsInsideConference.h */,
+				28ADEE231760D4140059F458 /* CellNewsInsideConference.m */,
+				289746001764DFCC00CB2022 /* Cells */,
 				280F373B1763F8DB00E72424 /* CollectionPeopleInSession.h */,
 				280F373C1763F8DB00E72424 /* CollectionPeopleInSession.m */,
-				A07887D2175A3CE500C1D90C /* HomeViewController.h */,
-				A07887D3175A3CE500C1D90C /* HomeViewController.m */,
-				A07887D4175A3CE500C1D90C /* ManageViewController.h */,
-				A07887D5175A3CE500C1D90C /* ManageViewController.m */,
-				A07887D6175A3CE500C1D90C /* MenuViewController.h */,
-				A07887D7175A3CE500C1D90C /* MenuViewController.m */,
 				28ADEE1F1760D2D70059F458 /* Conference-News.h */,
 				28ADEE201760D2D70059F458 /* Conference-News.m */,
 				285FF4BB1760BE6A001135E1 /* ConferenceScreenViewController.h */,
 				285FF4BC1760BE6A001135E1 /* ConferenceScreenViewController.m */,
+				A07887D0175A3CE500C1D90C /* CustomCellOne.h */,
+				A07887D1175A3CE500C1D90C /* CustomCellOne.m */,
+				A07887CE175A3CE500C1D90C /* CustomCellTwo.h */,
+				A07887CF175A3CE500C1D90C /* CustomCellTwo.m */,
+				A07887D2175A3CE500C1D90C /* HomeViewController.h */,
+				A07887D3175A3CE500C1D90C /* HomeViewController.m */,
+				707B7C17175D6E2B00E4747A /* InitViewController.h */,
+				707B7C18175D6E2B00E4747A /* InitViewController.m */,
+				A07887DA175A3CE500C1D90C /* MainStoryboard.storyboard */,
+				A07887D8175A3CE500C1D90C /* ManageConfCell.h */,
+				A07887D9175A3CE500C1D90C /* ManageConfCell.m */,
+				A07887D4175A3CE500C1D90C /* ManageViewController.h */,
+				A07887D5175A3CE500C1D90C /* ManageViewController.m */,
+				A07887D6175A3CE500C1D90C /* MenuViewController.h */,
+				A07887D7175A3CE500C1D90C /* MenuViewController.m */,
+				285FF4B81760BE0C001135E1 /* newConferenceContainer.h */,
+				285FF4B91760BE0C001135E1 /* newConferenceContainer.m */,
 				28CF7711175F8E240070B4D5 /* PeopleC2.h */,
 				28CF7712175F8E240070B4D5 /* PeopleC2.m */,
+				A07887C8175A3CE500C1D90C /* PeopleCell.h */,
+				A07887C9175A3CE500C1D90C /* PeopleCell.m */,
+				280F37381763F7AE00E72424 /* peopleInSessionCell.h */,
+				280F37391763F7AE00E72424 /* peopleInSessionCell.m */,
+				A07887CA175A3CE500C1D90C /* PeopleViewController.h */,
+				A07887CB175A3CE500C1D90C /* PeopleViewController.m */,
+				28A3A88E175E9CAA0002BC93 /* PersonViewController.h */,
+				28A3A88F175E9CAA0002BC93 /* PersonViewController.m */,
+				280F37351763F4F600E72424 /* SessionViewController.h */,
+				280F37361763F4F600E72424 /* SessionViewController.m */,
 				28CF7714175F8FD10070B4D5 /* Teste.h */,
 				28CF7715175F8FD10070B4D5 /* Teste.m */,
 				A057014F175E2847000FED8F /* TestingViewController.h */,
 				A0570150175E2848000FED8F /* TestingViewController.m */,
-				A07887CA175A3CE500C1D90C /* PeopleViewController.h */,
-				A07887CB175A3CE500C1D90C /* PeopleViewController.m */,
-				707B7C17175D6E2B00E4747A /* InitViewController.h */,
-				707B7C18175D6E2B00E4747A /* InitViewController.m */,
-				28A3A88F175E9CAA0002BC93 /* PersonViewController.m */,
-				285FF4B81760BE0C001135E1 /* newConferenceContainer.h */,
-				A07887DA175A3CE500C1D90C /* MainStoryboard.storyboard */,
-				285FF4B91760BE0C001135E1 /* newConferenceContainer.m */,
-				280F37351763F4F600E72424 /* SessionViewController.h */,
-				280F37361763F4F600E72424 /* SessionViewController.m */,
-				289746001764DFCC00CB2022 /* Cells */,
-				285FF4B51760BC0E001135E1 /* CellMyConferences.h */,
-				285FF4B61760BC0E001135E1 /* CellMyConferences.m */,
-				280F37381763F7AE00E72424 /* peopleInSessionCell.h */,
-				280F37391763F7AE00E72424 /* peopleInSessionCell.m */,
-				A07887C8175A3CE500C1D90C /* PeopleCell.h */,
-				A07887C9175A3CE500C1D90C /* PeopleCell.m */,
-				A07887CE175A3CE500C1D90C /* CustomCellTwo.h */,
-				A07887CF175A3CE500C1D90C /* CustomCellTwo.m */,
-				A07887D0175A3CE500C1D90C /* CustomCellOne.h */,
-				A07887D1175A3CE500C1D90C /* CustomCellOne.m */,
-				A07887D8175A3CE500C1D90C /* ManageConfCell.h */,
-				A07887D9175A3CE500C1D90C /* ManageConfCell.m */,
-				28ADEE221760D4140059F458 /* CellNewsInsideConference.h */,
-				28ADEE231760D4140059F458 /* CellNewsInsideConference.m */,
 			);
 			name = Interfaces;
 			sourceTree = "<group>";
@@ -349,6 +391,29 @@
 			children = (
 			);
 			name = Cells;
+			sourceTree = "<group>";
+		};
+		707ADEC3176551E800AADD9C /* WeekViewAgenda */ = {
+			isa = PBXGroup;
+			children = (
+				707ADEC91765524200AADD9C /* WeekViewExampleController.h */,
+				707ADECA1765524200AADD9C /* WeekViewExampleController.m */,
+				707ADECB1765524200AADD9C /* DayViewExampleController.h */,
+				707ADECC1765524200AADD9C /* DayViewExampleController.m */,
+				707ADECD1765524200AADD9C /* TapDetectingView.h */,
+				707ADECE1765524200AADD9C /* TapDetectingView.m */,
+				707ADECF1765524200AADD9C /* MAEvent.h */,
+				707ADED01765524200AADD9C /* MAEvent.m */,
+				707ADED11765524200AADD9C /* MAGridView.h */,
+				707ADED21765524200AADD9C /* MAGridView.m */,
+				707ADED31765524200AADD9C /* MAWeekView.h */,
+				707ADED41765524200AADD9C /* MAWeekView.m */,
+				707ADED51765524200AADD9C /* MADayView.h */,
+				707ADED61765524200AADD9C /* MADayView.m */,
+				707ADEC41765522F00AADD9C /* MAEventKitDataSource.h */,
+				707ADEC51765522F00AADD9C /* MAEventKitDataSource.m */,
+			);
+			name = WeekViewAgenda;
 			sourceTree = "<group>";
 		};
 		707B7C10175D62CD00E4747A /* ECSlidingViewController */ = {
@@ -383,6 +448,7 @@
 			isa = PBXGroup;
 			children = (
 				A05A74FF1760F7F600F021BD /* libz.1.2.5.dylib */,
+				707ADEC3176551E800AADD9C /* WeekViewAgenda */,
 				707B7C10175D62CD00E4747A /* ECSlidingViewController */,
 				A078878E175A3C7800C1D90C /* iConfs */,
 				A0788785175A3C7800C1D90C /* Frameworks */,
@@ -401,6 +467,7 @@
 		A0788785175A3C7800C1D90C /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				7074AAEA17667BD700197584 /* EventKit.framework */,
 				A0788786175A3C7800C1D90C /* UIKit.framework */,
 				A0788788175A3C7800C1D90C /* Foundation.framework */,
 				A078878A175A3C7800C1D90C /* CoreGraphics.framework */,
@@ -424,6 +491,11 @@
 		A078878F175A3C7800C1D90C /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				707ADEDF1765529D00AADD9C /* ma_leftArrow.png */,
+				707ADEE01765529D00AADD9C /* ma_leftArrow@2x.png */,
+				707ADEE11765529D00AADD9C /* ma_rightArrow.png */,
+				707ADEE21765529D00AADD9C /* ma_rightArrow@2x.png */,
+				707ADEE31765529D00AADD9C /* ma_topBackground.png */,
 				28CF7717175FC2ED0070B4D5 /* speaker.jpg */,
 				280F372F1763E9DE00E72424 /* note_paper_left.jpg */,
 				280F37301763E9DE00E72424 /* note_paper.png */,
@@ -542,6 +614,11 @@
 				280F37321763E9DE00E72424 /* note_paper_left.jpg in Resources */,
 				280F37331763E9DE00E72424 /* note_paper.png in Resources */,
 				280F37341763E9DE00E72424 /* blank_paper.png in Resources */,
+				707ADEE41765529D00AADD9C /* ma_leftArrow.png in Resources */,
+				707ADEE51765529D00AADD9C /* ma_leftArrow@2x.png in Resources */,
+				707ADEE61765529D00AADD9C /* ma_rightArrow.png in Resources */,
+				707ADEE71765529D00AADD9C /* ma_rightArrow@2x.png in Resources */,
+				707ADEE81765529D00AADD9C /* ma_topBackground.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -600,6 +677,15 @@
 				280F37371763F4F600E72424 /* SessionViewController.m in Sources */,
 				280F373A1763F7AE00E72424 /* peopleInSessionCell.m in Sources */,
 				280F373D1763F8DB00E72424 /* CollectionPeopleInSession.m in Sources */,
+				707ADEC61765522F00AADD9C /* MAEventKitDataSource.m in Sources */,
+				707ADED81765524200AADD9C /* WeekViewExampleController.m in Sources */,
+				707ADED91765524200AADD9C /* DayViewExampleController.m in Sources */,
+				707ADEDA1765524200AADD9C /* TapDetectingView.m in Sources */,
+				707ADEDB1765524200AADD9C /* MAEvent.m in Sources */,
+				707ADEDC1765524200AADD9C /* MAGridView.m in Sources */,
+				707ADEDD1765524200AADD9C /* MAWeekView.m in Sources */,
+				707ADEDE1765524200AADD9C /* MADayView.m in Sources */,
+				7078016B17667E2000B3C4D4 /* AgendaViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
