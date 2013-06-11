@@ -24,7 +24,7 @@
  @param n room name/designation
  @returns a newly initialized object
  */
--(Room*)initRoom: (int)xx y:(int)yy name:(NSString*)n;
+-(Room*)initRoom: (NSString*)p x:(int)xx y:(int)yy name:(NSString*)n;
 
 /**
  Gets the room name

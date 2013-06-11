@@ -24,7 +24,7 @@
  @param n eating area name
  @returns a newly initialized object
  */
--(EatingArea*)initEA: (int)xx y:(int)yy name:(NSString*)n;
+-(EatingArea*)initEA: (NSString*)p x:(int)xx y:(int)yy name:(NSString*)n;
 
 /**
  Gets the eating area name

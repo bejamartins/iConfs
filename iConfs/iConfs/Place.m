@@ -10,9 +10,10 @@
 
 @implementation Place
 
--(Place*)initPlace: (int)xx y:(int)yy{
+-(Place*)initPlace: (NSString*)p x:(int)xx y:(int)yy{
     x = xx;
     y = yy;
+    placeID = p;
     return self;
 }
 
@@ -38,6 +39,10 @@
 
 -(void)alterLogo:(NSString*)l{
     logoPath = l;
+}
+
+-(NSString*)getID{
+    return placeID;
 }
 
 @end

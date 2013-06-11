@@ -10,10 +10,11 @@
 
 @implementation Room
 
--(Room*)initRoom: (int)xx y:(int)yy name:(NSString*)n{
+-(Room*)initRoom: (NSString*)p x:(int)xx y:(int)yy name:(NSString*)n{
     x = xx;
     y = yy;
     name = n;
+    placeID = p;
     return self;
 }
 

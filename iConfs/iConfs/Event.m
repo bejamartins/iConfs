@@ -55,6 +55,10 @@
     speaker = s;
 }
 
+-(void)setVote:(int)v{
+    vote = v;
+}
+
 -(int)getVote{
     return vote;
 }

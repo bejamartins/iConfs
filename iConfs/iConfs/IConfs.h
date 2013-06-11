@@ -11,6 +11,9 @@
 #import "Conference.h"
 #import "AppDataObject.h"
 #import "Notification.h"
+#import "Event.h"
+#import "EventWorkshop.h"
+#import "Session.h"
 
 @interface IConfs : AppDataObject
 {
@@ -97,5 +100,7 @@
 -(NSArray*)getRestOfConfs;
 
 -(NSString*)getfetchedIDs;
+
+-(BOOL)addConferenceWithID:(NSString*)confID;
 
 @end

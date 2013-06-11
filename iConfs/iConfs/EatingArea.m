@@ -10,10 +10,11 @@
 
 @implementation EatingArea
 
--(EatingArea*)initEA: (int)xx y:(int)yy name:(NSString*)n{
+-(EatingArea*)initEA: (NSString*)p x:(int)xx y:(int)yy name:(NSString*)n{
     x = xx;
     y = yy;
     name = n;
+    placeID = p;
     return self;
 }
 
