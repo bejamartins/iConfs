@@ -106,6 +106,12 @@
 -(void)setSpeaker:(Speaker*)s;
 
 /**
+ Sets user's vote
+ @param v user's vote
+ */
+-(void)setVote:(int)v;
+
+/**
  Gets user's vote
  @returns user's vote or -1 if user hasn't voted on the event
  */

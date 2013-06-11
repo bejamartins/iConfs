@@ -328,22 +328,128 @@
 
 -(Conference*)jsonToConference:(NSString*)confID{
     Conference* conf;
-    //conf = [[Conference alloc] init];
-    conf = [allConferencesDic valueForKey:confID];
+    conf = [[Conference alloc] init];
+    //conf = [allConferencesDic valueForKey:confID];
+    
+    
     NSDictionary* raw;
+    NSMutableDictionary* speakers;
+    NSMutableDictionary* authors;
+    NSMutableDictionary* organizers;
+    NSMutableArray* sessions;
+    NSMutableArray* workshops;
+    NSMutableArray* otherEvents;
+    NSMutableArray* notifications;
+    NSMutableDictionary* papers;
+    
+    speakers = [[NSMutableDictionary alloc] init];
+    authors = [[NSMutableDictionary alloc] init];
+    organizers = [[NSMutableDictionary alloc] init];
+    //sessions = [[NSMutableArray alloc] init];
+    //workshops = [[NSMutableArray alloc] init];
+    //otherEvents = [[NSMutableArray alloc] init];
+    //notifications = [[NSMutableArray alloc] init];
+    papers = [[NSMutableDictionary alloc] init];
+    
+    NSString *parsedID, *parsedIDAUX;
+    Speaker *speakerAux;
+    Author *authorAux;
+    Organizer *organizerAux;
+    int currID, currIDAUX;
     raw = [self parseJSON: [self loadDataFromDrive: confID]];
     //NSLog(@"json:%@",raw);
     //[[json objectForKey:@"conf"] objectAtIndex:0]valueForKey:@"ID";
+    
+    
+    NSDictionary* c = [raw valueForKey:@"conf"];
+    conf = [conf initWithData: [conf valueForKey:@"ID"] name: [conf valueForKey:@"Name"] image:[conf valueForKey:@"ImagePath"]/*aqui tenho de ir buscar mesmo a imagem, novo metodo para ir buscar pelo path?*/ bluePrint:NULL /*precisa de ser implementado no servidor*/];
+    
     NSArray* notif = [raw valueForKey:@"notif"];
     Notification* n;
     for (int i = 0; i<[notif count]; i++) {
         n = [[Notification alloc] init];
         n = [n initWithData: [notif[i] valueForKey:@"Title"] text: [notif[i] valueForKey:@"Description"] date: (NSDate*)[notif[i] valueForKey:@"TimeStamp"]];
-        
+        //[notifications addObject: n];
+        [conf addNotification:n];
+    }
+
+    //People
+    NSArray* people = [raw valueForKey:@"person"];
+    Person* p;
+    for (int i = 0; 0<[people count]; i++) {
+        currID = [[[[people[i] valueForKey:@"ID"]componentsSeparatedByString:@"s"] objectAtIndex: 1]intValue];
+        if ([[people[i] valueForKey:@"Type"] isEqual:@"Author"]){
+            p = [[Author alloc] init];
+            p = [(Author*)p initWithData: [people[i] valueForKey:@"Name"] work: [people[i] valueForKey:@"Company"] /*queremos o cargo e não a companhia*/ image:[people[i] valueForKey:@"ImagePath"] personID: currID];
+            [authors setValue:p forKey:[[[people[i] valueForKey:@"ID"]componentsSeparatedByString:@"s"] objectAtIndex: 1]];
+            [conf addAuthor:(Author*)p];
+        }
+        else if ([[people[i] valueForKey:@"Type"] isEqual:@"Speaker"]){
+            p = [[Speaker alloc] init];
+            p = [(Speaker*)p initWithData: [people[i] valueForKey:@"Name"] work: [people[i] valueForKey:@"Company"] image:[people[i] valueForKey:@"ImagePath"] personID: currID resume: [people[i] valueForKey:@"Description"]];
+            [speakers setValue:p forKey:[[[people[i] valueForKey:@"ID"]componentsSeparatedByString:@"s"] objectAtIndex: 1]];
+            [conf addSpeaker:(Speaker*)p];
+        }
+        else if ([[people[i] valueForKey:@"Type"] isEqual:@"Organizer"]){
+            p = [[Organizer alloc] init];
+            p = [(Organizer*)p initWithData: [people[i] valueForKey:@"Name"] work: [people[i] valueForKey:@"Company"] image:[people[i] valueForKey:@"ImagePath"] personID: currID job: [people[i] valueForKey:@"Description"]];
+            [organizers setValue:p forKey:[[[people[i] valueForKey:@"ID"]componentsSeparatedByString:@"s"] objectAtIndex: 1]];
+            [conf addOrganizer:(Organizer*)p];
+        } //Isto precisava de ser um ISA no MySQL do servidor...
+    }
+    
+    NSArray * au = [authors allValues];
+    NSArray * sp = [speakers allValues];
+    NSArray * or = [organizers allValues];
+    for (int i = 0; i < [au count]; i++) {
+        [conf addAuthor:au[i]];
+    }
+    for (int i = 0; i < [sp count]; i++) {
+        [conf addSpeaker:sp[i]];
+    }
+    for (int i = 0; i < [or count]; i++) {
+        [conf addOrganizer:or[i]];
+    }
+    
+    //Events
+    NSArray* sess = [raw valueForKey:@"session"];
+    Event* e;
+    for (int i = 0; i<[sess count]; i++) {
+        if(![[sess[i] valueForKey:@"Speaker"] isEqual:@""]){
+            parsedIDAUX = [[[sess[i] valueForKey:@"Speaker"]componentsSeparatedByString:@"p"] objectAtIndex: 1];
+            speakerAux = [speakers objectForKey:parsedIDAUX];
+        }else{
+            speakerAux = NULL;
+        }
+        if(![[sess[i] valueForKey:@"Author"] isEqual:@""]){
+            parsedIDAUX = [[[sess[i] valueForKey:@"Author"]componentsSeparatedByString:@"p"] objectAtIndex: 1];
+            authorAux = [speakers objectForKey:parsedIDAUX];
+        }else{
+            authorAux = NULL;
+        }
+        currID = [[[[sess[i] valueForKey:@"ID"]componentsSeparatedByString:@"s"] objectAtIndex: 1]intValue];
+        if ([[sess[i] valueForKey:@"Type"] isEqual:@"Session"]) {
+            e = [[Session alloc] init];
+            e = [(Session*)e initWithDataAndSpeaker:currID date:[sess[i] valueForKey:@"DateTime"] title:[sess[i] valueForKey:@"Name"] theme:[sess[i] valueForKey:@"Description"] speaker: speakerAux athor: authorAux];
+            //[sessions addObject:e];
+            [conf addSessions:(Session*)e];
+        }
+        else if ([[sess[i] valueForKey:@"Type"] isEqual:@"Workshop"]){
+            e = [[EventWorkshop alloc] init];
+            e = [(EventWorkshop*)e initWithDataAndSpeaker:currID date:[sess[i] valueForKey:@"DateTime"] title:[sess[i] valueForKey:@"Name"] theme:[sess[i] valueForKey:@"Description"] speaker: speakerAux needs: [sess[i] valueForKey:@"Needs"]];
+            //[workshops addObject:e];
+            [conf addWorkshop:(EventWorkshop*)e];
+        }
+        else{
+            e = [[EventWorkshop alloc] init];
+            e = [(Event*)e initWithData:currID date:[sess[i] valueForKey:@"DateTime"] title:[sess[i] valueForKey:@"Name"] theme:[sess[i] valueForKey:@"Description"]];
+            //[otherEvents addObject: e];
+            [conf addOtherEvent:e];
+        }
+        [e setRating:[[sess[i] valueForKey:@"Rating"] intValue]];
     }
     
     return conf;
-    
 }
 
 
