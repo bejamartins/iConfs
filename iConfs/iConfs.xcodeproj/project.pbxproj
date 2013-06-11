@@ -13,6 +13,7 @@
 		280F37371763F4F600E72424 /* SessionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 280F37361763F4F600E72424 /* SessionViewController.m */; };
 		280F373A1763F7AE00E72424 /* peopleInSessionCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 280F37391763F7AE00E72424 /* peopleInSessionCell.m */; };
 		280F373D1763F8DB00E72424 /* CollectionPeopleInSession.m in Sources */ = {isa = PBXBuildFile; fileRef = 280F373C1763F8DB00E72424 /* CollectionPeopleInSession.m */; };
+		28561E7F17678D6E00E29FD4 /* arrowLeft.png in Resources */ = {isa = PBXBuildFile; fileRef = 28561E7E17678D6E00E29FD4 /* arrowLeft.png */; };
 		285FF4B71760BC0E001135E1 /* CellMyConferences.m in Sources */ = {isa = PBXBuildFile; fileRef = 285FF4B61760BC0E001135E1 /* CellMyConferences.m */; };
 		285FF4BA1760BE0C001135E1 /* newConferenceContainer.m in Sources */ = {isa = PBXBuildFile; fileRef = 285FF4B91760BE0C001135E1 /* newConferenceContainer.m */; };
 		285FF4BD1760BE6A001135E1 /* ConferenceScreenViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 285FF4BC1760BE6A001135E1 /* ConferenceScreenViewController.m */; };
@@ -22,6 +23,7 @@
 		2897460C1764EC8700CB2022 /* FloorCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 2897460B1764EC8700CB2022 /* FloorCell.m */; };
 		2897460F1764EC9400CB2022 /* PlaceDefaultCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 2897460E1764EC9400CB2022 /* PlaceDefaultCell.m */; };
 		289746121764ECCB00CB2022 /* PlaceRoomCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 289746111764ECCB00CB2022 /* PlaceRoomCell.m */; };
+		28A0112C1767892B002F73A5 /* arrow.png in Resources */ = {isa = PBXBuildFile; fileRef = 28A0112B1767892B002F73A5 /* arrow.png */; };
 		28A3A890175E9CAA0002BC93 /* PersonViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 28A3A88F175E9CAA0002BC93 /* PersonViewController.m */; };
 		28ADEE1B1760C7E60059F458 /* Conference.m in Sources */ = {isa = PBXBuildFile; fileRef = 28ADEE1A1760C7E60059F458 /* Conference.m */; };
 		28ADEE1E1760C7FB0059F458 /* IConfs.m in Sources */ = {isa = PBXBuildFile; fileRef = 28ADEE1D1760C7FB0059F458 /* IConfs.m */; };
@@ -124,6 +126,7 @@
 		280F37391763F7AE00E72424 /* peopleInSessionCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = peopleInSessionCell.m; sourceTree = "<group>"; };
 		280F373B1763F8DB00E72424 /* CollectionPeopleInSession.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CollectionPeopleInSession.h; sourceTree = "<group>"; };
 		280F373C1763F8DB00E72424 /* CollectionPeopleInSession.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CollectionPeopleInSession.m; sourceTree = "<group>"; };
+		28561E7E17678D6E00E29FD4 /* arrowLeft.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = arrowLeft.png; sourceTree = "<group>"; };
 		285FF4B51760BC0E001135E1 /* CellMyConferences.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CellMyConferences.h; path = ../CellMyConferences.h; sourceTree = "<group>"; };
 		285FF4B61760BC0E001135E1 /* CellMyConferences.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CellMyConferences.m; path = ../CellMyConferences.m; sourceTree = "<group>"; };
 		285FF4B81760BE0C001135E1 /* newConferenceContainer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = newConferenceContainer.h; path = ../newConferenceContainer.h; sourceTree = "<group>"; };
@@ -142,6 +145,7 @@
 		2897460E1764EC9400CB2022 /* PlaceDefaultCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PlaceDefaultCell.m; sourceTree = "<group>"; };
 		289746101764ECCB00CB2022 /* PlaceRoomCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PlaceRoomCell.h; sourceTree = "<group>"; };
 		289746111764ECCB00CB2022 /* PlaceRoomCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PlaceRoomCell.m; sourceTree = "<group>"; };
+		28A0112B1767892B002F73A5 /* arrow.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = arrow.png; sourceTree = "<group>"; };
 		28A3A88E175E9CAA0002BC93 /* PersonViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PersonViewController.h; path = ../PersonViewController.h; sourceTree = "<group>"; };
 		28A3A88F175E9CAA0002BC93 /* PersonViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PersonViewController.m; path = ../PersonViewController.m; sourceTree = "<group>"; };
 		28ADEE191760C7E60059F458 /* Conference.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Conference.h; sourceTree = "<group>"; };
@@ -372,11 +376,13 @@
 				A07887CE175A3CE500C1D90C /* CustomCellTwo.h */,
 				A07887CF175A3CE500C1D90C /* CustomCellTwo.m */,
 				A07887D2175A3CE500C1D90C /* HomeViewController.h */,
+				28A0112B1767892B002F73A5 /* arrow.png */,
 				A07887D3175A3CE500C1D90C /* HomeViewController.m */,
 				707B7C17175D6E2B00E4747A /* InitViewController.h */,
 				707B7C18175D6E2B00E4747A /* InitViewController.m */,
 				A07887DA175A3CE500C1D90C /* MainStoryboard.storyboard */,
 				A07887D8175A3CE500C1D90C /* ManageConfCell.h */,
+				28561E7E17678D6E00E29FD4 /* arrowLeft.png */,
 				A07887D9175A3CE500C1D90C /* ManageConfCell.m */,
 				A07887D4175A3CE500C1D90C /* ManageViewController.h */,
 				A07887D5175A3CE500C1D90C /* ManageViewController.m */,
@@ -652,6 +658,8 @@
 				707ADEE61765529D00AADD9C /* ma_rightArrow.png in Resources */,
 				707ADEE71765529D00AADD9C /* ma_rightArrow@2x.png in Resources */,
 				707ADEE81765529D00AADD9C /* ma_topBackground.png in Resources */,
+				28A0112C1767892B002F73A5 /* arrow.png in Resources */,
+				28561E7F17678D6E00E29FD4 /* arrowLeft.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
