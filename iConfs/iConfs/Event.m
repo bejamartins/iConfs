@@ -79,4 +79,12 @@
     date = d;
 }
 
+-(NSString*)getPlaceID{
+    return placeID;
+}
+
+-(void)setPlaceID:(NSString*)newPlaceID{
+    placeID = newPlaceID;
+}
+
 @end

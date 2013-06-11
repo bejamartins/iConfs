@@ -10,10 +10,11 @@
 
 @implementation News
 
--(News*)initWithData: (NSString*) t text: (NSString*) txt date:(NSDate*)date{
+-(News*)initWithData: (NSString*)nID title:(NSString*) t text: (NSString*) txt date:(NSDate*)date{
     self.title = t;
     self.text = txt;
     self.sentDate = date;
+    newsID = nID;
     return self;
 }
 -(NSString*)getTitle{
@@ -24,6 +25,10 @@
 }
 -(NSDate*)getDate{
     return self.sentDate;
+}
+
+-(NSString*)getID{
+    return newsID;
 }
 
 @end

@@ -112,6 +112,8 @@
 		A0817F3D1760A8240065E30A /* inforum.jpg in Resources */ = {isa = PBXBuildFile; fileRef = A0817F3A1760A8240065E30A /* inforum.jpg */; };
 		A0817F3E1760A8240065E30A /* musepat.jpg in Resources */ = {isa = PBXBuildFile; fileRef = A0817F3B1760A8240065E30A /* musepat.jpg */; };
 		A0817F3F1760A8240065E30A /* speaker.jpg in Resources */ = {isa = PBXBuildFile; fileRef = A0817F3C1760A8240065E30A /* speaker.jpg */; };
+		A09DF2F71767783400310266 /* Map.m in Sources */ = {isa = PBXBuildFile; fileRef = A09DF2F61767783300310266 /* Map.m */; };
+		A09DF2FA176784CC00310266 /* Blueprints.m in Sources */ = {isa = PBXBuildFile; fileRef = A09DF2F9176784CB00310266 /* Blueprints.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -286,6 +288,10 @@
 		A0817F3A1760A8240065E30A /* inforum.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = inforum.jpg; sourceTree = "<group>"; };
 		A0817F3B1760A8240065E30A /* musepat.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = musepat.jpg; sourceTree = "<group>"; };
 		A0817F3C1760A8240065E30A /* speaker.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = speaker.jpg; sourceTree = "<group>"; };
+		A09DF2F51767783300310266 /* Map.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Map.h; sourceTree = "<group>"; };
+		A09DF2F61767783300310266 /* Map.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Map.m; sourceTree = "<group>"; };
+		A09DF2F8176784CB00310266 /* Blueprints.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Blueprints.h; sourceTree = "<group>"; };
+		A09DF2F9176784CB00310266 /* Blueprints.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Blueprints.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -312,10 +318,14 @@
 				A07887CD175A3CE500C1D90C /* AppDelegate.m */,
 				A07887AC175A3CE500C1D90C /* Event.h */,
 				A07887AD175A3CE500C1D90C /* Event.m */,
+				A09DF2F51767783300310266 /* Map.h */,
+				A09DF2F61767783300310266 /* Map.m */,
 				28ADEE191760C7E60059F458 /* Conference.h */,
 				28ADEE1A1760C7E60059F458 /* Conference.m */,
 				28ADEE1C1760C7FB0059F458 /* IConfs.h */,
 				28ADEE1D1760C7FB0059F458 /* IConfs.m */,
+				A09DF2F8176784CB00310266 /* Blueprints.h */,
+				A09DF2F9176784CB00310266 /* Blueprints.m */,
 				A07887AE175A3CE500C1D90C /* News.h */,
 				A07887AF175A3CE500C1D90C /* News.m */,
 				A07887B0175A3CE500C1D90C /* EventWorkshop.h */,
@@ -725,6 +735,8 @@
 				707ADEDD1765524200AADD9C /* MAWeekView.m in Sources */,
 				707ADEDE1765524200AADD9C /* MADayView.m in Sources */,
 				7078016B17667E2000B3C4D4 /* AgendaViewController.m in Sources */,
+				A09DF2F71767783400310266 /* Map.m in Sources */,
+				A09DF2FA176784CC00310266 /* Blueprints.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

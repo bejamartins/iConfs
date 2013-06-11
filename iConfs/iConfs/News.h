@@ -12,6 +12,7 @@
 @interface News: NSObject
 {
 @protected
+    NSString* newsID;
     NSString* title;
     NSString* text;
     NSDate* sentDate;
@@ -33,7 +34,7 @@
  @param date sent date of the news
  @returns a newly initialized object
  */
--(News*)initWithData: (NSString*) t text: (NSString*) txt date:(NSDate*)date;
+-(News*)initWithData: (NSString*)nID title:(NSString*) t text: (NSString*) txt date:(NSDate*)date;
 
 /**
  Gets the news title
@@ -52,6 +53,8 @@
  @returns news date
  */
 -(NSDate*)getDate;
+
+-(NSString*)getID;
 
 @end
 

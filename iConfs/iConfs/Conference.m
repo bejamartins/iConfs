@@ -336,6 +336,13 @@
     return self.confName;
 }
 
+-(Map*) getMap{
+    return map;
+}
+
+-(void) setMap: (Map*)newMap{
+    map = newMap;
+}
 
 @end
 

@@ -14,8 +14,7 @@
 #import "Notification.h"
 #import "EventWorkshop.h"
 #import "Session.h"
-
-//@class Workshop;
+#import "Map.h"
 
 @interface Conference : NSObject
 {
@@ -33,6 +32,7 @@
     NSMutableArray* sessions;
     NSMutableArray* workshops;
     NSMutableArray* eventsList;
+    Map* map;
     
 }
 
@@ -279,5 +279,8 @@
  */
 -(NSString*)getName;
 
+-(Map*) getMap;
+
+-(void) setMap: (Map*)newMap;
 @end
 
