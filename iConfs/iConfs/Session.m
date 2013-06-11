@@ -10,13 +10,14 @@
 
 @implementation Session
 
--(Session*)initWithDataAndSpeaker:(int)eID date:(NSDate*)d title:(NSString*)t theme:(NSString*)th speaker: (Speaker*)s athor: (Author*) a{
+-(Session*)initWithDataAndSpeaker:(int)eID date:(NSDate*)d title:(NSString*)t theme:(NSString*)th speaker: (Speaker*)s athor: (Author*) a paper: (int)pID{
     eventID = eID;
     date = d;
     title = t;
     theme = th;
     speaker = s;
     author = a;
+    paperID = pID;
     return self;
 }
 
@@ -66,6 +67,10 @@
 
 -(void)setDate:(NSDate*)d{
     date = d;
+}
+
+-(int)getPaperID{
+    return paperID;
 }
 
 @end

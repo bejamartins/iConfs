@@ -374,11 +374,12 @@
     //[[json objectForKey:@"conf"] objectAtIndex:0]valueForKey:@"ID";
     
     //loadImageFromDrive:(NSString*)confID : (NSString*)imagePath
-    UIImage* confIm = [self loadImageFromDrive: confID : [conf valueForKey:@"ImagePath"] ];
+    
     
     
     NSDictionary* c = [raw valueForKey:@"conf"];
-    conf = [conf initWithData: [conf valueForKey:@"ID"] name: [conf valueForKey:@"Name"] image:confIm bluePrint:NULL /*precisa de ser implementado no servidor*/];
+    UIImage* confIm = [self loadImageFromDrive: confID : [c valueForKey:@"ImagePath"] ];
+    conf = [conf initWithData: [c valueForKey:@"ID"] name: [c valueForKey:@"Name"] image:confIm bluePrint:NULL /*precisa de ser implementado no servidor*/];
     
     NSArray* notif = [raw valueForKey:@"notif"];
     Notification* n;
@@ -447,7 +448,8 @@
         currID = [[[[sess[i] valueForKey:@"ID"]componentsSeparatedByString:@"s"] objectAtIndex: 1]intValue];
         if ([[sess[i] valueForKey:@"Type"] isEqual:@"Session"]) {
             e = [[Session alloc] init];
-            e = [(Session*)e initWithDataAndSpeaker:currID date:[sess[i] valueForKey:@"DateTime"] title:[sess[i] valueForKey:@"Name"] theme:[sess[i] valueForKey:@"Description"] speaker: speakerAux athor: authorAux];
+            currIDAUX = [[[((NSString*)[sess[i] valueForKey:@"PaperID"])componentsSeparatedByString:@"p"] objectAtIndex: 1] intValue];
+            e = [(Session*)e initWithDataAndSpeaker:currID date:[sess[i] valueForKey:@"DateTime"] title:[sess[i] valueForKey:@"Name"] theme:[sess[i] valueForKey:@"Description"] speaker: speakerAux athor: authorAux paper:currIDAUX];
             //[sessions addObject:e];
             [conf addSessions:(Session*)e];
         }
@@ -471,6 +473,7 @@
     NSString* longitude = [mapR valueForKey:@"Longitude"];
     map = [map initWithData:[mapR valueForKey:@"ID"] lat:[latitude floatValue] longi:[longitude floatValue] placeName:[mapR valueForKey:@"PlaceName"] address:[mapR valueForKey:@"AddressName"]];
     [conf setMap:map];
+    
     return conf;
 }
 
