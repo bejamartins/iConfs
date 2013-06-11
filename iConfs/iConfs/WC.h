@@ -16,6 +16,6 @@
  @param y yy' coordinate
  @returns a newly initialized object
  */
--(WC*)initPlace: (int)xx y:(int)yy;
+-(WC*)initPlace: (NSString*)p x:(int)xx y:(int)yy;
 
 @end

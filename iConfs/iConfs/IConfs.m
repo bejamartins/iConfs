@@ -75,24 +75,24 @@
 
 
 
-/*-(BOOL)addConference:(NSString*)confID{
+-(BOOL)addConferenceWithID:(NSString*)confID{
     BOOL isHere = false;
     for (int i=0; i<[conferences count]; i++) {
-        if ([((Conference*)[conferences objectAtIndex:i]).getID isEqualToString: c.getID]){
+        if ([((Conference*)[conferences objectAtIndex:i]).getID isEqualToString: confID]){
             isHere = true;
             break;
         }
     }
     if(isHere == false){
         [self addConf: confID];
-        [conferences addObject: c];
+        [conferences addObject: [self jsonToConference:confID]];
         return true;
     }
     else return false;
-}*/
+}
 
 -(BOOL)addConference:(Conference*)c{
-    BOOL isHere = false;
+    /*BOOL isHere = false;
     for (int i=0; i<[conferences count]; i++) {
         if ([((Conference*)[conferences objectAtIndex:i]).getID isEqualToString: c.getID]){
             isHere = true;
@@ -103,7 +103,12 @@
         [conferences addObject: c];
         return true;
     }
-    else return false;
+    else return false;*/
+    if ([self addConferenceWithID: [c getID]]) {
+        return true;
+    }else{
+        return false;
+    }
 }
 
 -(BOOL)addToAllConference:(Conference*)c{
@@ -137,6 +142,7 @@
         NSMutableIndexSet *mutableIndexSet = [[NSMutableIndexSet alloc] init];
         [mutableIndexSet addIndex:index];
         [conferences removeObjectsAtIndexes:mutableIndexSet];
+        [self deleteConfFromDrive:confID];
         return true;
     }
     else return false;
@@ -360,14 +366,18 @@
     //NSLog(@"json:%@",raw);
     //[[json objectForKey:@"conf"] objectAtIndex:0]valueForKey:@"ID";
     
+    //loadImageFromDrive:(NSString*)confID : (NSString*)imagePath
+    UIImage* confIm = [self loadImageFromDrive: confID : [conf valueForKey:@"ImagePath"] ];
+    
     
     NSDictionary* c = [raw valueForKey:@"conf"];
-    conf = [conf initWithData: [conf valueForKey:@"ID"] name: [conf valueForKey:@"Name"] image:[conf valueForKey:@"ImagePath"]/*aqui tenho de ir buscar mesmo a imagem, novo metodo para ir buscar pelo path?*/ bluePrint:NULL /*precisa de ser implementado no servidor*/];
+    conf = [conf initWithData: [conf valueForKey:@"ID"] name: [conf valueForKey:@"Name"] image:confIm bluePrint:NULL /*precisa de ser implementado no servidor*/];
     
     NSArray* notif = [raw valueForKey:@"notif"];
     Notification* n;
     for (int i = 0; i<[notif count]; i++) {
         n = [[Notification alloc] init];
+        
         n = [n initWithData: [notif[i] valueForKey:@"Title"] text: [notif[i] valueForKey:@"Description"] date: (NSDate*)[notif[i] valueForKey:@"TimeStamp"]];
         //[notifications addObject: n];
         [conf addNotification:n];
@@ -381,19 +391,19 @@
         if ([[people[i] valueForKey:@"Type"] isEqual:@"Author"]){
             p = [[Author alloc] init];
             p = [(Author*)p initWithData: [people[i] valueForKey:@"Name"] work: [people[i] valueForKey:@"Company"] /*queremos o cargo e não a companhia*/ image:[people[i] valueForKey:@"ImagePath"] personID: currID];
-            [authors setValue:p forKey:[[[people[i] valueForKey:@"ID"]componentsSeparatedByString:@"s"] objectAtIndex: 1]];
+            [authors setValue:p forKey:[[[people[i] valueForKey:@"ID"]componentsSeparatedByString:@"p"] objectAtIndex: 1]];
             [conf addAuthor:(Author*)p];
         }
         else if ([[people[i] valueForKey:@"Type"] isEqual:@"Speaker"]){
             p = [[Speaker alloc] init];
             p = [(Speaker*)p initWithData: [people[i] valueForKey:@"Name"] work: [people[i] valueForKey:@"Company"] image:[people[i] valueForKey:@"ImagePath"] personID: currID resume: [people[i] valueForKey:@"Description"]];
-            [speakers setValue:p forKey:[[[people[i] valueForKey:@"ID"]componentsSeparatedByString:@"s"] objectAtIndex: 1]];
+            [speakers setValue:p forKey:[[[people[i] valueForKey:@"ID"]componentsSeparatedByString:@"p"] objectAtIndex: 1]];
             [conf addSpeaker:(Speaker*)p];
         }
         else if ([[people[i] valueForKey:@"Type"] isEqual:@"Organizer"]){
             p = [[Organizer alloc] init];
             p = [(Organizer*)p initWithData: [people[i] valueForKey:@"Name"] work: [people[i] valueForKey:@"Company"] image:[people[i] valueForKey:@"ImagePath"] personID: currID job: [people[i] valueForKey:@"Description"]];
-            [organizers setValue:p forKey:[[[people[i] valueForKey:@"ID"]componentsSeparatedByString:@"s"] objectAtIndex: 1]];
+            [organizers setValue:p forKey:[[[people[i] valueForKey:@"ID"]componentsSeparatedByString:@"p"] objectAtIndex: 1]];
             [conf addOrganizer:(Organizer*)p];
         } //Isto precisava de ser um ISA no MySQL do servidor...
     }

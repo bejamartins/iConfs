@@ -101,4 +101,6 @@
 
 -(NSString*)getfetchedIDs;
 
+-(BOOL)addConferenceWithID:(NSString*)confID;
+
 @end

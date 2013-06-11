@@ -10,9 +10,10 @@
 
 @implementation WC
 
--(WC*)initPlace: (int)xx y:(int)yy{
+-(WC*)initPlace: (NSString*)p x:(int)xx y:(int)yy{
     x = xx;
     y = yy;
+    placeID = p;
     return self;
 }
 
