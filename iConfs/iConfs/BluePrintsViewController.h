@@ -8,6 +8,8 @@
 
 #import <UIKit/UIKit.h>
 
-@interface BluePrintsViewController : UIViewController
+@interface BluePrintsViewController : UIViewController<UICollectionViewDelegate,UICollectionViewDataSource>
+@property (strong, nonatomic) IBOutlet UISearchBar *searchBar;
+@property (strong, nonatomic) IBOutlet UICollectionView *collection;
 
 @end
