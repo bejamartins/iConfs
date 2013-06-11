@@ -283,19 +283,27 @@
 //gets the conf batch from the server and saves them to disk
 //also removes artifacts in case of error
 //uses the 3 functions below: getConf, getConfFiles and saveConf
+//now also adds to the confs.json file
 -(BOOL)addConf:(NSString*)confID{
     
     NSData* tmpData=[self getConf:confID];
     if(tmpData!=NULL){
         NSDictionary* tmpConf=[self parseJSON:tmpData];
         [self saveConf:tmpConf:tmpData];
-        if([self getConfFiles:confID]==false){
+        if([self getConfFiles:confID]==NO){
             [self deleteConfFromDrive:confID];
-            return false;
+            return NO;
         }
-    }else return false;
-    return true;
+    }else return NO;
+    
+    if([self saveConfsIDs:[self addConfsIDs:[self loadConfsIDs] : confID]])
+        return YES;
+    else {
+        [self deleteConfFromDrive:confID];
+        return NO;
+    }
 }
+
 
 //recebe toda a info relativa a uma conferencia cujo ID eh
 //confID. Usado para fazer o "download" da conferencia no
@@ -330,7 +338,6 @@
     //  NSLog(@"String:%@",test);
     
 }
-
 
 -(Conference*)jsonToConference:(NSString*)confID{
     Conference* conf;
@@ -507,8 +514,8 @@
         NSFileManager* fileManager=[NSFileManager defaultManager];
         [fileManager removeItemAtPath:saveZip error:NULL];
         
-        return true;
-    }else return false;
+        return YES;
+    }else return NO;
     
 }
 
@@ -519,17 +526,31 @@
     //guarda conf
     [confData writeToFile:savePath atomically:YES];
     
-    return true;
+    return YES;
+    
+}
+
+//deletes confID from confs.json; if it is successful also attempsts
+//to remove confID.json and confID folder
+-(BOOL)deleteConfFromDrive:(NSString*)confID{
+    
+    NSString* savePath=[NSString stringWithFormat:@"%@%@%@%@",[NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES)objectAtIndex:0],@"/",confID,@".json"];
+    NSString* savePath1=[NSString stringWithFormat:@"%@%@%@%@",[NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES)objectAtIndex:0],@"/",confID,@"/"];
+    NSFileManager* fileManager=[NSFileManager defaultManager];
+    
+    if([self saveConfsIDs:[self removeConfsIDs:[self loadConfsIDs] : confID]])
+        return [fileManager removeItemAtPath:savePath error:NULL] && [fileManager removeItemAtPath:savePath1 error:NULL];
+    else return NO;
+}
+
+//loads nsdata from file with name confID (.json) in documents
+-(NSData*)loadData:(NSString*)confID{
+    NSString* loadPath=[NSString stringWithFormat:@"%@%@%@%@",[NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES)objectAtIndex:0],@"/",confID,@".json"];
+    return [NSData dataWithContentsOfFile:loadPath options:kNilOptions error:NULL];
     
 }
 
 //deletes confID.json and confID folder
--(BOOL)deleteConfFromDrive:(NSString*)confID{
-    
-    NSString* savePath=[NSString stringWithFormat:@"%@%@%@%@",[NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES)objectAtIndex:0],@"/",confID,@".json"];
-    NSFileManager* fileManager=[NSFileManager defaultManager];
-    return [fileManager removeItemAtPath:savePath error:NULL];
-}
 
 //loads nsdata from file with name confID (.json) in documents
 -(NSData*)loadDataFromDrive:(NSString*)confID{
@@ -540,16 +561,15 @@
 
 
 //loads file from app with confIDs NSArray
-//creates NSData new file if none found
+//creates NSArray new file if none found
 -(NSArray*)loadConfsIDs{
     NSString* loadPath=[NSString stringWithFormat:@"%@%@",[NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES)objectAtIndex:0],@"/confs.json"];
-    NSData* tmpData =[NSData dataWithContentsOfFile:loadPath options:kNilOptions error:NULL];
-    
-    if(tmpData==NULL){//no file or could not retrieve then create new one
-        [[NSData new] writeToFile:loadPath atomically:YES];
-        return NULL;
+    //NSData* tmpData =[NSData dataWithContentsOfFile:loadPath options:kNilOptions error:NULL];
+    NSArray* confs=[NSArray arrayWithContentsOfFile:loadPath];
+    if(confs==nil){//no file or could not retrieve then create new one
+        [[NSArray new] writeToFile:loadPath atomically:YES];
     }
-    return [NSKeyedUnarchiver unarchiveObjectWithData:tmpData];
+    return confs;
 }
 
 //Saves NSArray with confIDs to file
@@ -559,6 +579,38 @@
     return[confIDs writeToFile:savePath atomically:YES];
 }
 
+//adds a confID to the confsIDs array if it is not already there
+-(NSArray*)addConfsIDs:(NSArray*)confsIDs : (NSString*)confID{
+    BOOL tmp = YES;
+    NSMutableArray *tmp1= [NSMutableArray array];
+    for (int i=0; i<[confsIDs count]; i++) {
+        if ([confID isEqualToString:[confsIDs objectAtIndex:i]]) {
+            tmp = NO;
+        }
+        [tmp1 addObject:[confsIDs objectAtIndex:i]];
+    }
+    
+    if(tmp == YES){
+        [tmp1 addObject:confID];
+    }
+    return tmp1;
+}
+//removes a confID from the confsIDs array if it is there
+-(NSArray*)removeConfsIDs:(NSArray*)confsIDs : (NSString*)confID{
+    BOOL tmp = YES;
+    NSMutableArray *tmp1= [NSMutableArray array];
+    for (int i=0; i<[confsIDs count]; i++) {
+        if ([confID isEqualToString:[confsIDs objectAtIndex:i]]) {
+            tmp = NO;
+        }
+        
+        if(tmp == YES){
+            [tmp1 addObject:[confsIDs objectAtIndex:i]];
+        }
+        tmp=YES;
+    }
+    return tmp1;
+}
 
 //getRating given confID and sessionID
 //returns -1 if cannot fetch
@@ -611,6 +663,7 @@
     if(data!=NULL){
         return YES;
     }else return NO;
+    
 }
 
 //getNotifs in NSDictionary for confID where notifDate > timeStamp
@@ -661,6 +714,148 @@
         img =[UIImage imageWithData:imgData];
     
     return img;
+    
+    
+}
+
+-(void)theAlmightyGetter:(NSDictionary*)json{
+    
+    //NSArray *array1=[[json valueForKey:@"Name"] objectAtIndex:1];
+    
+    //conf
+    NSString* confConfID=[[[json valueForKey:@"conf"] objectAtIndex:0] valueForKey:@"ID"];
+    NSString* confName=[[[json valueForKey:@"conf"] objectAtIndex:0] valueForKey:@"Name"];
+    NSString* confImagePath=[[[json valueForKey:@"conf"] objectAtIndex:0] valueForKey:@"ImagePath"];
+    //map
+    NSString* mapConfID=[[[json valueForKey:@"map"] objectAtIndex:0] valueForKey:@"IDConf"];
+    NSString* mapID=[[[json valueForKey:@"map"] objectAtIndex:0] valueForKey:@"ID"];
+    NSString* mapPlaceName=[[[json valueForKey:@"map"] objectAtIndex:0] valueForKey:@"PlaceName"];
+    NSString* mapAdressName=[[[json valueForKey:@"map"] objectAtIndex:0] valueForKey:@"AdressName"];
+    NSString* mapLatitude=[[[json valueForKey:@"map"] objectAtIndex:0] valueForKey:@"Latitude"];
+    NSString* mapLongitude=[[[json valueForKey:@"map"] objectAtIndex:0] valueForKey:@"Longitude"];
+    //notif
+    
+    NSMutableArray* notifID=[NSMutableArray new];
+    NSMutableArray* notifConfID=[NSMutableArray new];
+    NSMutableArray* notifTitle=[NSMutableArray new];
+    NSMutableArray* notifDescription=[NSMutableArray new];
+    NSMutableArray* notifTimeStamp=[NSMutableArray new];
+    NSMutableArray* notifHighlight=[NSMutableArray new];
+    for (int i=0; i<[[json valueForKey:@"notif"]count]; i++) {
+        
+        [notifID addObject:[[[json valueForKey:@"notif"] objectAtIndex:i] valueForKey:@"ID"]];
+        [notifConfID addObject:[[[json valueForKey:@"notif"] objectAtIndex:i] valueForKey:@"IDConf"]];
+        [notifTitle addObject:[[[json valueForKey:@"notif"] objectAtIndex:i] valueForKey:@"Title"]];
+        [notifDescription addObject:[[[json valueForKey:@"notif"] objectAtIndex:i] valueForKey:@"Description"]];
+        [notifTimeStamp addObject:[[[json valueForKey:@"notif"] objectAtIndex:i] valueForKey:@"TimeStamp"]];
+        [notifHighlight addObject:[[[json valueForKey:@"notif"] objectAtIndex:i] valueForKey:@"Highlight"]];
+    }
+    //paper
+    
+    NSMutableArray* paperID=[NSMutableArray new];
+    NSMutableArray* paperConfID=[NSMutableArray new];
+    NSMutableArray* paperSessionID=[NSMutableArray new];
+    NSMutableArray* peperPersonID=[NSMutableArray new];
+    NSMutableArray* paperPath=[NSMutableArray new];
+    for (int i=0; i<[[json valueForKey:@"paper"]count]; i++) {
+        
+        [paperID addObject:[[[json valueForKey:@"paper"] objectAtIndex:i] valueForKey:@"ID"]];
+        [paperConfID addObject:[[[json valueForKey:@"paper"] objectAtIndex:i] valueForKey:@"IDConf"]];
+        [paperSessionID addObject:[[[json valueForKey:@"paper"] objectAtIndex:i] valueForKey:@"IDSession"]];
+        [peperPersonID addObject:[[[json valueForKey:@"paper"] objectAtIndex:i] valueForKey:@"IDPerson"]];
+        [paperPath addObject:[[[json valueForKey:@"paper"] objectAtIndex:i] valueForKey:@"PaperPath"]];
+    }
+    
+    //person
+    
+    NSMutableArray* personID=[NSMutableArray new];
+    NSMutableArray* personConfID=[NSMutableArray new];
+    NSMutableArray* personName=[NSMutableArray new];
+    NSMutableArray* personType=[NSMutableArray new];
+    NSMutableArray* personDescription=[NSMutableArray new];
+    NSMutableArray* personImagePath=[NSMutableArray new];
+    NSMutableArray* personCompany=[NSMutableArray new];
+    for (int i=0; i<[[json valueForKey:@"person"]count]; i++) {
+        
+        [personID addObject:[[[json valueForKey:@"person"] objectAtIndex:i] valueForKey:@"ID"]];
+        [personConfID addObject:[[[json valueForKey:@"person"] objectAtIndex:i] valueForKey:@"IDConf"]];
+        [personName addObject:[[[json valueForKey:@"person"] objectAtIndex:i] valueForKey:@"Name"]];
+        [personType addObject:[[[json valueForKey:@"person"] objectAtIndex:i] valueForKey:@"Type"]];
+        [personDescription addObject:[[[json valueForKey:@"person"] objectAtIndex:i] valueForKey:@"Description"]];
+        [personImagePath addObject:[[[json valueForKey:@"person"] objectAtIndex:i] valueForKey:@"ImagePath"]];
+        [personCompany addObject:[[[json valueForKey:@"person"] objectAtIndex:i] valueForKey:@"Company"]];
+    }
+    
+    //plant
+    
+    NSMutableArray* plantID=[NSMutableArray new];
+    NSMutableArray* plantConfID=[NSMutableArray new];
+    NSMutableArray* plantName=[NSMutableArray new];
+    NSMutableArray* plantImagePath=[NSMutableArray new];
+    for (int i=0; i<[[json valueForKey:@"plant"]count]; i++) {
+        
+        [plantID addObject:[[[json valueForKey:@"plant"] objectAtIndex:i] valueForKey:@"ID"]];
+        [plantConfID addObject:[[[json valueForKey:@"plant"] objectAtIndex:i] valueForKey:@"IDConf"]];
+        [plantName addObject:[[[json valueForKey:@"plant"] objectAtIndex:i] valueForKey:@"Name"]];
+        [plantImagePath addObject:[[[json valueForKey:@"plant"] objectAtIndex:i] valueForKey:@"ImagePath"]];
+        
+    }
+    
+    //plantPlots
+    
+    NSMutableArray* plantPlotID=[NSMutableArray new];
+    NSMutableArray* plantPlotConfID=[NSMutableArray new];
+    NSMutableArray* plantPlotPlantID=[NSMutableArray new];
+    NSMutableArray* plantPlotXPos=[NSMutableArray new];
+    NSMutableArray* plantPlotYPos=[NSMutableArray new];
+    NSMutableArray* plantPlotName=[NSMutableArray new];
+    NSMutableArray* plantPlotANCode=[NSMutableArray new];
+    NSMutableArray* plantPlotQRCode=[NSMutableArray new];
+    for (int i=0; i<[[json valueForKey:@"plantPlots"]count]; i++) {
+        
+        [plantPlotID addObject:[[[json valueForKey:@"plantPlots"] objectAtIndex:i] valueForKey:@"ID"]];
+        [plantPlotConfID addObject:[[[json valueForKey:@"plantPlots"] objectAtIndex:i] valueForKey:@"IDConf"]];
+        [plantPlotPlantID addObject:[[[json valueForKey:@"plantPlots"] objectAtIndex:i] valueForKey:@"IDPlant"]];
+        [plantPlotXPos addObject:[[[json valueForKey:@"plantPlots"] objectAtIndex:i] valueForKey:@"xPos"]];
+        [plantPlotYPos addObject:[[[json valueForKey:@"plantPlots"] objectAtIndex:i] valueForKey:@"yPos"]];
+        [plantPlotName addObject:[[[json valueForKey:@"plantPlots"] objectAtIndex:i] valueForKey:@"Name"]];
+        [plantPlotANCode addObject:[[[json valueForKey:@"plantPlots"] objectAtIndex:i] valueForKey:@"ANCode"]];
+        [plantPlotQRCode addObject:[[[json valueForKey:@"plantPlots"] objectAtIndex:i] valueForKey:@"QRCode"]];
+    }
+    
+    //session
+    
+    NSMutableArray* sessionID=[NSMutableArray new];
+    NSMutableArray* sessionConfID=[NSMutableArray new];
+    NSMutableArray* sessionName=[NSMutableArray new];
+    NSMutableArray* sessionRating=[NSMutableArray new];
+    NSMutableArray* sessionCount=[NSMutableArray new];
+    NSMutableArray* sessionPlantPlotID=[NSMutableArray new];
+    NSMutableArray* sessionDescription=[NSMutableArray new];
+    NSMutableArray* sessionDateTime=[NSMutableArray new];
+    NSMutableArray* sessionType=[NSMutableArray new];
+	NSMutableArray* sessionSpeaker=[NSMutableArray new];
+    NSMutableArray* sessionAuthor=[NSMutableArray new];
+    NSMutableArray* sessionNeeds=[NSMutableArray new];
+    for (int i=0; i<[[json valueForKey:@"session"]count]; i++) {
+        
+        [sessionID addObject:[[[json valueForKey:@"session"] objectAtIndex:i] valueForKey:@"ID"]];
+        [sessionConfID addObject:[[[json valueForKey:@"session"] objectAtIndex:i] valueForKey:@"IDConf"]];
+        [sessionName addObject:[[[json valueForKey:@"session"] objectAtIndex:i] valueForKey:@"Name"]];
+        [sessionRating addObject:[[[json valueForKey:@"session"] objectAtIndex:i] valueForKey:@"Rating"]];
+        [sessionCount addObject:[[[json valueForKey:@"session"] objectAtIndex:i] valueForKey:@"Count"]];
+        [sessionPlantPlotID addObject:[[[json valueForKey:@"session"] objectAtIndex:i] valueForKey:@"IDPlantPlot"]];
+        [sessionDescription addObject:[[[json valueForKey:@"session"] objectAtIndex:i] valueForKey:@"Description"]];
+        [sessionDateTime addObject:[[[json valueForKey:@"session"] objectAtIndex:i] valueForKey:@"DateTime"]];
+        [sessionType addObject:[[[json valueForKey:@"session"] objectAtIndex:i] valueForKey:@"Type"]];
+		[sessionSpeaker addObject:[[[json valueForKey:@"session"] objectAtIndex:i] valueForKey:@"Speaker"]];
+        [sessionAuthor addObject:[[[json valueForKey:@"session"] objectAtIndex:i] valueForKey:@"Author"]];
+        [sessionNeeds addObject:[[[json valueForKey:@"session"] objectAtIndex:i] valueForKey:@"Needs"]];
+    }
+    
+    if(true==YES){
+        NSLog(@"This is a test!");
+    }
     
     
 }
