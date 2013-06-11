@@ -13,6 +13,7 @@
 {
     @protected
     Author* author;
+    int paperID;
 }
 
 //Session author
@@ -28,13 +29,15 @@
  @param a author of the workshop
  @returns a newly initialized object
  */
--(Session*)initWithDataAndSpeaker:(int)eID date:(NSDate*)d title:(NSString*)t theme:(NSString*)th speaker: (Speaker*)s athor: (Author*) a;
+-(Session*)initWithDataAndSpeaker:(int)eID date:(NSDate*)d title:(NSString*)t theme:(NSString*)th speaker: (Speaker*)s athor: (Author*) a paper: (int)pID;
 
 /**
  Gets the session's author
  @returns session's author
  */
 -(Author*)getAuthor;
+
+-(int)getPaperID;
 @end
 
 
