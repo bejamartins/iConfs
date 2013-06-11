@@ -385,7 +385,7 @@
     for (int i = 0; i<[notif count]; i++) {
         n = [[Notification alloc] init];
         
-        n = [n initWithData: [notif[i] valueForKey:@"Title"] text: [notif[i] valueForKey:@"Description"] date: (NSDate*)[notif[i] valueForKey:@"TimeStamp"]];
+        n = [n initWithData: [notif[i] valueForKey:@"ID"] title:[notif[i] valueForKey:@"Title"] text: [notif[i] valueForKey:@"Description"] date: (NSDate*)[notif[i] valueForKey:@"TimeStamp"]];
         //[notifications addObject: n];
         [conf addNotification:n];
     }
@@ -465,7 +465,12 @@
         }
         [e setRating:[[sess[i] valueForKey:@"Rating"] intValue]];
     }
-    
+    NSDictionary* mapR = [raw valueForKey:@"Map"];
+    Map* map = [[Map alloc]init];
+    NSString* latitude = [mapR valueForKey:@"Latitude"];
+    NSString* longitude = [mapR valueForKey:@"Longitude"];
+    map = [map initWithData:[mapR valueForKey:@"ID"] lat:[latitude floatValue] longi:[longitude floatValue] placeName:[mapR valueForKey:@"PlaceName"] address:[mapR valueForKey:@"AddressName"]];
+    [conf setMap:map];
     return conf;
 }
 

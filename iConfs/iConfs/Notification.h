@@ -12,6 +12,7 @@
     NSString* title;
     NSString* text;
     NSDate* sentDate;
+    NSString* notifID;
 }
 
 
@@ -31,7 +32,7 @@
  @param date sent date of the news
  @returns a newly initialized object
  */
--(Notification*)initWithData: (NSString*) t text: (NSString*) txt date:(NSDate*)date;
+-(Notification*)initWithData: (NSString*)nID title:(NSString*) t text: (NSString*) txt date:(NSDate*)date;
 
 /**
  Gets the news title

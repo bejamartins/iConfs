@@ -14,6 +14,7 @@
 #import "Event.h"
 #import "EventWorkshop.h"
 #import "Session.h"
+#import "Map.h"
 
 @interface IConfs : AppDataObject
 {

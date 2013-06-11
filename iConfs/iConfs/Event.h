@@ -20,6 +20,7 @@
     int vote;
     int rating;
     int eventID;
+    NSString* placeID;
 }
 
 //Date and time of the event
@@ -142,6 +143,10 @@
  @returns 
  */
 -(void)setDate:(NSDate*)d;
+
+-(NSString*)getPlaceID;
+
+-(void)setPlaceID:(NSString*)newPlaceID;
 
 
 @end
