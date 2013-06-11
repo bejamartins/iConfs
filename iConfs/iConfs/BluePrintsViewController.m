@@ -50,4 +50,8 @@
     return cell;
 }
 
+-(void) setMap:(NSString*) mapPath{
+    
+}
+
 @end

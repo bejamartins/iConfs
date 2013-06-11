@@ -156,7 +156,7 @@
 
 -(BOOL)addNotification:(Notification*)notification{
     BOOL isHere = false;
-    for (int i=0; i<[self.news count]; i++) {
+    for (int i=0; i<[self.notifications count]; i++) {
         if ([((Notification*)[self.notifications objectAtIndex:i]).getTitle isEqual: notification.getTitle] && [((Notification*)[self.notifications objectAtIndex:i]).getDate isEqual: notification.getDate]){
             isHere = true;
             break;

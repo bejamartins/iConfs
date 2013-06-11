@@ -14,7 +14,7 @@
     mapID = mID;
     latitude = lt;
     longitude = lg;
-    placeName = pn;
+    placeName = pn; 
     address = add;
     return self;
 }
