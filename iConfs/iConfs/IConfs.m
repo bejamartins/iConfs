@@ -381,7 +381,8 @@
     UIImage* confIm = [self loadImageFromDrive: confID : [c valueForKey:@"ImagePath"] ];
     conf = [conf initWithData: [c valueForKey:@"ID"] name: [c valueForKey:@"Name"] image:confIm bluePrint:NULL /*precisa de ser implementado no servidor*/];
     
-    NSArray* notif = [raw valueForKey:@"notif"];
+    NSArray* notif = [[NSArray alloc] init];
+    notif = [raw valueForKey:@"notif"];
     Notification* n;
     for (int i = 0; i<[notif count]; i++) {
         n = [[Notification alloc] init];
@@ -392,7 +393,8 @@
     }
 
     //People
-    NSArray* people = [raw valueForKey:@"person"];
+    NSArray* people = [[NSArray alloc]  init];
+    people = [raw valueForKey:@"person"];
     Person* p;
     for (int i = 0; 0<[people count]; i++) {
         currID = [[[[people[i] valueForKey:@"ID"]componentsSeparatedByString:@"s"] objectAtIndex: 1]intValue];
@@ -430,7 +432,8 @@
     }
     
     //Events
-    NSArray* sess = [raw valueForKey:@"session"];
+    NSArray* sess = [[NSArray alloc] init];
+    sess = [raw valueForKey:@"session"];
     Event* e;
     for (int i = 0; i<[sess count]; i++) {
         if(![[sess[i] valueForKey:@"Speaker"] isEqual:@""]){
@@ -467,7 +470,8 @@
         }
         [e setRating:[[sess[i] valueForKey:@"Rating"] intValue]];
     }
-    NSDictionary* mapR = [raw valueForKey:@"Map"];
+    NSDictionary* mapR = [[NSDictionary alloc]init];
+    mapR =[raw valueForKey:@"Map"];
     Map* map = [[Map alloc]init];
     NSString* latitude = [mapR valueForKey:@"Latitude"];
     NSString* longitude = [mapR valueForKey:@"Longitude"];
