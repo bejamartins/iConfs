@@ -7,12 +7,23 @@
 //
 
 #import "InitViewController.h"
+#import "AppDelegateProtocol.h"
+#import "IConfs.h"
 
-@interface InitViewController ()
-
+@interface InitViewController (){
+    IConfs *theAppData;
+}
 @end
 
 @implementation InitViewController
+
+- (IConfs*) appData;
+{
+	id<AppDelegateProtocol> theDelegate = (id<AppDelegateProtocol>) [UIApplication sharedApplication].delegate;
+	IConfs* theAppDataObject;
+	theAppDataObject = (IConfs*)[theDelegate appData];
+	return theAppDataObject;
+}
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -27,6 +38,10 @@
 {
     [super viewDidLoad];
 	// Do any additional setup after loading the view.
+    
+    theAppData = [self appData];
+    [theAppData updateConferences];
+    [theAppData bootableConfs];
     
     self.TopViewController = [self.storyboard  instantiateViewControllerWithIdentifier:@"Home"];
 }

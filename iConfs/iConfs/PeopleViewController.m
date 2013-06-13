@@ -96,12 +96,15 @@
     
     PeopleCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:CellIdentifier forIndexPath:indexPath];
     
+    NSString* tmpS=[[(MenuViewController*)[[self slidingViewController] underLeftViewController] selectedConf] getID];
+    
     if (!searchItem) {
-        [[cell Image]setImage:[UIImage imageNamed:[(Person*)[confPeople objectAtIndex:[indexPath row]] getImagePath]]];
+        [[cell Image] setImage:[[(MenuViewController*)[[self slidingViewController] underLeftViewController] selectedConf] loadImage:tmpS :[(Person*)[confPeople objectAtIndex:[indexPath row]] getImagePath]]];
+        
         [[cell Name]setText:[(Person*)[confPeople objectAtIndex:[indexPath row]] getName]];
         [[cell Company]setText:[(Person*)[confPeople objectAtIndex:[indexPath row]] getWork]];
     }else {
-        [[cell Image]setImage:[UIImage imageNamed:[(Person*)[confSearchPeople objectAtIndex:[indexPath row]] getImagePath]]];
+        [[cell Image] setImage:[[(MenuViewController*)[[self slidingViewController] underLeftViewController] selectedConf] loadImage:tmpS :[(Person*)[confSearchPeople objectAtIndex:[indexPath row]] getImagePath]]];
         [[cell Name]setText:[(Person*)[confSearchPeople objectAtIndex:[indexPath row]] getName]];
         [[cell Company]setText:[(Person*)[confSearchPeople objectAtIndex:[indexPath row]] getWork]];
     }
@@ -126,6 +129,8 @@
 
 - (void)searchBar:(UISearchBar *)searchBar textDidChange:(NSString *)searchText
 {
+    confSearchPeople = [[NSMutableArray alloc] init];
+    
     if ([searchText length] == 0) {
         searchItem = NO;
     }else {

@@ -282,5 +282,8 @@
 -(Map*) getMap;
 
 -(void) setMap: (Map*)newMap;
+
+-(UIImage*)loadImage:(NSString*)confID : (NSString*)imagePath;
+
 @end
 

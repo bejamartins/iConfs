@@ -358,6 +358,18 @@
     
 }
 
+-(void)bootableConfs{
+    
+    NSArray*tmpConfs=[self loadConfsIDs];
+    Conference* current;
+    for (int i=0; i<[tmpConfs count]; i++) {
+        current = [self jsonToConference:[tmpConfs objectAtIndex:i]];
+        [conferences addObject:current];
+        [addedConfsIDs addObject:[current getID]];
+    }
+}
+
+
 -(Conference*)jsonToConference:(NSString*)confID{
     Conference* conf;
     conf = [[Conference alloc] init];
@@ -422,22 +434,23 @@
         if ([[people[i] valueForKey:@"Type"] isEqual:@"Author"]){
             p = [[Author alloc] init];
             p = [(Author*)p initWithData: [people[i] valueForKey:@"Name"] work: [people[i] valueForKey:@"Company"] /*queremos o cargo e não a companhia*/ image:[people[i] valueForKey:@"ImagePath"] personID: currID];
-            [authors setValue:p forKey:[[[people[i] valueForKey:@"ID"]componentsSeparatedByString:@"p"] objectAtIndex: 1]];
+            [authors setObject:p forKey:[NSString stringWithFormat:@"%d",currID]];
             [conf addAuthor:(Author*)p];
         }
         else if ([[people[i] valueForKey:@"Type"] isEqual:@"Speaker"]){
             p = [[Speaker alloc] init];
             p = [(Speaker*)p initWithData: [people[i] valueForKey:@"Name"] work: [people[i] valueForKey:@"Company"] image:[people[i] valueForKey:@"ImagePath"] personID: currID resume: [people[i] valueForKey:@"Description"]];
-            [speakers setValue:p forKey:[[[people[i] valueForKey:@"ID"]componentsSeparatedByString:@"p"] objectAtIndex: 1]];
+            [speakers setObject:p forKey:[NSString stringWithFormat:@"%d",currID]];
             [conf addSpeaker:(Speaker*)p];
         }
-        else if ([[people[i] valueForKey:@"Type"] isEqual:@"Organizer"]){
+        else if ([[people[i] valueForKey:@"Type"] isEqual:@"Organization"]){
             p = [[Organizer alloc] init];
             p = [(Organizer*)p initWithData: [people[i] valueForKey:@"Name"] work: [people[i] valueForKey:@"Company"] image:[people[i] valueForKey:@"ImagePath"] personID: currID job: [people[i] valueForKey:@"Description"]];
-            [organizers setValue:p forKey:[[[people[i] valueForKey:@"ID"]componentsSeparatedByString:@"p"] objectAtIndex: 1]];
+            [organizers setObject:p forKey:[NSString stringWithFormat:@"%d",currID]];
             [conf addOrganizer:(Organizer*)p];
         } //Isto precisava de ser um ISA no MySQL do servidor...
     }
+    
     
     NSArray * au = [authors allValues];
     NSArray * sp = [speakers allValues];
@@ -889,5 +902,31 @@
     
     
 }
+
+
+
+
+//dado o confID e a variavel paperPath (ex.: @"paper.pdf")
+//devolve o caminho absoluto ate ao ficheiro
+-(NSString*)getPaper:(NSString*)confID : (NSString*)paperPath{
+    
+    return [NSString stringWithFormat:@"%@%@%@%@%@",[NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES)objectAtIndex:0],@"/",confID,@"/",paperPath];
+    
+}
+
+//updates all conference information that is on disc
+-(void)updateConferences{
+	NSArray*tmp=[self loadConfsIDs];
+	for (int i=0; i<[tmp count]; i++) {
+        NSData* tmpData=[self getConf:[tmp objectAtIndex:i]];
+                         if(tmpData!=NULL){
+                             NSDictionary* tmpConf=[self parseJSON:tmpData];
+                             [self saveConf:tmpConf:tmpData];
+                         }
+                         }
+                         
+                         }
+
+
 
 @end

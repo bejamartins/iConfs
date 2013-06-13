@@ -105,4 +105,9 @@
 
 -(BOOL)addConferenceWithID:(NSString*)confID;
 
+-(void)updateConferences;
+
+-(void)bootableConfs;
+-(UIImage*)loadImageFromDrive:(NSString*)confID : (NSString*)imagePath;
+
 @end
