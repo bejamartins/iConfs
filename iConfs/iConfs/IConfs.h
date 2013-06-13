@@ -24,6 +24,7 @@
     NSMutableArray* agenda;
     NSMutableDictionary* conferencesDic;
     NSMutableDictionary* allConferencesDic;
+    NSMutableArray* addedConfsIDs;
 }
 
 //Subscribed conferences

@@ -11,10 +11,6 @@
 @implementation Conference
 
 -(Conference*)initWithData: (NSString*)cID name: (NSString*)n image:(UIImage *)lp bluePrint:(NSMutableDictionary *)bp{
-    self.confID = cID;
-    self.confName = n;
-    self.image = lp;
-    self.bluePrints = bp;
     //NSMutableDictionary *authors = [[NSMutableDictionary alloc] init];
     self.events = [[NSMutableDictionary alloc] init];
     self.news = [[NSMutableArray alloc] init];
@@ -27,6 +23,10 @@
     self.workshops = [[NSMutableArray alloc] init];
     self.eventsList = [[NSMutableArray alloc] init];
     self.image = [[UIImage alloc] init];
+    self.confID = cID;
+    self.confName = n;
+    self.image = lp;
+    self.bluePrints = bp;
     return self;
 }
 
@@ -328,7 +328,6 @@
 }
 
 -(UIImage*)getLogo{
-    NSLog(@"img: %@",self.image);
     return self.image;
 }
 

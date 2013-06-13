@@ -46,7 +46,7 @@
     
     confSearchPeople = [[NSMutableArray alloc] init];
     
-    confPeople = [[(MenuViewController*)[[self slidingViewController] underLeftViewController] selectedConf] getAuthors];
+    confPeople = [[(MenuViewController*)[[self slidingViewController] underLeftViewController] selectedConf] getSpeakers];
     
     [[[self view] layer] setShadowOpacity:0.75f];
     [[[self view] layer] setShadowRadius:10.0f];
@@ -154,7 +154,7 @@
 
 - (IBAction)selectedOption:(id)sender {
     if ([[self Options] selectedSegmentIndex] == 0) {
-        confPeople = [[(MenuViewController*)[[self slidingViewController] underLeftViewController] selectedConf] getAuthors];
+        confPeople = [[(MenuViewController*)[[self slidingViewController] underLeftViewController] selectedConf] getSpeakers];
         [[[self NavBar] topItem] setTitle:@"Speakers"];
     }else if ([[self Options] selectedSegmentIndex] == 1) {
         confPeople = [[(MenuViewController*)[[self slidingViewController] underLeftViewController] selectedConf] getAuthors];
