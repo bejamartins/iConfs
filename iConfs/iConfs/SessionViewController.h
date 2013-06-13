@@ -8,16 +8,20 @@
 
 #import <UIKit/UIKit.h>
 #import "Event.h"
+#import "Session.h"
 
-@interface SessionViewController : UIViewController
+@interface SessionViewController : UIViewController<UICollectionViewDelegate,UICollectionViewDataSource>
 @property (strong, nonatomic) IBOutlet UILabel *abstract;
 - (IBAction)showInPlant:(id)sender;
 - (IBAction)addToAgenda:(id)sender;
+-(void) changeSession:(Session *)givenSession;
+
 @property (strong, nonatomic) IBOutlet UILabel *sessionName;
 @property (strong, nonatomic) IBOutlet UILabel *sessionWhen;
 @property (strong, nonatomic) IBOutlet UILabel *sessionWhere;
 @property (strong, nonatomic) IBOutlet UIButton *MenuButton;
+@property (strong, nonatomic) IBOutlet UICollectionView *collection;
 
-@property Event *Session;
+@property Session *Session;
 
 @end
