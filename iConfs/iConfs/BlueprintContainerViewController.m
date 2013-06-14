@@ -7,7 +7,7 @@
 //
 
 #import "BlueprintContainerViewController.h"
-
+#import "Place.h"
 @interface BlueprintContainerViewController ()
 
 @end
@@ -26,6 +26,16 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    //vai colocar os places! pq a planta é posta no changeBlueprint
+    
+    for(int i=0; i< [self.placesToShow count];i++){
+        Place *p= [self.placesToShow objectAtIndex:i];
+        UIImageView *imgView = [[UIImageView alloc] initWithFrame:CGRectMake([p getX],[p getY], 30, 20)];
+        UIImage *graphImage = [[UIImage alloc] initWithContentsOfFile: [p getLogo]];
+        [imgView setImage:graphImage];
+    }
+    
+    
 	// Do any additional setup after loading the view.
 }
 
@@ -36,8 +46,20 @@
 }
 
 
--(void) changeBlueprint:(Blueprints*)prints{
-    self.blueprints=prints;
+-(void) changeBlueprint:(UIImage*)print{
+    [self.blueprint setImage:print];
+    [self viewDidLoad];
+    //  TODO: confirmar
 }
+
+-(void) changePlaces:(NSArray*) places{
+
+    self.placesToShow=places;
+}
+//acho q n e necessario mas depois vejo
+-(void) changeSearch:(BOOL) showSearch{
+    self.search=showSearch;
+}
+
 
 @end

@@ -381,8 +381,6 @@
 				28A1C5741767B551005B5F5B /* ViewControllers */,
 				289746001764DFCC00CB2022 /* Cells */,
 				A07887DA175A3CE500C1D90C /* MainStoryboard.storyboard */,
-				28586057176A826300FF4FF3 /* BlueprintContainerViewController.h */,
-				28586058176A826400FF4FF3 /* BlueprintContainerViewController.m */,
 				A07887DA175A3CE500C1D90C /* MainStoryboard.storyboard */,
 			);
 			name = Interfaces;
@@ -417,6 +415,8 @@
 		28A1C5741767B551005B5F5B /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
+				28586057176A826300FF4FF3 /* BlueprintContainerViewController.h */,
+				28586058176A826400FF4FF3 /* BlueprintContainerViewController.m */,
 				280F373B1763F8DB00E72424 /* CollectionPeopleInSession.h */,
 				280F373C1763F8DB00E72424 /* CollectionPeopleInSession.m */,
 				7078016917667E2000B3C4D4 /* AgendaViewController.h */,
