@@ -2448,7 +2448,6 @@
         <class className="PersonViewController" superclassName="UIViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/PersonViewController.h"/>
             <relationships>
-                <relationship kind="action" name="revealMenu:"/>
                 <relationship kind="outlet" name="bar" candidateClass="UINavigationItem"/>
                 <relationship kind="outlet" name="biography" candidateClass="UILabel"/>
                 <relationship kind="outlet" name="navigationBar" candidateClass="UINavigationItem"/>

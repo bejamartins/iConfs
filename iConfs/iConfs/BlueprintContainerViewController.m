@@ -36,6 +36,8 @@
 }
 
 
-//-(void) change
+-(void) changeBlueprint:(Blueprints*)prints{
+    self.blueprints=prints;
+}
 
 @end
