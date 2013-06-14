@@ -394,7 +394,7 @@
     //People
     NSArray* people = [raw valueForKey:@"person"];
     Person* p;
-    for (int i = 0; 0<[people count]; i++) {
+    for (int i = 0; i<[people count]; i++) {
         currID = [[[[people[i] valueForKey:@"ID"]componentsSeparatedByString:@"s"] objectAtIndex: 1]intValue];
         if ([[people[i] valueForKey:@"Type"] isEqual:@"Author"]){
             p = [[Author alloc] init];

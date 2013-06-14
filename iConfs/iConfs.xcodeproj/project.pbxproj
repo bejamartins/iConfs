@@ -57,6 +57,7 @@
 		707B7C15175D62CD00E4747A /* ECSlidingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 707B7C12175D62CD00E4747A /* ECSlidingViewController.m */; };
 		707B7C16175D62CD00E4747A /* UIImage+ImageWithUIView.m in Sources */ = {isa = PBXBuildFile; fileRef = 707B7C14175D62CD00E4747A /* UIImage+ImageWithUIView.m */; };
 		707B7C19175D6E2B00E4747A /* InitViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 707B7C18175D6E2B00E4747A /* InitViewController.m */; };
+		70B0E6C71767DD350055F394 /* MainStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 70B0E6C61767DD350055F394 /* MainStoryboard.storyboard */; };
 		A0570151175E2848000FED8F /* TestingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A0570150175E2848000FED8F /* TestingViewController.m */; };
 		A05A74FA1760F6CF00F021BD /* ioapi.c in Sources */ = {isa = PBXBuildFile; fileRef = A05A74F01760F6CF00F021BD /* ioapi.c */; };
 		A05A74FB1760F6CF00F021BD /* mztools.c in Sources */ = {isa = PBXBuildFile; fileRef = A05A74F21760F6CF00F021BD /* mztools.c */; };
@@ -97,7 +98,6 @@
 		A07887F1175A3CE500C1D90C /* ManageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A07887D5175A3CE500C1D90C /* ManageViewController.m */; };
 		A07887F2175A3CE500C1D90C /* MenuViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A07887D7175A3CE500C1D90C /* MenuViewController.m */; };
 		A07887F3175A3CE500C1D90C /* ManageConfCell.m in Sources */ = {isa = PBXBuildFile; fileRef = A07887D9175A3CE500C1D90C /* ManageConfCell.m */; };
-		A07887F4175A3CE500C1D90C /* MainStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A07887DA175A3CE500C1D90C /* MainStoryboard.storyboard */; };
 		A07887FA175A3DAA00C1D90C /* 11.png in Resources */ = {isa = PBXBuildFile; fileRef = A07887F5175A3DAA00C1D90C /* 11.png */; };
 		A07887FB175A3DAA00C1D90C /* pulpito.png in Resources */ = {isa = PBXBuildFile; fileRef = A07887F6175A3DAA00C1D90C /* pulpito.png */; };
 		A07887FC175A3DAA00C1D90C /* checkbox-checked.png in Resources */ = {isa = PBXBuildFile; fileRef = A07887F7175A3DAA00C1D90C /* checkbox-checked.png */; };
@@ -205,6 +205,7 @@
 		707B7C14175D62CD00E4747A /* UIImage+ImageWithUIView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+ImageWithUIView.m"; sourceTree = "<group>"; };
 		707B7C17175D6E2B00E4747A /* InitViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InitViewController.h; sourceTree = "<group>"; };
 		707B7C18175D6E2B00E4747A /* InitViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InitViewController.m; sourceTree = "<group>"; };
+		70B0E6C61767DD350055F394 /* MainStoryboard.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = MainStoryboard.storyboard; sourceTree = "<group>"; };
 		A057014F175E2847000FED8F /* TestingViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TestingViewController.h; sourceTree = "<group>"; };
 		A0570150175E2848000FED8F /* TestingViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TestingViewController.m; sourceTree = "<group>"; };
 		A05A74EF1760F6CF00F021BD /* crypt.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = crypt.h; sourceTree = "<group>"; };
@@ -278,7 +279,6 @@
 		A07887D7175A3CE500C1D90C /* MenuViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MenuViewController.m; sourceTree = "<group>"; };
 		A07887D8175A3CE500C1D90C /* ManageConfCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ManageConfCell.h; sourceTree = "<group>"; };
 		A07887D9175A3CE500C1D90C /* ManageConfCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ManageConfCell.m; sourceTree = "<group>"; };
-		A07887DA175A3CE500C1D90C /* MainStoryboard.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = MainStoryboard.storyboard; sourceTree = "<group>"; };
 		A07887F5175A3DAA00C1D90C /* 11.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 11.png; sourceTree = "<group>"; };
 		A07887F6175A3DAA00C1D90C /* pulpito.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = pulpito.png; sourceTree = "<group>"; };
 		A07887F7175A3DAA00C1D90C /* checkbox-checked.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "checkbox-checked.png"; sourceTree = "<group>"; };
@@ -375,8 +375,6 @@
 			children = (
 				28A1C5741767B551005B5F5B /* ViewControllers */,
 				289746001764DFCC00CB2022 /* Cells */,
-				A07887DA175A3CE500C1D90C /* MainStoryboard.storyboard */,
-				A07887DA175A3CE500C1D90C /* MainStoryboard.storyboard */,
 			);
 			name = Interfaces;
 			sourceTree = "<group>";
@@ -410,6 +408,7 @@
 		28A1C5741767B551005B5F5B /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
+				70B0E6C61767DD350055F394 /* MainStoryboard.storyboard */,
 				280F373B1763F8DB00E72424 /* CollectionPeopleInSession.h */,
 				280F373C1763F8DB00E72424 /* CollectionPeopleInSession.m */,
 				7078016917667E2000B3C4D4 /* AgendaViewController.h */,
@@ -650,7 +649,6 @@
 				A078879B175A3C7800C1D90C /* Default.png in Resources */,
 				A078879D175A3C7800C1D90C /* Default@2x.png in Resources */,
 				A078879F175A3C7800C1D90C /* Default-568h@2x.png in Resources */,
-				A07887F4175A3CE500C1D90C /* MainStoryboard.storyboard in Resources */,
 				A07887FA175A3DAA00C1D90C /* 11.png in Resources */,
 				A07887FB175A3DAA00C1D90C /* pulpito.png in Resources */,
 				A07887FC175A3DAA00C1D90C /* checkbox-checked.png in Resources */,
@@ -685,6 +683,7 @@
 				28A0112C1767892B002F73A5 /* arrow.png in Resources */,
 				28561E7F17678D6E00E29FD4 /* arrowLeft.png in Resources */,
 				28A1C57D1767C2BB005B5F5B /* pdf.pdf in Resources */,
+				70B0E6C71767DD350055F394 /* MainStoryboard.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

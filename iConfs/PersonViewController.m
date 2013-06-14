@@ -17,7 +17,7 @@
 
 @implementation PersonViewController
 
-@synthesize picture,session_theme,session_when,session_where,biography,IndexAux,navigationBar,bar,showPerson, MenuButton;
+@synthesize picture,session_theme,session_when,session_where,biography,IndexAux,navigationBar,bar,showPerson, MenuButton, shownPerson;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -49,10 +49,12 @@
 
     [bar setTitle:navigationTitle];
     [biography setText:[ biographies objectAtIndex:showPerson]];
-   
-    //[picture setImage:passPicture];
+
     [super viewDidLoad];
 	// Do any additional setup after loading the view.
+    
+    [navigationBar setTitle:[shownPerson getName]];
+    [picture setImage:[UIImage imageNamed:[shownPerson getImagePath]]];
     
     [[[self view] layer] setShadowOpacity:0.75f];
     [[[self view] layer] setShadowRadius:10.0f];
