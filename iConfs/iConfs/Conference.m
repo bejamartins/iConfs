@@ -11,10 +11,6 @@
 @implementation Conference
 
 -(Conference*)initWithData: (NSString*)cID name: (NSString*)n image:(UIImage *)lp bluePrint:(NSMutableDictionary *)bp{
-    self.confID = cID;
-    self.confName = n;
-    self.image = lp;
-    self.bluePrints = bp;
     //NSMutableDictionary *authors = [[NSMutableDictionary alloc] init];
     self.events = [[NSMutableDictionary alloc] init];
     self.news = [[NSMutableArray alloc] init];
@@ -27,22 +23,26 @@
     self.workshops = [[NSMutableArray alloc] init];
     self.eventsList = [[NSMutableArray alloc] init];
     self.image = [[UIImage alloc] init];
+    self.confID = cID;
+    self.confName = n;
+    self.image = lp;
+    self.bluePrints = bp;
     return self;
 }
 
 -(BOOL)addAuthor:(Author*)author{
     
-    NSNumber *value = [self.authors objectForKey:[NSNumber numberWithInteger: author.personID]];
+    /*NSNumber *value = [self.authors objectForKey:[NSNumber numberWithInteger: author.personID]];
     
     if (value)
     {
         return false;
     }
     else
-    {
-        [self.authors setObject:author forKey: [NSNumber numberWithInteger: author.personID]];
+    {*/
+        [[self authors] setObject:author forKey: [NSNumber numberWithInteger: [author getID]]];
         return true;
-    }
+    //}
 }
 
 
@@ -67,17 +67,17 @@
 
 -(BOOL)addOrganizer:(Organizer*)organizer{
     
-    NSNumber *value = [self.organizers objectForKey:[NSNumber numberWithInteger: organizer.personID]];
-    
+   /* NSNumber *value = [self.organizers objectForKey:[NSNumber numberWithInteger: organizer.personID]];
+    NSLog(organizers);
     if (value)
     {
         return false;
     }
     else
-    {
-        [self.organizers setObject:organizer forKey:[NSNumber numberWithInteger: organizer.personID]];
+    {*/
+        [[self organizers] setObject:organizer forKey:[NSNumber numberWithInteger: [organizer getID]]];
         return true;
-    }
+    //}
 }
 
 -(BOOL)removeOrganizer:(int)personID{
@@ -101,9 +101,8 @@
 
 -(BOOL)addSpeaker:(Speaker*)speaker{
     
-    NSNumber *value = [self.speakers objectForKey:[NSNumber numberWithInteger: speaker.personID]];
-    
-    if (value)
+    /*NSNumber *value = [[self speakers] objectForKey:[NSNumber numberWithInteger: [speaker personID]]];
+    if (value!=NULL)
     {
         return false;
     }
@@ -111,7 +110,11 @@
     {
         [self.speakers setObject:speaker forKey:[NSNumber numberWithInteger: speaker.personID]];
         return true;
-    }
+    }*/
+
+        [[self speakers] setObject:speaker forKey:[NSNumber numberWithInteger: [speaker getID]]];
+        return true;
+
     
 }
 
@@ -132,7 +135,7 @@
 }
 
 -(NSArray*)getSpeakers{
-    return [self.organizers allValues];
+    return [self.speakers allValues];
 }
 
 -(BOOL)addNews:(News*)n{
@@ -328,7 +331,6 @@
 }
 
 -(UIImage*)getLogo{
-    NSLog(@"img: %@",self.image);
     return self.image;
 }
 
@@ -343,6 +345,24 @@
 -(void) setMap: (Map*)newMap{
     map = newMap;
 }
+
+
+-(UIImage*)loadImage:(NSString*)confID : (NSString*)imagePath{
+    
+    NSString* imgPath=[NSString stringWithFormat:@"%@%@%@%@%@",[NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES)objectAtIndex:0],@"/",confID,@"/",imagePath];
+    
+    NSData* imgData=[NSData dataWithContentsOfFile:imgPath options:kNilOptions error:NULL];
+    UIImage* img;
+    if (imgData == NULL)
+        img = NULL;
+    else
+        img =[UIImage imageWithData:imgData];
+    
+    return img;
+    
+    
+}
+
 
 @end
 

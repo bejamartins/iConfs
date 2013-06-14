@@ -24,6 +24,7 @@
     NSMutableArray* agenda;
     NSMutableDictionary* conferencesDic;
     NSMutableDictionary* allConferencesDic;
+    NSMutableArray* addedConfsIDs;
 }
 
 //Subscribed conferences
@@ -103,5 +104,10 @@
 -(NSString*)getfetchedIDs;
 
 -(BOOL)addConferenceWithID:(NSString*)confID;
+
+-(void)updateConferences;
+
+-(void)bootableConfs;
+-(UIImage*)loadImageFromDrive:(NSString*)confID : (NSString*)imagePath;
 
 @end

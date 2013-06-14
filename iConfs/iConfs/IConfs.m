@@ -6,6 +6,28 @@
 //  Copyright (c) 2013 G10PI. All rights reserved.
 //
 
+
+/*
+ NOTA GRANDE E IMPORTANTE, UNICAS FUN«OES QUE DEVEM SER USADAS SAO:
+ loadImage:confID:imgPath
+ getNotifs:confID:timeStamp
+ setRating:confID:sessionID:rating
+ getRating:confID:sessionID
+ loadConfsIDs
+ A FUNCAO QUE O EDDY E EU ESTAMOS A MEIO theAlmightyGetter:confID (que usa parseJSON:[loadData:confID])
+ deleteConf:confID
+ addConf:confID
+ 
+ COMO EXTRA HA AINDA A CONCATENACAO DE FUNCOES SEGUINTE PARA FAZER UM GENERO DE "UPDATE" A UMA CONF
+ NSDATA*tmp=getConf:confID
+ saveConf:[parseJSON:tmp]:tmp
+ QUE PODE SER USADA POR EXEMPLO PARA UM UPDATE TOTAL DE NOTIFICACOES E DE RATINGS
+ LUGARES PROPOSTOS PARA UTILIZACAO: ENTRAR NA CONF, SAIR DA CONF, INICIAR A APLICACAO, SAIR DA APLICACAO
+ VER RATING, MANDAR RATING E/OU VER NOTIFS
+ */
+
+
+
 #import "IConfs.h"
 #import "ZipArchive.h"
 
@@ -22,6 +44,7 @@
     conferences = [NSMutableArray new];
     conferencesDic = [[NSMutableDictionary alloc] init];
     allConferencesDic = [[NSMutableDictionary alloc] init];
+    addedConfsIDs = [[NSMutableArray alloc] init];
     return self;
 }
 
@@ -86,6 +109,7 @@
     if(isHere == false){
         [self addConf: confID];
         [conferences addObject: [self jsonToConference:confID]];
+        [addedConfsIDs addObject:confID];
         return true;
     }
     else return false;
@@ -143,6 +167,8 @@
         [mutableIndexSet addIndex:index];
         [conferences removeObjectsAtIndexes:mutableIndexSet];
         [self deleteConfFromDrive:confID];
+        //NSNumber* ref = [NSNumber numberWithInt:[addedConfsIDs indexOfObject:confID]];
+        [addedConfsIDs removeObjectAtIndex:[addedConfsIDs indexOfObject:confID]];
         return true;
     }
     else return false;
@@ -194,9 +220,6 @@
     //get specific index for the value with key=Name
     //NSArray *array1=[[json valueForKey:@"Name"] objectAtIndex:1];
     //log results
-    //NSLog(@"All Info: %@", json);
-    //NSLog(@"All IDs: %@", array);
-    //NSLog(@"Name in position 1: %@", array1);
     //return [[NSString alloc] initWithData:data encoding: NSUTF8StringEncoding];
     return json;
     
@@ -232,7 +255,6 @@
             }
             [allConferencesDic setObject:[allConferences lastObject]  forKey: ((Conference*)[allConferences lastObject]).getID];
         }
-        //NSLog(@"DataIDs: %@", allConferences);
         return true;
     }
     
@@ -244,10 +266,13 @@
 }
 
 -(NSArray*)getRestOfConfs{
-    NSMutableArray* ret;
-    ret = [NSMutableArray new];
+    NSMutableArray* ret = [[NSMutableArray alloc] init];
+    NSString* a;
     for (int i=0; i<[allConferences count]; i++) {
-        if([conferences indexOfObject:[allConferences objectAtIndex:i]] == NSNotFound){
+        //if([conferences indexOfObject:[allConferences objectAtIndex:i]] == NSNotFound){
+        a = [(Conference*)[allConferences objectAtIndex:i] getID];
+        if([addedConfsIDs indexOfObject:a] == NSNotFound){
+        //if([[addedConfsIDs indexOfObject:[((Conferece*)[allConferences objectAtIndex:i]) getID]] isEqual NSNotFound]){
             [ret addObject: [allConferences objectAtIndex:i]];
         }
     }
@@ -262,7 +287,6 @@
     NSDictionary* fetch = [self getConfsFromServer];
     NSArray* dataIDs = [self getConfsIDFromServer: fetch];
     NSString* tmp=@"";
-    NSLog(@"DataIDs: %@", dataIDs);
     for(int i=0; i<[dataIDs count]; i++){
         tmp= [NSString stringWithFormat:@"%@%@%@",tmp, @", ",[dataIDs objectAtIndex:i]];
     }
@@ -312,7 +336,6 @@
 - (NSData*)getConf:(NSString*)confID{
     NSString* post=[NSString stringWithFormat:@"%@%@%@",@"Conf=",confID,@"&SubmitCheck=Sent"];
     
-    //NSLog(@"post is: %@", post);
     
     NSData* postData=[post dataUsingEncoding:NSASCIIStringEncoding allowLossyConversion:NO];
     NSString* postLength=[NSString stringWithFormat:@"%d",[postData length]];
@@ -329,15 +352,23 @@
     NSURLResponse* response;
     return[NSURLConnection sendSynchronousRequest:request returningResponse:&response error:NULL];
     
-    // NSLog(@"test:%@",conn);
     // NSData* data= conn;
     // NSDictionary* json;
-    // NSLog(@"test:%@",data);
-    //  NSLog(@"Json:%@", json);
     //  NSString* test=[[NSString alloc]initWithData:data encoding:NSUTF8StringEncoding];
-    //  NSLog(@"String:%@",test);
     
 }
+
+-(void)bootableConfs{
+    
+    NSArray*tmpConfs=[self loadConfsIDs];
+    Conference* current;
+    for (int i=0; i<[tmpConfs count]; i++) {
+        current = [self jsonToConference:[tmpConfs objectAtIndex:i]];
+        [conferences addObject:current];
+        [addedConfsIDs addObject:[current getID]];
+    }
+}
+
 
 -(Conference*)jsonToConference:(NSString*)confID{
     Conference* conf;
@@ -370,18 +401,21 @@
     Organizer *organizerAux;
     int currID, currIDAUX;
     raw = [self parseJSON: [self loadDataFromDrive: confID]];
-    //NSLog(@"json:%@",raw);
     //[[json objectForKey:@"conf"] objectAtIndex:0]valueForKey:@"ID";
     
     //loadImageFromDrive:(NSString*)confID : (NSString*)imagePath
     
     
     
-    NSDictionary* c = [raw valueForKey:@"conf"];
+    NSDictionary* c = [[raw valueForKey:@"conf"]objectAtIndex:0];
     UIImage* confIm = [self loadImageFromDrive: confID : [c valueForKey:@"ImagePath"] ];
     conf = [conf initWithData: [c valueForKey:@"ID"] name: [c valueForKey:@"Name"] image:confIm bluePrint:NULL /*precisa de ser implementado no servidor*/];
     
-    NSArray* notif = [raw valueForKey:@"notif"];
+   // NSString* confName=[[[json valueForKey:@"conf"] objectAtIndex:0] valueForKey:@"Name"];
+    
+    
+    NSArray* notif = [[NSArray alloc] init];
+    notif = [raw valueForKey:@"notif"];
     Notification* n;
     for (int i = 0; i<[notif count]; i++) {
         n = [[Notification alloc] init];
@@ -392,29 +426,31 @@
     }
 
     //People
-    NSArray* people = [raw valueForKey:@"person"];
+    NSArray* people = [[NSArray alloc]  init];
+    people = [raw valueForKey:@"person"];
     Person* p;
     for (int i = 0; i<[people count]; i++) {
         currID = [[[[people[i] valueForKey:@"ID"]componentsSeparatedByString:@"s"] objectAtIndex: 1]intValue];
         if ([[people[i] valueForKey:@"Type"] isEqual:@"Author"]){
             p = [[Author alloc] init];
             p = [(Author*)p initWithData: [people[i] valueForKey:@"Name"] work: [people[i] valueForKey:@"Company"] /*queremos o cargo e não a companhia*/ image:[people[i] valueForKey:@"ImagePath"] personID: currID];
-            [authors setValue:p forKey:[[[people[i] valueForKey:@"ID"]componentsSeparatedByString:@"p"] objectAtIndex: 1]];
+            [authors setObject:p forKey:[NSString stringWithFormat:@"%d",currID]];
             [conf addAuthor:(Author*)p];
         }
         else if ([[people[i] valueForKey:@"Type"] isEqual:@"Speaker"]){
             p = [[Speaker alloc] init];
             p = [(Speaker*)p initWithData: [people[i] valueForKey:@"Name"] work: [people[i] valueForKey:@"Company"] image:[people[i] valueForKey:@"ImagePath"] personID: currID resume: [people[i] valueForKey:@"Description"]];
-            [speakers setValue:p forKey:[[[people[i] valueForKey:@"ID"]componentsSeparatedByString:@"p"] objectAtIndex: 1]];
+            [speakers setObject:p forKey:[NSString stringWithFormat:@"%d",currID]];
             [conf addSpeaker:(Speaker*)p];
         }
-        else if ([[people[i] valueForKey:@"Type"] isEqual:@"Organizer"]){
+        else if ([[people[i] valueForKey:@"Type"] isEqual:@"Organization"]){
             p = [[Organizer alloc] init];
             p = [(Organizer*)p initWithData: [people[i] valueForKey:@"Name"] work: [people[i] valueForKey:@"Company"] image:[people[i] valueForKey:@"ImagePath"] personID: currID job: [people[i] valueForKey:@"Description"]];
-            [organizers setValue:p forKey:[[[people[i] valueForKey:@"ID"]componentsSeparatedByString:@"p"] objectAtIndex: 1]];
+            [organizers setObject:p forKey:[NSString stringWithFormat:@"%d",currID]];
             [conf addOrganizer:(Organizer*)p];
         } //Isto precisava de ser um ISA no MySQL do servidor...
     }
+    
     
     NSArray * au = [authors allValues];
     NSArray * sp = [speakers allValues];
@@ -430,7 +466,8 @@
     }
     
     //Events
-    NSArray* sess = [raw valueForKey:@"session"];
+    NSArray* sess = [[NSArray alloc] init];
+    sess = [raw valueForKey:@"session"];
     Event* e;
     for (int i = 0; i<[sess count]; i++) {
         if(![[sess[i] valueForKey:@"Speaker"] isEqual:@""]){
@@ -448,7 +485,10 @@
         currID = [[[[sess[i] valueForKey:@"ID"]componentsSeparatedByString:@"s"] objectAtIndex: 1]intValue];
         if ([[sess[i] valueForKey:@"Type"] isEqual:@"Session"]) {
             e = [[Session alloc] init];
-            currIDAUX = [[[((NSString*)[sess[i] valueForKey:@"PaperID"])componentsSeparatedByString:@"p"] objectAtIndex: 1] intValue];
+            NSString* tmpS=((NSString*)[sess[i] valueForKey:@"PaperID"]);
+            if(!([tmpS isEqual:@""])){
+            currIDAUX = [[[tmpS componentsSeparatedByString:@"p"] objectAtIndex: 1] intValue];
+            }else currIDAUX=-1;
             e = [(Session*)e initWithDataAndSpeaker:currID date:[sess[i] valueForKey:@"DateTime"] title:[sess[i] valueForKey:@"Name"] theme:[sess[i] valueForKey:@"Description"] speaker: speakerAux athor: authorAux paper:currIDAUX];
             //[sessions addObject:e];
             [conf addSessions:(Session*)e];
@@ -467,7 +507,8 @@
         }
         [e setRating:[[sess[i] valueForKey:@"Rating"] intValue]];
     }
-    NSDictionary* mapR = [raw valueForKey:@"Map"];
+    NSDictionary* mapR = [[NSDictionary alloc]init];
+    mapR =[raw valueForKey:@"Map"];
     Map* map = [[Map alloc]init];
     NSString* latitude = [mapR valueForKey:@"Latitude"];
     NSString* longitude = [mapR valueForKey:@"Longitude"];
@@ -488,7 +529,6 @@
 - (BOOL)getConfFiles:(NSString*)confID{
     NSString* post=[NSString stringWithFormat:@"%@%@%@",@"Conf=",confID,@"&SubmitCheck=Sent"];
     
-    //NSLog(@"post is: %@", post);
     
     NSData* postData=[post dataUsingEncoding:NSASCIIStringEncoding allowLossyConversion:NO];
     NSString* postLength=[NSString stringWithFormat:@"%d",[postData length]];
@@ -504,7 +544,6 @@
     NSURLResponse* response;
     NSData* data=[NSURLConnection sendSynchronousRequest:request returningResponse:&response error:NULL];
     
-    //NSLog(@"Data is: %@",data);
     if (data!=NULL){
         NSString* savePath=[NSString stringWithFormat:@"%@%@%@",[NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES)objectAtIndex:0],@"/",confID];
         
@@ -529,7 +568,6 @@
 
 //saves conf from NSDictionary to the documents folder with name confID.json
 -(BOOL)saveConf:(NSDictionary*)conf : (NSData*)confData{
-    //NSLog(@"conf:%@",conf);
     NSString* savePath=[NSString stringWithFormat:@"%@%@%@%@",[NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES)objectAtIndex:0],@"/",[[[conf objectForKey:@"conf"]valueForKey:@"ID"]objectAtIndex:0],@".json"];
     //guarda conf
     [confData writeToFile:savePath atomically:YES];
@@ -643,7 +681,6 @@
         NSDictionary*json=[NSJSONSerialization JSONObjectWithData:data options:kNilOptions error:NULL];
         
         double trouble= [[[json valueForKey:@"Rating"] objectAtIndex:0] doubleValue];
-        // NSLog(@"rating:%f",trouble);
         return trouble;
     }else return -1;
     
@@ -684,7 +721,6 @@
 //HORA AOS TIMESTAMP QUE ENVIAREM, OU SEJA VALOR-3600
 //ALSO, NAO SE ESQUECAM QUE O PEDIDO EH PARA VALORES MAIORES QUE X, NAO MAIORES OU IGUAIS
 -(NSDictionary*)getNotifs:(NSString*)confID : (long)timeStamp{
-    //NSLog(@"test:%ld",timeStamp);
     NSString* post=[NSString stringWithFormat:@"%@%@%@%ld%@",@"Conf=",confID,@"&&TS=",timeStamp,@"&SubmitCheck=Sent"];
     NSData* postData=[post dataUsingEncoding:NSASCIIStringEncoding allowLossyConversion:NO];
     NSString* postLength=[NSString stringWithFormat:@"%d",[postData length]];
@@ -702,7 +738,6 @@
     
     if(data!=NULL){
         NSDictionary*json=[NSJSONSerialization JSONObjectWithData:data options:kNilOptions error:NULL];
-        // NSLog(@"testNotifs:%@",json);
         return json;
     }else return NULL;
     
@@ -867,5 +902,31 @@
     
     
 }
+
+
+
+
+//dado o confID e a variavel paperPath (ex.: @"paper.pdf")
+//devolve o caminho absoluto ate ao ficheiro
+-(NSString*)getPaper:(NSString*)confID : (NSString*)paperPath{
+    
+    return [NSString stringWithFormat:@"%@%@%@%@%@",[NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES)objectAtIndex:0],@"/",confID,@"/",paperPath];
+    
+}
+
+//updates all conference information that is on disc
+-(void)updateConferences{
+	NSArray*tmp=[self loadConfsIDs];
+	for (int i=0; i<[tmp count]; i++) {
+        NSData* tmpData=[self getConf:[tmp objectAtIndex:i]];
+                         if(tmpData!=NULL){
+                             NSDictionary* tmpConf=[self parseJSON:tmpData];
+                             [self saveConf:tmpConf:tmpData];
+                         }
+                         }
+                         
+                         }
+
+
 
 @end
