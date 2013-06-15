@@ -248,7 +248,50 @@
 }
 
 
+//mudar interface
+//NSString *iD = @"Conference";
+//
+//UIViewController *newTopViewController = [[self storyboard]instantiateViewControllerWithIdentifier:iD];
+//
+//CGRect frame = [[[[self slidingViewController] topViewController] view] frame];
+//[[self slidingViewController] setTopViewController:newTopViewController];
+//[[[[self slidingViewController] topViewController] view] setFrame:frame];
+//[[self slidingViewController] resetTopView];
+
+#import "ECSlidingViewController.h"
+#import "MenuViewController.h"
+
+//Codigo do menu
+//[[[self view] layer] setShadowOpacity:0.75f];
+//[[[self view] layer] setShadowRadius:10.0f];
+//[[[self view] layer] setShadowColor:[UIColor blackColor].CGColor];
+//
+//if (![[[self slidingViewController] underLeftViewController] isKindOfClass:[MenuViewController class]]) {
+//    [[self slidingViewController] setUnderLeftViewController:[[self storyboard]instantiateViewControllerWithIdentifier:@"Menu"]];
+//}
+//
+//[[self view] addGestureRecognizer:[self slidingViewController].panGesture];
+//
+//[self setMenuButton:[UIButton buttonWithType:UIButtonTypeCustom]];
+//
+//[MenuButton setFrame:CGRectMake(8, 10, 34, 24)];
+//[MenuButton setBackgroundImage:[UIImage imageNamed:@"menuButton.png"] forState:UIControlStateNormal];
+//[MenuButton addTarget:self action:@selector(revealMenu:) forControlEvents:UIControlEventTouchUpInside];
+//
+//[[self view] addSubview:MenuButton];
+
+//
+//- (IBAction)revealMenu:(id)sender
+//{
+//    [[self slidingViewController] anchorTopViewTo:ECRight];
+//}
 
 
+//subst por imagens
+
+//NSString* tmpS=[[(MenuViewController*)[[self slidingViewController] underLeftViewController] selectedConf] getID];
+//
+//if (!searchItem) {
+//    [[cell Image] setImage:[[(MenuViewController*)[[self slidingViewController] underLeftViewController] selectedConf] loadImage:tmpS :[(Person*)[confPeople objectAtIndex:[indexPath row]] getImagePath]]];
 
 @end

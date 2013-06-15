@@ -56,10 +56,7 @@
 
     self.placesToShow=places;
 }
-//acho q n e necessario mas depois vejo
--(void) changeSearch:(BOOL) showSearch{
-    self.search=showSearch;
-}
+
 
 
 @end

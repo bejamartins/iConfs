@@ -8,11 +8,17 @@
 
 #import "BluePrintsViewController.h"
 #import "FloorCell.h"
+#import "WC.h"
+#import "Blueprints.h"
 @interface BluePrintsViewController ()
 
 @end
 
-@implementation BluePrintsViewController
+@implementation BluePrintsViewController{
+
+    NSMutableArray *searchPlaces;
+    
+}
 
 
 
@@ -33,7 +39,7 @@
 #pragma mark - Collection datasource and delegate
 
 -(NSInteger)numberOfSectionsInCollectionView:(UICollectionView *)collectionView{
-    return 1;
+    return [self.blueprints count];
 }
 
 -(NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section{
@@ -41,17 +47,42 @@
 }
 
 -(UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath{
-    static NSString *CellIdentifier=@"floor";
-    FloorCell *cell= [collectionView dequeueReusableCellWithReuseIdentifier:CellIdentifier forIndexPath:indexPath];
-    [[cell picture]setImage:[UIImage imageNamed:@"speaker.jpg"]];
+  
     
-    [[cell floorName]setText:@"floor"];
+//    NSArray *keys = [self.blueprints allKeys];
+//    id aKey = [keys objectAtIndex:indexPath.item];
+//    id anObject = [self.blueprints objectForKey:aKey];
+//    
+//    if ([anObject isKindOfClass:[WC class]]){
     
-    return cell;
+        static NSString *CellIdentifier=@"floor";
+    
+    
+        FloorCell *cell= [collectionView dequeueReusableCellWithReuseIdentifier:CellIdentifier forIndexPath:indexPath];
+        NSArray *keys = [self.blueprints allKeys];
+        Blueprints *bp = [keys objectAtIndex:indexPath.item];
+    
+        NSString *imagePath=[bp getImagePath];
+        UIImage *graphImage = [[UIImage alloc] initWithContentsOfFile: imagePath];
+    
+        [[cell picture]setImage:graphImage];
+        
+        [[cell floorName]setText:[bp getTitle]];
+        
+        return cell;
+    
+ 
 }
 
--(void) setMap:(NSString*) mapPath{
+-(void) changeBlueprints:(NSMutableDictionary *)blueprints{
+    self.blueprints=blueprints;
+}
+-(void) refresh{
+    [self viewDidLoad];
+    //TODO: mandar refrescar o container planta e o container places
     
+
+
 }
 
 @end
