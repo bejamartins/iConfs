@@ -27,10 +27,12 @@
 {
     [super viewDidLoad];
     //vai colocar os places! pq a planta é posta no changeBlueprint
+    NSInteger height= self.blueprint.frame.size.height;
+    NSInteger width=self.blueprint.frame.size.width;
     
     for(int i=0; i< [self.placesToShow count];i++){
         Place *p= [self.placesToShow objectAtIndex:i];
-        UIImageView *imgView = [[UIImageView alloc] initWithFrame:CGRectMake([p getX],[p getY], 30, 20)];
+        UIImageView *imgView = [[UIImageView alloc] initWithFrame:CGRectMake([p getX]*width/100,[p getY]*height/100, 30, 20)];
         UIImage *graphImage = [[UIImage alloc] initWithContentsOfFile: [p getLogo]];
         [imgView setImage:graphImage];
     }
