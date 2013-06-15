@@ -15,6 +15,11 @@
 #import "EventWorkshop.h"
 #import "Session.h"
 #import "Map.h"
+#import "Blueprints.h"
+#import "Place.h"
+#import "Room.h"
+#import "EatingArea.h"
+#import "WC.h"
 
 @interface IConfs : AppDataObject
 {

@@ -10,11 +10,14 @@
 
 @implementation Blueprints
 
--(Blueprints*)initWithData: (NSString*)bID title: (NSString*)t imagePath:(NSString*)ip places: (NSArray*)p{
+-(Blueprints*)initWithData: initWithData: (NSString*)bID title: (NSString*)t imagePath:(NSString*)ip otherPlaces: (NSArray*)p eatingAreas: (NSArray*) eA WCs: (NSArray*) w rooms: (NSArray*) r{
     bluePrintsID = bID;
     title = t;
     imagePath = ip;
-    places = p;
+    otherPlaces = p;
+    rooms = r;
+    wcs = w;
+    eatingAreas = eA;
     return self;
 }
 
@@ -27,8 +30,18 @@
 -(NSString*)getID{
     return bluePrintsID;
 }
--(NSArray*)getPlaces{
-    return places;
+-(NSArray*)getOtherPlaces{
+    return otherPlaces;
+}
+
+-(NSArray*)getEatingAreas{
+    return eatingAreas;
+}
+-(NSArray*)getRooms{
+    return rooms;
+}
+-(NSArray*)getWCs{
+    return wcs;
 }
 
 @end

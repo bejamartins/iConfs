@@ -406,6 +406,55 @@
     //loadImageFromDrive:(NSString*)confID : (NSString*)imagePath
     
     
+    //Blueprints
+    
+    //plant
+    
+    NSArray* bp = [raw valueForKey:@"plant"];
+    Blueprints* bluePrint = [[Blueprints alloc] init];
+    NSMutableDictionary* blueprints = [[NSMutableDictionary alloc] init];
+    NSMutableArray* places = [[NSMutableArray alloc] init];
+    NSMutableArray* wcs = [[NSMutableArray alloc] init];
+    NSMutableArray* eatingAreas = [[NSMutableArray alloc] init];
+    NSMutableArray* rooms = [[NSMutableArray alloc] init];
+    Place* currPlace;
+    NSString* placeType;
+    Room* room;
+    WC* wc;
+    EatingArea* ea;
+    for (int i=0; i<[bp count]; i++) {
+        bluePrint = [[Blueprints alloc] init];
+        places = [[NSMutableArray alloc] init];
+        places = [bp[i] valueForKey:@"plantPlots"];
+        for (int j = 0; j < [places count]; j++) {
+            placeType = [[NSString alloc] init];
+            if ([placeType isEqualToString:@"RM"]) {
+                room = [[Room alloc] init];
+                room = [room initRoom: [places[j] valueForKey:@"ID"] x:[[places[j] valueForKey:@"xPos"]intValue] y:[[places[j] valueForKey:@"yPos"]intValue] name:[places[j] valueForKey:@"Name"]];
+                [rooms addObject:room];
+            }
+            else if([placeType isEqualToString:@"EA"]){
+                ea = [[EatingArea alloc] init];
+                ea = [ea initEA: [places[j] valueForKey:@"ID"] x:[[places[j] valueForKey:@"xPos"]intValue] y:[[places[j] valueForKey:@"yPos"]intValue] name:[places[j] valueForKey:@"Name"]];
+                [eatingAreas addObject:ea];
+            }
+            else if([placeType isEqualToString:@"WC"]){
+                wc = [[WC alloc] init];
+                wc = [wc initPlace: [places[j] valueForKey:@"ID"] x:[[places[j] valueForKey:@"xPos"]intValue] y:[[places[j] valueForKey:@"yPos"]intValue]];
+                [wcs addObject:wc];
+            }
+            else{
+                currPlace = [[Place alloc] init];
+                currPlace = [currPlace initPlace: [places[j] valueForKey:@"ID"] x:[[places[j] valueForKey:@"xPos"]intValue] y:[[places[j] valueForKey:@"yPos"]intValue]];
+                [places addObject:currPlace];
+            }
+            
+        }
+        
+        bluePrint = [bluePrint initWithData: [[[raw valueForKey:@"plant"] objectAtIndex:i] valueForKey:@"ID"] title: [[[raw valueForKey:@"plant"] objectAtIndex:i] valueForKey:@"Name"] imagePath:[[[raw valueForKey:@"plant"] objectAtIndex:i] valueForKey:@"ImagePath"] otherPlaces: places eatingAreas: eatingAreas WCs: wcs rooms: rooms];
+        
+    }
+    
     
     NSDictionary* c = [[raw valueForKey:@"conf"]objectAtIndex:0];
     UIImage* confIm = [self loadImageFromDrive: confID : [c valueForKey:@"ImagePath"] ];
@@ -514,17 +563,6 @@
     NSString* longitude = [mapR valueForKey:@"Longitude"];
     map = [map initWithData:[mapR valueForKey:@"ID"] lat:[latitude floatValue] longi:[longitude floatValue] placeName:[mapR valueForKey:@"PlaceName"] address:[mapR valueForKey:@"AddressName"]];
     [conf setMap:map];
-    
-    
-    //Blueprints
-    
-    
-    
-    
-    
-    
-    
-    
     
     
     

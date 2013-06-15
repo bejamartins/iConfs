@@ -13,7 +13,10 @@
     NSString* title;
     NSString* imagePath;
     NSString* bluePrintsID;
-    NSArray* places;
+    NSArray* otherPlaces;
+    NSArray* wcs;
+    NSArray* rooms;
+    NSArray* eatingAreas;
     
 }
 
@@ -22,11 +25,14 @@
  @param aConferences list of all conferences available
  @returns a newly initialized object
  */
--(Blueprints*)initWithData: (NSString*)bID title: (NSString*)t imagePath:(NSString*)ip places: (NSArray*)p;
+-(Blueprints*)initWithData: (NSString*)bID title: (NSString*)t imagePath:(NSString*)ip otherPlaces: (NSArray*)p eatingAreas: (NSArray*) eA WCs: (NSArray*) w rooms: (NSArray*) r;
 
 -(NSString*)getTitle;
 -(NSString*)getImagePath;
 -(NSString*)getID;
--(NSArray*)getPlaces;
+-(NSArray*)getOtherPlaces;
+-(NSArray*)getEatingAreas;
+-(NSArray*)getRooms;
+-(NSArray*)getWCs;
 
 @end
