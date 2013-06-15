@@ -515,6 +515,19 @@
     map = [map initWithData:[mapR valueForKey:@"ID"] lat:[latitude floatValue] longi:[longitude floatValue] placeName:[mapR valueForKey:@"PlaceName"] address:[mapR valueForKey:@"AddressName"]];
     [conf setMap:map];
     
+    
+    //Blueprints
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
     return conf;
 }
 

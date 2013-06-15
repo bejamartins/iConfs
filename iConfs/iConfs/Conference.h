@@ -285,5 +285,7 @@
 
 -(UIImage*)loadImage:(NSString*)confID : (NSString*)imagePath;
 
+-(NSMutableDictionary*) getBlueprints;
+
 @end
 

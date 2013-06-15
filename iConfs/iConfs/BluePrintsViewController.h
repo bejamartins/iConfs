@@ -12,5 +12,6 @@
 @property (strong, nonatomic) IBOutlet UISearchBar *searchBar;
 @property (strong, nonatomic) IBOutlet UICollectionView *collection;
 @property NSMutableDictionary *blueprints;
+@property (strong, nonatomic) UIButton *MenuButton;
 
 @end

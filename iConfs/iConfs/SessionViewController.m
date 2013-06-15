@@ -163,7 +163,6 @@
     
     return numberOfCells;
     
-    
 }
 -(UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath{
     peopleInSessionCell *cell;
@@ -208,10 +207,28 @@
     //TODO: MANDAR PARA SPEAKER OU AUTHOR
     if(indexPath.item==0){
         NSLog(@"Detectei toque no AUTOR!");
+        //mudar interface
+        NSString *iD = @"Person";
+        
+        UIViewController *newTopViewController = [[self storyboard]instantiateViewControllerWithIdentifier:iD];
+        
+        CGRect frame = [[[[self slidingViewController] topViewController] view] frame];
+        [[self slidingViewController] setTopViewController:newTopViewController];
+        [[[[self slidingViewController] topViewController] view] setFrame:frame];
+        [[self slidingViewController] resetTopView];
+        
+        
     }
     else{
         NSLog(@"Detectei toque no SPEAKER!");
+        NSString *iD = @"Person";
         
+        UIViewController *newTopViewController = [[self storyboard]instantiateViewControllerWithIdentifier:iD];
+        
+        CGRect frame = [[[[self slidingViewController] topViewController] view] frame];
+        [[self slidingViewController] setTopViewController:newTopViewController];
+        [[[[self slidingViewController] topViewController] view] setFrame:frame];
+        [[self slidingViewController] resetTopView];
     }
     
     
