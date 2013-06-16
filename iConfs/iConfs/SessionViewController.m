@@ -208,6 +208,7 @@
     if(indexPath.item==0){
         NSLog(@"Detectei toque no AUTOR!");
         //mudar interface
+       
         NSString *iD = @"Person";
         
         UIViewController *newTopViewController = [[self storyboard]instantiateViewControllerWithIdentifier:iD];

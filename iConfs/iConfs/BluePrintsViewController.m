@@ -66,10 +66,11 @@
     
     
     [self changeSelectedBlueprint:selectedBlueprint];
-    
+    [ self sendPlacesToContainer];
     [super viewDidLoad];
    [ self.collection setDataSource:self];
    [ self.collection setDelegate:self];
+    
 	// Do any additional setup after loading the view.
 }
 
@@ -123,9 +124,49 @@
  
 }
 
--(void) changeBlueprints:(NSMutableDictionary *)blueprints{
-    self.blueprints=blueprints;
+- (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath{
+    
+    
+    //no array de blueprints vai buscar o com index indexPath.item e depois
+    //tem de reflectir essa escolha na planta mostrada ao user.
+    
+    NSArray *keys = [self.blueprints allKeys];
+    id aKey = [keys objectAtIndex:indexPath.item];
+    Blueprints *b = [self.blueprints objectForKey:aKey];
+    selectedBlueprint=b;
+
+    [self changeSelectedBlueprint:b];
+    
+        NSLog(@"Detectei toque");
+    
+    for (UIViewController *childViewController in [self childViewControllers])
+    {
+        if ([childViewController isKindOfClass:[BlueprintContainerViewController class]])
+        {
+            
+            
+            NSString *imagePath=[selectedBlueprint getImagePath];
+            
+            NSString* tmpS=[[(MenuViewController*)[[self slidingViewController] underLeftViewController] selectedConf] getID];
+            //
+            UIImage *image=[[(MenuViewController*)[[self slidingViewController] underLeftViewController] selectedConf] loadImage:tmpS :imagePath];
+
+            //found container view controller
+            BlueprintContainerViewController *bpController = (BlueprintContainerViewController *)childViewController;
+            
+            //UIImage *image=[UIImage imageNamed:@"1.jpg"];
+            bpController.image=image;
+            [bpController changeBlueprint:image];
+            
+            break;
+        }
+    }
+
+
+
+    
 }
+
 -(void) refresh{
     [self viewDidLoad];
     //TODO: mandar refrescar o container planta e o container places
@@ -139,6 +180,11 @@
     NSArray *WCs=[selectedBlueprint getWCs];
     NSArray *rooms=[selectedBlueprint getRooms];
     NSArray *eat=[selectedBlueprint getEatingAreas];
+    
+    NSLog(@"Numero otherPlaces=%d",[Otherplaces count]);
+    NSLog(@"Numero wc=%d",[WCs count]);
+    NSLog(@"Numero rooms=%d",[rooms count]);
+    NSLog(@"Numero eat=%d",[eat count]);
 
 
     
@@ -161,13 +207,19 @@
         {
             //found container view controller
             BlueprintContainerViewController *bpController = (BlueprintContainerViewController *)childViewController;
+            
+            //image=[UIImage imageNamed:@"1.jpg"];
             bpController.image=image;
             [bpController changeBlueprint:image];
-            //do something with your container view viewcontroller
             
             break;
         }
     }
+
+}
+
+-(void) showPlaces:(NSArray*)places{
+
 
 }
 
