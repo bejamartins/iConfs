@@ -347,6 +347,10 @@
 }
 
 
+-(NSMutableDictionary*) getBlueprints{
+    return bluePrints;
+}
+
 -(UIImage*)loadImage:(NSString*)confID : (NSString*)imagePath{
     
     NSString* imgPath=[NSString stringWithFormat:@"%@%@%@%@%@",[NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES)objectAtIndex:0],@"/",confID,@"/",imagePath];

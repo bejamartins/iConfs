@@ -33,7 +33,6 @@
 		28ADEE211760D2D80059F458 /* Conference-News.m in Sources */ = {isa = PBXBuildFile; fileRef = 28ADEE201760D2D70059F458 /* Conference-News.m */; };
 		28ADEE241760D4140059F458 /* CellNewsInsideConference.m in Sources */ = {isa = PBXBuildFile; fileRef = 28ADEE231760D4140059F458 /* CellNewsInsideConference.m */; };
 		28ADEE261760E2330059F458 /* menuButton.png in Resources */ = {isa = PBXBuildFile; fileRef = 28ADEE251760E2330059F458 /* menuButton.png */; };
-		28CF7713175F8E240070B4D5 /* PeopleC2.m in Sources */ = {isa = PBXBuildFile; fileRef = 28CF7712175F8E240070B4D5 /* PeopleC2.m */; };
 		28CF7716175F8FD10070B4D5 /* Teste.m in Sources */ = {isa = PBXBuildFile; fileRef = 28CF7715175F8FD10070B4D5 /* Teste.m */; };
 		28CF7719175FC2EE0070B4D5 /* speaker.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 28CF7717175FC2ED0070B4D5 /* speaker.jpg */; };
 		28CF771A175FC2EE0070B4D5 /* author.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 28CF7718175FC2ED0070B4D5 /* author.jpg */; };
@@ -166,8 +165,6 @@
 		28ADEE221760D4140059F458 /* CellNewsInsideConference.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CellNewsInsideConference.h; sourceTree = "<group>"; };
 		28ADEE231760D4140059F458 /* CellNewsInsideConference.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CellNewsInsideConference.m; sourceTree = "<group>"; };
 		28ADEE251760E2330059F458 /* menuButton.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = menuButton.png; sourceTree = "<group>"; };
-		28CF7711175F8E240070B4D5 /* PeopleC2.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PeopleC2.h; sourceTree = "<group>"; };
-		28CF7712175F8E240070B4D5 /* PeopleC2.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PeopleC2.m; sourceTree = "<group>"; };
 		28CF7714175F8FD10070B4D5 /* Teste.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Teste.h; sourceTree = "<group>"; };
 		28CF7715175F8FD10070B4D5 /* Teste.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Teste.m; sourceTree = "<group>"; };
 		28CF7717175FC2ED0070B4D5 /* speaker.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = speaker.jpg; sourceTree = "<group>"; };
@@ -425,8 +422,6 @@
 				A07887D7175A3CE500C1D90C /* MenuViewController.m */,
 				285FF4B81760BE0C001135E1 /* newConferenceContainer.h */,
 				285FF4B91760BE0C001135E1 /* newConferenceContainer.m */,
-				28CF7711175F8E240070B4D5 /* PeopleC2.h */,
-				28CF7712175F8E240070B4D5 /* PeopleC2.m */,
 				A07887CA175A3CE500C1D90C /* PeopleViewController.h */,
 				A07887CB175A3CE500C1D90C /* PeopleViewController.m */,
 				28A3A88E175E9CAA0002BC93 /* PersonViewController.h */,
@@ -723,7 +718,6 @@
 				707B7C19175D6E2B00E4747A /* InitViewController.m in Sources */,
 				A0570151175E2848000FED8F /* TestingViewController.m in Sources */,
 				28A3A890175E9CAA0002BC93 /* PersonViewController.m in Sources */,
-				28CF7713175F8E240070B4D5 /* PeopleC2.m in Sources */,
 				28CF7716175F8FD10070B4D5 /* Teste.m in Sources */,
 				707522FB175FDF7C002F8708 /* AppDataObject.m in Sources */,
 				285FF4B71760BC0E001135E1 /* CellMyConferences.m in Sources */,

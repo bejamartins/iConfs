@@ -11,6 +11,11 @@
 @interface BlueprintContainerViewController : UIViewController
 @property (strong, nonatomic) IBOutlet UIImageView *blueprint;
 
-@property Blueprints *blueprints;
+@property BOOL search;
+@property NSArray *placesToShow;
+
+
+-(void) changeBlueprint:(UIImage*)print;
+-(void) changePlaces:(NSArray*) places;
 
 @end
