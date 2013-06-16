@@ -25,7 +25,8 @@
 
 @property (strong, nonatomic) Person *shownPerson;
 
-@property (strong, nonatomic) IBOutlet UINavigationItem *navigationBar;
+
+@property (weak, nonatomic) IBOutlet UINavigationBar *NavBar;
 @property (strong, nonatomic) IBOutlet UIImageView *picture;
 @property (strong, nonatomic) IBOutlet UILabel *biography;
 @property (strong, nonatomic) IBOutlet UIButton *session_where;

@@ -114,6 +114,7 @@
 
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath{
     UIViewController *newTopViewController = [[self storyboard]instantiateViewControllerWithIdentifier:@"Person"];
+    
     if (searchItem) {
         [(PersonViewController*)newTopViewController setShownPerson:[confSearchPeople objectAtIndex:[indexPath row]]];
     }else
@@ -170,6 +171,10 @@
     }
 
     [[self PeopleCollection]reloadData];
+}
+
+- (IBAction)MoreInfo:(id)sender {
+    
 }
 
 @end

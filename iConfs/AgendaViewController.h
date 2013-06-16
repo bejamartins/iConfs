@@ -7,9 +7,15 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "MAWeekView.h"
 
-@interface AgendaViewController : UIViewController
+@class MAEventKitDataSource;
+
+@interface AgendaViewController : UIViewController<MAWeekViewDataSource,MAWeekViewDelegate> {
+    MAEventKitDataSource *_eventKitDataSource;
+}
 
 @property (strong, nonatomic) IBOutlet UIButton *MenuButton;
+@property (weak, nonatomic) IBOutlet UIView *AgendaView;
 
 @end

@@ -17,5 +17,6 @@
 @property (strong, nonatomic) UIButton *MenuButton;
 
 - (IBAction)selectedOption:(id)sender;
+- (IBAction)MoreInfo:(id)sender;
 
 @end

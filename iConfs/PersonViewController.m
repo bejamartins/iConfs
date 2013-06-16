@@ -9,15 +9,16 @@
 #import "PersonViewController.h"
 #import "ECSlidingViewController.h"
 #import "MenuViewController.h"
+#import "Author.h"
+#import "Speaker.h"
 
 @interface PersonViewController ()
-@property (strong, nonatomic) IBOutlet UINavigationItem *bar;
 
 @end
 
 @implementation PersonViewController
 
-@synthesize picture,session_theme,session_when,session_where,biography,IndexAux,navigationBar,bar,showPerson, MenuButton, shownPerson;
+@synthesize picture,session_theme,session_when,session_where,biography,IndexAux,showPerson, MenuButton, shownPerson;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -30,31 +31,17 @@
 
 - (void)viewDidLoad
 {
-    biographies =[[NSArray alloc]initWithObjects:@"Speaker Bio", @"Author Bio",@"Person Bio",nil];
-    imageArray = [[NSArray alloc]initWithObjects:@"speaker.jpg", @"author.jpg", @"conf.jpg",nil];
-    speakers = [[NSArray alloc]initWithObjects:@"Speaker 1",@"Speaker 2",@"Speaker 3", nil];
-    authors = [[NSArray alloc]initWithObjects:@"Author 1",@"Author 2",@"Author 3", nil];
-    organization = [[NSArray alloc]initWithObjects:@"Person 1",@"Person 2",@"Person 3", nil];
-    
-    UIImage *a= [UIImage imageNamed: [imageArray objectAtIndex:showPerson] ];
-    [picture setImage:a];
-    NSString *navigationTitle;
-    if(showPerson==0)
-    navigationTitle=[speakers objectAtIndex:IndexAux];
-    else if(showPerson==1){
-        navigationTitle=[authors objectAtIndex:IndexAux];}
-    else{
-        navigationTitle=[organization objectAtIndex:IndexAux];
-    }
-
-    [bar setTitle:navigationTitle];
-    [biography setText:[ biographies objectAtIndex:showPerson]];
-
     [super viewDidLoad];
 	// Do any additional setup after loading the view.
     
-    [navigationBar setTitle:[shownPerson getName]];
-    [picture setImage:[UIImage imageNamed:[shownPerson getImagePath]]];
+    NSString *tmpS = [[(MenuViewController*)[[self slidingViewController] underLeftViewController] selectedConf] getID];
+    
+    [[[self NavBar] topItem] setTitle:[shownPerson getName]];
+    [picture setImage:[[(MenuViewController*)[[self slidingViewController] underLeftViewController] selectedConf] loadImage:tmpS :[shownPerson getImagePath]]];
+    
+    if ([shownPerson isKindOfClass:[Author class]]) {
+        
+    }
     
     [[[self view] layer] setShadowOpacity:0.75f];
     [[[self view] layer] setShadowRadius:10.0f];

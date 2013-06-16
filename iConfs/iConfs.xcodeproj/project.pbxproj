@@ -43,12 +43,10 @@
 		7078016B17667E2000B3C4D4 /* AgendaViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7078016A17667E2000B3C4D4 /* AgendaViewController.m */; };
 		707ADEC61765522F00AADD9C /* MAEventKitDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = 707ADEC51765522F00AADD9C /* MAEventKitDataSource.m */; };
 		707ADED81765524200AADD9C /* WeekViewExampleController.m in Sources */ = {isa = PBXBuildFile; fileRef = 707ADECA1765524200AADD9C /* WeekViewExampleController.m */; };
-		707ADED91765524200AADD9C /* DayViewExampleController.m in Sources */ = {isa = PBXBuildFile; fileRef = 707ADECC1765524200AADD9C /* DayViewExampleController.m */; };
 		707ADEDA1765524200AADD9C /* TapDetectingView.m in Sources */ = {isa = PBXBuildFile; fileRef = 707ADECE1765524200AADD9C /* TapDetectingView.m */; };
 		707ADEDB1765524200AADD9C /* MAEvent.m in Sources */ = {isa = PBXBuildFile; fileRef = 707ADED01765524200AADD9C /* MAEvent.m */; };
 		707ADEDC1765524200AADD9C /* MAGridView.m in Sources */ = {isa = PBXBuildFile; fileRef = 707ADED21765524200AADD9C /* MAGridView.m */; };
 		707ADEDD1765524200AADD9C /* MAWeekView.m in Sources */ = {isa = PBXBuildFile; fileRef = 707ADED41765524200AADD9C /* MAWeekView.m */; };
-		707ADEDE1765524200AADD9C /* MADayView.m in Sources */ = {isa = PBXBuildFile; fileRef = 707ADED61765524200AADD9C /* MADayView.m */; };
 		707ADEE41765529D00AADD9C /* ma_leftArrow.png in Resources */ = {isa = PBXBuildFile; fileRef = 707ADEDF1765529D00AADD9C /* ma_leftArrow.png */; };
 		707ADEE51765529D00AADD9C /* ma_leftArrow@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 707ADEE01765529D00AADD9C /* ma_leftArrow@2x.png */; };
 		707ADEE61765529D00AADD9C /* ma_rightArrow.png in Resources */ = {isa = PBXBuildFile; fileRef = 707ADEE11765529D00AADD9C /* ma_rightArrow.png */; };
@@ -185,8 +183,6 @@
 		707ADEC51765522F00AADD9C /* MAEventKitDataSource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MAEventKitDataSource.m; sourceTree = "<group>"; };
 		707ADEC91765524200AADD9C /* WeekViewExampleController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WeekViewExampleController.h; sourceTree = "<group>"; };
 		707ADECA1765524200AADD9C /* WeekViewExampleController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WeekViewExampleController.m; sourceTree = "<group>"; };
-		707ADECB1765524200AADD9C /* DayViewExampleController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DayViewExampleController.h; sourceTree = "<group>"; };
-		707ADECC1765524200AADD9C /* DayViewExampleController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DayViewExampleController.m; sourceTree = "<group>"; };
 		707ADECD1765524200AADD9C /* TapDetectingView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TapDetectingView.h; sourceTree = "<group>"; };
 		707ADECE1765524200AADD9C /* TapDetectingView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TapDetectingView.m; sourceTree = "<group>"; };
 		707ADECF1765524200AADD9C /* MAEvent.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MAEvent.h; sourceTree = "<group>"; };
@@ -195,8 +191,6 @@
 		707ADED21765524200AADD9C /* MAGridView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MAGridView.m; sourceTree = "<group>"; };
 		707ADED31765524200AADD9C /* MAWeekView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MAWeekView.h; sourceTree = "<group>"; };
 		707ADED41765524200AADD9C /* MAWeekView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MAWeekView.m; sourceTree = "<group>"; };
-		707ADED51765524200AADD9C /* MADayView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MADayView.h; sourceTree = "<group>"; };
-		707ADED61765524200AADD9C /* MADayView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MADayView.m; sourceTree = "<group>"; };
 		707ADEDF1765529D00AADD9C /* ma_leftArrow.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ma_leftArrow.png; sourceTree = "<group>"; };
 		707ADEE01765529D00AADD9C /* ma_leftArrow@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "ma_leftArrow@2x.png"; sourceTree = "<group>"; };
 		707ADEE11765529D00AADD9C /* ma_rightArrow.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ma_rightArrow.png; sourceTree = "<group>"; };
@@ -380,6 +374,8 @@
 			children = (
 				28A1C5741767B551005B5F5B /* ViewControllers */,
 				289746001764DFCC00CB2022 /* Cells */,
+				28586057176A826300FF4FF3 /* BlueprintContainerViewController.h */,
+				28586058176A826400FF4FF3 /* BlueprintContainerViewController.m */,
 			);
 			name = Interfaces;
 			sourceTree = "<group>";
@@ -463,8 +459,6 @@
 			children = (
 				707ADEC91765524200AADD9C /* WeekViewExampleController.h */,
 				707ADECA1765524200AADD9C /* WeekViewExampleController.m */,
-				707ADECB1765524200AADD9C /* DayViewExampleController.h */,
-				707ADECC1765524200AADD9C /* DayViewExampleController.m */,
 				707ADECD1765524200AADD9C /* TapDetectingView.h */,
 				707ADECE1765524200AADD9C /* TapDetectingView.m */,
 				707ADECF1765524200AADD9C /* MAEvent.h */,
@@ -473,8 +467,6 @@
 				707ADED21765524200AADD9C /* MAGridView.m */,
 				707ADED31765524200AADD9C /* MAWeekView.h */,
 				707ADED41765524200AADD9C /* MAWeekView.m */,
-				707ADED51765524200AADD9C /* MADayView.h */,
-				707ADED61765524200AADD9C /* MADayView.m */,
 				707ADEC41765522F00AADD9C /* MAEventKitDataSource.h */,
 				707ADEC51765522F00AADD9C /* MAEventKitDataSource.m */,
 			);
@@ -689,6 +681,7 @@
 				28A0112C1767892B002F73A5 /* arrow.png in Resources */,
 				28561E7F17678D6E00E29FD4 /* arrowLeft.png in Resources */,
 				28A1C57D1767C2BB005B5F5B /* pdf.pdf in Resources */,
+				A05E800D1768D0AD00C95E60 /* pdf.pdf in Resources */,
 				70B0E6C71767DD350055F394 /* MainStoryboard.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -756,12 +749,10 @@
 				289746121764ECCB00CB2022 /* PlaceRoomCell.m in Sources */,
 				707ADEC61765522F00AADD9C /* MAEventKitDataSource.m in Sources */,
 				707ADED81765524200AADD9C /* WeekViewExampleController.m in Sources */,
-				707ADED91765524200AADD9C /* DayViewExampleController.m in Sources */,
 				707ADEDA1765524200AADD9C /* TapDetectingView.m in Sources */,
 				707ADEDB1765524200AADD9C /* MAEvent.m in Sources */,
 				707ADEDC1765524200AADD9C /* MAGridView.m in Sources */,
 				707ADEDD1765524200AADD9C /* MAWeekView.m in Sources */,
-				707ADEDE1765524200AADD9C /* MADayView.m in Sources */,
 				7078016B17667E2000B3C4D4 /* AgendaViewController.m in Sources */,
 				A09DF2F71767783400310266 /* Map.m in Sources */,
 				A09DF2FA176784CC00310266 /* Blueprints.m in Sources */,

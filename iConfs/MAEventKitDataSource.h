@@ -27,12 +27,11 @@
 
 #import <Foundation/Foundation.h>
 
-#import "MADayView.h"
 #import "MAWeekView.h"
 
 @class EKEventStore;
 
-@interface MAEventKitDataSource : NSObject<MADayViewDataSource,MAWeekViewDataSource> {
+@interface MAEventKitDataSource : NSObject<MAWeekViewDataSource> {
     EKEventStore *_eventStore;
 }
 

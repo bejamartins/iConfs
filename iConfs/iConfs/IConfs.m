@@ -430,7 +430,7 @@
     people = [raw valueForKey:@"person"];
     Person* p;
     for (int i = 0; i<[people count]; i++) {
-        currID = [[[[people[i] valueForKey:@"ID"]componentsSeparatedByString:@"s"] objectAtIndex: 1]intValue];
+        currID = [[[[people[i] valueForKey:@"ID"]componentsSeparatedByString:@"p"] objectAtIndex: 1]intValue];
         if ([[people[i] valueForKey:@"Type"] isEqual:@"Author"]){
             p = [[Author alloc] init];
             p = [(Author*)p initWithData: [people[i] valueForKey:@"Name"] work: [people[i] valueForKey:@"Company"] /*queremos o cargo e não a companhia*/ image:[people[i] valueForKey:@"ImagePath"] personID: currID];

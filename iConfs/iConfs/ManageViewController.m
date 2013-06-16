@@ -165,8 +165,6 @@
     myConfs = [theAppData getMyConferences];
     otherConfs = [theAppData getRestOfConfs];
     
-    NSLog(@"%@",[[myConfs objectAtIndex:0] getName]);
-    
     [[self ConfsCollection] reloadData];
     [[self slidingViewController] setUnderLeftViewController:[[self storyboard]instantiateViewControllerWithIdentifier:@"Menu"]];
 }

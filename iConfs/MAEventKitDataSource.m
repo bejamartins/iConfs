@@ -46,17 +46,6 @@
 
 /*
  * =======================================
- * MADayViewDataSource
- * =======================================
- */
-
-- (NSArray *)dayView:(MADayView *)dayView eventsForDate:(NSDate *)date
-{
-    return [self eventKitEventsToMAEvents:[self eventKitEventsForDate:date]];
-}
-
-/*
- * =======================================
  * MAWeekViewDataSource
  * =======================================
  */
