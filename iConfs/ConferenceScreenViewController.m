@@ -31,7 +31,7 @@
 
 - (void)viewDidLoad
 {
-    NSLog(@"Name em ConferenceScreen= %@", conferenceName);
+    //NSLog(@"Name em ConferenceScreen= %@", conferenceName);
     
     [[ self bar] setTitle:conferenceName];
     [super viewDidLoad];

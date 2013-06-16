@@ -89,12 +89,19 @@
     
         FloorCell *cell= [collectionView dequeueReusableCellWithReuseIdentifier:CellIdentifier forIndexPath:indexPath];
         NSArray *keys = [self.blueprints allKeys];
-        Blueprints *bp = [keys objectAtIndex:indexPath.item];
+        NSString *key = [keys objectAtIndex:indexPath.item];
+    Blueprints *bp=[self.blueprints objectForKey:key];
     
         NSString *imagePath=[bp getImagePath];
-        UIImage *graphImage = [[UIImage alloc] initWithContentsOfFile: imagePath];
+     //   UIImage *graphImage = [[UIImage alloc] initWithContentsOfFile: imagePath];
     
-        [[cell picture]setImage:graphImage];
+    
+    
+    NSString* tmpS=[[(MenuViewController*)[[self slidingViewController] underLeftViewController] selectedConf] getID];
+    //
+        [[cell picture] setImage:[[(MenuViewController*)[[self slidingViewController] underLeftViewController] selectedConf] loadImage:tmpS :imagePath]];
+        
+     //   [[cell picture]setImage:graphImage];
         
         [[cell floorName]setText:[bp getTitle]];
         

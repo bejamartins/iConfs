@@ -451,11 +451,14 @@
             
         }
         
+        [[[raw valueForKey:@"plant"] objectAtIndex:i] valueForKey:@"ID"];
+        [[[raw valueForKey:@"plant"] objectAtIndex:i] valueForKey:@"Name"];
+        [[[raw valueForKey:@"plant"] objectAtIndex:i] valueForKey:@"ImagePath"];
+        //[places eatingAreas: eatingAreas WCs: wcs rooms: rooms];
         bluePrint = [bluePrint initWithData: [[[raw valueForKey:@"plant"] objectAtIndex:i] valueForKey:@"ID"] title: [[[raw valueForKey:@"plant"] objectAtIndex:i] valueForKey:@"Name"] imagePath:[[[raw valueForKey:@"plant"] objectAtIndex:i] valueForKey:@"ImagePath"] otherPlaces: places eatingAreas: eatingAreas WCs: wcs rooms: rooms];
         [blueprints setObject:bluePrint forKey:[[[raw valueForKey:@"plant"] objectAtIndex:i] valueForKey:@"ID"] ];
         
     }
-    
     
     NSDictionary* c = [[raw valueForKey:@"conf"]objectAtIndex:0];
     UIImage* confIm = [self loadImageFromDrive: confID : [c valueForKey:@"ImagePath"] ];
