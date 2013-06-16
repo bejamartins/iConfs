@@ -23,17 +23,28 @@
 @implementation BluePrintsViewController{
 
     NSMutableArray *searchPlaces;
+    Blueprints *selectedBlueprint;
+    
     
 }
 
-@synthesize MenuButton;
+@synthesize MenuButton,placesContainer,bpContainer;
 
+//mandar para o container o mapa a mostrar!
+//mandar para o container os places a mostrar
 
 - (void)viewDidLoad
 {
     
     self.blueprints= [[(MenuViewController*)[[self slidingViewController] underLeftViewController] selectedConf] getBlueprints];
     NSLog(@"Tamanho bps=%d",[self.blueprints count]);
+   
+    if (selectedBlueprint==nil) {
+        NSArray *keys = [self.blueprints allKeys];
+        id aKey = [keys objectAtIndex:0];
+        id anObject = [self.blueprints objectForKey:aKey];
+        selectedBlueprint=anObject;
+    }
     
     [[[self view] layer] setShadowOpacity:0.75f];
     [[[self view] layer] setShadowRadius:10.0f];
@@ -52,7 +63,10 @@
     [MenuButton addTarget:self action:@selector(revealMenu:) forControlEvents:UIControlEventTouchUpInside];
     
     [[self view] addSubview:MenuButton];
-
+    
+    
+    [self changeSelectedBlueprint:selectedBlueprint];
+    
     [super viewDidLoad];
    [ self.collection setDataSource:self];
    [ self.collection setDelegate:self];
@@ -101,7 +115,6 @@
     //
         [[cell picture] setImage:[[(MenuViewController*)[[self slidingViewController] underLeftViewController] selectedConf] loadImage:tmpS :imagePath]];
         
-     //   [[cell picture]setImage:graphImage];
         
         [[cell floorName]setText:[bp getTitle]];
         
@@ -121,6 +134,41 @@
 {
     [[self slidingViewController] anchorTopViewTo:ECRight];
 }
+-(void) sendPlacesToContainer{
+    NSArray *Otherplaces= [selectedBlueprint getOtherPlaces];
+    NSArray *WCs=[selectedBlueprint getWCs];
+    NSArray *rooms=[selectedBlueprint getRooms];
+    NSArray *eat=[selectedBlueprint getEatingAreas];
 
+
+    
+    
+}
+-(void)changeSelectedBlueprint:(Blueprints*)newBlueprint{
+    selectedBlueprint=newBlueprint;
+    NSString *imagePath=[selectedBlueprint getImagePath];
+
+    NSString* tmpS=[[(MenuViewController*)[[self slidingViewController] underLeftViewController] selectedConf] getID];
+    //
+    UIImage *image=[[(MenuViewController*)[[self slidingViewController] underLeftViewController] selectedConf] loadImage:tmpS :imagePath];
+    
+  //  [self.bpContainer changeBlueprint: image];
+   
+
+    for (UIViewController *childViewController in [self childViewControllers])
+    {
+        if ([childViewController isKindOfClass:[BlueprintContainerViewController class]])
+        {
+            //found container view controller
+            BlueprintContainerViewController *bpController = (BlueprintContainerViewController *)childViewController;
+            bpController.image=image;
+            [bpController changeBlueprint:image];
+            //do something with your container view viewcontroller
+            
+            break;
+        }
+    }
+
+}
 
 @end

@@ -7,11 +7,14 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "BlueprintContainerViewController.h"
 
 @interface BluePrintsViewController : UIViewController<UICollectionViewDelegate,UICollectionViewDataSource>
 @property (strong, nonatomic) IBOutlet UISearchBar *searchBar;
 @property (strong, nonatomic) IBOutlet UICollectionView *collection;
 @property NSMutableDictionary *blueprints;
 @property (strong, nonatomic) UIButton *MenuButton;
+@property (strong, nonatomic) IBOutlet UIView *placesContainer;
+@property (strong, nonatomic) IBOutlet UIView *bpContainer;
 
 @end

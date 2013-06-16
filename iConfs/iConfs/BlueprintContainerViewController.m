@@ -13,6 +13,7 @@
 @end
 
 @implementation BlueprintContainerViewController
+@synthesize blueprint,image;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -29,6 +30,8 @@
     //vai colocar os places! pq a planta é posta no changeBlueprint
     NSInteger height= self.blueprint.frame.size.height;
     NSInteger width=self.blueprint.frame.size.width;
+    
+    [blueprint setImage:image];
     
     for(int i=0; i< [self.placesToShow count];i++){
         Place *p= [self.placesToShow objectAtIndex:i];
@@ -58,6 +61,7 @@
 
     self.placesToShow=places;
 }
+
 
 
 

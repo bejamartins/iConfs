@@ -10,12 +10,12 @@
 #import "Blueprints.h"
 @interface BlueprintContainerViewController : UIViewController
 @property (strong, nonatomic) IBOutlet UIImageView *blueprint;
-
+@property UIImage *image;
 @property BOOL search;
 @property NSArray *placesToShow;
 
 
 -(void) changeBlueprint:(UIImage*)print;
 -(void) changePlaces:(NSArray*) places;
-
+-(void) refresh;
 @end
