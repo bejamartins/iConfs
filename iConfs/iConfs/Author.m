@@ -80,4 +80,11 @@
     return personID;
 }
 
+-(NSString*)getSessID{
+    return sessID;
+}
+-(void)setConfID: (NSString*)newSID{
+    sessID = newSID;
+}
+
 @end
