@@ -2416,15 +2416,6 @@
                 <relationship kind="outlet" name="webview" candidateClass="UIWebView"/>
             </relationships>
         </class>
-        <class className="PeopleC2" superclassName="UIViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/PeopleC2.h"/>
-            <relationships>
-                <relationship kind="action" name="segmentedChanged:"/>
-                <relationship kind="outlet" name="Search" candidateClass="UIToolbar"/>
-                <relationship kind="outlet" name="peopleCollection" candidateClass="UICollectionView"/>
-                <relationship kind="outlet" name="segment" candidateClass="UISegmentedControl"/>
-            </relationships>
-        </class>
         <class className="PeopleCell" superclassName="UICollectionViewCell">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/PeopleCell.h"/>
             <relationships>
