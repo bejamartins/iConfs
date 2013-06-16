@@ -43,4 +43,11 @@
     return personID;
 }
 
+-(NSString*)getEventID{
+    return eventID;
+}
+-(void)setConfID: (NSString*)newEID{
+    eventID = newEID;
+}
+
 @end

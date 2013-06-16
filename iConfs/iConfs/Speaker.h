@@ -12,6 +12,7 @@
 {
     @protected
     NSString* resume;
+    NSString* eventID;
 }
 
 //Speaker's resume
@@ -41,5 +42,8 @@
  @returns 
  */
 -(void)setResume:(NSString*)r;
+
+-(NSString*)getEventID;
+-(void)setConfID: (NSString*)newEID;
 
 @end

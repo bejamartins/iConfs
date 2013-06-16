@@ -11,8 +11,10 @@
 
 @interface Author : Person
 {
- @protected
- NSMutableDictionary* papers;
+    @protected
+    NSMutableDictionary* papers;
+    NSString* sessID;
+    
 }
 
 //List of papers by this author
@@ -53,5 +55,8 @@
  @returns true if added sucsessful, false if it's already in the collection
  */
 -(BOOL)removePaper:(int)paperID;
+
+-(NSString*)getSessID;
+-(void)setConfID: (NSString*)newSID;
 
 @end
