@@ -348,7 +348,7 @@
 
 
 -(NSMutableDictionary*) getBlueprints{
-    return bluePrints;
+    return self.bluePrints;
 }
 
 -(UIImage*)loadImage:(NSString*)confID : (NSString*)imagePath{

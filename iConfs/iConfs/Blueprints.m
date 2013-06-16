@@ -10,7 +10,7 @@
 
 @implementation Blueprints
 
--(Blueprints*)initWithData: initWithData: (NSString*)bID title: (NSString*)t imagePath:(NSString*)ip otherPlaces: (NSArray*)p eatingAreas: (NSArray*) eA WCs: (NSArray*) w rooms: (NSArray*) r{
+-(Blueprints*)initWithData: (NSString*)bID title: (NSString*)t imagePath:(NSString*)ip otherPlaces: (NSArray*)p eatingAreas: (NSArray*) eA WCs: (NSArray*) w rooms: (NSArray*) r{
     bluePrintsID = bID;
     title = t;
     imagePath = ip;
