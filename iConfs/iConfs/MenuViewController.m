@@ -10,6 +10,8 @@
 #import "ECSlidingViewController.h"
 #import "AppDelegateProtocol.h"
 #import "IConfs.h"
+#import "OrganizerViewController.h"
+#import "PersonViewController.h"
 
 @interface MenuViewController ()
 {
@@ -160,11 +162,28 @@
         CGRect frame = [[[[self slidingViewController] topViewController] view] frame];
         [[self slidingViewController] setTopViewController:newTopViewController];
         [[[[self slidingViewController] topViewController] view] setFrame:frame];
-        [[self slidingViewController] resetTopView];
+         
 
         [[self MenuView] reloadData];
         [[[self MenuView] cellForRowAtIndexPath:indexPath] setHighlighted:YES];
     }
+}
+
+- (void)callPersonInterface:(NSString *)iD withPerson:(Person *)p
+{
+    UIViewController *newTopViewController = [[self storyboard]instantiateViewControllerWithIdentifier:iD];
+    
+    if ([iD isEqualToString:@"Organizer"]) {
+        [(OrganizerViewController *)newTopViewController setShownPerson:(Organizer *)p];
+    }else
+        [(PersonViewController *)newTopViewController setShownPerson:p];
+    
+    [[self slidingViewController] anchorTopViewOffScreenTo:ECRight animations:nil onComplete:^{
+        CGRect frame = [[[[self slidingViewController] topViewController] view] frame];
+        [[self slidingViewController] setTopViewController:newTopViewController];
+        [[[[self slidingViewController] topViewController] view] setFrame:frame];
+        [[self slidingViewController] resetTopView];
+    }];
 }
 
 - (IBAction)homeButtonPressed:(id)sender {

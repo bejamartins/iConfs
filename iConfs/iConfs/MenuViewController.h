@@ -17,4 +17,6 @@
 
 - (IBAction)homeButtonPressed:(id)sender;
 
+- (void)callPersonInterface:(NSString *)iD withPerson:(Person *)p;
+
 @end

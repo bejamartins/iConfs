@@ -52,6 +52,7 @@
 		707ADEE61765529D00AADD9C /* ma_rightArrow.png in Resources */ = {isa = PBXBuildFile; fileRef = 707ADEE11765529D00AADD9C /* ma_rightArrow.png */; };
 		707ADEE71765529D00AADD9C /* ma_rightArrow@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 707ADEE21765529D00AADD9C /* ma_rightArrow@2x.png */; };
 		707ADEE81765529D00AADD9C /* ma_topBackground.png in Resources */ = {isa = PBXBuildFile; fileRef = 707ADEE31765529D00AADD9C /* ma_topBackground.png */; };
+		707B76F4176E2F7700900A41 /* OrganizerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 707B76F3176E2F7700900A41 /* OrganizerViewController.m */; };
 		707B7C15175D62CD00E4747A /* ECSlidingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 707B7C12175D62CD00E4747A /* ECSlidingViewController.m */; };
 		707B7C16175D62CD00E4747A /* UIImage+ImageWithUIView.m in Sources */ = {isa = PBXBuildFile; fileRef = 707B7C14175D62CD00E4747A /* UIImage+ImageWithUIView.m */; };
 		707B7C19175D6E2B00E4747A /* InitViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 707B7C18175D6E2B00E4747A /* InitViewController.m */; };
@@ -190,6 +191,8 @@
 		707ADEE11765529D00AADD9C /* ma_rightArrow.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ma_rightArrow.png; sourceTree = "<group>"; };
 		707ADEE21765529D00AADD9C /* ma_rightArrow@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "ma_rightArrow@2x.png"; sourceTree = "<group>"; };
 		707ADEE31765529D00AADD9C /* ma_topBackground.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ma_topBackground.png; sourceTree = "<group>"; };
+		707B76F2176E2F7700900A41 /* OrganizerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OrganizerViewController.h; sourceTree = "<group>"; };
+		707B76F3176E2F7700900A41 /* OrganizerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OrganizerViewController.m; sourceTree = "<group>"; };
 		707B7C11175D62CD00E4747A /* ECSlidingViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ECSlidingViewController.h; sourceTree = "<group>"; };
 		707B7C12175D62CD00E4747A /* ECSlidingViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ECSlidingViewController.m; sourceTree = "<group>"; };
 		707B7C13175D62CD00E4747A /* UIImage+ImageWithUIView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+ImageWithUIView.h"; sourceTree = "<group>"; };
@@ -419,6 +422,8 @@
 				285FF4B91760BE0C001135E1 /* newConferenceContainer.m */,
 				A07887CA175A3CE500C1D90C /* PeopleViewController.h */,
 				A07887CB175A3CE500C1D90C /* PeopleViewController.m */,
+				707B76F2176E2F7700900A41 /* OrganizerViewController.h */,
+				707B76F3176E2F7700900A41 /* OrganizerViewController.m */,
 				28A3A88E175E9CAA0002BC93 /* PersonViewController.h */,
 				28A3A88F175E9CAA0002BC93 /* PersonViewController.m */,
 				A07887C8175A3CE500C1D90C /* PeopleCell.h */,
@@ -743,6 +748,7 @@
 				A09DF2FA176784CC00310266 /* Blueprints.m in Sources */,
 				28A1C5771767BC0B005B5F5B /* PDFReader.m in Sources */,
 				28586059176A826400FF4FF3 /* BlueprintContainerViewController.m in Sources */,
+				707B76F4176E2F7700900A41 /* OrganizerViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
