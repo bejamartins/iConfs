@@ -32,13 +32,13 @@
 /* Implementation for the MAWeekViewDataSource protocol */
 
 
-/*- (NSArray *)weekView:(MAWeekView *)weekView eventsForDate:(NSDate *)startDate {
+- (NSArray *)weekView:(MAWeekView *)weekView eventsForDate:(NSDate *)startDate {
     return [self.eventKitDataSource weekView:weekView eventsForDate:startDate];
-}*/
+}
 
 static int counter = 7 * 5;
 
-- (NSArray *)weekView:(MAWeekView *)weekView eventsForDate:(NSDate *)startDate {
+/*- (NSArray *)weekView:(MAWeekView *)weekView eventsForDate:(NSDate *)startDate {
 	counter--;
 	
 	unsigned int r = arc4random() % 24;
@@ -80,7 +80,7 @@ static int counter = 7 * 5;
 	}
 	
 	return arr;
-}
+}*/
 
 - (MAEvent *)event {
 	static int counter;
