@@ -30,7 +30,7 @@
 
 #pragma - Data Fetch Method
 
-- (IConfs*) appData;
+- (IConfs*) appData
 {
 	id<AppDelegateProtocol> theDelegate = (id<AppDelegateProtocol>) [UIApplication sharedApplication].delegate;
 	IConfs* theAppDataObject;
@@ -195,6 +195,10 @@
         [[[[self slidingViewController] topViewController] view] setFrame:frame];
         [[self slidingViewController] resetTopView];
     }];
+}
+
+-(void)changeSelectedConference:(Conference*)conf{
+    selectedConf=conf;
 }
 
 @end

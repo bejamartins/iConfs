@@ -11,7 +11,7 @@
 #import "CustomCellTwo.h"
 #import "ECSlidingViewController.h"
 #import "MenuViewController.h"
-
+#import "newConferenceContainer.h"
 @interface HomeViewController (){
     NSArray *arrayOfImages;
     NSArray *arrayOfDescriptions;
@@ -57,6 +57,43 @@
     [MenuButton addTarget:self action:@selector(revealMenu:) forControlEvents:UIControlEventTouchUpInside];
     
     [[self view] addSubview:MenuButton];
+    
+    //confPeople = [[(MenuViewController*)[[self slidingViewController] underLeftViewController] selectedConf] getSpeakers];
+    
+    //confirmar
+ 
+    IConfs *ic=[(MenuViewController*)[[self slidingViewController] underLeftViewController] appData];
+    NSArray *myConfs=[ic getMyConferences];
+    
+  //  NSString *imagePath=[selectedBlueprint getImagePath];
+    
+   // NSString* tmpS=[[(MenuViewController*)[[self slidingViewController] underLeftViewController] selectedConf] getID];
+    //
+   // UIImage *image=[[(MenuViewController*)[[self slidingViewController] underLeftViewController] selectedConf] loadImage:tmpS :imagePath];
+    
+    //  [self.bpContainer changeBlueprint: image];
+    
+    
+    for (UIViewController *childViewController in [self childViewControllers])
+    {
+        if ([childViewController isKindOfClass:[newConferenceContainer class]])
+        {
+            //found container view controller
+            newConferenceContainer *myCsContainer = (newConferenceContainer *)childViewController;
+            
+            myCsContainer.myConfs=myConfs;
+            [myCsContainer viewDidLoad];
+            
+        //    //image=[UIImage imageNamed:@"1.jpg"];
+          //  bpController.image=image;
+           // [bpController changeBlueprint:image];
+        }
+    
+    
+    }
+    
+    
+    
 }
 
 - (void)didReceiveMemoryWarning

@@ -10,14 +10,14 @@
 
 @interface newConferenceContainer : UIViewController<UICollectionViewDelegate,UICollectionViewDataSource>{
     
-    NSArray *conferencesNames;
-    NSArray *conferencesLogos;
+    
     // IBOutlet UICollectionView *collection;
     
 }
 
 //@property (strong, nonatomic) IBOutlet UICollectionView *collection;
 @property (strong, nonatomic) IBOutlet UICollectionView *collection;
+@property  NSArray *myConfs;
 
 @end
 
