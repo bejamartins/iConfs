@@ -10,9 +10,10 @@
 
 @interface PDFReader : UIViewController{
    
-    NSString *path;
 
 }
 @property (strong, nonatomic) IBOutlet UIWebView *webview;
+@property NSString *auxPath;
 
+-(void)changePath:(NSString*)p;
 @end
