@@ -1,24 +1,27 @@
 //
-//  PersonViewController.m
+//  OrganizerViewController.m
 //  iConfs
 //
-//  Created by Ana T on 04/06/13.
+//  Created by Jareth on 6/16/13.
 //  Copyright (c) 2013 Eduardo Joel Pereira Beja Martins. All rights reserved.
 //
 
-#import "PersonViewController.h"
+#import "OrganizerViewController.h"
 #import "ECSlidingViewController.h"
 #import "MenuViewController.h"
 
-@interface PersonViewController ()
+@interface OrganizerViewController ()
 
-@property (weak, nonatomic) IBOutlet UIButton *PaperButton;
+@property (weak, nonatomic) IBOutlet UINavigationBar *NavBar;
+@property (weak, nonatomic) IBOutlet UIImageView *Image;
+@property (weak, nonatomic) IBOutlet UILabel *Job;
+@property (weak, nonatomic) IBOutlet UILabel *Contact;
 
 @end
 
-@implementation PersonViewController
+@implementation OrganizerViewController
 
-@synthesize picture,session_theme,session_when,session_where,biography,IndexAux,showPerson, MenuButton, shownPerson, PaperButton;
+@synthesize MenuButton, NavBar, Image, Job, Contact, shownPerson;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -37,11 +40,8 @@
     NSString *tmpS = [[(MenuViewController*)[[self slidingViewController] underLeftViewController] selectedConf] getID];
     
     [[[self NavBar] topItem] setTitle:[shownPerson getName]];
-    [picture setImage:[[(MenuViewController*)[[self slidingViewController] underLeftViewController] selectedConf] loadImage:tmpS :[shownPerson getImagePath]]];
-    [biography setText:[shownPerson getWork]];
-    
-    if ([shownPerson isKindOfClass:[Speaker class]])
-        [PaperButton setHidden:YES];
+    [Image setImage:[[(MenuViewController*)[[self slidingViewController] underLeftViewController] selectedConf] loadImage:tmpS :[shownPerson getImagePath]]];
+    [Job setText:[shownPerson getJob]];
     
     [[[self view] layer] setShadowOpacity:0.75f];
     [[[self view] layer] setShadowRadius:10.0f];
@@ -60,7 +60,6 @@
     [MenuButton addTarget:self action:@selector(revealMenu:) forControlEvents:UIControlEventTouchUpInside];
     
     [[self view] addSubview:MenuButton];
-     
 }
 
 - (void)didReceiveMemoryWarning

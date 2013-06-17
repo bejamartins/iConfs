@@ -9,6 +9,7 @@
 #import "PeopleViewController.h"
 #import "PeopleCell.h"
 #import "PersonViewController.h"
+#import "OrganizerViewController.h"
 #import "ECSlidingViewController.h"
 #import "MenuViewController.h"
 
@@ -113,17 +114,25 @@
 }
 
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath{
-    UIViewController *newTopViewController = [[self storyboard]instantiateViewControllerWithIdentifier:@"Person"];
     
-    if (searchItem) {
-        [(PersonViewController*)newTopViewController setShownPerson:[confSearchPeople objectAtIndex:[indexPath row]]];
-    }else
-        [(PersonViewController*)newTopViewController setShownPerson:[confPeople objectAtIndex:[indexPath row]]];
+    NSString *iD = [[NSString alloc] init];
+    Person *p;
     
-    CGRect frame = [[[[self slidingViewController] topViewController] view] frame];
-    [[self slidingViewController] setTopViewController:newTopViewController];
-    [[[[self slidingViewController] topViewController] view] setFrame:frame];
-    [[self slidingViewController] resetTopView];
+    if ([[self Options] selectedSegmentIndex] != 2){
+        iD = @"Person";
+        if (searchItem)
+            p = [confSearchPeople objectAtIndex:[indexPath row]];
+        else
+            p = [confPeople objectAtIndex:[indexPath row]];
+    }else{
+        iD = @"Organizer";
+        if (searchItem)
+            p = [confSearchPeople objectAtIndex:[indexPath row]];
+        else
+            p = [confPeople objectAtIndex:[indexPath row]];
+    }
+    
+    [(MenuViewController *)[[self slidingViewController] underLeftViewController] callPersonInterface:iD withPerson:p];
 }
 
 #pragma - Search Bar Methods
@@ -171,10 +180,6 @@
     }
 
     [[self PeopleCollection]reloadData];
-}
-
-- (IBAction)MoreInfo:(id)sender {
-    
 }
 
 @end
