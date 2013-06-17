@@ -12,7 +12,6 @@
 
 @interface ConferenceScreenViewController ()
 //@property (strong, nonatomic) IBOutlet UINavigationItem *bar;
-@property (strong, nonatomic) IBOutlet UINavigationItem *bar;
 
 @end
 
@@ -32,7 +31,7 @@
 - (void)viewDidLoad
 {
     //NSLog(@"Name em ConferenceScreen= %@", conferenceName);
-    
+      conferenceName=  [[(MenuViewController*)[[self slidingViewController] underLeftViewController] selectedConf] getName];
     [[ self bar] setTitle:conferenceName];
     [super viewDidLoad];
 	// Do any additional setup after loading the view.
@@ -44,7 +43,6 @@
     if (![[[self slidingViewController] underLeftViewController] isKindOfClass:[MenuViewController class]]) {
         [self slidingViewController].UnderLeftViewController = [[self storyboard]instantiateViewControllerWithIdentifier:@"Menu"];
     }
-    //ERRO!
     [[self view] addGestureRecognizer:[self slidingViewController].panGesture];
     
     [self setMenuButton:[UIButton buttonWithType:UIButtonTypeCustom]];

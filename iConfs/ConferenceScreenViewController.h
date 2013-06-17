@@ -13,6 +13,7 @@
 @property NSString *conferenceName;
 
 @property UIButton *MenuButton;
+@property (strong, nonatomic) IBOutlet UINavigationItem *bar;
 
 -(void)changeName:(NSString *)name;
 
