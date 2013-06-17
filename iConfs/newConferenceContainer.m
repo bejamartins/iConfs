@@ -27,6 +27,9 @@
  */
 
 
+//confPeople = [[(MenuViewController*)[[self slidingViewController] underLeftViewController] selectedConf] getSpeakers];
+
+
 - (void)viewDidLoad
 {
     [super viewDidLoad];
@@ -74,22 +77,6 @@
     
 }
 
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    NSLog(@"Entrei no método do segue");
-    
-    // UIViewController *destination = segue.destinationViewController;
-    if ([segue.identifier isEqualToString:@"toConference"]) {
-        // NSIndexPath *a= [sender indexPath];
-        //   personView.IndexAux=a.item ;
-        conference=segue.destinationViewController;
-        
-        NSLog(@"VOU MUDAR O NOME NO PREPARE!");
-        
-        [conference changeName: name];
-        NSLog(@"Name Segue= %@", conference.conferenceName);
-        
-    }
-}
 
 
 @end
