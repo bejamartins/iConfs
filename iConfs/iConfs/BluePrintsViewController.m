@@ -38,7 +38,12 @@
     
     self.blueprints= [[(MenuViewController*)[[self slidingViewController] underLeftViewController] selectedConf] getBlueprints];
     NSLog(@"Tamanho bps=%d",[self.blueprints count]);
-   
+    NSArray *keys = [self.blueprints allKeys];
+    id aKey = [keys objectAtIndex:0];
+    Blueprints *b1 = [self.blueprints objectForKey:aKey];
+    aKey=[keys objectAtIndex:1];
+    Blueprints *b2=[self.blueprints objectForKey:aKey];
+    
     if (selectedBlueprint==nil) {
         NSArray *keys = [self.blueprints allKeys];
         id aKey = [keys objectAtIndex:0];
@@ -83,11 +88,10 @@
 #pragma mark - Collection datasource and delegate
 
 -(NSInteger)numberOfSectionsInCollectionView:(UICollectionView *)collectionView{
-    return [self.blueprints count];
-}
+    return 1;}
 
 -(NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section{
-    return 1;
+    return [self.blueprints count];
 }
 
 -(UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath{
@@ -105,13 +109,14 @@
         FloorCell *cell= [collectionView dequeueReusableCellWithReuseIdentifier:CellIdentifier forIndexPath:indexPath];
         NSArray *keys = [self.blueprints allKeys];
         NSString *key = [keys objectAtIndex:indexPath.item];
+    NSLog(@"Vou buscar o 1º Mapa! :D item=%d",indexPath.item );
     Blueprints *bp=[self.blueprints objectForKey:key];
-    
+   // NSLog(self.blueprints);
         NSString *imagePath=[bp getImagePath];
      //   UIImage *graphImage = [[UIImage alloc] initWithContentsOfFile: imagePath];
     
     
-    
+    NSLog(@"Path do mapa=%@",imagePath);
     NSString* tmpS=[[(MenuViewController*)[[self slidingViewController] underLeftViewController] selectedConf] getID];
     //
         [[cell picture] setImage:[[(MenuViewController*)[[self slidingViewController] underLeftViewController] selectedConf] loadImage:tmpS :imagePath]];

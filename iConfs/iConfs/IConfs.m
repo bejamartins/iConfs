@@ -460,9 +460,9 @@
                 [wcs addObject:wc];
             }
             else{
-                currPlace = [[Place alloc] init];
-                currPlace = [currPlace initPlace: [places[j] valueForKey:@"ID"] x:[[places[j] valueForKey:@"xPos"]intValue] y:[[places[j] valueForKey:@"yPos"]intValue]];
-                [places addObject:currPlace];
+//                currPlace = [[Place alloc] init];
+//                currPlace = [currPlace initPlace: [places[j] valueForKey:@"ID"] x:[[places[j] valueForKey:@"xPos"]intValue] y:[[places[j] valueForKey:@"yPos"]intValue]];
+//                [places addObject:currPlace];
             }
             
         }
