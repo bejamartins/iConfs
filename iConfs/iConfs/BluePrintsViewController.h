@@ -8,6 +8,7 @@
 
 #import <UIKit/UIKit.h>
 #import "BlueprintContainerViewController.h"
+#import "Conference.h"
 
 @interface BluePrintsViewController : UIViewController<UICollectionViewDelegate,UICollectionViewDataSource>
 @property (strong, nonatomic) IBOutlet UISearchBar *searchBar;
@@ -16,5 +17,6 @@
 @property (strong, nonatomic) UIButton *MenuButton;
 @property (strong, nonatomic) IBOutlet UIView *placesContainer;
 @property (strong, nonatomic) IBOutlet UIView *bpContainer;
-
+-(UIImage*) returnImagePath:(NSString*)imagePath;
+@property Conference *c;
 @end

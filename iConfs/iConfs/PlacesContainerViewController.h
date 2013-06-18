@@ -8,6 +8,17 @@
 
 #import <UIKit/UIKit.h>
 
-@interface PlacesContainerViewController : UIViewController
+@interface PlacesContainerViewController : UIViewController<UICollectionViewDataSource,UICollectionViewDelegate>
+
+@property NSArray *otherPlaces;
+@property NSArray *wcs;
+@property NSArray *eat;
+@property NSArray *rooms;
+@property (strong, nonatomic) IBOutlet UICollectionView *collection;
+//
+-(void)changeEat:(NSArray *)e;
+-(void)changeWC:(NSArray*)w;
+-(void)changeRooms:(NSArray*)r;
+-(void)changeOtherPlaces:(NSArray*)o;
 
 @end
