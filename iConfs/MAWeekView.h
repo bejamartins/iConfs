@@ -61,10 +61,17 @@
 @property (readwrite,assign) BOOL eventDraggingEnabled;
 @property (readwrite,assign) unsigned int labelFontSize;
 @property (nonatomic,copy) NSDate *week;
+@property (readonly) MAWeekdayBarView *weekdayBarView;
 @property (nonatomic,unsafe_unretained) IBOutlet id<MAWeekViewDataSource> dataSource;
 @property (nonatomic,unsafe_unretained) IBOutlet id<MAWeekViewDelegate> delegate;
 
 - (void)reloadData;
+
+- (void)isRemoving;
+
+- (void)doneRemoving;
+
+-(NSArray*)getWeekDays;
 
 @end
 

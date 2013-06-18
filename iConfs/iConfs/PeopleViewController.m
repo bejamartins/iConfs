@@ -115,24 +115,25 @@
 
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath{
     
-    NSString *iD = [[NSString alloc] init];
-    Person *p;
+    UIViewController *newTopViewController;
     
     if ([[self Options] selectedSegmentIndex] != 2){
-        iD = @"Person";
+        newTopViewController = [[self storyboard]instantiateViewControllerWithIdentifier:@"Person"];
+        
         if (searchItem)
-            p = [confSearchPeople objectAtIndex:[indexPath row]];
+            [(PersonViewController *)newTopViewController setShownPerson:[confSearchPeople objectAtIndex:[indexPath row]]];
         else
-            p = [confPeople objectAtIndex:[indexPath row]];
+            [(PersonViewController *)newTopViewController setShownPerson:[confPeople objectAtIndex:[indexPath row]]];
     }else{
-        iD = @"Organizer";
+        newTopViewController = [[self storyboard]instantiateViewControllerWithIdentifier:@"Organizer"];
+        
         if (searchItem)
-            p = [confSearchPeople objectAtIndex:[indexPath row]];
+            [(OrganizerViewController *)newTopViewController setShownPerson:(Organizer *)[confSearchPeople objectAtIndex:[indexPath row]]];
         else
-            p = [confPeople objectAtIndex:[indexPath row]];
+            [(OrganizerViewController *)newTopViewController setShownPerson:(Organizer *)[confPeople objectAtIndex:[indexPath row]]];
     }
     
-    [(MenuViewController *)[[self slidingViewController] underLeftViewController] callPersonInterface:iD withPerson:p];
+    [[self slidingViewController] setTopViewController:newTopViewController];
 }
 
 #pragma - Search Bar Methods
