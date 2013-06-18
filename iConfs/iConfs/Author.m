@@ -87,4 +87,13 @@
     sessID = newSID;
 }
 
+//dado o confID e a variavel paperPath (ex.: @"paper.pdf")
+//devolve o caminho absoluto ate ao ficheiro
+-(NSString*)getPaper:(NSString*)confID : (NSString*)paperPath{
+    
+    return [NSString stringWithFormat:@"%@%@%@%@%@",[NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES)objectAtIndex:0],@"/",confID,@"/",paperPath];
+    
+}
+
+
 @end
