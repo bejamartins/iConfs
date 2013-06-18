@@ -422,10 +422,26 @@
     Room* room;
     WC* wc;
     EatingArea* ea;
+    NSMutableDictionary* places1;
+    places1 = [[NSMutableDictionary alloc] init];
+    NSMutableArray* placesList;
+    NSArray* plp = [raw valueForKey:@"plantPlots"];
+    
+    for (int i = 0; i<[plp count]; i++) {
+        if ([places1 valueForKey:[(NSDictionary*)plp[i] valueForKey:@"IDPlant"]] == nil) {
+            placesList = [[NSMutableArray alloc] init];
+            [placesList addObject: plp[i]];
+            [places1 setObject:placesList forKey:[((NSDictionary*)plp[i]) valueForKey:@"IDPlant"]];
+        }
+        else{
+            [[places1 objectForKey:[((NSDictionary*)plp[i]) valueForKey:@"IDPlant"]] addObject: plp[i]];
+        }
+    }
     for (int i=0; i<[bp count]; i++) {
         bluePrint = [[Blueprints alloc] init];
         places = [[NSMutableArray alloc] init];
-        places = [bp[i] valueForKey:@"plantPlots"];
+        //places = [bp[i] valueForKey:@"plantPlots"];
+        places = [places1 valueForKey:[[[raw valueForKey:@"plant"] objectAtIndex:i] valueForKey:@"ID"]];
         for (int j = 0; j < [places count]; j++) {
             placeType = [[NSString alloc] init];
             if ([placeType isEqualToString:@"RM"]) {
@@ -444,9 +460,9 @@
                 [wcs addObject:wc];
             }
             else{
-                currPlace = [[Place alloc] init];
-                currPlace = [currPlace initPlace: [places[j] valueForKey:@"ID"] x:[[places[j] valueForKey:@"xPos"]intValue] y:[[places[j] valueForKey:@"yPos"]intValue]];
-                [places addObject:currPlace];
+//                currPlace = [[Place alloc] init];
+//                currPlace = [currPlace initPlace: [places[j] valueForKey:@"ID"] x:[[places[j] valueForKey:@"xPos"]intValue] y:[[places[j] valueForKey:@"yPos"]intValue]];
+//                [places addObject:currPlace];
             }
             
         }

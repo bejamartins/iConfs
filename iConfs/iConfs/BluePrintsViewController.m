@@ -12,6 +12,8 @@
 #import "Blueprints.h"
 #import "ECSlidingViewController.h"
 #import "MenuViewController.h"
+#import "PlacesContainerViewController.h"
+#import "Conference.h"
 
 @interface BluePrintsViewController (){
 
@@ -28,17 +30,24 @@
     
 }
 
-@synthesize MenuButton,placesContainer,bpContainer;
+@synthesize MenuButton,placesContainer,bpContainer,c;
 
 //mandar para o container o mapa a mostrar!
 //mandar para o container os places a mostrar
 
 - (void)viewDidLoad
 {
-    
+ 
+    c=[(MenuViewController*)[[self slidingViewController] underLeftViewController] selectedConf] ;
+
     self.blueprints= [[(MenuViewController*)[[self slidingViewController] underLeftViewController] selectedConf] getBlueprints];
     NSLog(@"Tamanho bps=%d",[self.blueprints count]);
-   
+    NSArray *keys = [self.blueprints allKeys];
+    id aKey = [keys objectAtIndex:0];
+    Blueprints *b1 = [self.blueprints objectForKey:aKey];
+    aKey=[keys objectAtIndex:1];
+    Blueprints *b2=[self.blueprints objectForKey:aKey];
+    
     if (selectedBlueprint==nil) {
         NSArray *keys = [self.blueprints allKeys];
         id aKey = [keys objectAtIndex:0];
@@ -66,7 +75,7 @@
     
     
     [self changeSelectedBlueprint:selectedBlueprint];
-    [ self sendPlacesToContainer];
+   // [ self sendPlacesToContainer];
     [super viewDidLoad];
    [ self.collection setDataSource:self];
    [ self.collection setDelegate:self];
@@ -83,11 +92,10 @@
 #pragma mark - Collection datasource and delegate
 
 -(NSInteger)numberOfSectionsInCollectionView:(UICollectionView *)collectionView{
-    return [self.blueprints count];
-}
+    return 1;}
 
 -(NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section{
-    return 1;
+    return [self.blueprints count];
 }
 
 -(UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath{
@@ -105,13 +113,14 @@
         FloorCell *cell= [collectionView dequeueReusableCellWithReuseIdentifier:CellIdentifier forIndexPath:indexPath];
         NSArray *keys = [self.blueprints allKeys];
         NSString *key = [keys objectAtIndex:indexPath.item];
+    NSLog(@"Vou buscar o 1º Mapa! :D item=%d",indexPath.item );
     Blueprints *bp=[self.blueprints objectForKey:key];
-    
+   // NSLog(self.blueprints);
         NSString *imagePath=[bp getImagePath];
      //   UIImage *graphImage = [[UIImage alloc] initWithContentsOfFile: imagePath];
     
     
-    
+    NSLog(@"Path do mapa=%@",imagePath);
     NSString* tmpS=[[(MenuViewController*)[[self slidingViewController] underLeftViewController] selectedConf] getID];
     //
         [[cell picture] setImage:[[(MenuViewController*)[[self slidingViewController] underLeftViewController] selectedConf] loadImage:tmpS :imagePath]];
@@ -138,6 +147,8 @@
     [self changeSelectedBlueprint:b];
     
         NSLog(@"Detectei toque");
+    
+    
     
     for (UIViewController *childViewController in [self childViewControllers])
     {
@@ -200,11 +211,43 @@
     
   //  [self.bpContainer changeBlueprint: image];
    
+    NSArray *childViewControllers =[self childViewControllers];
+    int counter=(int)[childViewControllers count];
+    for (int i=0;i<counter;i++){
+    
+        
+        UIViewController *childViewController=[childViewControllers objectAtIndex:i];
+        if([ childViewController isKindOfClass:[PlacesContainerViewController class]]){
+           // PlacesContainerViewController
+        //ir buscar os places do selectedBlueprint
+            //chamar metodo no container com os places a mostrar e depois chamar o viewDidLoad
+            
+            PlacesContainerViewController *pController= (PlacesContainerViewController*) childViewController;
+        
+            NSArray *places=[selectedBlueprint getEatingAreas];
+            [pController changeEat:places];
+            NSLog(@"tamanho do places %d",[places count]);
+            places=[selectedBlueprint getOtherPlaces];
+            [pController changeOtherPlaces:places];
+            NSLog(@"---tamanho do other %d",[places count]);
 
-    for (UIViewController *childViewController in [self childViewControllers])
-    {
-        if ([childViewController isKindOfClass:[BlueprintContainerViewController class]])
-        {
+            places=[selectedBlueprint getWCs];
+            [pController changeWC:places];
+            NSLog(@"tamanho do wcs %d",[places count]);
+
+            places=[selectedBlueprint getRooms];
+            [pController changeRooms:places];
+            NSLog(@"tamanho do rooms %d",[places count]);
+
+           
+            [pController viewDidLoad];
+            
+            
+
+        }
+        
+                else if([childViewController isKindOfClass:[BlueprintContainerViewController class]]){
+        
             //found container view controller
             BlueprintContainerViewController *bpController = (BlueprintContainerViewController *)childViewController;
             
@@ -212,15 +255,22 @@
             bpController.image=image;
             [bpController changeBlueprint:image];
             
-            break;
-        }
+            
+                }
+
     }
 
 }
 
--(void) showPlaces:(NSArray*)places{
+-(UIImage*) returnImagePath:(NSString*)imagePath{
+    
+    
+    NSString *aux=[self.c getID];
+    
+    
+    UIImage *image=[self.c loadImage:aux :imagePath];
 
-
+    return image;
 }
 
 @end

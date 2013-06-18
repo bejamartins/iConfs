@@ -12,11 +12,10 @@
 #import "ECSlidingViewController.h"
 #import "MenuViewController.h"
 #import "newConferenceContainer.h"
+#import "News.h"
 @interface HomeViewController (){
-    NSArray *arrayOfImages;
-    NSArray *arrayOfDescriptions;
-    //    ConferencesCollection *cc;
-    
+    NSMutableArray *news;
+    NSMutableArray *pictures;
     
 }
 @property (strong, nonatomic) IBOutlet UICollectionView *ct;
@@ -37,8 +36,6 @@
     self.CollectionOne.dataSource=self;
     // self.ConferenceCollection.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"6.png"]];
     
-    arrayOfImages= [[NSArray alloc]initWithObjects:@"conf.jpg", @"conf.jpg", @"conf.jpg",nil];
-    arrayOfDescriptions=[[NSArray alloc]initWithObjects:@"First",@"Second",@"Third", nil];
     
     [[[self view] layer] setShadowOpacity:0.75f];
     [[[self view] layer] setShadowRadius:10.0f];
@@ -89,10 +86,29 @@
            // [bpController changeBlueprint:image];
         }
     
+        NSLog(@"bah");
+    }
+  //  IConfs *ic=[(MenuViewController*)[[self slidingViewController] underLeftViewController] appData];
+   // NSArray *myConfs=[ic getMyConferences];
+    NSInteger numberOfNews = 0;
+    for(int i=0;i<[myConfs count];i++){
+        NSLog(@"CICLOOOO");
+        
+        NSInteger counter=[[[myConfs objectAtIndex:i]getNews]count];
+        //[[[myConfs objectAtIndex:i]getNews ] objectAtIndex:[[[myConfs objectAtIndex:i]getNews ] ]count];
+        if(counter!=0){
+        News *n=[[[myConfs objectAtIndex:i]getNews ] objectAtIndex:counter-1 ];
+            [news insertObject:n atIndex:numberOfNews];
+            UIImage *p=[[myConfs objectAtIndex:i]getLogo];
+            [pictures insertObject:p atIndex:numberOfNews];
+            NSLog(@"ADICIONEI NOTICIA!!");
+            NSLog(@"Numero de noticias= %d",numberOfNews);
+
+            numberOfNews++;
+        }
+        
     
     }
-    
-    
     
 }
 
@@ -114,15 +130,16 @@
 }
 
 -(NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section{
-    return [arrayOfDescriptions count];
+    return [news count];
 }
 
 -(UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath{
     static NSString *CellIdentifier=@"cellOne";
     CustomCellOne *cell= [collectionView dequeueReusableCellWithReuseIdentifier:CellIdentifier forIndexPath:indexPath];
-    [[cell Image]setImage:[UIImage imageNamed:[arrayOfImages objectAtIndex:indexPath.item]]];
+    News *n= [news objectAtIndex:indexPath.item];
+    [[cell Image]setImage:[pictures objectAtIndex:indexPath.item]];
     
-    [[cell Description]setText:[arrayOfDescriptions objectAtIndex:indexPath.item]];
+    [[cell Description]setText:[n getTitle]];
     
     return cell;
 }

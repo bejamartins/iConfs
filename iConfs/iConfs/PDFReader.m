@@ -8,7 +8,9 @@
 
 #import "PDFReader.h"
 
-@interface PDFReader ()
+@interface PDFReader (){
+    NSString *path;
+}
 
 @end
 
@@ -27,7 +29,9 @@
 
 - (void)viewDidLoad
 {
-    path=[[NSBundle mainBundle] pathForAuxiliaryExecutable:@"pdf.pdf"];
+    
+    
+    path=[[NSBundle mainBundle] pathForAuxiliaryExecutable:self.auxPath];
     
     [super viewDidLoad];
     NSURL *url=[NSURL fileURLWithPath:path];
@@ -41,6 +45,10 @@
 {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+-(void)changePath:(NSString*)p{
+    self.auxPath=p;
 }
 
 @end

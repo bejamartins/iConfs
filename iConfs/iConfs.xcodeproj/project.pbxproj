@@ -13,6 +13,7 @@
 		280F37371763F4F600E72424 /* SessionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 280F37361763F4F600E72424 /* SessionViewController.m */; };
 		280F373A1763F7AE00E72424 /* peopleInSessionCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 280F37391763F7AE00E72424 /* peopleInSessionCell.m */; };
 		280F373D1763F8DB00E72424 /* CollectionPeopleInSession.m in Sources */ = {isa = PBXBuildFile; fileRef = 280F373C1763F8DB00E72424 /* CollectionPeopleInSession.m */; };
+		2836BE5B17711D6600A78C42 /* pubConferenceViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2836BE5A17711D6600A78C42 /* pubConferenceViewController.m */; };
 		28561E7F17678D6E00E29FD4 /* arrowLeft.png in Resources */ = {isa = PBXBuildFile; fileRef = 28561E7E17678D6E00E29FD4 /* arrowLeft.png */; };
 		28586059176A826400FF4FF3 /* BlueprintContainerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 28586058176A826400FF4FF3 /* BlueprintContainerViewController.m */; };
 		285FF4B71760BC0E001135E1 /* CellMyConferences.m in Sources */ = {isa = PBXBuildFile; fileRef = 285FF4B61760BC0E001135E1 /* CellMyConferences.m */; };
@@ -126,6 +127,8 @@
 		280F37391763F7AE00E72424 /* peopleInSessionCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = peopleInSessionCell.m; sourceTree = "<group>"; };
 		280F373B1763F8DB00E72424 /* CollectionPeopleInSession.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CollectionPeopleInSession.h; sourceTree = "<group>"; };
 		280F373C1763F8DB00E72424 /* CollectionPeopleInSession.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CollectionPeopleInSession.m; sourceTree = "<group>"; };
+		2836BE5917711D6600A78C42 /* pubConferenceViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = pubConferenceViewController.h; path = ../pubConferenceViewController.h; sourceTree = "<group>"; };
+		2836BE5A17711D6600A78C42 /* pubConferenceViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = pubConferenceViewController.m; path = ../pubConferenceViewController.m; sourceTree = "<group>"; };
 		28561E7E17678D6E00E29FD4 /* arrowLeft.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = arrowLeft.png; sourceTree = "<group>"; };
 		28586057176A826300FF4FF3 /* BlueprintContainerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BlueprintContainerViewController.h; sourceTree = "<group>"; };
 		28586058176A826400FF4FF3 /* BlueprintContainerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BlueprintContainerViewController.m; sourceTree = "<group>"; };
@@ -409,6 +412,8 @@
 				28586058176A826400FF4FF3 /* BlueprintContainerViewController.m */,
 				289746011764EB4200CB2022 /* BluePrintsViewController.h */,
 				289746021764EB4200CB2022 /* BluePrintsViewController.m */,
+				2836BE5917711D6600A78C42 /* pubConferenceViewController.h */,
+				2836BE5A17711D6600A78C42 /* pubConferenceViewController.m */,
 				280F373B1763F8DB00E72424 /* CollectionPeopleInSession.h */,
 				280F373C1763F8DB00E72424 /* CollectionPeopleInSession.m */,
 				28ADEE1F1760D2D70059F458 /* Conference-News.h */,
@@ -749,6 +754,7 @@
 				28A1C5771767BC0B005B5F5B /* PDFReader.m in Sources */,
 				28586059176A826400FF4FF3 /* BlueprintContainerViewController.m in Sources */,
 				707B76F4176E2F7700900A41 /* OrganizerViewController.m in Sources */,
+				2836BE5B17711D6600A78C42 /* pubConferenceViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

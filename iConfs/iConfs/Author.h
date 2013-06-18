@@ -58,5 +58,6 @@
 
 -(NSString*)getSessID;
 -(void)setConfID: (NSString*)newSID;
+-(NSString*)getPaper:(NSString*)confID : (NSString*)paperPath;
 
 @end
