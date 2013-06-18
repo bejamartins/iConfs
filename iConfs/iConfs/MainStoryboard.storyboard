@@ -345,9 +345,6 @@
                                 <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <containerView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Nyl-is-rBf">
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
-                            </containerView>
                             <containerView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="pdW-gR-6p6">
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                                 <connections>
@@ -365,29 +362,35 @@
                                     <navigationItem title="iConfs" id="obB-oC-TeY"/>
                                 </items>
                             </navigationBar>
+                            <containerView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="wDG-ps-XC4">
+                                <color key="backgroundColor" cocoaTouchSystemColor="scrollViewTexturedBackgroundColor"/>
+                                <connections>
+                                    <segue destination="M2h-Xp-Okl" kind="embed" id="hPm-DX-eNB"/>
+                                </connections>
+                            </containerView>
                         </subviews>
                         <color key="backgroundColor" cocoaTouchSystemColor="scrollViewTexturedBackgroundColor"/>
                         <constraints>
                             <constraint firstItem="vaR-37-i9Q" firstAttribute="trailing" secondItem="RqT-X1-FGV" secondAttribute="trailing" type="default" id="35Z-Oh-fU9"/>
-                            <constraint firstItem="FYb-Ku-8hU" firstAttribute="top" secondItem="Nyl-is-rBf" secondAttribute="top" type="default" id="3I1-FG-mba"/>
                             <constraint firstItem="pdW-gR-6p6" firstAttribute="top" secondItem="tmA-vE-w1H" secondAttribute="top" constant="398" id="5KT-o1-15u"/>
-                            <constraint firstItem="Nyl-is-rBf" firstAttribute="leading" secondItem="tmA-vE-w1H" secondAttribute="leading" constant="436" id="Ahq-TP-TP8"/>
                             <constraint firstAttribute="trailing" secondItem="FYb-Ku-8hU" secondAttribute="trailing" constant="348" id="BMa-UC-mwI"/>
                             <constraint firstItem="6AR-pd-1Yf" firstAttribute="leading" secondItem="tmA-vE-w1H" secondAttribute="leading" type="default" id="Bw1-dx-dMw"/>
                             <constraint firstItem="RqT-X1-FGV" firstAttribute="leading" secondItem="tmA-vE-w1H" secondAttribute="leading" constant="53" id="D6A-wk-xCw"/>
                             <constraint firstItem="6AR-pd-1Yf" firstAttribute="trailing" secondItem="tmA-vE-w1H" secondAttribute="trailing" type="default" id="EA9-vI-yat"/>
+                            <constraint firstAttribute="bottom" secondItem="wDG-ps-XC4" secondAttribute="bottom" constant="55" id="ERu-Xg-1pq"/>
                             <constraint firstItem="vaR-37-i9Q" firstAttribute="baseline" secondItem="mUf-oo-pfF" secondAttribute="baseline" type="default" id="FaT-iQ-cIC"/>
                             <constraint firstItem="pdW-gR-6p6" firstAttribute="leading" secondItem="RqT-X1-FGV" secondAttribute="leading" type="default" id="GDu-eN-Mbq"/>
+                            <constraint firstAttribute="trailing" secondItem="wDG-ps-XC4" secondAttribute="trailing" constant="20" symbolic="YES" type="default" id="HvA-9a-RNZ"/>
                             <constraint firstItem="pdW-gR-6p6" firstAttribute="leading" secondItem="FYb-Ku-8hU" secondAttribute="leading" type="default" id="PxG-tE-0XG"/>
+                            <constraint firstItem="wDG-ps-XC4" firstAttribute="top" secondItem="tmA-vE-w1H" secondAttribute="top" constant="760" id="QFu-gS-KVT"/>
                             <constraint firstItem="vaR-37-i9Q" firstAttribute="centerY" secondItem="mUf-oo-pfF" secondAttribute="centerY" type="default" id="RdN-Cp-LD6"/>
+                            <constraint firstItem="wDG-ps-XC4" firstAttribute="centerY" secondItem="FYb-Ku-8hU" secondAttribute="centerY" type="default" id="Zi1-1h-eBR"/>
                             <constraint firstItem="6AR-pd-1Yf" firstAttribute="top" secondItem="tmA-vE-w1H" secondAttribute="top" type="default" id="aXr-qB-6AR"/>
-                            <constraint firstItem="Nyl-is-rBf" firstAttribute="trailing" secondItem="pdW-gR-6p6" secondAttribute="trailing" type="default" id="d00-BF-CXY"/>
-                            <constraint firstAttribute="bottom" secondItem="Nyl-is-rBf" secondAttribute="bottom" constant="20" symbolic="YES" type="default" id="dsk-nQ-ohA"/>
+                            <constraint firstItem="wDG-ps-XC4" firstAttribute="leading" secondItem="tmA-vE-w1H" secondAttribute="leading" constant="435" id="cmx-KK-GMF"/>
                             <constraint firstItem="RqT-X1-FGV" firstAttribute="top" secondItem="tmA-vE-w1H" secondAttribute="top" constant="74" id="f2M-0t-2FX"/>
                             <constraint firstAttribute="bottom" secondItem="FYb-Ku-8hU" secondAttribute="bottom" constant="20" symbolic="YES" type="default" id="j0i-ya-S7S"/>
                             <constraint firstItem="vaR-37-i9Q" firstAttribute="top" secondItem="tmA-vE-w1H" secondAttribute="top" constant="344" id="qXg-Tt-cqO"/>
                             <constraint firstAttribute="bottom" secondItem="pdW-gR-6p6" secondAttribute="bottom" constant="302" id="r4L-mW-xZr"/>
-                            <constraint firstItem="FYb-Ku-8hU" firstAttribute="top" secondItem="tmA-vE-w1H" secondAttribute="top" constant="725" id="tdz-mx-DzB"/>
                             <constraint firstItem="mUf-oo-pfF" firstAttribute="leading" secondItem="tmA-vE-w1H" secondAttribute="leading" constant="66" id="zIu-aY-hBV"/>
                             <constraint firstItem="vaR-37-i9Q" firstAttribute="trailing" secondItem="pdW-gR-6p6" secondAttribute="trailing" type="default" id="zar-z1-oeP"/>
                         </constraints>
@@ -2224,6 +2227,48 @@
             </objects>
             <point key="canvasLocation" x="1080" y="3068"/>
         </scene>
+        <!--Pub Conference View Controller-->
+        <scene sceneID="zaY-63-GBC">
+            <objects>
+                <viewController id="M2h-Xp-Okl" customClass="pubConferenceViewController" sceneMemberID="viewController">
+                    <view key="view" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="xdI-33-tTZ">
+                        <rect key="frame" x="0.0" y="0.0" width="313" height="189"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="IRT-UJ-Ux4">
+                                <color key="backgroundColor" cocoaTouchSystemColor="scrollViewTexturedBackgroundColor"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="160" id="goZ-uL-guc"/>
+                                </constraints>
+                            </imageView>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Suggested Conference" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="odt-lz-bb5">
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="21" id="ele-Xq-ZEp"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="20"/>
+                                <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" cocoaTouchSystemColor="scrollViewTexturedBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="IRT-UJ-Ux4" firstAttribute="bottom" secondItem="xdI-33-tTZ" secondAttribute="bottom" type="default" id="4pK-e7-r7x"/>
+                            <constraint firstItem="odt-lz-bb5" firstAttribute="leading" secondItem="xdI-33-tTZ" secondAttribute="leading" type="default" id="7Tf-GU-MC7"/>
+                            <constraint firstItem="IRT-UJ-Ux4" firstAttribute="trailing" secondItem="xdI-33-tTZ" secondAttribute="trailing" type="default" id="PMz-5x-3Be"/>
+                            <constraint firstItem="odt-lz-bb5" firstAttribute="trailing" secondItem="xdI-33-tTZ" secondAttribute="trailing" type="default" id="WF6-lC-Yfw"/>
+                            <constraint firstItem="odt-lz-bb5" firstAttribute="top" secondItem="xdI-33-tTZ" secondAttribute="top" constant="5" id="r3a-at-Yva"/>
+                            <constraint firstItem="IRT-UJ-Ux4" firstAttribute="leading" secondItem="xdI-33-tTZ" secondAttribute="leading" type="default" id="zlB-Hg-pk7"/>
+                        </constraints>
+                    </view>
+                    <toolbarItems/>
+                    <connections>
+                        <outlet property="picture" destination="IRT-UJ-Ux4" id="JWo-VE-f0k"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="fwm-zg-Gsj" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1127" y="3487"/>
+        </scene>
     </scenes>
     <resources>
         <image name="Post-it-note-transparent.png" width="556" height="580"/>
@@ -2451,6 +2496,12 @@
             <relationships>
                 <relationship kind="outlet" name="institution" candidateClass="UILabel"/>
                 <relationship kind="outlet" name="name" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="picture" candidateClass="UIImageView"/>
+            </relationships>
+        </class>
+        <class className="pubConferenceViewController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/pubConferenceViewController.h"/>
+            <relationships>
                 <relationship kind="outlet" name="picture" candidateClass="UIImageView"/>
             </relationships>
         </class>

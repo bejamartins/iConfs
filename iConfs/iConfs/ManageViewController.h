@@ -7,6 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "IConfs.h"
 
 @interface ManageViewController : UIViewController<UICollectionViewDataSource, UICollectionViewDelegate>
 
@@ -18,4 +19,6 @@
 
 - (IBAction)addConfs:(id)sender;
 - (IBAction)remConfs:(id)sender;
+- (IConfs*) appData;
+
 @end
