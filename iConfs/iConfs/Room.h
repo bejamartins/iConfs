@@ -11,7 +11,7 @@
 @interface Room : Place
 {
     @protected
-    NSString* name;
+    //NSString* name;
 }
 
 //Room name/designation

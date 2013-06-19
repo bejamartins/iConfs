@@ -460,9 +460,10 @@
                 [wcs addObject:wc];
             }
             else{
-//                curr Place = [[Place alloc] init];
-//                currPlace = [currPlace initPlace: [places[j] valueForKey:@"ID"] x:[[places[j] valueForKey:@"xPos"]intValue] y:[[places[j] valueForKey:@"yPos"]intValue]];
-//                [places addObject:currPlace];
+                currPlace = [[Place alloc] init];
+                currPlace = [currPlace initPlace: [places[j] valueForKey:@"ID"] name:[places[j] valueForKey:@"ID"] x:[[places[j] valueForKey:@"xPos"]intValue] y:[[places[j] valueForKey:@"yPos"]intValue]];
+                //[currPlace alterLogo:<#(NSString *)#>];
+                [places addObject:currPlace];
             }
             
         }
