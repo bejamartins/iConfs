@@ -10,7 +10,9 @@
 #import "ECSlidingViewController.h"
 #import "MenuViewController.h"
 
-@interface PersonViewController ()
+@interface PersonViewController (){
+    NSString *confID;
+}
 
 @property (weak, nonatomic) IBOutlet UIButton *PaperButton;
 
@@ -34,10 +36,10 @@
     [super viewDidLoad];
 	// Do any additional setup after loading the view.
     
-    NSString *tmpS = [[(MenuViewController*)[[self slidingViewController] underLeftViewController] selectedConf] getID];
+    confID = [[(MenuViewController*)[[self slidingViewController] underLeftViewController] selectedConf] getID];
     
     [[[self NavBar] topItem] setTitle:[shownPerson getName]];
-    [picture setImage:[[(MenuViewController*)[[self slidingViewController] underLeftViewController] selectedConf] loadImage:tmpS :[shownPerson getImagePath]]];
+    [picture setImage:[[(MenuViewController*)[[self slidingViewController] underLeftViewController] selectedConf] loadImage:confID :[shownPerson getImagePath]]];
     [biography setText:[shownPerson getWork]];
     
     if ([shownPerson isKindOfClass:[Speaker class]])
@@ -60,7 +62,6 @@
     [MenuButton addTarget:self action:@selector(revealMenu:) forControlEvents:UIControlEventTouchUpInside];
     
     [[self view] addSubview:MenuButton];
-     
 }
 
 - (void)didReceiveMemoryWarning
@@ -74,4 +75,11 @@
     [[self slidingViewController] anchorTopViewTo:ECRight];
 }
 
+- (IBAction)viewPaper:(id)sender {
+    (Author*)shownPerson ;
+    
+    UIViewController *newTopViewController = [[self storyboard]instantiateViewControllerWithIdentifier:@"Person"];
+    
+    [[self slidingViewController] setTopViewController:newTopViewController];
+}
 @end

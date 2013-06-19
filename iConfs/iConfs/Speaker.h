@@ -44,6 +44,7 @@
 -(void)setResume:(NSString*)r;
 
 -(NSString*)getEventID;
+
 -(void)setConfID: (NSString*)newEID;
 
 @end

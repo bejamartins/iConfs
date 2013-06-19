@@ -129,7 +129,9 @@ static const unsigned int TOP_BACKGROUND_HEIGHT               = 35;
 @end
 
 @interface MAGridView (MAWeekViewAdditions)
+
 - (void)addEventToOffset:(unsigned int)offset event:(MAEvent *)event weekView:(MAWeekView *)weekView;
+
 @end
 
 @interface MAWeekView (PrivateMethods)
@@ -149,7 +151,6 @@ static const unsigned int TOP_BACKGROUND_HEIGHT               = 35;
 @property (readonly) UIFont *regularFont;
 @property (readonly) UIFont *boldFont;
 @property (readonly) MAHourView *hourView;
-@property (readonly) MAWeekdayBarView *weekdayBarView;
 @property (readonly) MAAllDayEventView *allDayEventView;
 @property (readonly) UISwipeGestureRecognizer *swipeLeftRecognizer;
 @property (readonly) UISwipeGestureRecognizer *swipeRightRecognizer;
@@ -178,7 +179,7 @@ static const unsigned int TOP_BACKGROUND_HEIGHT               = 35;
 
 - (void)setupCustomInitialisation {
 	self.labelFontSize = DEFAULT_LABEL_FONT_SIZE;
-	self.eventDraggingEnabled = YES;
+	self.eventDraggingEnabled = NO;
 	self.week = [NSDate date];
     
 	[self addSubview:self.topBackground];
@@ -351,6 +352,7 @@ static const unsigned int TOP_BACKGROUND_HEIGHT               = 35;
 		_gridView.horizontalLines = YES;
 		_gridView.lineColor       = [UIColor lightGrayColor];
 		_gridView.lineWidth       = 1;
+        _gridView.isRemoving = NO;
 	}
 	return _gridView;
 }
@@ -513,6 +515,18 @@ static const unsigned int TOP_BACKGROUND_HEIGHT               = 35;
 			[components week]];
 }
 
+- (void)isRemoving{
+    [[self gridView] setIsRemoving:YES];
+}
+
+- (void)doneRemoving{
+    [[self gridView] setIsRemoving:NO];
+}
+
+- (NSArray*)getWeekDays{
+    return self.weekdayBarView.weekdays;
+}
+
 @end
 
 static NSString const * const HOURS_AM_PM[] = {
@@ -530,6 +544,7 @@ static NSString const * const HOURS_24[] = {
 @synthesize weekView=_weekView;
 @synthesize textColor=_textColor;
 @synthesize textFont=_textFont;
+
 
 - (BOOL)timeIs24HourFormat {
 	NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
@@ -558,8 +573,8 @@ static NSString const * const HOURS_24[] = {
 		
 		[HOURS[i] drawInRect: rect
 					 withFont:self.textFont
-				lineBreakMode:UILineBreakModeTailTruncation
-					alignment:UITextAlignmentLeft]; 
+				lineBreakMode:NSLineBreakByTruncatingTail
+					alignment:NSTextAlignmentLeft];
 	}
 }
 
@@ -572,7 +587,10 @@ static NSString const * const HOURS_24[] = {
 	MAEventView *eventView = [[MAEventView alloc] init];
 	eventView.weekView = weekView;
 	eventView.event = event;
-	eventView.backgroundColor = event.backgroundColor;
+    if ([self isRemoving] && ![[eventView event] checked]) {
+        eventView.backgroundColor = [UIColor clearColor];
+    }else
+        eventView.backgroundColor = event.backgroundColor;
 	eventView.title = event.title;
 	eventView.textFont = weekView.regularFont;
 	eventView.textColor = event.textColor;
@@ -664,8 +682,8 @@ static NSString const * const HOURS_24[] = {
 		
 		[displayText drawInRect: rect
 					withFont:self.textFont
-			   lineBreakMode:UILineBreakModeTailTruncation
-				   alignment:UITextAlignmentLeft];
+			   lineBreakMode:NSLineBreakByTruncatingTail
+				   alignment:NSTextAlignmentLeft];
 		
 		d = (d+1) % 7;
 		i++;
@@ -781,6 +799,7 @@ static const CGFloat kCorner       = 5.0;
 @synthesize yOffset=_yOffset;
 
 
+
 - (id)initWithFrame:(CGRect)frame {
     if (self = [super initWithFrame:frame]) {
 		[self setupCustomInitialisation];
@@ -808,10 +827,10 @@ static const CGFloat kCorner       = 5.0;
 }
 
 - (void)layoutSubviews {
-	_textRect = CGRectMake(CGRectGetMinX(self.bounds) + kCorner,
-						   CGRectGetMinY(self.bounds) + kCorner,
-						   CGRectGetWidth(self.bounds) - 2*kCorner,
-						   CGRectGetHeight(self.bounds) - 2*kCorner);
+    _textRect = CGRectMake(CGRectGetMinX(self.bounds) + kCorner,
+                             CGRectGetMinY(self.bounds) + kCorner,
+                             CGRectGetWidth(self.bounds) - 2*kCorner,
+                             CGRectGetHeight(self.bounds) - 2*kCorner);
 }
 
 - (void)drawRect:(CGRect)rect {
@@ -819,8 +838,8 @@ static const CGFloat kCorner       = 5.0;
 	
 	[self.title drawInRect:_textRect
 				withFont:self.textFont
-				lineBreakMode:UILineBreakModeTailTruncation
-				alignment:UITextAlignmentLeft];
+				lineBreakMode:NSLineBreakByTruncatingTail
+				alignment:NSTextAlignmentLeft];
 }
 
 - (void)tapDetectingView:(TapDetectingView *)view gotSingleTapAtPoint:(CGPoint)tapPoint {

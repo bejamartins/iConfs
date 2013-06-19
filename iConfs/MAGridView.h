@@ -46,5 +46,6 @@
 @property (nonatomic, strong) UIColor *lineColor;
 @property (readonly) CGFloat cellWidth;
 @property (readonly) CGFloat cellHeight;
+@property BOOL isRemoving;
 
 @end

@@ -10,10 +10,11 @@
 
 @implementation Place
 
--(Place*)initPlace: (NSString*)p x:(int)xx y:(int)yy{
+-(Place*)initPlace: (NSString*)p name:(NSString *)n x:(int)xx y:(int)yy x:(int)xx y:(int)yy{
     x = xx;
     y = yy;
     placeID = p;
+    name = n;
     return self;
 }
 
