@@ -545,6 +545,7 @@ static NSString const * const HOURS_24[] = {
 @synthesize textColor=_textColor;
 @synthesize textFont=_textFont;
 
+
 - (BOOL)timeIs24HourFormat {
 	NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
 	[formatter setDateStyle:NSDateFormatterNoStyle];
@@ -613,10 +614,6 @@ static NSString const * const HOURS_24[] = {
 									 cellHeight / MINUTES_IN_HOUR * [eventView.event durationInMinutes]);
 		[eventView setNeedsDisplay];
 	}
-}
-
-- (void)setIsRemoving:(BOOL)isRe {
-    self.isRemoving = isRe;
 }
 
 @end
