@@ -96,8 +96,9 @@
     CellIdentifier=@"default_place";
       PlaceDefaultCell *cell= [collectionView dequeueReusableCellWithReuseIdentifier:CellIdentifier forIndexPath:indexPath];
         
-        [[cell picture]setImage:picture];
-        [[cell name]setText:[place getID]];
+        [[cell picture]setImage:[UIImage imageNamed:@"clip_art_food.gif"]];
+       // [[cell name]setText:[place g]];
+        
         return cell;
 
         
@@ -108,7 +109,7 @@
         CellIdentifier=@"default_place";
         
           PlaceDefaultCell *cell= [collectionView dequeueReusableCellWithReuseIdentifier:CellIdentifier forIndexPath:indexPath];
-        [[cell picture]setImage:picture];
+        [[cell picture]setImage:[UIImage imageNamed:@"Bathroom-gender-sign.png"]];
         [[cell name]setText:[place getID]];
 
         return cell;
