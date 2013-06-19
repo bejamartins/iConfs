@@ -131,6 +131,9 @@
 	event.allDay = NO;
 	event.userInfo = dict;
     [event setChecked:NO];
+    [event setTitle:[e getTitle]];
+    [event setStart:[e getDate]];
+    [event setEnd:[[NSDate alloc] initWithTimeInterval:(30*60) sinceDate:[e getDate]]];
 	return event;
 }
 

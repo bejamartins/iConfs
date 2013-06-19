@@ -24,7 +24,7 @@
 
 @implementation PersonViewController
 
-@synthesize picture,session_theme,session_when,session_where,biography,IndexAux,showPerson, MenuButton, shownPerson, PaperButton;
+@synthesize picture,biography,IndexAux,showPerson, MenuButton, shownPerson, PaperButton;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
