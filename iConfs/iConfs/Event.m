@@ -87,4 +87,12 @@
     placeID = newPlaceID;
 }
 
+-(void)setEventEnd:(NSDate*)end{
+    eventEnd = end;
+}
+
+-(NSDate*)getEventEnd{
+    return eventEnd;
+}
+
 @end
