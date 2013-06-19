@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="2.0" toolsVersion="3084" systemVersion="12C54" targetRuntime="iOS.CocoaTouch.iPad" propertyAccessControl="none" useAutolayout="YES" initialViewController="Srd-QG-135">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="2.0" toolsVersion="3084" systemVersion="12E55" targetRuntime="iOS.CocoaTouch.iPad" propertyAccessControl="none" useAutolayout="YES" initialViewController="Srd-QG-135">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="2083"/>
     </dependencies>
@@ -1489,7 +1489,6 @@
                             <constraint firstItem="ASJ-fz-GMz" firstAttribute="bottom" secondItem="iLs-Wc-7E9" secondAttribute="bottom" type="default" id="GqA-oq-JWx"/>
                             <constraint firstAttribute="bottom" secondItem="iLs-Wc-7E9" secondAttribute="bottom" constant="196" id="HA0-p5-32m"/>
                             <constraint firstItem="0QI-0c-GUL" firstAttribute="leading" secondItem="cQz-z0-F8O" secondAttribute="leading" constant="424" id="HcB-m9-45x"/>
-                            <constraint firstItem="iLs-Wc-7E9" firstAttribute="baseline" secondItem="ASJ-fz-GMz" secondAttribute="baseline" type="default" id="T6n-yU-zgJ"/>
                             <constraint firstItem="NZD-Do-mcj" firstAttribute="trailing" secondItem="cQz-z0-F8O" secondAttribute="trailing" type="default" id="W5F-SQ-lhT"/>
                             <constraint firstAttribute="bottom" secondItem="0QI-0c-GUL" secondAttribute="bottom" constant="296" id="XYs-ec-g8S"/>
                             <constraint firstItem="F8U-rj-3gG" firstAttribute="top" secondItem="ZOP-wL-hH6" secondAttribute="bottom" constant="8" symbolic="YES" type="default" id="XiQ-8d-SKQ"/>
@@ -1781,23 +1780,7 @@
                     <view key="view" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="exm-eV-c6N">
                         <rect key="frame" x="0.0" y="20" width="768" height="1004"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" barStyle="blackTranslucent" translatesAutoresizingMaskIntoConstraints="NO" id="Sgx-DD-LvA">
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="1013" id="Veh-Xm-Xfn"/>
-                                </constraints>
-                                <items>
-                                    <barButtonItem title="iConfs" id="JIO-ng-dWq"/>
-                                    <barButtonItem width="546" style="plain" systemItem="fixedSpace" id="GfL-ES-plg"/>
-                                    <barButtonItem title="Manage Confereces" id="dKB-vp-qhu"/>
-                                </items>
-                            </toolbar>
-                        </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                        <constraints>
-                            <constraint firstItem="Sgx-DD-LvA" firstAttribute="leading" secondItem="exm-eV-c6N" secondAttribute="leading" type="default" id="bNy-rz-lDN"/>
-                            <constraint firstItem="Sgx-DD-LvA" firstAttribute="bottom" secondItem="exm-eV-c6N" secondAttribute="bottom" type="default" id="t80-XD-QdZ"/>
-                        </constraints>
+                        <color key="backgroundColor" cocoaTouchSystemColor="scrollViewTexturedBackgroundColor"/>
                     </view>
                     <toolbarItems/>
                 </viewController>
@@ -2392,7 +2375,6 @@
         <class className="ConferenceScreenViewController" superclassName="UIViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/ConferenceScreenViewController.h"/>
             <relationships>
-                <relationship kind="action" name="revealMenu:"/>
                 <relationship kind="outlet" name="Notification_text" candidateClass="UILabel"/>
                 <relationship kind="outlet" name="bar" candidateClass="UINavigationItem"/>
                 <relationship kind="outlet" name="notification_number" candidateClass="UILabel"/>

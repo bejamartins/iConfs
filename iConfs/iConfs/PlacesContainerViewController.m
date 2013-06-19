@@ -46,10 +46,10 @@
     [self.collection setDelegate:self];
     [allPlaces addObjectsFromArray:wcs];
     [allPlaces addObjectsFromArray:eat];
-    [allPlaces addObjectsFromArray:otherPlaces];
+ //   [allPlaces addObjectsFromArray:otherPlaces];
     [allPlaces addObjectsFromArray:rooms];
     NSLog(@"Tamanho do array wcs=%d",[wcs count]);
-    NSLog(@"Tamanho do array other=%d",[otherPlaces count]);
+//    NSLog(@"Tamanho do array other=%d",[otherPlaces count]);
     NSLog(@"Tamanho do array eat=%d",[eat count]);
     NSLog(@"Tamanho do array rooms=%d",[rooms count]);
 
@@ -97,7 +97,7 @@
       PlaceDefaultCell *cell= [collectionView dequeueReusableCellWithReuseIdentifier:CellIdentifier forIndexPath:indexPath];
         
         [[cell picture]setImage:[UIImage imageNamed:@"clip_art_food.gif"]];
-       // [[cell name]setText:[place g]];
+        [[cell name]setText:[place getName]];
         
         return cell;
 
@@ -110,7 +110,7 @@
         
           PlaceDefaultCell *cell= [collectionView dequeueReusableCellWithReuseIdentifier:CellIdentifier forIndexPath:indexPath];
         [[cell picture]setImage:[UIImage imageNamed:@"Bathroom-gender-sign.png"]];
-        [[cell name]setText:[place getID]];
+        [[cell name]setText:@"Eating Spot"];//[place getName]];
 
         return cell;
 
@@ -122,7 +122,7 @@
         //mudar fundo!
         
         [[cell picture]setImage:picture];
-        [[cell spaceName]setText:[place getID]];
+        [[cell spaceName]setText:[place getName]];
 
 
         return cell;
@@ -135,9 +135,9 @@
         PlaceRoomCell *cell= [collectionView dequeueReusableCellWithReuseIdentifier:CellIdentifier forIndexPath:indexPath];
         
         [[cell picture]setImage:picture];
-      //  [[cell spaceName]setText:[place getID]];
+   //     [[cell spaceName]setText:[place getName]];
 
-
+        NSString *placeName=[place getName];
         return cell;
 
     }
@@ -169,10 +169,6 @@
     rooms=r;
     
 }
--(void)changeOtherPlaces:(NSArray*)o{
-    otherPlaces=o;
-    NSLog(@"PlaceCont - tamanho other %d",[otherPlaces count]);
 
-}
 
 @end

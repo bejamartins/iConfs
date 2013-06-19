@@ -19,6 +19,6 @@
 -(void)changeEat:(NSArray *)e;
 -(void)changeWC:(NSArray*)w;
 -(void)changeRooms:(NSArray*)r;
--(void)changeOtherPlaces:(NSArray*)o;
+//-(void)changeOtherPlaces:(NSArray*)o;
 
 @end

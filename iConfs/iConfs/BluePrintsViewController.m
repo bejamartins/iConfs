@@ -227,9 +227,9 @@
             NSArray *places=[selectedBlueprint getEatingAreas];
             [pController changeEat:places];
             NSLog(@"tamanho do places %d",[places count]);
-            places=[selectedBlueprint getOtherPlaces];
-            [pController changeOtherPlaces:places];
-            NSLog(@"---tamanho do other %d",[places count]);
+           // places=[selectedBlueprint getOtherPlaces];
+           // [pController changeOtherPlaces:places];
+           // NSLog(@"---tamanho do other %d",[places count]);
 
             places=[selectedBlueprint getWCs];
             [pController changeWC:places];
