@@ -46,4 +46,8 @@
     return placeID;
 }
 
+-(NSString*)getName{
+    return name;
+}
+
 @end
