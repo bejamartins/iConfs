@@ -19,16 +19,18 @@
 @interface AgendaViewController ()
 {
     BOOL isRemoving;
+    NSArray *myConfs;
 }
 @property (readonly) MAEvent *event;
 @property (readonly) MAEventKitDataSource *eventKitDataSource;
 @property (weak, nonatomic) IBOutlet UIButton *AddSessionButton;
 @property (weak, nonatomic) IBOutlet UIButton *RemoveSessionsButton;
+@property (weak, nonatomic) IBOutlet UITableView *ConfsTable;
 @end
 
 @implementation AgendaViewController
 
-@synthesize MenuButton, AddSessionButton, RemoveSessionsButton;
+@synthesize MenuButton, AddSessionButton, RemoveSessionsButton, ConfsTable;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -63,6 +65,8 @@
     [[self view] addSubview:MenuButton];
     
     isRemoving = NO;
+    
+    myConfs = [[(MenuViewController*)[[self slidingViewController] underLeftViewController] appData] getMyConferences];
 }
 
 - (IBAction)revealMenu:(id)sender
@@ -207,6 +211,47 @@ static int counter = 7 * 5;
             }
         }
         [(MAWeekView*)[self AgendaView] reloadData];
+    }
+}
+
+#pragma - Table View Methods
+
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
+{
+    return 1;
+}
+
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
+{
+    return [myConfs count];
+}
+
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    static NSString *cellID = @"Cell";
+    
+    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellID forIndexPath:indexPath];
+    
+    if (cell == nil) {
+        cell = [[UITableViewCell alloc]initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:cellID];
+    }
+    
+    cell.textLabel.text = [NSString stringWithFormat:@"%@", [((Conference*)[myConfs objectAtIndex:[indexPath row]]) getName]];
+    
+    
+    cell.textLabel.textAlignment = NSTextAlignmentCenter;
+    
+    return cell;
+}
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    
+    //NSString *iD = [NSString stringWithFormat:@"%@", [self.MenuView cellForRowAtIndexPath:indexPath].textLabel.text];
+    
+    //UIViewController *newTopViewController = [[self storyboard]instantiateViewControllerWithIdentifier:iD];
+    
+    
     }
 }
 

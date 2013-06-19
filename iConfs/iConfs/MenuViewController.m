@@ -169,23 +169,6 @@
     }
 }
 
-- (void)callPersonInterface:(NSString *)iD withPerson:(Person *)p
-{
-    UIViewController *newTopViewController = [[self storyboard]instantiateViewControllerWithIdentifier:iD];
-    
-    if ([iD isEqualToString:@"Organizer"]) {
-        [(OrganizerViewController *)newTopViewController setShownPerson:(Organizer *)p];
-    }else
-        [(PersonViewController *)newTopViewController setShownPerson:p];
-    
-    [[self slidingViewController] anchorTopViewOffScreenTo:ECRight animations:nil onComplete:^{
-        CGRect frame = [[[[self slidingViewController] topViewController] view] frame];
-        [[self slidingViewController] setTopViewController:newTopViewController];
-        [[[[self slidingViewController] topViewController] view] setFrame:frame];
-        [[self slidingViewController] resetTopView];
-    }];
-}
-
 - (IBAction)homeButtonPressed:(id)sender {
     UIViewController *newTopViewController = [[self storyboard]instantiateViewControllerWithIdentifier:@"Home"];
     

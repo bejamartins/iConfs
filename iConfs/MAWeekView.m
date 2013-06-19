@@ -587,7 +587,7 @@ static NSString const * const HOURS_24[] = {
 	eventView.weekView = weekView;
 	eventView.event = event;
     if ([self isRemoving] && ![[eventView event] checked]) {
-        eventView.backgroundColor = [UIColor clearColor];
+        eventView.backgroundColor = [UIColor whiteColor];
     }else
         eventView.backgroundColor = event.backgroundColor;
 	eventView.title = event.title;
@@ -613,10 +613,6 @@ static NSString const * const HOURS_24[] = {
 									 cellHeight / MINUTES_IN_HOUR * [eventView.event durationInMinutes]);
 		[eventView setNeedsDisplay];
 	}
-}
-
-- (void)setIsRemoving:(BOOL)isRe {
-    self.isRemoving = isRe;
 }
 
 @end

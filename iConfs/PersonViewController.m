@@ -15,6 +15,10 @@
 }
 
 @property (weak, nonatomic) IBOutlet UIButton *PaperButton;
+@property (weak, nonatomic) IBOutlet UILabel *WhenLabel;
+@property (weak, nonatomic) IBOutlet UILabel *WhereLabel;
+@property (weak, nonatomic) IBOutlet UILabel *TitleLabel;
+
 
 @end
 
