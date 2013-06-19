@@ -97,6 +97,7 @@
       PlaceDefaultCell *cell= [collectionView dequeueReusableCellWithReuseIdentifier:CellIdentifier forIndexPath:indexPath];
         
         [[cell picture]setImage:picture];
+        [[cell name]setText:[place getID]];
         return cell;
 
         
@@ -108,6 +109,7 @@
         
           PlaceDefaultCell *cell= [collectionView dequeueReusableCellWithReuseIdentifier:CellIdentifier forIndexPath:indexPath];
         [[cell picture]setImage:picture];
+        [[cell name]setText:[place getID]];
 
         return cell;
 
@@ -119,6 +121,8 @@
         //mudar fundo!
         
         [[cell picture]setImage:picture];
+        [[cell spaceName]setText:[place getID]];
+
 
         return cell;
     
@@ -130,6 +134,8 @@
         PlaceRoomCell *cell= [collectionView dequeueReusableCellWithReuseIdentifier:CellIdentifier forIndexPath:indexPath];
         
         [[cell picture]setImage:picture];
+      //  [[cell spaceName]setText:[place getID]];
+
 
         return cell;
 

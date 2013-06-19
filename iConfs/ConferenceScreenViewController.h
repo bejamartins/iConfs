@@ -17,5 +17,9 @@
 
 -(void)changeName:(NSString *)name;
 
+@property (strong, nonatomic) IBOutlet UILabel *notification_number;
+@property (strong, nonatomic) IBOutlet UILabel *Notification_text;
+@property (strong, nonatomic) IBOutlet UILabel *notification_title;
+
 @end
 

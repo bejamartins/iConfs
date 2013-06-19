@@ -9,15 +9,19 @@
 #import "ConferenceScreenViewController.h"
 #import "ECSlidingViewController.h"
 #import "MenuViewController.h"
+#import "Conference.h"
 
-@interface ConferenceScreenViewController ()
+@interface ConferenceScreenViewController (){
+    Conference *conf;
+
+}
 //@property (strong, nonatomic) IBOutlet UINavigationItem *bar;
 
 @end
 
 @implementation ConferenceScreenViewController
 @synthesize conferenceName;
-@synthesize MenuButton;
+@synthesize MenuButton,notification_number,notification_title,Notification_text;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -30,12 +34,25 @@
 
 - (void)viewDidLoad
 {
+     conf=[(MenuViewController*)[[self slidingViewController] underLeftViewController] selectedConf];
     //NSLog(@"Name em ConferenceScreen= %@", conferenceName);
-      conferenceName=  [[(MenuViewController*)[[self slidingViewController] underLeftViewController] selectedConf] getName];
+      conferenceName=  [conf getName];
     [[ self bar] setTitle:conferenceName];
     [super viewDidLoad];
+    
+    NSUInteger index= [[conf getNotifications]count];
+    index--;
+    Notification *lastNotification=[[conf getNotifications]objectAtIndex:index ];
 	// Do any additional setup after loading the view.
     
+    [notification_title setText:[lastNotification getTitle]];
+     [Notification_text setText:[lastNotification getText]];
+    NSString *totalNotifications = [NSString stringWithFormat:@"%i", index+1];
+    NSString *currentNotification = [NSString stringWithFormat:@"%i",index+1 ];
+    NSString *notificationNumb=[NSString stringWithFormat:@"%@/%@",currentNotification,totalNotifications];
+    [notification_number setText:notificationNumb];
+
+
     [[[self view] layer] setShadowOpacity:0.75f];
     [[[self view] layer] setShadowRadius:10.0f];
     [[[self view] layer] setShadowColor:[UIColor blackColor].CGColor];
