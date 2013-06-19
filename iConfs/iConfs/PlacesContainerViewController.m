@@ -95,8 +95,8 @@
     if ([place isKindOfClass:[WC class]]){
     CellIdentifier=@"default_place";
       PlaceDefaultCell *cell= [collectionView dequeueReusableCellWithReuseIdentifier:CellIdentifier forIndexPath:indexPath];
-        
-        [[cell picture]setImage:[UIImage imageNamed:@"clip_art_food.gif"]];
+        [[cell picture]setImage:[UIImage imageNamed:@"Bathroom-gender-sign.png"]];
+
         [[cell name]setText:[place getName]];
         
         return cell;
@@ -111,6 +111,8 @@
           PlaceDefaultCell *cell= [collectionView dequeueReusableCellWithReuseIdentifier:CellIdentifier forIndexPath:indexPath];
         [[cell picture]setImage:[UIImage imageNamed:@"Bathroom-gender-sign.png"]];
         [[cell name]setText:@"Eating Spot"];//[place getName]];
+        [[cell picture]setImage:[UIImage imageNamed:@"clip_art_food.gif"]];
+
 
         return cell;
 

@@ -1445,38 +1445,43 @@
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ASJ-fz-GMz">
+                            <button opaque="NO" contentMode="scaleToFill" restorationIdentifier="rightB" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ASJ-fz-GMz">
                                 <constraints>
                                     <constraint firstAttribute="width" constant="73" id="T8e-yZ-Dzt"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
-                                <state key="normal" title="Button" image="arrow.png">
+                                <state key="normal" image="arrow.png">
                                     <color key="titleColor" red="0.19607843459999999" green="0.30980393290000002" blue="0.52156865600000002" alpha="1" colorSpace="calibratedRGB"/>
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <state key="highlighted">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
+                                <connections>
+                                    <action selector="forwardButton:" destination="28v-4d-CKz" eventType="touchUpInside" id="ijB-SB-bTp"/>
+                                </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="iLs-Wc-7E9">
+                            <button opaque="NO" contentMode="scaleToFill" restorationIdentifier="leftB" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="iLs-Wc-7E9">
                                 <constraints>
                                     <constraint firstAttribute="height" constant="44" id="3mv-Rl-dwf"/>
                                     <constraint firstAttribute="width" constant="73" id="Yqp-WZ-pLj"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
-                                <state key="normal" title="Button" image="arrowLeft.png">
+                                <state key="normal" image="arrowLeft.png">
                                     <color key="titleColor" red="0.19607843459999999" green="0.30980393290000002" blue="0.52156865600000002" alpha="1" colorSpace="calibratedRGB"/>
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <state key="highlighted">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
+                                <connections>
+                                    <action selector="backButton:" destination="28v-4d-CKz" eventType="touchUpInside" id="dwZ-RP-BZF"/>
+                                </connections>
                             </button>
                         </subviews>
                         <color key="backgroundColor" cocoaTouchSystemColor="scrollViewTexturedBackgroundColor"/>
                         <constraints>
                             <constraint firstItem="ASJ-fz-GMz" firstAttribute="top" secondItem="iLs-Wc-7E9" secondAttribute="top" type="default" id="3bf-ap-3VN"/>
-                            <constraint firstAttribute="trailing" secondItem="iLs-Wc-7E9" secondAttribute="trailing" constant="266" id="49V-he-tPw"/>
                             <constraint firstItem="BR1-sq-iRx" firstAttribute="leading" secondItem="cQz-z0-F8O" secondAttribute="leading" constant="125" id="68A-xZ-hdy"/>
                             <constraint firstAttribute="bottom" secondItem="zic-Iv-Q4p" secondAttribute="bottom" constant="506" id="6KU-xL-vbS"/>
                             <constraint firstItem="NZD-Do-mcj" firstAttribute="leading" secondItem="cQz-z0-F8O" secondAttribute="leading" type="default" id="6Tf-w7-hMe"/>
@@ -1486,14 +1491,15 @@
                             <constraint firstItem="9hK-7W-qyq" firstAttribute="trailing" secondItem="F8U-rj-3gG" secondAttribute="trailing" type="default" id="DQZ-ML-MKZ"/>
                             <constraint firstItem="F8U-rj-3gG" firstAttribute="centerX" secondItem="ZOP-wL-hH6" secondAttribute="centerX" type="default" id="DwB-jA-X0u"/>
                             <constraint firstItem="zic-Iv-Q4p" firstAttribute="leading" secondItem="cQz-z0-F8O" secondAttribute="leading" constant="50" id="ET8-8P-mhZ"/>
+                            <constraint firstAttribute="bottom" secondItem="iLs-Wc-7E9" secondAttribute="bottom" constant="159" id="Et6-jo-7tU"/>
                             <constraint firstItem="ASJ-fz-GMz" firstAttribute="bottom" secondItem="iLs-Wc-7E9" secondAttribute="bottom" type="default" id="GqA-oq-JWx"/>
-                            <constraint firstAttribute="bottom" secondItem="iLs-Wc-7E9" secondAttribute="bottom" constant="196" id="HA0-p5-32m"/>
                             <constraint firstItem="0QI-0c-GUL" firstAttribute="leading" secondItem="cQz-z0-F8O" secondAttribute="leading" constant="424" id="HcB-m9-45x"/>
+                            <constraint firstItem="iLs-Wc-7E9" firstAttribute="leading" secondItem="cQz-z0-F8O" secondAttribute="leading" constant="241" id="Lar-FE-d2V"/>
                             <constraint firstItem="NZD-Do-mcj" firstAttribute="trailing" secondItem="cQz-z0-F8O" secondAttribute="trailing" type="default" id="W5F-SQ-lhT"/>
                             <constraint firstAttribute="bottom" secondItem="0QI-0c-GUL" secondAttribute="bottom" constant="296" id="XYs-ec-g8S"/>
                             <constraint firstItem="F8U-rj-3gG" firstAttribute="top" secondItem="ZOP-wL-hH6" secondAttribute="bottom" constant="8" symbolic="YES" type="default" id="XiQ-8d-SKQ"/>
                             <constraint firstAttribute="bottom" secondItem="F8U-rj-3gG" secondAttribute="bottom" constant="374" id="crO-CV-TSw"/>
-                            <constraint firstAttribute="trailing" secondItem="ASJ-fz-GMz" secondAttribute="trailing" constant="199" id="oh6-QJ-BTd"/>
+                            <constraint firstItem="ASJ-fz-GMz" firstAttribute="leading" secondItem="cQz-z0-F8O" secondAttribute="leading" constant="308" id="kgL-ed-ZCX"/>
                             <constraint firstAttribute="bottom" secondItem="9hK-7W-qyq" secondAttribute="bottom" constant="415" id="puH-QR-YCe"/>
                             <constraint firstItem="0QI-0c-GUL" firstAttribute="top" secondItem="cQz-z0-F8O" secondAttribute="top" constant="562" id="rlc-wI-fLs"/>
                             <constraint firstAttribute="trailing" secondItem="0QI-0c-GUL" secondAttribute="trailing" constant="32" id="tQf-4u-Nj7"/>
@@ -1505,7 +1511,9 @@
                     </view>
                     <connections>
                         <outlet property="Notification_text" destination="BR1-sq-iRx" id="kQZ-kX-GU7"/>
+                        <outlet property="backbutton" destination="iLs-Wc-7E9" id="ATD-25-tmN"/>
                         <outlet property="bar" destination="SoA-Qf-g4T" id="Nzi-9I-sMu"/>
+                        <outlet property="forwardButton" destination="ASJ-fz-GMz" id="AEl-EH-Tne"/>
                         <outlet property="notification_number" destination="9hK-7W-qyq" id="Hr5-za-Jrc"/>
                         <outlet property="notification_title" destination="F8U-rj-3gG" id="ZXs-0q-fdq"/>
                     </connections>
@@ -2375,8 +2383,13 @@
         <class className="ConferenceScreenViewController" superclassName="UIViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/ConferenceScreenViewController.h"/>
             <relationships>
+                <relationship kind="action" name="backButton:"/>
+                <relationship kind="action" name="forwardButton:"/>
+                <relationship kind="action" name="revealMenu:"/>
                 <relationship kind="outlet" name="Notification_text" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="backbutton" candidateClass="UIButton"/>
                 <relationship kind="outlet" name="bar" candidateClass="UINavigationItem"/>
+                <relationship kind="outlet" name="forwardButton" candidateClass="UIButton"/>
                 <relationship kind="outlet" name="notification_number" candidateClass="UILabel"/>
                 <relationship kind="outlet" name="notification_title" candidateClass="UILabel"/>
             </relationships>
