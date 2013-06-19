@@ -157,9 +157,7 @@
         CGRect frame = [[[[self slidingViewController] topViewController] view] frame];
         [[self slidingViewController] setTopViewController:newTopViewController];
         [[[[self slidingViewController] topViewController] view] setFrame:frame];
-         
-
-        [[self MenuView] reloadData];
+     
         [[[self MenuView] cellForRowAtIndexPath:indexPath] setHighlighted:YES];
     }
 }
@@ -194,6 +192,12 @@
 
 -(void)changeSelectedConference:(Conference*)conf{
     selectedConf=conf;
+    showMenuConf = YES;
+    [[self MenuView] reloadData];
+
 }
+
+
+
 
 @end

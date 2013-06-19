@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		280C7831177239AE008239D7 /* NewsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 280C7830177239AE008239D7 /* NewsViewController.m */; };
 		280F37321763E9DE00E72424 /* note_paper_left.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 280F372F1763E9DE00E72424 /* note_paper_left.jpg */; };
 		280F37331763E9DE00E72424 /* note_paper.png in Resources */ = {isa = PBXBuildFile; fileRef = 280F37301763E9DE00E72424 /* note_paper.png */; };
 		280F37341763E9DE00E72424 /* blank_paper.png in Resources */ = {isa = PBXBuildFile; fileRef = 280F37311763E9DE00E72424 /* blank_paper.png */; };
@@ -124,6 +125,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		280C782F177239AE008239D7 /* NewsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NewsViewController.h; path = ../NewsViewController.h; sourceTree = "<group>"; };
+		280C7830177239AE008239D7 /* NewsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NewsViewController.m; path = ../NewsViewController.m; sourceTree = "<group>"; };
 		280F372F1763E9DE00E72424 /* note_paper_left.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = note_paper_left.jpg; sourceTree = "<group>"; };
 		280F37301763E9DE00E72424 /* note_paper.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = note_paper.png; sourceTree = "<group>"; };
 		280F37311763E9DE00E72424 /* blank_paper.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = blank_paper.png; sourceTree = "<group>"; };
@@ -427,6 +430,8 @@
 				7078016917667E2000B3C4D4 /* AgendaViewController.h */,
 				7078016A17667E2000B3C4D4 /* AgendaViewController.m */,
 				28586057176A826300FF4FF3 /* BlueprintContainerViewController.h */,
+				280C782F177239AE008239D7 /* NewsViewController.h */,
+				280C7830177239AE008239D7 /* NewsViewController.m */,
 				28586058176A826400FF4FF3 /* BlueprintContainerViewController.m */,
 				289746011764EB4200CB2022 /* BluePrintsViewController.h */,
 				289746021764EB4200CB2022 /* BluePrintsViewController.m */,
@@ -783,6 +788,7 @@
 				2836BE5B17711D6600A78C42 /* pubConferenceViewController.m in Sources */,
 				3CD1D56F17720B3A00A05BF3 /* MapPlace.m in Sources */,
 				3CD1D57217720D9E00A05BF3 /* MapViewController.m in Sources */,
+				280C7831177239AE008239D7 /* NewsViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

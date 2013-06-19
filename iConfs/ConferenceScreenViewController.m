@@ -28,7 +28,7 @@
 
 @implementation ConferenceScreenViewController
 @synthesize conferenceName;
-@synthesize MenuButton,notification_number,notification_title,Notification_text;
+@synthesize MenuButton,notification_number,notification_title,Notification_text,date;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -46,8 +46,7 @@
     
     
     [super viewDidLoad];
-    
-    
+
     
     if(conf==nil){
         conf=[(MenuViewController*)[[self slidingViewController] underLeftViewController] selectedConf];
@@ -60,6 +59,7 @@
         
         conferenceName=  [conf getName];
         [[ self bar] setTitle:conferenceName];
+    
 
     }
     
@@ -75,7 +75,11 @@
     NSString *numberCurrentNotification = [NSString stringWithFormat:@"%i",currentNotIndex+1 ];
     NSString *notificationNumb=[NSString stringWithFormat:@"%@/%@",numberCurrentNotification,totalNotifications];
     [notification_number setText:notificationNumb];
-
+ 
+    
+    NSDate *notDate=[currentNotification getDate];
+    NSString *stringDate=(NSString *)notDate;
+    [self.date setText:stringDate];
 
     [[[self view] layer] setShadowOpacity:0.75f];
     [[[self view] layer] setShadowRadius:10.0f];
