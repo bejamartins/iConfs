@@ -444,6 +444,7 @@
         places = [places1 valueForKey:[[[raw valueForKey:@"plant"] objectAtIndex:i] valueForKey:@"ID"]];
         for (int j = 0; j < [places count]; j++) {
             placeType = [[NSString alloc] init];
+            placeType = [places[j] valueForKey:@"Type"];
             if ([placeType isEqualToString:@"RM"]) {
                 room = [[Room alloc] init];
                 room = [room initRoom: [places[j] valueForKey:@"ID"] x:[[places[j] valueForKey:@"xPos"]intValue] y:[[places[j] valueForKey:@"yPos"]intValue] name:[places[j] valueForKey:@"Name"]];
