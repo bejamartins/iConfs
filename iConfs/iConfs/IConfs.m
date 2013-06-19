@@ -486,14 +486,23 @@
     
     
     NSArray* notif = [[NSArray alloc] init];
+    NSArray* news = [[NSArray alloc] init];
     notif = [raw valueForKey:@"notif"];
     Notification* n;
+    News* nw;
     for (int i = 0; i<[notif count]; i++) {
         n = [[Notification alloc] init];
+        nw = [[News alloc] init];
+        if([[notif[i] valueForKey:@"Highlight"] isEqualToString: @"0"]){
+            n = [n initWithData: [notif[i] valueForKey:@"ID"] title:[notif[i] valueForKey:@"Title"] text: [notif[i] valueForKey:@"Description"] date: (NSDate*)[notif[i] valueForKey:@"TimeStamp"]];
+            //[notifications addObject: n];
+            [conf addNotification:n];
+        }
+        else{
+            nw = [nw initWithData: [notif[i] valueForKey:@"ID"] title:[notif[i] valueForKey:@"Title"] text: [notif[i] valueForKey:@"Description"] date:(NSDate*)[notif[i] valueForKey:@"TimeStamp"]];
+            [conf addNews:nw];
+        }
         
-        n = [n initWithData: [notif[i] valueForKey:@"ID"] title:[notif[i] valueForKey:@"Title"] text: [notif[i] valueForKey:@"Description"] date: (NSDate*)[notif[i] valueForKey:@"TimeStamp"]];
-        //[notifications addObject: n];
-        [conf addNotification:n];
     }
 
     //People
