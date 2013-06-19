@@ -158,9 +158,7 @@
         CGRect frame = [[[[self slidingViewController] topViewController] view] frame];
         [[self slidingViewController] setTopViewController:newTopViewController];
         [[[[self slidingViewController] topViewController] view] setFrame:frame];
-         
-
-        [[self MenuView] reloadData];
+     
         [[[self MenuView] cellForRowAtIndexPath:indexPath] setHighlighted:YES];
     }
 }
@@ -188,5 +186,8 @@
         index++;
     }
 }
+
+
+
 
 @end

@@ -11,7 +11,7 @@
 @interface EatingArea: Place
 {
     @protected
-    NSString* name;
+    //NSString* name;
 }
 
 //Eating area name

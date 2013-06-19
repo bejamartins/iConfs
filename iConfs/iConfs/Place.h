@@ -15,6 +15,7 @@
     int y;
     NSString* logoPath;
     NSString* placeID;
+    NSString* name;
 }
 
 //xx' coordinate
@@ -33,7 +34,7 @@
  @param y yy' coordinate
  @returns a newly initialized object
  */
--(Place*)initPlace: (NSString*)p x:(int)xx y:(int)yy;
+-(Place*)initPlace: (NSString*)p name:(NSString*)n x:(int)xx y:(int)yy;
 
 /**
  Gets the xx' coordinate
@@ -75,5 +76,7 @@
 -(void)alterLogo:(NSString*)l;
 
 -(NSString*)getID;
+
+-(NSString*)getName;
 
 @end

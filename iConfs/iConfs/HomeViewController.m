@@ -17,8 +17,10 @@
     NSMutableArray *news;
     NSMutableArray *pictures;
     
+    IBOutlet UIButton *moreNewsButton;
 }
 @property (strong, nonatomic) IBOutlet UICollectionView *ct;
+@property (strong, nonatomic) IBOutlet UIButton *agendaPreviewB;
 
 @end
 
@@ -86,23 +88,29 @@
            // [bpController changeBlueprint:image];
         }
     
-        NSLog(@"bah");
     }
   //  IConfs *ic=[(MenuViewController*)[[self slidingViewController] underLeftViewController] appData];
    // NSArray *myConfs=[ic getMyConferences];
     NSInteger numberOfNews = 0;
     for(int i=0;i<[myConfs count];i++){
-        NSLog(@"CICLOOOO");
+     
         
-        NSInteger counter=[[[myConfs objectAtIndex:i]getNews]count];
+       NSArray *newsAux=[[NSArray alloc] init];
+         news=[[NSMutableArray alloc] init];
+        pictures=[[NSMutableArray alloc] init];
+
+        newsAux=[[myConfs objectAtIndex:i]getNews];
+        NSInteger count= [newsAux count];
+        
+        
+        
         //[[[myConfs objectAtIndex:i]getNews ] objectAtIndex:[[[myConfs objectAtIndex:i]getNews ] ]count];
-        if(counter!=0){
-        News *n=[[[myConfs objectAtIndex:i]getNews ] objectAtIndex:counter-1 ];
+        if(count!=0){
+            News *n=[newsAux objectAtIndex:count-1];
             [news insertObject:n atIndex:numberOfNews];
             UIImage *p=[[myConfs objectAtIndex:i]getLogo];
+            
             [pictures insertObject:p atIndex:numberOfNews];
-            NSLog(@"ADICIONEI NOTICIA!!");
-            NSLog(@"Numero de noticias= %d",numberOfNews);
 
             numberOfNews++;
         }
@@ -143,5 +151,47 @@
     
     return cell;
 }
+- (IBAction)clickMoreNews:(id)sender {
+        NSString   *iD = @"News";
+    
+    UIViewController *newTopViewController = [[self storyboard]instantiateViewControllerWithIdentifier:iD];
+    
+    CGRect frame = [[[[self slidingViewController] topViewController] view] frame];
+    [[self slidingViewController] setTopViewController:newTopViewController];
+    [[[[self slidingViewController] topViewController] view] setFrame:frame];
+}
+
+//-(void)changeScreenTo:(BOOL)myConfs{
+//    NSString *iD;
+//
+//    if(myConfs){
+//       iD = @"Conference";
+//
+//    
+//    }
+//    
+//    else{
+//    
+//    }
+
+        
+- (IBAction)clickAgendaPreview:(id)sender {
+    
+    
+    NSString *iD = @"Personal Agenda";
+    
+    UIViewController *newTopViewController = [[self storyboard]instantiateViewControllerWithIdentifier:iD];
+    
+    
+    CGRect frame = [[[[self slidingViewController] topViewController] view] frame];
+    [[self slidingViewController] setTopViewController:newTopViewController];
+    [[[[self slidingViewController] topViewController] view] setFrame:frame];
+    
+    
+}
+
+    
+
+
 
 @end

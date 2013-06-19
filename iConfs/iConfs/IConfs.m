@@ -444,6 +444,7 @@
         places = [places1 valueForKey:[[[raw valueForKey:@"plant"] objectAtIndex:i] valueForKey:@"ID"]];
         for (int j = 0; j < [places count]; j++) {
             placeType = [[NSString alloc] init];
+            placeType = [places[j] valueForKey:@"Type"];
             if ([placeType isEqualToString:@"RM"]) {
                 room = [[Room alloc] init];
                 room = [room initRoom: [places[j] valueForKey:@"ID"] x:[[places[j] valueForKey:@"xPos"]intValue] y:[[places[j] valueForKey:@"yPos"]intValue] name:[places[j] valueForKey:@"Name"]];
@@ -460,9 +461,10 @@
                 [wcs addObject:wc];
             }
             else{
-//                currPlace = [[Place alloc] init];
-//                currPlace = [currPlace initPlace: [places[j] valueForKey:@"ID"] x:[[places[j] valueForKey:@"xPos"]intValue] y:[[places[j] valueForKey:@"yPos"]intValue]];
-//                [places addObject:currPlace];
+                currPlace = [[Place alloc] init];
+                currPlace = [currPlace initPlace: [places[j] valueForKey:@"ID"] name:[places[j] valueForKey:@"ID"] x:[[places[j] valueForKey:@"xPos"]intValue] y:[[places[j] valueForKey:@"yPos"]intValue]];
+                //[currPlace alterLogo:<#(NSString *)#>];
+                [places addObject:currPlace];
             }
             
         }
@@ -484,14 +486,23 @@
     
     
     NSArray* notif = [[NSArray alloc] init];
+    NSArray* news = [[NSArray alloc] init];
     notif = [raw valueForKey:@"notif"];
     Notification* n;
+    News* nw;
     for (int i = 0; i<[notif count]; i++) {
         n = [[Notification alloc] init];
+        nw = [[News alloc] init];
+        if([[notif[i] valueForKey:@"Highlight"] isEqualToString: @"0"]){
+            n = [n initWithData: [notif[i] valueForKey:@"ID"] title:[notif[i] valueForKey:@"Title"] text: [notif[i] valueForKey:@"Description"] date: (NSDate*)[notif[i] valueForKey:@"TimeStamp"]];
+            //[notifications addObject: n];
+            [conf addNotification:n];
+        }
+        else{
+            nw = [nw initWithData: [notif[i] valueForKey:@"ID"] title:[notif[i] valueForKey:@"Title"] text: [notif[i] valueForKey:@"Description"] date:(NSDate*)[notif[i] valueForKey:@"TimeStamp"]];
+            [conf addNews:nw];
+        }
         
-        n = [n initWithData: [notif[i] valueForKey:@"ID"] title:[notif[i] valueForKey:@"Title"] text: [notif[i] valueForKey:@"Description"] date: (NSDate*)[notif[i] valueForKey:@"TimeStamp"]];
-        //[notifications addObject: n];
-        [conf addNotification:n];
     }
 
     //People

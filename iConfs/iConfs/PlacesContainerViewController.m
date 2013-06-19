@@ -46,10 +46,10 @@
     [self.collection setDelegate:self];
     [allPlaces addObjectsFromArray:wcs];
     [allPlaces addObjectsFromArray:eat];
-    [allPlaces addObjectsFromArray:otherPlaces];
+ //   [allPlaces addObjectsFromArray:otherPlaces];
     [allPlaces addObjectsFromArray:rooms];
     NSLog(@"Tamanho do array wcs=%d",[wcs count]);
-    NSLog(@"Tamanho do array other=%d",[otherPlaces count]);
+//    NSLog(@"Tamanho do array other=%d",[otherPlaces count]);
     NSLog(@"Tamanho do array eat=%d",[eat count]);
     NSLog(@"Tamanho do array rooms=%d",[rooms count]);
 
@@ -95,8 +95,10 @@
     if ([place isKindOfClass:[WC class]]){
     CellIdentifier=@"default_place";
       PlaceDefaultCell *cell= [collectionView dequeueReusableCellWithReuseIdentifier:CellIdentifier forIndexPath:indexPath];
+        [[cell picture]setImage:[UIImage imageNamed:@"Bathroom-gender-sign.png"]];
+
+        [[cell name]setText:[place getName]];
         
-        [[cell picture]setImage:picture];
         return cell;
 
         
@@ -107,7 +109,10 @@
         CellIdentifier=@"default_place";
         
           PlaceDefaultCell *cell= [collectionView dequeueReusableCellWithReuseIdentifier:CellIdentifier forIndexPath:indexPath];
-        [[cell picture]setImage:picture];
+        [[cell picture]setImage:[UIImage imageNamed:@"Bathroom-gender-sign.png"]];
+        [[cell name]setText:@"Eating Spot"];//[place getName]];
+        [[cell picture]setImage:[UIImage imageNamed:@"clip_art_food.gif"]];
+
 
         return cell;
 
@@ -119,6 +124,8 @@
         //mudar fundo!
         
         [[cell picture]setImage:picture];
+        [[cell spaceName]setText:[place getName]];
+
 
         return cell;
     
@@ -130,7 +137,9 @@
         PlaceRoomCell *cell= [collectionView dequeueReusableCellWithReuseIdentifier:CellIdentifier forIndexPath:indexPath];
         
         [[cell picture]setImage:picture];
+   //     [[cell spaceName]setText:[place getName]];
 
+        NSString *placeName=[place getName];
         return cell;
 
     }
@@ -162,10 +171,6 @@
     rooms=r;
     
 }
--(void)changeOtherPlaces:(NSArray*)o{
-    otherPlaces=o;
-    NSLog(@"PlaceCont - tamanho other %d",[otherPlaces count]);
 
-}
 
 @end

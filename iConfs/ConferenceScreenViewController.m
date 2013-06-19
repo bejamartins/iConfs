@@ -9,15 +9,26 @@
 #import "ConferenceScreenViewController.h"
 #import "ECSlidingViewController.h"
 #import "MenuViewController.h"
+#import "Conference.h"
+#import "Notification.h"
 
-@interface ConferenceScreenViewController ()
+@interface ConferenceScreenViewController (){
+    Conference *conf;
+    NSUInteger currentNotIndex;
+    Notification *currentNotification;
+    NSInteger numberOfNots;
+    NSArray *notifications;
+
+}
 //@property (strong, nonatomic) IBOutlet UINavigationItem *bar;
+@property (strong, nonatomic) IBOutlet UIButton *backbutton;
+@property (strong, nonatomic) IBOutlet UIButton *forwardButton;
 
 @end
 
 @implementation ConferenceScreenViewController
 @synthesize conferenceName;
-@synthesize MenuButton;
+@synthesize MenuButton,notification_number,notification_title,Notification_text,date;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -31,11 +42,45 @@
 - (void)viewDidLoad
 {
     //NSLog(@"Name em ConferenceScreen= %@", conferenceName);
-      conferenceName=  [[(MenuViewController*)[[self slidingViewController] underLeftViewController] selectedConf] getName];
-    [[ self bar] setTitle:conferenceName];
+  
+    
+    
     [super viewDidLoad];
+
+    
+    if(conf==nil){
+        conf=[(MenuViewController*)[[self slidingViewController] underLeftViewController] selectedConf];
+
+        notifications=[conf getNotifications];
+        numberOfNots=[notifications count];
+        currentNotIndex=numberOfNots-1;
+        currentNotification=[notifications objectAtIndex:currentNotIndex];
+        [self.forwardButton setEnabled:NO];
+        
+        conferenceName=  [conf getName];
+        [[ self bar] setTitle:conferenceName];
+    
+
+    }
+    
+    
+    
+    
+
 	// Do any additional setup after loading the view.
     
+    [notification_title setText:[currentNotification getTitle]];
+     [Notification_text setText:[currentNotification getText]];
+    NSString *totalNotifications = [NSString stringWithFormat:@"%i", numberOfNots];
+    NSString *numberCurrentNotification = [NSString stringWithFormat:@"%i",currentNotIndex+1 ];
+    NSString *notificationNumb=[NSString stringWithFormat:@"%@/%@",numberCurrentNotification,totalNotifications];
+    [notification_number setText:notificationNumb];
+ 
+    
+    NSDate *notDate=[currentNotification getDate];
+    NSString *stringDate=(NSString *)notDate;
+    [self.date setText:stringDate];
+
     [[[self view] layer] setShadowOpacity:0.75f];
     [[[self view] layer] setShadowRadius:10.0f];
     [[[self view] layer] setShadowColor:[UIColor blackColor].CGColor];
@@ -71,6 +116,33 @@
     [[ self bar] setTitle:conferenceName];
     
     
+}
+
+- (IBAction)forwardButton:(id)sender {
+    
+        currentNotIndex++;
+    if(currentNotIndex==(NSInteger)1){
+        [self.backbutton setEnabled:YES];
+
+    }
+        currentNotification=[notifications objectAtIndex:currentNotIndex];
+
+        [self viewDidLoad];
+    if(currentNotIndex==(NSInteger)numberOfNots-1){
+        [self.forwardButton setEnabled:NO];
+}
+}
+- (IBAction)backButton:(id)sender {
+    currentNotIndex--;
+    currentNotification=[notifications objectAtIndex:currentNotIndex];
+    [self.forwardButton setEnabled:YES];
+    [self viewDidLoad];
+    
+    if(currentNotIndex==0){
+        [self.backbutton setEnabled:NO];
+
+    
+}
 }
 
 @end

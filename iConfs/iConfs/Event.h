@@ -21,6 +21,7 @@
     int rating;
     int eventID;
     NSString* placeID;
+    NSDate* eventEnd;
 }
 
 //Date and time of the event
@@ -147,6 +148,10 @@
 -(NSString*)getPlaceID;
 
 -(void)setPlaceID:(NSString*)newPlaceID;
+
+-(void)setEventEnd:(NSDate*)end;
+
+-(NSDate*)getEventEnd;
 
 
 @end

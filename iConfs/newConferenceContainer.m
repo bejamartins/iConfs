@@ -18,6 +18,17 @@
     NSString *name;
     ConferenceScreenViewController *conference;
     
+    IBOutlet UIButton *myConfsButton;
+}
+- (IBAction)clickMyConfs:(id)sender {
+    
+    NSString *iD = @"Manage Conferences";
+    UIViewController *newTopViewController = [[self storyboard]instantiateViewControllerWithIdentifier:iD];
+    
+    CGRect frame = [[[[self slidingViewController] topViewController] view] frame];
+    [[self slidingViewController] setTopViewController:newTopViewController];
+    [[[[self slidingViewController] topViewController] view] setFrame:frame];
+
 }
 @synthesize collection,myConfs;
 
