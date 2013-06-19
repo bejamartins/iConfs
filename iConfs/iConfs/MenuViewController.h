@@ -19,7 +19,4 @@
 
 - (IConfs*) appData;
 
--(void)changeSelectedConference:(Conference*)conf;
-
-
 @end

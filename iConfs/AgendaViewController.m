@@ -19,6 +19,7 @@
 @interface AgendaViewController ()
 {
     BOOL isRemoving;
+    BOOL choosingConf;
     NSArray *myConfs;
 }
 @property (readonly) MAEvent *event;
@@ -65,6 +66,7 @@
     [[self view] addSubview:MenuButton];
     
     isRemoving = NO;
+    choosingConf = NO;
     
     myConfs = [[(MenuViewController*)[[self slidingViewController] underLeftViewController] appData] getMyConferences];
 }
@@ -188,11 +190,13 @@ static int counter = 7 * 5;
 }
 
 - (IBAction)addSessions:(id)sender {
-    UIViewController *newTopViewController;
-    
-    newTopViewController = [[self storyboard]instantiateViewControllerWithIdentifier:@"AddSession"];
-    
-    [[self slidingViewController] setTopViewController:newTopViewController];
+    if (choosingConf) {
+        [ConfsTable setHidden:YES];
+        choosingConf = NO;
+    }else{
+        [ConfsTable setHidden:NO];
+        choosingConf = YES;
+    }
 }
 
 - (IBAction)RemoveSessions:(id)sender {
@@ -233,10 +237,10 @@ static int counter = 7 * 5;
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellID forIndexPath:indexPath];
     
     if (cell == nil) {
-        cell = [[UITableViewCell alloc]initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:cellID];
+        cell = [[UITableViewCell alloc]initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:cellID];	
     }
     
-    cell.textLabel.text = [NSString stringWithFormat:@"%@", [((Conference*)[myConfs objectAtIndex:[indexPath row]]) getName]];
+    cell.textLabel.text = [NSString stringWithFormat:@"%@", [(Conference*)[myConfs objectAtIndex:[indexPath row]] getName]];
     
     
     cell.textLabel.textAlignment = NSTextAlignmentCenter;
@@ -246,13 +250,13 @@ static int counter = 7 * 5;
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
+    [(MenuViewController*)[[self slidingViewController] underLeftViewController] setSelectedConf:(Conference*)[myConfs objectAtIndex:[indexPath row]]];
     
-    //NSString *iD = [NSString stringWithFormat:@"%@", [self.MenuView cellForRowAtIndexPath:indexPath].textLabel.text];
+    UIViewController *newTopViewController;
     
-    //UIViewController *newTopViewController = [[self storyboard]instantiateViewControllerWithIdentifier:iD];
+    newTopViewController = [[self storyboard]instantiateViewControllerWithIdentifier:@"AddSession"];
     
-    
-    }
+    [[self slidingViewController] setTopViewController:newTopViewController];
 }
 
 @end
