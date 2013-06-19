@@ -77,4 +77,6 @@
 
 -(NSString*)getID;
 
+-(NSString*)getName;
+
 @end
