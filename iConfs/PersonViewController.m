@@ -76,7 +76,7 @@
 }
 
 - (IBAction)viewPaper:(id)sender {
-    (Author*)shownPerson;
+    (Author*)shownPerson ;
     
     UIViewController *newTopViewController = [[self storyboard]instantiateViewControllerWithIdentifier:@"Person"];
     
