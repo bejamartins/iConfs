@@ -47,11 +47,25 @@
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" image="pulpito.png" translatesAutoresizingMaskIntoConstraints="NO" id="zcW-JG-i0r">
                                 <constraints>
                                     <constraint firstAttribute="width" constant="325" id="dx4-Ar-uq0"/>
-                                    <constraint firstAttribute="height" constant="241" id="kb4-6W-AIX"/>
                                 </constraints>
                             </imageView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="MNn-p6-8WZ">
+                                <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.47999999999999998" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="749" id="2dh-js-xxl"/>
+                                    <constraint firstAttribute="width" constant="774" id="qqX-NY-dsn"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
+                                <state key="normal">
+                                    <color key="titleColor" red="0.19607843459999999" green="0.30980393290000002" blue="0.52156865600000002" alpha="1" colorSpace="calibratedRGB"/>
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <state key="highlighted">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                            </button>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="singleLineEtched" rowHeight="44" sectionHeaderHeight="10" sectionFooterHeight="10" translatesAutoresizingMaskIntoConstraints="NO" id="Y8i-aJ-S3n">
-                                <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="764" id="X9U-e5-FQy"/>
                                 </constraints>
@@ -67,12 +81,27 @@
                                     </tableViewCell>
                                 </prototypes>
                             </tableView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="yZ2-sI-NbR">
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="45" id="GgS-r3-I2p"/>
+                                    <constraint firstAttribute="width" constant="51" id="mXb-ai-Mjo"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
+                                <state key="normal" title="Button" image="home_icon.png">
+                                    <color key="titleColor" red="0.19607843459999999" green="0.30980393290000002" blue="0.52156865600000002" alpha="1" colorSpace="calibratedRGB"/>
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <state key="highlighted">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                            </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="V1a-Ly-hPC">
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="66" id="xCb-Rf-Xun"/>
+                                    <constraint firstAttribute="height" constant="243" id="43T-O7-2NK"/>
+                                    <constraint firstAttribute="width" constant="755" id="Djq-hF-Yuc"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" name="Helvetica-Bold" family="Helvetica" pointSize="18"/>
-                                <state key="normal" title="Home">
+                                <state key="normal" image="transparente.png" backgroundImage="transparente.png">
                                     <color key="titleColor" red="0.19607843137254902" green="0.30980392156862746" blue="0.52156862745098043" alpha="1" colorSpace="calibratedRGB"/>
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
@@ -81,14 +110,19 @@
                                 </connections>
                             </button>
                         </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <color key="backgroundColor" cocoaTouchSystemColor="scrollViewTexturedBackgroundColor"/>
                         <constraints>
-                            <constraint firstItem="V1a-Ly-hPC" firstAttribute="top" secondItem="7vj-S1-zFa" secondAttribute="top" constant="-1" id="Swv-b2-KJb"/>
+                            <constraint firstItem="zcW-JG-i0r" firstAttribute="centerY" secondItem="V1a-Ly-hPC" secondAttribute="centerY" type="default" id="4v7-Op-MEO"/>
+                            <constraint firstItem="Y8i-aJ-S3n" firstAttribute="top" secondItem="7vj-S1-zFa" secondAttribute="top" constant="278" id="8AZ-EV-GYF"/>
+                            <constraint firstItem="Y8i-aJ-S3n" firstAttribute="trailing" secondItem="7vj-S1-zFa" secondAttribute="trailing" type="default" id="CIj-g8-0Ky"/>
+                            <constraint firstItem="MNn-p6-8WZ" firstAttribute="top" secondItem="7vj-S1-zFa" secondAttribute="top" constant="257" id="Ja8-QH-M7Q"/>
+                            <constraint firstItem="yZ2-sI-NbR" firstAttribute="top" secondItem="7vj-S1-zFa" secondAttribute="top" constant="-1" id="NZ5-vt-B0A"/>
                             <constraint firstItem="zcW-JG-i0r" firstAttribute="leading" secondItem="7vj-S1-zFa" secondAttribute="leading" type="default" id="Y4y-Qd-gxA"/>
-                            <constraint firstItem="Y8i-aJ-S3n" firstAttribute="trailing" secondItem="7vj-S1-zFa" secondAttribute="trailing" type="default" id="iih-CJ-vYN"/>
+                            <constraint firstItem="MNn-p6-8WZ" firstAttribute="leading" secondItem="7vj-S1-zFa" secondAttribute="leading" type="default" id="iar-7e-Srv"/>
                             <constraint firstItem="zcW-JG-i0r" firstAttribute="top" secondItem="7vj-S1-zFa" secondAttribute="top" type="default" id="kZe-Ix-Rjy"/>
-                            <constraint firstItem="Y8i-aJ-S3n" firstAttribute="leading" secondItem="7vj-S1-zFa" secondAttribute="leading" type="default" id="qBC-1D-n01"/>
-                            <constraint firstItem="Y8i-aJ-S3n" firstAttribute="bottom" secondItem="7vj-S1-zFa" secondAttribute="bottom" type="default" id="v0E-f7-B4Q"/>
+                            <constraint firstItem="Y8i-aJ-S3n" firstAttribute="leading" secondItem="7vj-S1-zFa" secondAttribute="leading" type="default" id="lHt-IX-Fjx"/>
+                            <constraint firstItem="yZ2-sI-NbR" firstAttribute="top" secondItem="V1a-Ly-hPC" secondAttribute="top" type="default" id="usH-8O-ZyR"/>
+                            <constraint firstItem="yZ2-sI-NbR" firstAttribute="leading" secondItem="7vj-S1-zFa" secondAttribute="leading" type="default" id="xOh-HS-uC3"/>
                             <constraint firstItem="V1a-Ly-hPC" firstAttribute="leading" secondItem="7vj-S1-zFa" secondAttribute="leading" type="default" id="xpJ-98-iug"/>
                         </constraints>
                     </view>
@@ -371,29 +405,50 @@
                                     <segue destination="M2h-Xp-Okl" kind="embed" id="hPm-DX-eNB"/>
                                 </connections>
                             </containerView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="XiG-At-KK6">
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="260" id="1Z7-oI-V3u"/>
+                                    <constraint firstAttribute="width" constant="386" id="Sdy-d9-feO"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
+                                <color key="tintColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                                <state key="normal" backgroundImage="transparente.png">
+                                    <color key="titleColor" red="0.19607843459999999" green="0.30980393290000002" blue="0.52156865600000002" alpha="1" colorSpace="calibratedRGB"/>
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <state key="highlighted">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="clickAgendaPreview:" destination="ajv-CM-JT5" eventType="touchUpInside" id="5Gw-gb-xHk"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" cocoaTouchSystemColor="scrollViewTexturedBackgroundColor"/>
                         <constraints>
                             <constraint firstItem="vaR-37-i9Q" firstAttribute="trailing" secondItem="RqT-X1-FGV" secondAttribute="trailing" type="default" id="35Z-Oh-fU9"/>
                             <constraint firstItem="pdW-gR-6p6" firstAttribute="top" secondItem="tmA-vE-w1H" secondAttribute="top" constant="398" id="5KT-o1-15u"/>
-                            <constraint firstAttribute="trailing" secondItem="FYb-Ku-8hU" secondAttribute="trailing" constant="348" id="BMa-UC-mwI"/>
+                            <constraint firstAttribute="bottom" secondItem="pdW-gR-6p6" secondAttribute="bottom" constant="302" id="6aU-4c-Hsw"/>
                             <constraint firstItem="6AR-pd-1Yf" firstAttribute="leading" secondItem="tmA-vE-w1H" secondAttribute="leading" type="default" id="Bw1-dx-dMw"/>
                             <constraint firstItem="RqT-X1-FGV" firstAttribute="leading" secondItem="tmA-vE-w1H" secondAttribute="leading" constant="53" id="D6A-wk-xCw"/>
                             <constraint firstItem="6AR-pd-1Yf" firstAttribute="trailing" secondItem="tmA-vE-w1H" secondAttribute="trailing" type="default" id="EA9-vI-yat"/>
-                            <constraint firstAttribute="bottom" secondItem="wDG-ps-XC4" secondAttribute="bottom" constant="55" id="ERu-Xg-1pq"/>
                             <constraint firstItem="vaR-37-i9Q" firstAttribute="baseline" secondItem="mUf-oo-pfF" secondAttribute="baseline" type="default" id="FaT-iQ-cIC"/>
                             <constraint firstItem="pdW-gR-6p6" firstAttribute="leading" secondItem="RqT-X1-FGV" secondAttribute="leading" type="default" id="GDu-eN-Mbq"/>
                             <constraint firstAttribute="trailing" secondItem="wDG-ps-XC4" secondAttribute="trailing" constant="20" symbolic="YES" type="default" id="HvA-9a-RNZ"/>
                             <constraint firstItem="pdW-gR-6p6" firstAttribute="leading" secondItem="FYb-Ku-8hU" secondAttribute="leading" type="default" id="PxG-tE-0XG"/>
                             <constraint firstItem="wDG-ps-XC4" firstAttribute="top" secondItem="tmA-vE-w1H" secondAttribute="top" constant="760" id="QFu-gS-KVT"/>
                             <constraint firstItem="vaR-37-i9Q" firstAttribute="centerY" secondItem="mUf-oo-pfF" secondAttribute="centerY" type="default" id="RdN-Cp-LD6"/>
+                            <constraint firstItem="XiG-At-KK6" firstAttribute="leading" secondItem="tmA-vE-w1H" secondAttribute="leading" constant="47" id="WKM-AT-4KP"/>
+                            <constraint firstItem="FYb-Ku-8hU" firstAttribute="top" secondItem="tmA-vE-w1H" secondAttribute="top" constant="725" id="Z1Y-wO-9TH"/>
                             <constraint firstItem="wDG-ps-XC4" firstAttribute="centerY" secondItem="FYb-Ku-8hU" secondAttribute="centerY" type="default" id="Zi1-1h-eBR"/>
                             <constraint firstItem="6AR-pd-1Yf" firstAttribute="top" secondItem="tmA-vE-w1H" secondAttribute="top" type="default" id="aXr-qB-6AR"/>
+                            <constraint firstAttribute="trailing" secondItem="FYb-Ku-8hU" secondAttribute="trailing" constant="348" id="apk-b4-OME"/>
                             <constraint firstItem="wDG-ps-XC4" firstAttribute="leading" secondItem="tmA-vE-w1H" secondAttribute="leading" constant="435" id="cmx-KK-GMF"/>
                             <constraint firstItem="RqT-X1-FGV" firstAttribute="top" secondItem="tmA-vE-w1H" secondAttribute="top" constant="74" id="f2M-0t-2FX"/>
+                            <constraint firstAttribute="bottom" secondItem="XiG-At-KK6" secondAttribute="bottom" constant="26" id="frV-Nw-sS6"/>
                             <constraint firstAttribute="bottom" secondItem="FYb-Ku-8hU" secondAttribute="bottom" constant="20" symbolic="YES" type="default" id="j0i-ya-S7S"/>
                             <constraint firstItem="vaR-37-i9Q" firstAttribute="top" secondItem="tmA-vE-w1H" secondAttribute="top" constant="344" id="qXg-Tt-cqO"/>
-                            <constraint firstAttribute="bottom" secondItem="pdW-gR-6p6" secondAttribute="bottom" constant="302" id="r4L-mW-xZr"/>
                             <constraint firstItem="mUf-oo-pfF" firstAttribute="leading" secondItem="tmA-vE-w1H" secondAttribute="leading" constant="66" id="zIu-aY-hBV"/>
                             <constraint firstItem="vaR-37-i9Q" firstAttribute="trailing" secondItem="pdW-gR-6p6" secondAttribute="trailing" type="default" id="zar-z1-oeP"/>
                         </constraints>
@@ -402,12 +457,13 @@
                     <nil key="simulatedTopBarMetrics"/>
                     <connections>
                         <outlet property="CollectionOne" destination="RqT-X1-FGV" id="7B9-O5-0BF"/>
+                        <outlet property="agendaPreviewB" destination="XiG-At-KK6" id="2db-DI-Yz6"/>
                         <outlet property="moreNewsButton" destination="vaR-37-i9Q" id="QQS-WM-1lY"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="fVY-QE-Ch9" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="831" y="1307"/>
+            <point key="canvasLocation" x="818" y="1346"/>
         </scene>
         <!--People View Controller - Speakers-->
         <scene sceneID="Ztf-7O-oMG">
@@ -2280,10 +2336,10 @@
             </objects>
             <point key="canvasLocation" x="-82" y="3128"/>
         </scene>
-        <!--View Controller-->
+        <!--Agenda Preview-->
         <scene sceneID="BIq-bG-z4q">
             <objects>
-                <viewController id="b4l-gw-vNf" sceneMemberID="viewController">
+                <viewController id="b4l-gw-vNf" customClass="AgendaPreview" sceneMemberID="viewController">
                     <view key="view" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="f6P-LE-HAW">
                         <rect key="frame" x="0.0" y="0.0" width="367" height="259"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -2355,9 +2411,14 @@
         <image name="arrowLeft.png" width="128" height="128"/>
         <image name="blank_paper.png" width="859" height="1134"/>
         <image name="checkbox.png" width="16" height="16"/>
+        <image name="home_icon.png" width="256" height="256"/>
         <image name="pulpito.png" width="375" height="375"/>
+        <image name="transparente.png" width="256" height="256"/>
     </resources>
     <classes>
+        <class className="AgendaPreview" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/AgendaPreview.h"/>
+        </class>
         <class className="AgendaViewController" superclassName="UIViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/AgendaViewController.h"/>
             <relationships>
@@ -2370,7 +2431,6 @@
         <class className="BluePrintsViewController" superclassName="UIViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/BluePrintsViewController.h"/>
             <relationships>
-                <relationship kind="action" name="revealMenu:"/>
                 <relationship kind="outlet" name="bpContainer" candidateClass="UIView"/>
                 <relationship kind="outlet" name="collection" candidateClass="UICollectionView"/>
                 <relationship kind="outlet" name="placesContainer" candidateClass="UIView"/>
@@ -2435,9 +2495,11 @@
         <class className="HomeViewController" superclassName="UIViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/HomeViewController.h"/>
             <relationships>
+                <relationship kind="action" name="clickAgendaPreview:"/>
                 <relationship kind="action" name="clickMoreNews:"/>
                 <relationship kind="action" name="revealMenu:"/>
                 <relationship kind="outlet" name="CollectionOne" candidateClass="UICollectionView"/>
+                <relationship kind="outlet" name="agendaPreviewB" candidateClass="UIButton"/>
                 <relationship kind="outlet" name="ct" candidateClass="UICollectionView"/>
                 <relationship kind="outlet" name="moreNewsButton" candidateClass="UIButton"/>
             </relationships>
@@ -2464,10 +2526,8 @@
         <class className="ManageViewController" superclassName="UIViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/ManageViewController.h"/>
             <relationships>
-                <relationship kind="action" name="SelectedOption:"/>
                 <relationship kind="action" name="addConfs:"/>
                 <relationship kind="action" name="remConfs:"/>
-                <relationship kind="action" name="revealMenu:"/>
                 <relationship kind="outlet" name="AddConfButton" candidateClass="UIButton"/>
                 <relationship kind="outlet" name="ConfsCollection" candidateClass="UICollectionView"/>
                 <relationship kind="outlet" name="Options" candidateClass="UISegmentedControl"/>
@@ -2496,7 +2556,6 @@
         <class className="OrganizerViewController" superclassName="UIViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/OrganizerViewController.h"/>
             <relationships>
-                <relationship kind="action" name="revealMenu:"/>
                 <relationship kind="outlet" name="Contact" candidateClass="UILabel"/>
                 <relationship kind="outlet" name="Image" candidateClass="UIImageView"/>
                 <relationship kind="outlet" name="Job" candidateClass="UILabel"/>
@@ -2530,8 +2589,6 @@
         <class className="PersonViewController" superclassName="UIViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/PersonViewController.h"/>
             <relationships>
-                <relationship kind="action" name="revealMenu:"/>
-                <relationship kind="action" name="viewPaper:"/>
                 <relationship kind="outlet" name="NavBar" candidateClass="UINavigationBar"/>
                 <relationship kind="outlet" name="PaperButton" candidateClass="UIButton"/>
                 <relationship kind="outlet" name="biography" candidateClass="UILabel"/>

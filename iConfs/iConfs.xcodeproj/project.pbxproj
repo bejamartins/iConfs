@@ -8,6 +8,9 @@
 
 /* Begin PBXBuildFile section */
 		280C7831177239AE008239D7 /* NewsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 280C7830177239AE008239D7 /* NewsViewController.m */; };
+		280C7834177244A5008239D7 /* AgendaPreview.m in Sources */ = {isa = PBXBuildFile; fileRef = 280C7833177244A5008239D7 /* AgendaPreview.m */; };
+		280C783817724A15008239D7 /* transparente.png in Resources */ = {isa = PBXBuildFile; fileRef = 280C783717724A15008239D7 /* transparente.png */; };
+		280C783A17724BEE008239D7 /* home_icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 280C783917724BEE008239D7 /* home_icon.png */; };
 		280F37321763E9DE00E72424 /* note_paper_left.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 280F372F1763E9DE00E72424 /* note_paper_left.jpg */; };
 		280F37331763E9DE00E72424 /* note_paper.png in Resources */ = {isa = PBXBuildFile; fileRef = 280F37301763E9DE00E72424 /* note_paper.png */; };
 		280F37341763E9DE00E72424 /* blank_paper.png in Resources */ = {isa = PBXBuildFile; fileRef = 280F37311763E9DE00E72424 /* blank_paper.png */; };
@@ -127,6 +130,10 @@
 /* Begin PBXFileReference section */
 		280C782F177239AE008239D7 /* NewsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NewsViewController.h; path = ../NewsViewController.h; sourceTree = "<group>"; };
 		280C7830177239AE008239D7 /* NewsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NewsViewController.m; path = ../NewsViewController.m; sourceTree = "<group>"; };
+		280C7832177244A5008239D7 /* AgendaPreview.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AgendaPreview.h; path = ../AgendaPreview.h; sourceTree = "<group>"; };
+		280C7833177244A5008239D7 /* AgendaPreview.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AgendaPreview.m; path = ../AgendaPreview.m; sourceTree = "<group>"; };
+		280C783717724A15008239D7 /* transparente.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = transparente.png; sourceTree = "<group>"; };
+		280C783917724BEE008239D7 /* home_icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = home_icon.png; sourceTree = "<group>"; };
 		280F372F1763E9DE00E72424 /* note_paper_left.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = note_paper_left.jpg; sourceTree = "<group>"; };
 		280F37301763E9DE00E72424 /* note_paper.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = note_paper.png; sourceTree = "<group>"; };
 		280F37311763E9DE00E72424 /* blank_paper.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = blank_paper.png; sourceTree = "<group>"; };
@@ -432,13 +439,17 @@
 				28586057176A826300FF4FF3 /* BlueprintContainerViewController.h */,
 				280C782F177239AE008239D7 /* NewsViewController.h */,
 				280C7830177239AE008239D7 /* NewsViewController.m */,
+				280C783917724BEE008239D7 /* home_icon.png */,
 				28586058176A826400FF4FF3 /* BlueprintContainerViewController.m */,
 				289746011764EB4200CB2022 /* BluePrintsViewController.h */,
 				289746021764EB4200CB2022 /* BluePrintsViewController.m */,
+				280C783717724A15008239D7 /* transparente.png */,
 				2836BE5917711D6600A78C42 /* pubConferenceViewController.h */,
 				2836BE5A17711D6600A78C42 /* pubConferenceViewController.m */,
 				280F373B1763F8DB00E72424 /* CollectionPeopleInSession.h */,
 				280F373C1763F8DB00E72424 /* CollectionPeopleInSession.m */,
+				280C7832177244A5008239D7 /* AgendaPreview.h */,
+				280C7833177244A5008239D7 /* AgendaPreview.m */,
 				28ADEE1F1760D2D70059F458 /* Conference-News.h */,
 				28ADEE201760D2D70059F458 /* Conference-News.m */,
 				285FF4BB1760BE6A001135E1 /* ConferenceScreenViewController.h */,
@@ -710,6 +721,8 @@
 				70755E1C176D42F9006FD261 /* MainStoryboard.storyboard in Resources */,
 				28465BE51771E3BC00DD4B5F /* Bathroom-gender-sign.png in Resources */,
 				28465BE71771E45C00DD4B5F /* clip_art_food.gif in Resources */,
+				280C783817724A15008239D7 /* transparente.png in Resources */,
+				280C783A17724BEE008239D7 /* home_icon.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -789,6 +802,7 @@
 				3CD1D56F17720B3A00A05BF3 /* MapPlace.m in Sources */,
 				3CD1D57217720D9E00A05BF3 /* MapViewController.m in Sources */,
 				280C7831177239AE008239D7 /* NewsViewController.m in Sources */,
+				280C7834177244A5008239D7 /* AgendaPreview.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

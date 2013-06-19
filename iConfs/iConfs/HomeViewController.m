@@ -20,6 +20,7 @@
     IBOutlet UIButton *moreNewsButton;
 }
 @property (strong, nonatomic) IBOutlet UICollectionView *ct;
+@property (strong, nonatomic) IBOutlet UIButton *agendaPreviewB;
 
 @end
 
@@ -174,6 +175,20 @@
 //    }
 
         
+- (IBAction)clickAgendaPreview:(id)sender {
+    
+    
+    NSString *iD = @"Personal Agenda";
+    
+    UIViewController *newTopViewController = [[self storyboard]instantiateViewControllerWithIdentifier:iD];
+    
+    
+    CGRect frame = [[[[self slidingViewController] topViewController] view] frame];
+    [[self slidingViewController] setTopViewController:newTopViewController];
+    [[[[self slidingViewController] topViewController] view] setFrame:frame];
+    
+    
+}
 
     
 

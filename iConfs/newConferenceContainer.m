@@ -109,9 +109,8 @@
        Conference *c=[myConfs objectAtIndex:indexPath.item];
     
     [(MenuViewController*)[[self slidingViewController] underLeftViewController] changeSelectedConference:c];
-
-    NSLog(@"Valor de selectedConference =%@",[(MenuViewController*)[[self slidingViewController] underLeftViewController] selectedConf]);
-        NSLog(@"Valor de c =%@",c);
+//
+//    NSLog(@"Valor de selectedConference =%@",[(MenuViewController*)[[self slidingViewController] underLeftViewController] selectedConf]);
     
     //[[self slidingViewController] setUnderLeftViewController:[[self storyboard]instantiateViewControllerWithIdentifier:@"Conference"]];
     NSString *iD = @"Conference";
