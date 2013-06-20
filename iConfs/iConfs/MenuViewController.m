@@ -150,6 +150,8 @@
     }else{
         selectedConf = (Conference*)[confs objectAtIndex:[indexPath row]];
         showMenuConf = YES;
+        [[self MenuView] reloadData];
+        [[[self MenuView] cellForRowAtIndexPath:indexPath] setHighlighted:YES];
         
         NSString *iD = @"Conference";
         
@@ -158,8 +160,6 @@
         CGRect frame = [[[[self slidingViewController] topViewController] view] frame];
         [[self slidingViewController] setTopViewController:newTopViewController];
         [[[[self slidingViewController] topViewController] view] setFrame:frame];
-     
-        [[[self MenuView] cellForRowAtIndexPath:indexPath] setHighlighted:YES];
     }
 }
 
