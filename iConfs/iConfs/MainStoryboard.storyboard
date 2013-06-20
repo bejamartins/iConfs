@@ -709,11 +709,10 @@
                         <rect key="frame" x="0.0" y="20" width="768" height="1004"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
-                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Label" lineBreakMode="tailTruncation" numberOfLines="10" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="690" translatesAutoresizingMaskIntoConstraints="NO" id="4Mf-h0-gKN">
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Label" lineBreakMode="tailTruncation" numberOfLines="10" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="395" translatesAutoresizingMaskIntoConstraints="NO" id="4Mf-h0-gKN">
                                 <color key="backgroundColor" cocoaTouchSystemColor="lightTextColor"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="367" id="ggW-ho-Z98"/>
-                                    <constraint firstAttribute="width" constant="690" id="sHA-9d-25S"/>
+                                    <constraint firstAttribute="height" constant="420" id="deT-uq-ibd"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" name="Helvetica" family="Helvetica" pointSize="17"/>
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
@@ -805,33 +804,43 @@
                                     <navigationItem title="Title" id="jwR-Xr-CuC"/>
                                 </items>
                             </navigationBar>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="Srn-7e-Nlq">
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="287" id="tUn-vo-esX"/>
+                                    <constraint firstAttribute="width" constant="265" id="yKM-yv-fXZ"/>
+                                </constraints>
+                            </tableView>
                         </subviews>
                         <color key="backgroundColor" cocoaTouchSystemColor="scrollViewTexturedBackgroundColor"/>
                         <constraints>
-                            <constraint firstItem="TTy-9j-tHQ" firstAttribute="top" secondItem="OKB-4k-Dgn" secondAttribute="top" constant="389" id="1ds-8q-VZK"/>
+                            <constraint firstItem="gAx-sj-Enh" firstAttribute="top" secondItem="OKB-4k-Dgn" secondAttribute="top" constant="298" id="2Ek-Jq-R17"/>
                             <constraint firstItem="gAx-sj-Enh" firstAttribute="leading" secondItem="Nly-Oi-GSc" secondAttribute="leading" type="default" id="4s9-1z-cbX"/>
                             <constraint firstItem="kTa-4f-VNL" firstAttribute="trailing" secondItem="OKB-4k-Dgn" secondAttribute="trailing" type="default" id="6Fv-iH-kC8"/>
+                            <constraint firstItem="PpR-y3-iMY" firstAttribute="trailing" secondItem="M0F-n5-6OC" secondAttribute="trailing" type="default" id="9J1-WW-l9d"/>
+                            <constraint firstAttribute="trailing" secondItem="Nly-Oi-GSc" secondAttribute="trailing" constant="35" id="9pG-Bm-xv5"/>
                             <constraint firstItem="ncU-Js-eGz" firstAttribute="leading" secondItem="gAx-sj-Enh" secondAttribute="leading" type="default" id="BgW-Yd-D3J"/>
-                            <constraint firstItem="0QH-wZ-MJ8" firstAttribute="top" secondItem="OKB-4k-Dgn" secondAttribute="top" constant="82" id="BvL-Aj-W1E"/>
-                            <constraint firstItem="0QH-wZ-MJ8" firstAttribute="leading" secondItem="OKB-4k-Dgn" secondAttribute="leading" constant="447" id="CpO-Uk-t2y"/>
-                            <constraint firstItem="cue-69-yhJ" firstAttribute="top" secondItem="OKB-4k-Dgn" secondAttribute="top" constant="448" id="Drw-QJ-RDY"/>
-                            <constraint firstItem="M0F-n5-6OC" firstAttribute="leading" secondItem="OKB-4k-Dgn" secondAttribute="leading" constant="29" id="IdR-Vn-CPV"/>
-                            <constraint firstItem="SnE-JO-DOG" firstAttribute="top" secondItem="OKB-4k-Dgn" secondAttribute="top" constant="115" id="LDN-Z5-v5e"/>
+                            <constraint firstItem="PpR-y3-iMY" firstAttribute="trailing" secondItem="4Mf-h0-gKN" secondAttribute="trailing" type="default" id="EPB-B9-hwb"/>
+                            <constraint firstItem="M0F-n5-6OC" firstAttribute="bottom" secondItem="0QH-wZ-MJ8" secondAttribute="bottom" type="default" id="JEt-Ic-XNK"/>
                             <constraint firstItem="kTa-4f-VNL" firstAttribute="top" secondItem="OKB-4k-Dgn" secondAttribute="top" type="default" id="PSN-go-TSX"/>
-                            <constraint firstItem="cue-69-yhJ" firstAttribute="trailing" secondItem="4Mf-h0-gKN" secondAttribute="trailing" type="default" id="PY3-h1-t2C"/>
+                            <constraint firstItem="M0F-n5-6OC" firstAttribute="leading" secondItem="OKB-4k-Dgn" secondAttribute="leading" constant="29" id="PSw-s5-x2z"/>
                             <constraint firstItem="PpR-y3-iMY" firstAttribute="leading" secondItem="4Mf-h0-gKN" secondAttribute="leading" type="default" id="RvG-JX-k0v"/>
                             <constraint firstItem="kTa-4f-VNL" firstAttribute="leading" secondItem="OKB-4k-Dgn" secondAttribute="leading" type="default" id="SKG-ZT-P9a"/>
-                            <constraint firstItem="gAx-sj-Enh" firstAttribute="top" secondItem="OKB-4k-Dgn" secondAttribute="top" constant="231" id="YON-ZG-XCq"/>
+                            <constraint firstItem="ncU-Js-eGz" firstAttribute="top" secondItem="OKB-4k-Dgn" secondAttribute="top" constant="354" id="TzB-OM-SeD"/>
+                            <constraint firstItem="SnE-JO-DOG" firstAttribute="top" secondItem="OKB-4k-Dgn" secondAttribute="top" constant="182" id="WLx-eI-Pme"/>
+                            <constraint firstAttribute="bottom" secondItem="TTy-9j-tHQ" secondAttribute="bottom" constant="108" id="b1a-y6-I4G"/>
+                            <constraint firstAttribute="trailing" secondItem="SnE-JO-DOG" secondAttribute="trailing" constant="59" id="ckn-jB-I88"/>
+                            <constraint firstItem="4Mf-h0-gKN" firstAttribute="top" secondItem="Srn-7e-Nlq" secondAttribute="top" type="default" id="ewM-8x-NmU"/>
                             <constraint firstItem="M0F-n5-6OC" firstAttribute="top" secondItem="OKB-4k-Dgn" secondAttribute="top" constant="104" id="fHG-z7-FZR"/>
-                            <constraint firstAttribute="trailing" secondItem="Nly-Oi-GSc" secondAttribute="trailing" constant="30" id="hR6-LP-DR2"/>
-                            <constraint firstAttribute="trailing" secondItem="SnE-JO-DOG" secondAttribute="trailing" constant="54" id="kB7-Of-j1J"/>
-                            <constraint firstItem="4Mf-h0-gKN" firstAttribute="top" secondItem="PpR-y3-iMY" secondAttribute="bottom" constant="8" symbolic="YES" type="default" id="nmC-7D-SYr"/>
-                            <constraint firstItem="cue-69-yhJ" firstAttribute="leading" secondItem="TTy-9j-tHQ" secondAttribute="leading" type="default" id="q8i-tU-hqa"/>
-                            <constraint firstAttribute="bottom" secondItem="4Mf-h0-gKN" secondAttribute="bottom" constant="61" id="raW-l3-IY2"/>
-                            <constraint firstItem="Nly-Oi-GSc" firstAttribute="top" secondItem="OKB-4k-Dgn" secondAttribute="top" constant="150" id="wZi-JH-o1Q"/>
-                            <constraint firstItem="ncU-Js-eGz" firstAttribute="top" secondItem="OKB-4k-Dgn" secondAttribute="top" constant="287" id="xRA-MO-iTG"/>
-                            <constraint firstItem="cue-69-yhJ" firstAttribute="trailing" secondItem="TTy-9j-tHQ" secondAttribute="trailing" type="default" id="yUe-Xz-vqH"/>
-                            <constraint firstItem="PpR-y3-iMY" firstAttribute="trailing" secondItem="M0F-n5-6OC" secondAttribute="trailing" type="default" id="zFs-kc-8x3"/>
+                            <constraint firstAttribute="bottom" secondItem="PpR-y3-iMY" secondAttribute="bottom" constant="466" id="fOo-6j-f3J"/>
+                            <constraint firstAttribute="bottom" secondItem="4Mf-h0-gKN" secondAttribute="bottom" constant="39" id="kf9-tW-zkD"/>
+                            <constraint firstItem="TTy-9j-tHQ" firstAttribute="leading" secondItem="cue-69-yhJ" secondAttribute="leading" type="default" id="kuS-gj-7Qt"/>
+                            <constraint firstItem="0QH-wZ-MJ8" firstAttribute="leading" secondItem="OKB-4k-Dgn" secondAttribute="leading" constant="436" id="ldk-AK-YxE"/>
+                            <constraint firstItem="Srn-7e-Nlq" firstAttribute="centerX" secondItem="TTy-9j-tHQ" secondAttribute="centerX" type="default" id="ofF-Zx-nbB"/>
+                            <constraint firstItem="TTy-9j-tHQ" firstAttribute="trailing" secondItem="cue-69-yhJ" secondAttribute="trailing" type="default" id="qPI-ax-Na6"/>
+                            <constraint firstAttribute="trailing" secondItem="Srn-7e-Nlq" secondAttribute="trailing" constant="38" id="qXG-A1-jWE"/>
+                            <constraint firstItem="Nly-Oi-GSc" firstAttribute="top" secondItem="OKB-4k-Dgn" secondAttribute="top" constant="217" id="tgF-G1-Wxs"/>
+                            <constraint firstAttribute="bottom" secondItem="cue-69-yhJ" secondAttribute="bottom" constant="40" id="uBV-0z-X4D"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="uVQ-1c-Zlp"/>
@@ -839,10 +848,12 @@
                     <connections>
                         <outlet property="NavBar" destination="kTa-4f-VNL" id="LxD-zd-zCV"/>
                         <outlet property="PaperButton" destination="cue-69-yhJ" id="3ZL-bC-y9c"/>
+                        <outlet property="SessionTitle" destination="Nly-Oi-GSc" id="MPt-v5-6Rr"/>
+                        <outlet property="TitleLabel" destination="Nly-Oi-GSc" id="dus-Yd-TkB"/>
+                        <outlet property="WhenLabel" destination="gAx-sj-Enh" id="V9Y-Pt-HxI"/>
+                        <outlet property="WhereLabel" destination="ncU-Js-eGz" id="qAG-H0-73s"/>
                         <outlet property="biography" destination="4Mf-h0-gKN" id="efF-AQ-m09"/>
                         <outlet property="picture" destination="M0F-n5-6OC" id="ksX-cc-rIx"/>
-                        <outlet property="session_theme" destination="Nly-Oi-GSc" id="9hW-ix-LjY"/>
-                        <outlet property="session_when" destination="gAx-sj-Enh" id="7Fg-C9-rKt"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Naa-rH-3Xk" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -2214,7 +2225,6 @@
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="F2s-xH-LTW">
                                 <constraints>
                                     <constraint firstAttribute="height" constant="57" id="0Qf-3j-0Rz"/>
-                                    <constraint firstAttribute="width" constant="201" id="Hg4-CA-OmZ"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
                                 <state key="normal" title="Add Session">
@@ -2228,15 +2238,25 @@
                                     <action selector="addSessions:" destination="ItE-Rr-hyx" eventType="touchUpInside" id="zEc-Cz-VBS"/>
                                 </connections>
                             </button>
+                            <tableView hidden="YES" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="PoT-i2-XhM">
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="275" id="HA0-9z-9DZ"/>
+                                    <constraint firstAttribute="width" constant="200" id="czy-OB-oBe"/>
+                                </constraints>
+                            </tableView>
                         </subviews>
                         <color key="backgroundColor" cocoaTouchSystemColor="scrollViewTexturedBackgroundColor"/>
                         <constraints>
                             <constraint firstItem="ZDm-uR-2wW" firstAttribute="top" secondItem="gmq-pL-hkq" secondAttribute="top" constant="66" id="0BY-Xj-l8a"/>
+                            <constraint firstItem="PoT-i2-XhM" firstAttribute="centerX" secondItem="F2s-xH-LTW" secondAttribute="centerX" type="default" id="1zy-QQ-d6P"/>
                             <constraint firstItem="F2s-xH-LTW" firstAttribute="top" secondItem="H9M-TA-9k9" secondAttribute="top" type="default" id="2ye-vg-Y0V"/>
+                            <constraint firstAttribute="bottom" secondItem="PoT-i2-XhM" secondAttribute="bottom" constant="97" id="9Wy-30-5nu"/>
                             <constraint firstAttribute="bottom" secondItem="F2s-xH-LTW" secondAttribute="bottom" constant="40" id="9oQ-GI-xcN"/>
-                            <constraint firstAttribute="bottom" secondItem="ZDm-uR-2wW" secondAttribute="bottom" constant="112" id="Mzc-8n-aWx"/>
+                            <constraint firstAttribute="bottom" secondItem="ZDm-uR-2wW" secondAttribute="bottom" constant="137" id="F7s-EZ-drQ"/>
                             <constraint firstItem="Oxd-iv-H4f" firstAttribute="trailing" secondItem="gmq-pL-hkq" secondAttribute="trailing" type="default" id="UdY-gx-Nek"/>
-                            <constraint firstItem="F2s-xH-LTW" firstAttribute="centerX" secondItem="ZDm-uR-2wW" secondAttribute="centerX" type="default" id="XrF-ex-gCf"/>
+                            <constraint firstItem="F2s-xH-LTW" firstAttribute="leading" secondItem="PoT-i2-XhM" secondAttribute="leading" type="default" id="VUa-6x-cGf"/>
+                            <constraint firstItem="ZDm-uR-2wW" firstAttribute="centerX" secondItem="PoT-i2-XhM" secondAttribute="centerX" type="default" id="YZG-Nv-wjb"/>
                             <constraint firstAttribute="trailing" secondItem="H9M-TA-9k9" secondAttribute="trailing" constant="39" id="b2A-bp-UHg"/>
                             <constraint firstAttribute="trailing" secondItem="ZDm-uR-2wW" secondAttribute="trailing" constant="20" symbolic="YES" type="default" id="cDg-pj-QmD"/>
                             <constraint firstItem="F2s-xH-LTW" firstAttribute="bottom" secondItem="H9M-TA-9k9" secondAttribute="bottom" type="default" id="cNr-YK-syB"/>
@@ -2248,6 +2268,7 @@
                     <connections>
                         <outlet property="AddSessionButton" destination="F2s-xH-LTW" id="0rj-aH-G26"/>
                         <outlet property="AgendaView" destination="ZDm-uR-2wW" id="dI4-MM-LKK"/>
+                        <outlet property="ConfsTable" destination="PoT-i2-XhM" id="T3W-51-MYn"/>
                         <outlet property="RemoveSessionsButton" destination="H9M-TA-9k9" id="mCc-yn-rGa"/>
                     </connections>
                 </viewController>

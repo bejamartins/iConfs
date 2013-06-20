@@ -117,6 +117,7 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
+    
     if ([indexPath section] == 0){
         showMenuConf = NO;
         NSString *iD = [NSString stringWithFormat:@"%@", [self.MenuView cellForRowAtIndexPath:indexPath].textLabel.text];
@@ -162,23 +163,6 @@
     }
 }
 
-- (void)callPersonInterface:(NSString *)iD withPerson:(Person *)p
-{
-    UIViewController *newTopViewController = [[self storyboard]instantiateViewControllerWithIdentifier:iD];
-    
-    if ([iD isEqualToString:@"Organizer"]) {
-        [(OrganizerViewController *)newTopViewController setShownPerson:(Organizer *)p];
-    }else
-        [(PersonViewController *)newTopViewController setShownPerson:p];
-    
-    [[self slidingViewController] anchorTopViewOffScreenTo:ECRight animations:nil onComplete:^{
-        CGRect frame = [[[[self slidingViewController] topViewController] view] frame];
-        [[self slidingViewController] setTopViewController:newTopViewController];
-        [[[[self slidingViewController] topViewController] view] setFrame:frame];
-        [[self slidingViewController] resetTopView];
-    }];
-}
-
 - (IBAction)homeButtonPressed:(id)sender {
     UIViewController *newTopViewController = [[self storyboard]instantiateViewControllerWithIdentifier:@"Home"];
     
@@ -190,11 +174,17 @@
     }];
 }
 
--(void)changeSelectedConference:(Conference*)conf{
-    selectedConf=conf;
-    showMenuConf = YES;
-    [[self MenuView] reloadData];
-
+-(void)setSelectedConf:(Conference *)sConf{
+    selectedConf = sConf;
+    
+    int index = 0;
+    for (Conference *i in confs) {
+        if ([i getID] == [selectedConf getID]) {
+            [[[self MenuView] cellForRowAtIndexPath:[NSIndexPath indexPathForRow:index inSection:3]] setHighlighted:YES];
+        }
+        
+        index++;
+    }
 }
 
 

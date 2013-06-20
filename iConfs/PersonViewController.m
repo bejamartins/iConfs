@@ -15,12 +15,16 @@
 }
 
 @property (weak, nonatomic) IBOutlet UIButton *PaperButton;
+@property (weak, nonatomic) IBOutlet UILabel *WhenLabel;
+@property (weak, nonatomic) IBOutlet UILabel *WhereLabel;
+@property (weak, nonatomic) IBOutlet UILabel *TitleLabel;
+
 
 @end
 
 @implementation PersonViewController
 
-@synthesize picture,session_theme,session_when,session_where,biography,IndexAux,showPerson, MenuButton, shownPerson, PaperButton;
+@synthesize picture,biography,IndexAux,showPerson, MenuButton, shownPerson, PaperButton;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
