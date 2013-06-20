@@ -177,6 +177,8 @@
 -(void)setSelectedConf:(Conference *)sConf{
     selectedConf = sConf;
     
+    showMenuConf = YES;
+    
     int index = 0;
     for (Conference *i in confs) {
         if ([i getID] == [selectedConf getID]) {
