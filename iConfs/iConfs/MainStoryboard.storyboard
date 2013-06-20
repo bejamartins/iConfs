@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="2.0" toolsVersion="3084" systemVersion="12E55" targetRuntime="iOS.CocoaTouch.iPad" propertyAccessControl="none" useAutolayout="YES" initialViewController="Srd-QG-135">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="2.0" toolsVersion="3084" systemVersion="12C54" targetRuntime="iOS.CocoaTouch.iPad" propertyAccessControl="none" useAutolayout="YES" initialViewController="Srd-QG-135">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="2083"/>
     </dependencies>
@@ -2443,11 +2443,9 @@
         <class className="AgendaViewController" superclassName="UIViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/AgendaViewController.h"/>
             <relationships>
-                <relationship kind="action" name="RemoveSessions:"/>
-                <relationship kind="action" name="addSessions:"/>
-                <relationship kind="action" name="revealMenu:"/>
                 <relationship kind="outlet" name="AddSessionButton" candidateClass="UIButton"/>
                 <relationship kind="outlet" name="AgendaView" candidateClass="UIView"/>
+                <relationship kind="outlet" name="ConfsTable" candidateClass="UITableView"/>
                 <relationship kind="outlet" name="MenuButton" candidateClass="UIButton"/>
                 <relationship kind="outlet" name="RemoveSessionsButton" candidateClass="UIButton"/>
             </relationships>
@@ -2519,9 +2517,6 @@
         <class className="HomeViewController" superclassName="UIViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/HomeViewController.h"/>
             <relationships>
-                <relationship kind="action" name="clickAgendaPreview:"/>
-                <relationship kind="action" name="clickMoreNews:"/>
-                <relationship kind="action" name="revealMenu:"/>
                 <relationship kind="outlet" name="CollectionOne" candidateClass="UICollectionView"/>
                 <relationship kind="outlet" name="agendaPreviewB" candidateClass="UIButton"/>
                 <relationship kind="outlet" name="ct" candidateClass="UICollectionView"/>
@@ -2647,7 +2642,6 @@
             <source key="sourceIdentifier" type="project" relativePath="./Classes/SessionViewController.h"/>
             <relationships>
                 <relationship kind="action" name="addToAgenda:"/>
-                <relationship kind="action" name="revealMenu:"/>
                 <relationship kind="action" name="showInPlant:"/>
                 <relationship kind="outlet" name="MenuButton" candidateClass="UIButton"/>
                 <relationship kind="outlet" name="abstract" candidateClass="UILabel"/>
