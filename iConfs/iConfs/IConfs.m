@@ -419,11 +419,12 @@
         [pp setSession:[papersR[i] valueForKey:@"IDSession"]];
         if ([papers valueForKey:[papersR[i] valueForKey:@"IDPerson"]] == nil) {
             papersList = [[NSMutableArray alloc] init];
-            [papersList addObject: papersR[i]];
+            [papersList addObject: pp];
             [papers setObject:papersList forKey:[((NSDictionary*)papersR[i]) valueForKey:@"IDPerson"]];
         }
         else{
-            [[papers objectForKey:[((NSDictionary*)papersR[i]) valueForKey:@"IDPerson"]] addObject: papersR[i]];
+            [[papers objectForKey:[((NSDictionary*)papersR[i]) valueForKey:@"IDPerson"]] addObject: pp];
+            //[[papers objectForKey:[papersR[i] valueForKey:@"IDPerson"]] addObject: papersR[i]];
         }
     }
     
@@ -548,8 +549,10 @@
             p = [(Author*)p initWithData: [people[i] valueForKey:@"Name"] work: [people[i] valueForKey:@"Company"] /*queremos o cargo e não a companhia*/ image:[people[i] valueForKey:@"ImagePath"] personID: currID];
             [authors setObject:p forKey:[NSString stringWithFormat:@"%d",currID]];
             [conf addAuthor:(Author*)p];
-            for (int j = 0; j<[((NSArray*)[papers valueForKey:[people[i] valueForKey:@"ID"]]) count]; j++) {
-                [((Author*)people[i]) addPapper:((NSArray*)[papers valueForKey:[people[i] valueForKey:@"ID"]])[j]];
+            if([[papers allKeys] containsObject:[people[i] valueForKey:@"ID"]]){
+                for (int j = 0; j<[((NSArray*)[papers valueForKey:[people[i] valueForKey:@"ID"]]) count]; j++) {
+                    [((Author*)p) addPapper:(((NSArray*)[papers valueForKey:[people[i] valueForKey:@"ID"]])[j])];
+                }
             }
         }
         else if ([[people[i] valueForKey:@"Type"] isEqual:@"Speaker"]){
