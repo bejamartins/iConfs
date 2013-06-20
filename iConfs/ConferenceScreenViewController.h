@@ -7,6 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "Conference.h"
 
 @interface ConferenceScreenViewController : UIViewController
 
@@ -16,11 +17,17 @@
 @property (strong, nonatomic) IBOutlet UINavigationItem *bar;
 
 -(void)changeName:(NSString *)name;
+-(Conference*)getConference;
 
 @property (strong, nonatomic) IBOutlet UILabel *notification_number;
 @property (strong, nonatomic) IBOutlet UILabel *Notification_text;
 @property (strong, nonatomic) IBOutlet UILabel *notification_title;
 @property (strong, nonatomic) IBOutlet UILabel *date;
+
+@property (strong, nonatomic) IBOutlet UIImageView *picture;
+@property (strong, nonatomic) IBOutlet UILabel *title;
+
+- (IBAction)changeNews:(UIPageControl *)sender ;
 
 @end
 

@@ -8,9 +8,10 @@
 
 #import <UIKit/UIKit.h>
 
-@interface Conference_News : UIViewController<UICollectionViewDelegate,UICollectionViewDataSource>
-@property (strong, nonatomic) IBOutlet UICollectionView *collection;
+@interface Conference_News : UIViewController
+@property (strong, nonatomic) IBOutlet UIImageView *picture;
 
-
+@property (strong, nonatomic) IBOutlet UILabel *title;
+- (IBAction)changeNews:(UIPageControl *)sender;
 
 @end

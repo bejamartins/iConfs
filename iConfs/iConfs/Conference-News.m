@@ -8,63 +8,81 @@
 
 #import "Conference-News.h"
 #import "CellNewsInsideConference.h"
+#import "Conference.h"
+#import "ECSlidingViewController.h"
+#import "MenuViewController.h"
+#import "News.h"
+#import "ConferenceScreenViewController.h"
+@interface Conference_News (){
+    Conference *conf;
+    NSMutableArray *newsToShow;
+    int currentNewsIndex;
 
-@interface Conference_News ()
+}
 
 @end
 
 @implementation Conference_News
+@synthesize picture,title;
+- (void)viewDidLoad{
 
-- (void)viewDidLoad
-{
-    [super viewDidLoad];
-    self.collection.dataSource=self;
-    self.collection.delegate=self;
-    //[[self.collection]setDataSource: self];
-  //  self.view.backgroundColor=[UIColor colorWithPatternImage:[UIImage imageNamed:@"6.jpg"]];
-  //  self.collection.backgroundColor=[UIColor colorWithPatternImage:[UIImage imageNamed:@"6.jpg"]];
+    
+    if(conf==nil){
+        ConferenceScreenViewController *VC=(ConferenceScreenViewController*)self.parentViewController;
+        
+        UIViewController *X=self.parentViewController;
+
+        conf=[VC getConference];
+        newsToShow=[[NSMutableArray alloc] init];
+
+        NSString *confName=[conf getName];
+        NSString *random=@"shdsad";
+    }
+    NSArray *news=[[NSArray alloc] init];
+    news=[conf getNews];
+    
+    int size= [news count];
+    int counter=0;
+    
+    for(int i =size-1; i>size-4;i--){
+        News *n=[news objectAtIndex:i];
+        [newsToShow insertObject:n atIndex:counter];
+        counter++;
+    
+    }
+    NSLog(@"valor do index %d",currentNewsIndex);
+
+    
+    
+    News *n= [newsToShow objectAtIndex:currentNewsIndex];
+    
+    //VERIFICAR SE TEM IMAGEM!
     
     
     
-   // conferencesLogos= [[NSArray alloc]initWithObjects:@"inforum.jpg", @"musepat.jpg", @"conf.jpg",nil];
+    [picture setImage:[UIImage imageNamed:@"conf.jpg"]];
     
-   // conferencesNames=[[NSArray alloc]initWithObjects:@"INFORUM",@"MUSEPAT",@"RANDOM", nil];
+    [title setText:[n getTitle]];
+    
 
 
 
 }
--(NSInteger)numberOfSectionsInCollectionView:(UICollectionView *)collectionView{
-    
-    return 1;
-}
 
--(NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section{
-    return 1;
-}
--(UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath{
-    static NSString *CellIdentifier=@"newsCell";
-    
-    
-    
-    CellNewsInsideConference *cell= [collectionView dequeueReusableCellWithReuseIdentifier:CellIdentifier forIndexPath:indexPath];
-    [[cell picture]setImage:[UIImage imageNamed:@"conf.jpg"]];
-    
-    [[cell title]setText:@"First"];
-    return cell;
-    
-    
-}
-- (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath{
-//    CellMyConferences *cell= (CellMyConferences *)[collection cellForItemAtIndexPath:indexPath];
-//    UILabel *label = cell.conferenceLabel;
-//    name= label.text;
-//    [conference changeName: name];
-//    NSLog(@"Entrei no método da célula");
-//    NSLog(@"Name= %@", name);
-//    NSLog(@"Name Em Conference (did....)= %@", conference.conferenceName);
-    
-}
 
+
+
+- (IBAction)changeNews:(UIPageControl *)sender {
+    
+    NSLog(@"entrei no chanfeNews!");
+    
+    News *n= [newsToShow objectAtIndex:sender.currentPage];
+    //TODO: mudar!
+    [picture setImage:[UIImage imageNamed:@"conf.jpg"]];
+    
+    [title setText:[n getTitle]];
+    currentNewsIndex=sender.currentPage;
+}
 
 
 @end

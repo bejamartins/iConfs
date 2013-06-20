@@ -17,6 +17,10 @@
 
 @interface BluePrintsViewController (){
 
+    IBOutlet UIImageView *thirdArrow;
+    IBOutlet UIImageView *secondArrow;
+    IBOutlet UIImageView *firstArrow;
+    IBOutlet UILabel *placeLabel;
   //  NSMutableDictionary *bps;
 }
 
@@ -41,7 +45,7 @@
     c=[(MenuViewController*)[[self slidingViewController] underLeftViewController] selectedConf] ;
 
     self.blueprints= [[(MenuViewController*)[[self slidingViewController] underLeftViewController] selectedConf] getBlueprints];
-    NSLog(@"Tamanho bps=%d",[self.blueprints count]);
+   // NSLog(@"Tamanho bps=%d",[self.blueprints count]);
     NSArray *keys = [self.blueprints allKeys];
     id aKey = [keys objectAtIndex:0];
     Blueprints *b1 = [self.blueprints objectForKey:aKey];
@@ -113,14 +117,14 @@
         FloorCell *cell= [collectionView dequeueReusableCellWithReuseIdentifier:CellIdentifier forIndexPath:indexPath];
         NSArray *keys = [self.blueprints allKeys];
         NSString *key = [keys objectAtIndex:indexPath.item];
-    NSLog(@"Vou buscar o 1º Mapa! :D item=%d",indexPath.item );
+   // NSLog(@"Vou buscar o 1º Mapa! :D item=%d",indexPath.item );
     Blueprints *bp=[self.blueprints objectForKey:key];
    // NSLog(self.blueprints);
         NSString *imagePath=[bp getImagePath];
      //   UIImage *graphImage = [[UIImage alloc] initWithContentsOfFile: imagePath];
     
     
-    NSLog(@"Path do mapa=%@",imagePath);
+ //   NSLog(@"Path do mapa=%@",imagePath);
     NSString* tmpS=[[(MenuViewController*)[[self slidingViewController] underLeftViewController] selectedConf] getID];
     //
         [[cell picture] setImage:[[(MenuViewController*)[[self slidingViewController] underLeftViewController] selectedConf] loadImage:tmpS :imagePath]];
@@ -146,7 +150,7 @@
 
     [self changeSelectedBlueprint:b];
     
-        NSLog(@"Detectei toque");
+     //   NSLog(@"Detectei toque");
     
     
     
@@ -192,10 +196,10 @@
     NSArray *rooms=[selectedBlueprint getRooms];
     NSArray *eat=[selectedBlueprint getEatingAreas];
     
-    NSLog(@"Numero otherPlaces=%d",[Otherplaces count]);
-    NSLog(@"Numero wc=%d",[WCs count]);
-    NSLog(@"Numero rooms=%d",[rooms count]);
-    NSLog(@"Numero eat=%d",[eat count]);
+ //   NSLog(@"Numero otherPlaces=%d",[Otherplaces count]);
+  //  NSLog(@"Numero wc=%d",[WCs count]);
+  //  NSLog(@"Numero rooms=%d",[rooms count]);
+  //  NSLog(@"Numero eat=%d",[eat count]);
 
 
     
@@ -226,18 +230,18 @@
         
             NSArray *places=[selectedBlueprint getEatingAreas];
             [pController changeEat:places];
-            NSLog(@"tamanho do places %d",[places count]);
+      //      NSLog(@"tamanho do places %d",[places count]);
            // places=[selectedBlueprint getOtherPlaces];
            // [pController changeOtherPlaces:places];
            // NSLog(@"---tamanho do other %d",[places count]);
 
             places=[selectedBlueprint getWCs];
             [pController changeWC:places];
-            NSLog(@"tamanho do wcs %d",[places count]);
+   //         NSLog(@"tamanho do wcs %d",[places count]);
 
             places=[selectedBlueprint getRooms];
             [pController changeRooms:places];
-            NSLog(@"tamanho do rooms %d",[places count]);
+    //        NSLog(@"tamanho do rooms %d",[places count]);
 
            
             [pController viewDidLoad];
@@ -259,6 +263,13 @@
                 }
 
     }
+
+}
+
+-(void)changePlacesToShow:(int)type pl:(NSArray*)places{
+
+    
+    
 
 }
 

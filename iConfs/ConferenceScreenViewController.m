@@ -18,8 +18,14 @@
     Notification *currentNotification;
     NSInteger numberOfNots;
     NSArray *notifications;
+    NSMutableArray *newsToShow;
+    int currentNewsIndex;
+
+
+    
 
 }
+@property (strong, nonatomic) IBOutlet UIPageControl *pageControl;
 //@property (strong, nonatomic) IBOutlet UINavigationItem *bar;
 @property (strong, nonatomic) IBOutlet UIButton *backbutton;
 @property (strong, nonatomic) IBOutlet UIButton *forwardButton;
@@ -28,7 +34,7 @@
 
 @implementation ConferenceScreenViewController
 @synthesize conferenceName;
-@synthesize MenuButton,notification_number,notification_title,Notification_text,date;
+@synthesize MenuButton,notification_number,notification_title,Notification_text,date,title,picture;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -50,6 +56,7 @@
     
     if(conf==nil){
         conf=[(MenuViewController*)[[self slidingViewController] underLeftViewController] selectedConf];
+        newsToShow=[[NSMutableArray alloc] init];
 
         notifications=[conf getNotifications];
         numberOfNots=[notifications count];
@@ -97,6 +104,78 @@
     [MenuButton addTarget:self action:@selector(revealMenu:) forControlEvents:UIControlEventTouchUpInside];
     
     [[self view] addSubview:MenuButton];
+    
+    
+    
+    
+    NSArray *news=[[NSArray alloc] init];
+    news=[conf getNews];
+    NSString* tAux;
+    int size= [news count];
+    int counter=0;
+    
+    
+    
+    if(size>=3){
+    for(int i =size-1; i>size-4;i--){
+        News *n=[news objectAtIndex:i];
+        [newsToShow insertObject:n atIndex:counter];
+        counter++;
+        
+    }
+        News *n= [newsToShow objectAtIndex:currentNewsIndex];
+        
+        //ALTERAR
+        [picture setImage:[UIImage imageNamed:@"conf.jpg"]];
+        
+        
+        [title setText:[n getTitle]];
+    }
+    else if(size!=0){
+    
+        for (int i=size-1; i>=0;i--) {
+            
+            News *n=[news objectAtIndex:i];
+            [newsToShow insertObject:n atIndex:counter];
+            counter++;
+
+        
+        
+        }
+        
+        [self.pageControl setNumberOfPages:size];
+        News *n= [newsToShow objectAtIndex:currentNewsIndex];
+        
+        //ALTERAR
+        [picture setImage:[UIImage imageNamed:@"conf.jpg"]];
+        
+        
+        [title setText:[n getTitle]];
+    }
+    else{
+         tAux = [NSString stringWithFormat:@"Welcome To %@ iConfs page!",[conf getName]];
+      
+                                                       
+       [picture setImage:[conf getLogo]];
+        [title setText:tAux];
+         [self.pageControl setNumberOfPages:1];
+    }
+    
+    
+    
+    NSLog(@"valor do index %d",currentNewsIndex);
+    
+    
+    
+    
+    //VERIFICAR SE TEM IMAGEM!
+    
+    
+    
+  
+    
+    
+
 }
 
 - (void)didReceiveMemoryWarning
@@ -142,6 +221,29 @@
         [self.backbutton setEnabled:NO];
 
     
+}
+    
+    
+    }
+-(Conference*) getConference{
+
+           Conference *c=[(MenuViewController*)[[self slidingViewController] underLeftViewController] selectedConf];
+
+    return c;
+}
+
+- (IBAction)changeNews:(UIPageControl *)sender {
+    
+    
+    NSLog(@"entrei no changeNews!");
+    
+    if(sender.numberOfPages!=1){
+    News *n= [newsToShow objectAtIndex:sender.currentPage];
+    //TODO: mudar!
+    [picture setImage:[UIImage imageNamed:@"conf.jpg"]];
+    
+    [title setText:[n getTitle]];
+    currentNewsIndex=sender.currentPage;
 }
 }
 
