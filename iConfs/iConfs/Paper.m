@@ -39,5 +39,12 @@
     return link;
 }
 
+-(void)setSession:(NSString*)sID{
+    sessID = sID;
+}
+-(NSString*)getSessID{
+    return sessID;
+}
+
 
 @end
