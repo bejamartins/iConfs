@@ -16,6 +16,7 @@
     NSArray* authors;
     NSString* abstract;
     NSString* link;
+    NSString* sessID;
 }
 
 //Paper ID
@@ -73,5 +74,8 @@
  @returns the paper's Link
  */
 -(NSString*)getLink;
+
+-(void)setSession:(NSString*)sID;
+-(NSString*)getSessID;
 
 @end
