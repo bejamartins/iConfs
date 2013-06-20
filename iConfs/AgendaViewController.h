@@ -11,7 +11,7 @@
 
 @class MAEventKitDataSource;
 
-@interface AgendaViewController : UIViewController<MAWeekViewDataSource,MAWeekViewDelegate> {
+@interface AgendaViewController : UIViewController<MAWeekViewDataSource, MAWeekViewDelegate, UITableViewDataSource, UITableViewDelegate> {
     MAEventKitDataSource *_eventKitDataSource;
 }
 

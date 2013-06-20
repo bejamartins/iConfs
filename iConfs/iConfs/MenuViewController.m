@@ -117,6 +117,7 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
+    
     if ([indexPath section] == 0){
         showMenuConf = NO;
         NSString *iD = [NSString stringWithFormat:@"%@", [self.MenuView cellForRowAtIndexPath:indexPath].textLabel.text];
@@ -149,6 +150,8 @@
     }else{
         selectedConf = (Conference*)[confs objectAtIndex:[indexPath row]];
         showMenuConf = YES;
+        [[self MenuView] reloadData];
+        [[[self MenuView] cellForRowAtIndexPath:indexPath] setHighlighted:YES];
         
         NSString *iD = @"Conference";
         
@@ -157,26 +160,7 @@
         CGRect frame = [[[[self slidingViewController] topViewController] view] frame];
         [[self slidingViewController] setTopViewController:newTopViewController];
         [[[[self slidingViewController] topViewController] view] setFrame:frame];
-     
-        [[[self MenuView] cellForRowAtIndexPath:indexPath] setHighlighted:YES];
     }
-}
-
-- (void)callPersonInterface:(NSString *)iD withPerson:(Person *)p
-{
-    UIViewController *newTopViewController = [[self storyboard]instantiateViewControllerWithIdentifier:iD];
-    
-    if ([iD isEqualToString:@"Organizer"]) {
-        [(OrganizerViewController *)newTopViewController setShownPerson:(Organizer *)p];
-    }else
-        [(PersonViewController *)newTopViewController setShownPerson:p];
-    
-    [[self slidingViewController] anchorTopViewOffScreenTo:ECRight animations:nil onComplete:^{
-        CGRect frame = [[[[self slidingViewController] topViewController] view] frame];
-        [[self slidingViewController] setTopViewController:newTopViewController];
-        [[[[self slidingViewController] topViewController] view] setFrame:frame];
-        [[self slidingViewController] resetTopView];
-    }];
 }
 
 - (IBAction)homeButtonPressed:(id)sender {
@@ -190,11 +174,19 @@
     }];
 }
 
--(void)changeSelectedConference:(Conference*)conf{
-    selectedConf=conf;
+-(void)setSelectedConf:(Conference *)sConf{
+    selectedConf = sConf;
+    
     showMenuConf = YES;
-    [[self MenuView] reloadData];
-
+    
+    int index = 0;
+    for (Conference *i in confs) {
+        if ([i getID] == [selectedConf getID]) {
+            [[[self MenuView] cellForRowAtIndexPath:[NSIndexPath indexPathForRow:index inSection:3]] setHighlighted:YES];
+        }
+        
+        index++;
+    }
 }
 
 

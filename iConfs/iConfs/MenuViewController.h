@@ -17,11 +17,6 @@
 
 - (IBAction)homeButtonPressed:(id)sender;
 
-- (void)callPersonInterface:(NSString *)iD withPerson:(Person *)p;
-
 - (IConfs*) appData;
-
--(void)changeSelectedConference:(Conference*)conf;
-
 
 @end
