@@ -549,7 +549,7 @@
             [authors setObject:p forKey:[NSString stringWithFormat:@"%d",currID]];
             [conf addAuthor:(Author*)p];
             for (int j = 0; j<[((NSArray*)[papers valueForKey:[people[i] valueForKey:@"ID"]]) count]; j++) {
-                [people[i] addPapper:((NSArray*)[papers valueForKey:[people[i] valueForKey:@"ID"]])[j]];
+                [((Author*)people[i]) addPapper:((NSArray*)[papers valueForKey:[people[i] valueForKey:@"ID"]])[j]];
             }
         }
         else if ([[people[i] valueForKey:@"Type"] isEqual:@"Speaker"]){
