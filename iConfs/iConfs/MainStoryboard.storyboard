@@ -2195,6 +2195,9 @@
                         </constraints>
                     </view>
                     <nil key="simulatedTopBarMetrics"/>
+                    <connections>
+                        <outlet property="AgendaView" destination="hAd-LI-OYQ" id="xYS-oo-9ib"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="FpA-DB-XZh" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -2563,6 +2566,11 @@
     <classes>
         <class className="AddSessionViewController" superclassName="UIViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/AddSessionViewController.h"/>
+            <relationships>
+                <relationship kind="action" name="revealMenu:"/>
+                <relationship kind="outlet" name="AgendaView" candidateClass="MAWeekView"/>
+                <relationship kind="outlet" name="MenuButton" candidateClass="UIButton"/>
+            </relationships>
         </class>
         <class className="AgendaPreview" superclassName="UIViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/AgendaPreview.h"/>

@@ -8,9 +8,12 @@
 
 #import <UIKit/UIKit.h>
 #import "Conference.h"
+#import "MAWeekView.h"
 
-@interface AddSessionViewController : UIViewController
+@interface AddSessionViewController : UIViewController<MAWeekViewDataSource, MAWeekViewDelegate>
 
 @property Conference *conf;
+
+@property (weak, nonatomic) IBOutlet MAWeekView *AgendaView;
 
 @end
