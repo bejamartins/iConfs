@@ -89,15 +89,18 @@
         }
     
     }
+    
+    
+    news=[[NSMutableArray alloc] init];
+    pictures=[[NSMutableArray alloc] init];
+
+
   //  IConfs *ic=[(MenuViewController*)[[self slidingViewController] underLeftViewController] appData];
    // NSArray *myConfs=[ic getMyConferences];
-    NSInteger numberOfNews = 0;
     for(int i=0;i<[myConfs count];i++){
      
         
        NSArray *newsAux=[[NSArray alloc] init];
-         news=[[NSMutableArray alloc] init];
-        pictures=[[NSMutableArray alloc] init];
 
         newsAux=[[myConfs objectAtIndex:i]getNews];
         NSInteger count= [newsAux count];
@@ -107,12 +110,11 @@
         //[[[myConfs objectAtIndex:i]getNews ] objectAtIndex:[[[myConfs objectAtIndex:i]getNews ] ]count];
         if(count!=0){
             News *n=[newsAux objectAtIndex:count-1];
-            [news insertObject:n atIndex:numberOfNews];
+            [news addObject:n];
             UIImage *p=[[myConfs objectAtIndex:i]getLogo];
             
-            [pictures insertObject:p atIndex:numberOfNews];
+            [pictures addObject: p];
 
-            numberOfNews++;
         }
         
     
