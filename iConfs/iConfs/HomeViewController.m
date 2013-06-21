@@ -113,7 +113,7 @@
             [news addObject:n];
             UIImage *p=[[myConfs objectAtIndex:i]getLogo];
             
-            [pictures addObject: p];
+            //[pictures addObject: p];
 
         }
         
@@ -159,7 +159,7 @@
     static NSString *CellIdentifier=@"cellOne";
     CustomCellOne *cell= [collectionView dequeueReusableCellWithReuseIdentifier:CellIdentifier forIndexPath:indexPath];
     News *n= [news objectAtIndex:indexPath.item];
-    [[cell Image]setImage:[pictures objectAtIndex:indexPath.item]];
+    //[[cell Image]setImage:[pictures objectAtIndex:indexPath.item]];
     
     [[cell Description]setText:[n getTitle]];
     

@@ -38,7 +38,7 @@
 @synthesize lineWidth=_lineWidth;
 @synthesize lineColor=_lineColor;
 @synthesize outerBorder=_outerBorder;
-@synthesize isRemoving, sameTimeEvents, whichSame;
+@synthesize isRemoving;
 
 - (id)initWithFrame:(CGRect)frame {
     if (self = [super initWithFrame:frame]) {
@@ -64,8 +64,6 @@
 	self.outerBorder      = YES;
 	self.lineColor        = [UIColor lightGrayColor]; // retain
     isRemoving = NO;
-    sameTimeEvents = 1;
-    whichSame = 0;
 }
 
 - (void)setRows:(unsigned int)rows {

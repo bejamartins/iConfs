@@ -76,6 +76,9 @@ static const unsigned int TOP_BACKGROUND_HEIGHT               = 35;
 @property (nonatomic, strong) MAEvent *event;
 @property (nonatomic, assign) size_t xOffset;
 @property (nonatomic, assign) size_t yOffset;
+@property int sameTimeEvents;
+@property int whichSame;
+
 
 @end
 
@@ -130,7 +133,7 @@ static const unsigned int TOP_BACKGROUND_HEIGHT               = 35;
 
 @interface MAGridView (MAWeekViewAdditions)
 
-- (void)addEventToOffset:(unsigned int)offset event:(MAEvent *)event weekView:(MAWeekView *)weekView;
+- (void)addEventToOffset:(unsigned int)offset event:(MAEvent *)event weekView:(MAWeekView *)weekView sameTimeEvents:(int)numOfSame whichSame:(int)whichNumber;
 
 @end
 
@@ -455,7 +458,7 @@ static const unsigned int TOP_BACKGROUND_HEIGHT               = 35;
                 
                 if (i == ([events count] - 1)) {
                     
-                    [self.gridView addEventToOffset:d event:event weekView:self];
+                    [self.gridView addEventToOffset:d event:event weekView:self sameTimeEvents:1 whichSame:0];
                     
                 } else {
                     int count = 1;
@@ -471,20 +474,14 @@ static const unsigned int TOP_BACKGROUND_HEIGHT               = 35;
                         }
                     }
                     
-                    [self.gridView setSameTimeEvents:count];
-                    
-                    [self.gridView addEventToOffset:d event:event weekView:self];
+                    [self.gridView addEventToOffset:d event:event weekView:self sameTimeEvents:count whichSame:0];
                     
                     for (int y = 1; y < count; y++) {
                         
                         e = [events objectAtIndex:y + i];
-                        [self.gridView setWhichSame:y];
-                        [self.gridView addEventToOffset:d event:e weekView:self];
+                        [self.gridView addEventToOffset:d event:e weekView:self sameTimeEvents:count whichSame:y];
                         
                     }
-                    
-                    [self.gridView setWhichSame:0];
-                    [self.gridView setSameTimeEvents:1];
                     
                     i += (count - 1);
                 }
@@ -622,10 +619,7 @@ static NSString const * const HOURS_24[] = {
 
 @implementation MAGridView (MAWeekViewAdditions)
 
-- (void)addEventToOffset:(unsigned int)offset event:(MAEvent *)event weekView:(MAWeekView *)weekView {
-    CGFloat cellWidth = self.cellWidth/[self sameTimeEvents];
-	CGFloat cellHeight = self.cellHeight;
-    
+- (void)addEventToOffset:(unsigned int)offset event:(MAEvent *)event weekView:(MAWeekView *)weekView sameTimeEvents:(int)numOfSame whichSame:(int)whichNumber {
 	MAEventView *eventView = [[MAEventView alloc] init];
 	eventView.weekView = weekView;
 	eventView.event = event;
@@ -637,18 +631,14 @@ static NSString const * const HOURS_24[] = {
 	eventView.textFont = weekView.regularFont;
 	eventView.textColor = event.textColor;
 	eventView.xOffset = offset;
-    
-    eventView.frame = CGRectMake((self.cellWidth * eventView.xOffset) + (cellWidth*[self whichSame]),
-                                 cellHeight / MINUTES_IN_HOUR * [eventView.event minutesSinceMidnight],
-                                 cellWidth,
-                                 cellHeight / MINUTES_IN_HOUR * [eventView.event durationInMinutes]);
-    [eventView setNeedsDisplay];
+    [eventView setSameTimeEvents:numOfSame];
+    [eventView setWhichSame:whichNumber];
     
 	[self addSubview:eventView];
 }
 
 - (void)layoutSubviews {
-	CGFloat cellWidth = self.cellWidth/[self sameTimeEvents];
+	CGFloat cellWidth = self.cellWidth;
 	CGFloat cellHeight = self.cellHeight;
 	
 	for (id view in self.subviews) {
@@ -656,9 +646,9 @@ static NSString const * const HOURS_24[] = {
 			continue;
 		}
 		MAEventView *eventView = (MAEventView *) view;
-		eventView.frame = CGRectMake(cellWidth * eventView.xOffset,
+		eventView.frame = CGRectMake((cellWidth * eventView.xOffset) + (cellWidth / [eventView sameTimeEvents] * [eventView whichSame]),
 									 cellHeight / MINUTES_IN_HOUR * [eventView.event minutesSinceMidnight],
-									 cellWidth,
+									 cellWidth / [eventView sameTimeEvents],
 									 cellHeight / MINUTES_IN_HOUR * [eventView.event durationInMinutes]);
 		[eventView setNeedsDisplay];
 	}
@@ -845,6 +835,7 @@ static const CGFloat kCorner       = 5.0;
 @synthesize event=_event;
 @synthesize xOffset=_xOffset;
 @synthesize yOffset=_yOffset;
+@synthesize whichSame, sameTimeEvents;
 
 
 
