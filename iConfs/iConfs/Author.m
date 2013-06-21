@@ -35,7 +35,7 @@
 -(NSArray*)getAllPapers{
     return [papers allValues];
 }
-								
+
 -(BOOL)addPapper:(Paper*)p{
     NSNumber *value = [papers objectForKey:[NSNumber numberWithInteger: p.getID]];
     

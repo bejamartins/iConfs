@@ -81,7 +81,7 @@
     NSMutableArray *e = [[NSMutableArray alloc] init];
     
     for (Conference* c in myConfs) {
-        [e addObjectsFromArray:[c getAllEvents]];
+        [e addObjectsFromArray:[c getSessions]];
     }
     
     return e;

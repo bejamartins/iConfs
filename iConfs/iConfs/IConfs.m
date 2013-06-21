@@ -117,17 +117,17 @@
 
 -(BOOL)addConference:(Conference*)c{
     /*BOOL isHere = false;
-    for (int i=0; i<[conferences count]; i++) {
-        if ([((Conference*)[conferences objectAtIndex:i]).getID isEqualToString: c.getID]){
-            isHere = true;
-            break;
-        }
-    }
-    if(isHere == false){
-        [conferences addObject: c];
-        return true;
-    }
-    else return false;*/
+     for (int i=0; i<[conferences count]; i++) {
+     if ([((Conference*)[conferences objectAtIndex:i]).getID isEqualToString: c.getID]){
+     isHere = true;
+     break;
+     }
+     }
+     if(isHere == false){
+     [conferences addObject: c];
+     return true;
+     }
+     else return false;*/
     if ([self addConferenceWithID: [c getID]]) {
         return true;
     }else{
@@ -208,7 +208,7 @@
     
     NSData *data;
     NSURLResponse *response;
-   // NSError *error;
+    // NSError *error;
     
     data=[NSURLConnection sendSynchronousRequest: request returningResponse: &response error: NULL];
     
@@ -272,7 +272,7 @@
         //if([conferences indexOfObject:[allConferences objectAtIndex:i]] == NSNotFound){
         a = [(Conference*)[allConferences objectAtIndex:i] getID];
         if([addedConfsIDs indexOfObject:a] == NSNotFound){
-        //if([[addedConfsIDs indexOfObject:[((Conferece*)[allConferences objectAtIndex:i]) getID]] isEqual NSNotFound]){
+            //if([[addedConfsIDs indexOfObject:[((Conferece*)[allConferences objectAtIndex:i]) getID]] isEqual NSNotFound]){
             [ret addObject: [allConferences objectAtIndex:i]];
         }
     }
@@ -515,7 +515,7 @@
     UIImage* confIm = [self loadImageFromDrive: confID : [c valueForKey:@"ImagePath"] ];
     conf = [conf initWithData: [c valueForKey:@"ID"] name: [c valueForKey:@"Name"] image:confIm bluePrint:blueprints];
     
-   // NSString* confName=[[[json valueForKey:@"conf"] objectAtIndex:0] valueForKey:@"Name"];
+    // NSString* confName=[[[json valueForKey:@"conf"] objectAtIndex:0] valueForKey:@"Name"];
     
     
     NSArray* notif = [[NSArray alloc] init];
@@ -537,7 +537,7 @@
         }
         
     }
-
+    
     //People
     NSArray* people = [[NSArray alloc]  init];
     people = [raw valueForKey:@"person"];
@@ -605,7 +605,7 @@
             e = [[Session alloc] init];
             NSString* tmpS=((NSString*)[sess[i] valueForKey:@"PaperID"]);
             if(!([tmpS isEqual:@""])){
-            currIDAUX = [[[tmpS componentsSeparatedByString:@"p"] objectAtIndex: 1] intValue];
+                currIDAUX = [[[tmpS componentsSeparatedByString:@"p"] objectAtIndex: 1] intValue];
             }else currIDAUX=-1;
             e = [(Session*)e initWithDataAndSpeaker:currID date:[sess[i] valueForKey:@"DateTime"] title:[sess[i] valueForKey:@"Name"] theme:[sess[i] valueForKey:@"Description"] speaker: speakerAux athor: authorAux paper:currIDAUX];
             //[sessions addObject:e];
@@ -1039,13 +1039,13 @@
 	NSArray*tmp=[self loadConfsIDs];
 	for (int i=0; i<[tmp count]; i++) {
         NSData* tmpData=[self getConf:[tmp objectAtIndex:i]];
-                         if(tmpData!=NULL){
-                             NSDictionary* tmpConf=[self parseJSON:tmpData];
-                             [self saveConf:tmpConf:tmpData];
-                         }
-                         }
-                         
-                         }
+        if(tmpData!=NULL){
+            NSDictionary* tmpConf=[self parseJSON:tmpData];
+            [self saveConf:tmpConf:tmpData];
+        }
+    }
+    
+}
 
 
 

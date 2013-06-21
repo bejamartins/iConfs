@@ -11,7 +11,7 @@
 
 @interface Author : Person
 {
-    @protected
+@protected
     NSMutableDictionary* papers;
     NSString* sessID;
     

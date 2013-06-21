@@ -152,6 +152,7 @@
 }
 
 - (IBAction)addConfs:(id)sender {
+    NSString *message=@"The following conferences were added with success: \n";
     NSArray *paths = [[self ConfsCollection] indexPathsForVisibleItems];
     ManageConfCell *cell;
     
@@ -159,6 +160,7 @@
         cell = (ManageConfCell*)[[self ConfsCollection] cellForItemAtIndexPath:[paths objectAtIndex:i]];
         if ([cell checked]) {
             [theAppData addConference:[otherConfs objectAtIndex:[(NSIndexPath*)[paths objectAtIndex:i] row]]];
+            message=[NSString stringWithFormat:@"%@%@%@", message,[[otherConfs objectAtIndex:[(NSIndexPath*)[paths objectAtIndex:i] row]]getName],@"\n"];
         }
     }
     
@@ -167,16 +169,27 @@
     
     [[self ConfsCollection] reloadData];
     [[self slidingViewController] setUnderLeftViewController:[[self storyboard]instantiateViewControllerWithIdentifier:@"Menu"]];
+    
+    
+    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Add Conference"
+                                                    message:message
+                                                   delegate:nil
+                                          cancelButtonTitle:@"OK"
+                                          otherButtonTitles:nil];
+    [alert show];
 }
 
 - (IBAction)remConfs:(id)sender {
     NSArray *paths = [[self ConfsCollection] indexPathsForVisibleItems];
     ManageConfCell *cell;
-    
+    NSString *message=@"The following conferences were removed with success: \n";
+
     for (int i = 0; i < [paths count]; i++) {
         cell = (ManageConfCell*)[[self ConfsCollection] cellForItemAtIndexPath:[paths objectAtIndex:i]];
         if ([cell checked]) {
             [theAppData removeConference:[(Conference*)[myConfs objectAtIndex:[(NSIndexPath*)[paths objectAtIndex:i] row]] getID]];
+            message=[NSString stringWithFormat:@"%@%@%@", message,[[otherConfs objectAtIndex:[(NSIndexPath*)[paths objectAtIndex:i] row]]getName],@"\n"];
+
         }
         
     }
@@ -186,6 +199,14 @@
     
     [[self ConfsCollection] reloadData];
     [[self slidingViewController] setUnderLeftViewController:[[self storyboard]instantiateViewControllerWithIdentifier:@"Menu"]];
+
+    
+    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Remove Conference"
+                                                    message:message
+                                                   delegate:nil
+                                          cancelButtonTitle:@"OK"
+                                          otherButtonTitles:nil];
+    [alert show];
 }
 
 @end

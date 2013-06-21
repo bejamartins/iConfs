@@ -10,7 +10,7 @@
 
 @interface Paper: NSObject
 {
-    @protected
+@protected
     int paperID;
     NSString* title;
     NSArray* authors;

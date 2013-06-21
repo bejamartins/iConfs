@@ -26,7 +26,7 @@
 
 @implementation HomeViewController
 
-@synthesize MenuButton;
+@synthesize MenuButton,noConferencesLabel,noConferencesPicture,noNewsLabel,noNewsPicture;
 
 - (void)viewDidLoad
 {
@@ -89,15 +89,18 @@
         }
     
     }
+    
+    
+    news=[[NSMutableArray alloc] init];
+    pictures=[[NSMutableArray alloc] init];
+
+
   //  IConfs *ic=[(MenuViewController*)[[self slidingViewController] underLeftViewController] appData];
    // NSArray *myConfs=[ic getMyConferences];
-    NSInteger numberOfNews = 0;
     for(int i=0;i<[myConfs count];i++){
      
         
        NSArray *newsAux=[[NSArray alloc] init];
-         news=[[NSMutableArray alloc] init];
-        pictures=[[NSMutableArray alloc] init];
 
         newsAux=[[myConfs objectAtIndex:i]getNews];
         NSInteger count= [newsAux count];
@@ -107,15 +110,25 @@
         //[[[myConfs objectAtIndex:i]getNews ] objectAtIndex:[[[myConfs objectAtIndex:i]getNews ] ]count];
         if(count!=0){
             News *n=[newsAux objectAtIndex:count-1];
-            [news insertObject:n atIndex:numberOfNews];
+            [news addObject:n];
             UIImage *p=[[myConfs objectAtIndex:i]getLogo];
             
-            //[pictures insertObject:p atIndex:numberOfNews];
+            [pictures addObject: p];
 
-            numberOfNews++;
         }
         
     
+    }
+    
+    if([news count]==0){
+    
+        [noNewsPicture setHidden:NO];
+        [noNewsLabel setHidden:NO];
+    }
+    
+    if ([myConfs count]==0) {
+        [noConferencesPicture setHidden:NO];
+        [noConferencesLabel setHidden:NO];
     }
     
 }
@@ -138,6 +151,7 @@
 }
 
 -(NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section{
+    
     return [news count];
 }
 
@@ -145,7 +159,7 @@
     static NSString *CellIdentifier=@"cellOne";
     CustomCellOne *cell= [collectionView dequeueReusableCellWithReuseIdentifier:CellIdentifier forIndexPath:indexPath];
     News *n= [news objectAtIndex:indexPath.item];
-    //[[cell Image]setImage:[pictures objectAtIndex:indexPath.item]];
+    [[cell Image]setImage:[pictures objectAtIndex:indexPath.item]];
     
     [[cell Description]setText:[n getTitle]];
     
