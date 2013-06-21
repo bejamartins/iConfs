@@ -47,5 +47,7 @@
 @property (readonly) CGFloat cellWidth;
 @property (readonly) CGFloat cellHeight;
 @property BOOL isRemoving;
+@property int sameTimeEvents;
+@property int whichSame;
 
 @end
