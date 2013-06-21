@@ -527,70 +527,10 @@
         <scene sceneID="Ztf-7O-oMG">
             <objects>
                 <viewController storyboardIdentifier="People" useStoryboardIdentifierAsRestorationIdentifier="YES" id="1RG-f5-rQn" customClass="PeopleViewController" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="xjg-QO-dYD">
+                    <view key="view" opaque="NO" contentMode="scaleToFill" id="xjg-QO-dYD">
                         <rect key="frame" x="0.0" y="20" width="768" height="1004"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
-                            <collectionView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" minimumZoomScale="0.0" maximumZoomScale="0.0" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="RAa-Er-mcR">
-                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="592" id="XP7-Vw-Sac"/>
-                                    <constraint firstAttribute="height" constant="797" id="khb-ee-3sW"/>
-                                </constraints>
-                                <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="nAX-HD-Xvs">
-                                    <size key="itemSize" width="234" height="286"/>
-                                    <size key="headerReferenceSize" width="0.0" height="0.0"/>
-                                    <size key="footerReferenceSize" width="0.0" height="0.0"/>
-                                    <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
-                                </collectionViewFlowLayout>
-                                <cells>
-                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="Cell" id="Ht7-Yh-2y0" customClass="PeopleCell">
-                                        <rect key="frame" x="0.0" y="0.0" width="234" height="286"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                        <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
-                                            <rect key="frame" x="0.0" y="0.0" width="234" height="286"/>
-                                            <autoresizingMask key="autoresizingMask"/>
-                                            <subviews>
-                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ouy-11-zs3">
-                                                    <constraints>
-                                                        <constraint firstAttribute="height" constant="196" id="9qE-tu-JBP"/>
-                                                    </constraints>
-                                                </imageView>
-                                                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gRg-yK-kYd">
-                                                    <constraints>
-                                                        <constraint firstAttribute="height" constant="26" id="gfm-rH-j6k"/>
-                                                    </constraints>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
-                                                    <nil key="highlightedColor"/>
-                                                </label>
-                                                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="MEw-SO-W7l">
-                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
-                                                    <nil key="highlightedColor"/>
-                                                </label>
-                                            </subviews>
-                                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                                        </view>
-                                        <constraints>
-                                            <constraint firstItem="MEw-SO-W7l" firstAttribute="trailing" secondItem="Ht7-Yh-2y0" secondAttribute="trailing" type="default" id="4Al-GC-B0f"/>
-                                            <constraint firstItem="ouy-11-zs3" firstAttribute="leading" secondItem="Ht7-Yh-2y0" secondAttribute="leading" type="default" id="8D9-Vb-0XQ"/>
-                                            <constraint firstItem="MEw-SO-W7l" firstAttribute="leading" secondItem="Ht7-Yh-2y0" secondAttribute="leading" type="default" id="Hfy-kd-C6P"/>
-                                            <constraint firstItem="ouy-11-zs3" firstAttribute="top" secondItem="Ht7-Yh-2y0" secondAttribute="top" type="default" id="J6s-hS-BtT"/>
-                                            <constraint firstItem="gRg-yK-kYd" firstAttribute="leading" secondItem="Ht7-Yh-2y0" secondAttribute="leading" type="default" id="LfR-lw-XaJ"/>
-                                            <constraint firstItem="MEw-SO-W7l" firstAttribute="top" secondItem="gRg-yK-kYd" secondAttribute="bottom" constant="8" symbolic="YES" type="default" id="MRB-IQ-VAT"/>
-                                            <constraint firstItem="ouy-11-zs3" firstAttribute="trailing" secondItem="Ht7-Yh-2y0" secondAttribute="trailing" type="default" id="i82-uB-SlE"/>
-                                            <constraint firstItem="gRg-yK-kYd" firstAttribute="top" secondItem="ouy-11-zs3" secondAttribute="bottom" constant="8" symbolic="YES" type="default" id="kMY-FP-sp9"/>
-                                            <constraint firstItem="gRg-yK-kYd" firstAttribute="trailing" secondItem="Ht7-Yh-2y0" secondAttribute="trailing" type="default" id="oef-BQ-dKd"/>
-                                        </constraints>
-                                        <connections>
-                                            <outlet property="Company" destination="MEw-SO-W7l" id="uPs-H8-Jy0"/>
-                                            <outlet property="Image" destination="ouy-11-zs3" id="zoh-qb-o6Z"/>
-                                            <outlet property="Name" destination="gRg-yK-kYd" id="0eC-tB-XsG"/>
-                                        </connections>
-                                    </collectionViewCell>
-                                </cells>
-                            </collectionView>
                             <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="bar" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="ZFs-iT-m0Y">
                                 <constraints>
                                     <constraint firstAttribute="width" constant="270" id="WcV-fm-exW"/>
@@ -604,37 +544,91 @@
                                     <action selector="selectedOption:" destination="1RG-f5-rQn" eventType="valueChanged" id="UKW-cw-sNO"/>
                                 </connections>
                             </segmentedControl>
-                            <searchBar contentMode="redraw" translatesAutoresizingMaskIntoConstraints="NO" id="E02-vX-n9D">
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="318" id="Tri-37-Z1j"/>
-                                </constraints>
-                                <color key="tintColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
-                                <textInputTraits key="textInputTraits"/>
-                            </searchBar>
                             <navigationBar contentMode="scaleToFill" barStyle="blackTranslucent" translatesAutoresizingMaskIntoConstraints="NO" id="XW2-UU-8S4">
                                 <items>
                                     <navigationItem title="Speakers" id="M3L-7J-nzj"/>
                                 </items>
                             </navigationBar>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="singleLineEtched" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="h4F-67-YNr">
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="775" id="BBj-dg-Ieh"/>
+                                </constraints>
+                                <color key="separatorColor" red="0.20000000300000001" green="0.20000000300000001" blue="0.20000000300000001" alpha="1" colorSpace="calibratedRGB"/>
+                                <prototypes>
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="personCell" textLabel="6a1-w3-fzY" detailTextLabel="QV4-5a-8qM" style="IBUITableViewCellStyleSubtitle" id="BDZ-O5-g7O">
+                                        <rect key="frame" x="0.0" y="22" width="320" height="45"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                                            <rect key="frame" x="0.0" y="0.0" width="320" height="43"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="left" text="Title" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6a1-w3-fzY">
+                                                    <fontDescription key="fontDescription" type="boldSystem" pointSize="18"/>
+                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                    <color key="highlightedColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                                </label>
+                                                <label opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="left" text="Detail" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="QV4-5a-8qM">
+                                                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                    <color key="textColor" red="0.50196078431372548" green="0.50196078431372548" blue="0.50196078431372548" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <color key="highlightedColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                                </label>
+                                            </subviews>
+                                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                        </view>
+                                    </tableViewCell>
+                                </prototypes>
+                            </tableView>
+                            <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" barStyle="blackOpaque" translatesAutoresizingMaskIntoConstraints="NO" id="i2R-Pf-2IV">
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="350" id="OHR-zX-Yln"/>
+                                </constraints>
+                                <items>
+                                    <barButtonItem title="Person's Name" width="289" style="plain" id="qtZ-Wb-jjW"/>
+                                </items>
+                            </toolbar>
+                            <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" barStyle="blackOpaque" translatesAutoresizingMaskIntoConstraints="NO" id="l4F-sJ-WgB">
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="320" id="bd7-3f-G6N"/>
+                                </constraints>
+                                <items>
+                                    <barButtonItem title="Item" id="G5Y-Bb-SFL"/>
+                                </items>
+                            </toolbar>
+                            <searchBar contentMode="redraw" barStyle="blackOpaque" translatesAutoresizingMaskIntoConstraints="NO" id="E02-vX-n9D">
+                                <textInputTraits key="textInputTraits"/>
+                            </searchBar>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="pyD-PK-PAq">
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                            </view>
                         </subviews>
                         <color key="backgroundColor" cocoaTouchSystemColor="scrollViewTexturedBackgroundColor"/>
                         <constraints>
-                            <constraint firstAttribute="trailing" secondItem="ZFs-iT-m0Y" secondAttribute="trailing" constant="37" id="C2d-Tt-p9t"/>
+                            <constraint firstItem="l4F-sJ-WgB" firstAttribute="trailing" secondItem="E02-vX-n9D" secondAttribute="trailing" type="default" id="4RQ-MC-Moq"/>
+                            <constraint firstItem="E02-vX-n9D" firstAttribute="top" secondItem="xjg-QO-dYD" secondAttribute="top" constant="138" id="5cZ-bw-xIC"/>
+                            <constraint firstItem="i2R-Pf-2IV" firstAttribute="trailing" secondItem="pyD-PK-PAq" secondAttribute="trailing" type="default" id="6Oh-s0-l8m"/>
+                            <constraint firstItem="h4F-67-YNr" firstAttribute="top" secondItem="E02-vX-n9D" secondAttribute="bottom" type="default" id="7Fk-XC-YfP"/>
+                            <constraint firstItem="h4F-67-YNr" firstAttribute="trailing" secondItem="E02-vX-n9D" secondAttribute="trailing" type="default" id="7SP-Fr-ya0"/>
+                            <constraint firstItem="E02-vX-n9D" firstAttribute="leading" secondItem="l4F-sJ-WgB" secondAttribute="leading" type="default" id="9xm-SR-j0r"/>
+                            <constraint firstItem="i2R-Pf-2IV" firstAttribute="leading" secondItem="xjg-QO-dYD" secondAttribute="leading" constant="61" id="FHP-uo-f2f"/>
                             <constraint firstItem="XW2-UU-8S4" firstAttribute="trailing" secondItem="xjg-QO-dYD" secondAttribute="trailing" type="default" id="Fex-Ia-Bua"/>
-                            <constraint firstAttribute="bottom" secondItem="RAa-Er-mcR" secondAttribute="bottom" constant="20" symbolic="YES" type="default" id="Kxj-cr-QMf"/>
+                            <constraint firstItem="h4F-67-YNr" firstAttribute="top" secondItem="pyD-PK-PAq" secondAttribute="top" type="default" id="KdV-hm-Whs"/>
                             <constraint firstItem="XW2-UU-8S4" firstAttribute="top" secondItem="xjg-QO-dYD" secondAttribute="top" type="default" id="QD2-tm-Iw7"/>
-                            <constraint firstItem="RAa-Er-mcR" firstAttribute="leading" secondItem="xjg-QO-dYD" secondAttribute="leading" constant="86" id="iPJ-7T-7Wz"/>
+                            <constraint firstItem="l4F-sJ-WgB" firstAttribute="centerX" secondItem="ZFs-iT-m0Y" secondAttribute="centerX" type="default" id="RaL-0e-gbz"/>
+                            <constraint firstItem="E02-vX-n9D" firstAttribute="leading" secondItem="h4F-67-YNr" secondAttribute="leading" type="default" id="UQo-s0-cWr"/>
+                            <constraint firstItem="l4F-sJ-WgB" firstAttribute="leading" secondItem="i2R-Pf-2IV" secondAttribute="trailing" type="default" id="aUh-IG-b4I"/>
+                            <constraint firstItem="i2R-Pf-2IV" firstAttribute="leading" secondItem="pyD-PK-PAq" secondAttribute="leading" type="default" id="bCX-AG-Nxe"/>
                             <constraint firstItem="XW2-UU-8S4" firstAttribute="leading" secondItem="xjg-QO-dYD" secondAttribute="leading" type="default" id="ndF-lD-CrT"/>
-                            <constraint firstItem="ZFs-iT-m0Y" firstAttribute="top" secondItem="xjg-QO-dYD" secondAttribute="top" constant="96" id="qXB-I9-giV"/>
-                            <constraint firstItem="E02-vX-n9D" firstAttribute="leading" secondItem="xjg-QO-dYD" secondAttribute="leading" constant="68" id="tfd-Lq-mha"/>
-                            <constraint firstItem="E02-vX-n9D" firstAttribute="top" secondItem="xjg-QO-dYD" secondAttribute="top" constant="89" id="xbA-gV-owp"/>
+                            <constraint firstAttribute="bottom" secondItem="pyD-PK-PAq" secondAttribute="bottom" constant="225" id="rzT-Ey-1es"/>
+                            <constraint firstItem="i2R-Pf-2IV" firstAttribute="top" secondItem="xjg-QO-dYD" secondAttribute="top" constant="137" id="ucf-AH-Hia"/>
+                            <constraint firstItem="ZFs-iT-m0Y" firstAttribute="top" secondItem="xjg-QO-dYD" secondAttribute="top" constant="79" id="vEv-Bm-Lqo"/>
+                            <constraint firstItem="i2R-Pf-2IV" firstAttribute="top" secondItem="l4F-sJ-WgB" secondAttribute="top" type="default" id="xcw-G9-No7"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Speakers" id="kq7-sG-T1k"/>
                     <connections>
                         <outlet property="NavBar" destination="XW2-UU-8S4" id="07G-sQ-gR8"/>
                         <outlet property="Options" destination="ZFs-iT-m0Y" id="Mfp-th-Jln"/>
-                        <outlet property="PeopleCollection" destination="RAa-Er-mcR" id="Irq-M1-LYd"/>
                         <outlet property="Search" destination="E02-vX-n9D" id="01B-nm-Fsg"/>
                     </connections>
                 </viewController>
@@ -2590,8 +2584,6 @@
             <source key="sourceIdentifier" type="project" relativePath="./Classes/HomeViewController.h"/>
             <relationships>
                 <relationship kind="action" name="clickAgendaPreview:"/>
-                <relationship kind="action" name="clickMoreNews:"/>
-                <relationship kind="action" name="goBack:"/>
                 <relationship kind="action" name="goHome:"/>
                 <relationship kind="action" name="revealMenu:"/>
                 <relationship kind="outlet" name="CollectionOne" candidateClass="UICollectionView"/>
@@ -2668,17 +2660,10 @@
                 <relationship kind="outlet" name="webview" candidateClass="UIWebView"/>
             </relationships>
         </class>
-        <class className="PeopleCell" superclassName="UICollectionViewCell">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/PeopleCell.h"/>
-            <relationships>
-                <relationship kind="outlet" name="Company" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="Image" candidateClass="UIImageView"/>
-                <relationship kind="outlet" name="Name" candidateClass="UILabel"/>
-            </relationships>
-        </class>
         <class className="PeopleViewController" superclassName="UIViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/PeopleViewController.h"/>
             <relationships>
+                <relationship kind="action" name="revealMenu:"/>
                 <relationship kind="action" name="selectedOption:"/>
                 <relationship kind="outlet" name="NavBar" candidateClass="UINavigationBar"/>
                 <relationship kind="outlet" name="Options" candidateClass="UISegmentedControl"/>
