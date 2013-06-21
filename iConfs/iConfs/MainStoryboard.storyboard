@@ -134,6 +134,18 @@
             </objects>
             <point key="canvasLocation" x="-1013" y="-1236"/>
         </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="ocb-FQ-hjg">
+            <objects>
+                <navigationController definesPresentationContext="YES" id="ZzN-f1-RLn" sceneMemberID="viewController">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="QrA-b8-RXV">
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="SX0-Xh-uHe" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-3766" y="-1196"/>
+        </scene>
         <!--Init View Controller-->
         <scene sceneID="Kcf-kb-cVM">
             <objects>

@@ -26,7 +26,7 @@
 
 @implementation HomeViewController
 
-@synthesize MenuButton,noConferencesLabel,noConferencesPicture,noNewsLabel,noNewsPicture;
+@synthesize MenuButton,noConferencesLabel,noConferencesPicture,noNewsLabel,noNewsPicture,HomeButton,BackButton;
 
 - (void)viewDidLoad
 {
@@ -46,7 +46,6 @@
     if (![[[self slidingViewController] underLeftViewController] isKindOfClass:[MenuViewController class]]) {
         [self slidingViewController].UnderLeftViewController = [[self storyboard]instantiateViewControllerWithIdentifier:@"Menu"];
     }
-    
     [[self view] addGestureRecognizer:[self slidingViewController].panGesture];
     
     [self setMenuButton:[UIButton buttonWithType:UIButtonTypeCustom]];
@@ -56,6 +55,26 @@
     [MenuButton addTarget:self action:@selector(revealMenu:) forControlEvents:UIControlEventTouchUpInside];
     
     [[self view] addSubview:MenuButton];
+    
+    
+    [self setHomeButton:[UIButton buttonWithType:UIButtonTypeCustom]];
+
+    [HomeButton setFrame:CGRectMake(45, 0, 43, 40)];
+    [HomeButton setBackgroundImage:[UIImage imageNamed:@"white_home.png"] forState:UIControlStateNormal];
+    [HomeButton addTarget:self action:@selector(goHome:) forControlEvents:UIControlEventTouchUpInside];
+    
+    [[self view] addSubview:HomeButton];
+    
+    
+    
+    [self setBackButton:[UIButton buttonWithType:UIButtonTypeCustom]];
+    
+    [BackButton setFrame:CGRectMake(717, 4, 43, 40)];
+    [BackButton setBackgroundImage:[UIImage imageNamed:@"back3.png"] forState:UIControlStateNormal];
+    [BackButton addTarget:self action:@selector(goBack:) forControlEvents:UIControlEventTouchUpInside];
+    
+    [[self view] addSubview:BackButton];
+
     
     //confPeople = [[(MenuViewController*)[[self slidingViewController] underLeftViewController] selectedConf] getSpeakers];
     
@@ -175,6 +194,8 @@
     [[[[self slidingViewController] topViewController] view] setFrame:frame];
 }
 
+
+
 //-(void)changeScreenTo:(BOOL)myConfs{
 //    NSString *iD;
 //
@@ -204,7 +225,27 @@
     
 }
 
+
+- (IBAction)goHome:(id)sender{
+
+    NSString *iD = @"Home";
     
+    UIViewController *newTopViewController = [[self storyboard]instantiateViewControllerWithIdentifier:iD];
+    
+    
+    CGRect frame = [[[[self slidingViewController] topViewController] view] frame];
+    [[self slidingViewController] setTopViewController:newTopViewController];
+    [[[[self slidingViewController] topViewController] view] setFrame:frame];
+    
+
+}
+
+    
+- (IBAction)goBack:(id)sender{
+//TODO:
+
+
+}
 
 
 

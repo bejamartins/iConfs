@@ -31,6 +31,10 @@
 		2897460C1764EC8700CB2022 /* FloorCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 2897460B1764EC8700CB2022 /* FloorCell.m */; };
 		2897460F1764EC9400CB2022 /* PlaceDefaultCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 2897460E1764EC9400CB2022 /* PlaceDefaultCell.m */; };
 		289746121764ECCB00CB2022 /* PlaceRoomCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 289746111764ECCB00CB2022 /* PlaceRoomCell.m */; };
+		289B4C831774D2B300B3560E /* white_home.png in Resources */ = {isa = PBXBuildFile; fileRef = 289B4C821774D2B300B3560E /* white_home.png */; };
+		289B4C851774DF5200B3560E /* back1.png in Resources */ = {isa = PBXBuildFile; fileRef = 289B4C841774DF5200B3560E /* back1.png */; };
+		289B4C871774E0B100B3560E /* back2.png in Resources */ = {isa = PBXBuildFile; fileRef = 289B4C861774E0B100B3560E /* back2.png */; };
+		289B4C8B1774E80200B3560E /* back3.png in Resources */ = {isa = PBXBuildFile; fileRef = 289B4C8A1774E80200B3560E /* back3.png */; };
 		289CBC2F1773B594008B2EAF /* right_arrow_up.png in Resources */ = {isa = PBXBuildFile; fileRef = 289CBC2E1773B594008B2EAF /* right_arrow_up.png */; };
 		28A0112C1767892B002F73A5 /* arrow.png in Resources */ = {isa = PBXBuildFile; fileRef = 28A0112B1767892B002F73A5 /* arrow.png */; };
 		28A1C5771767BC0B005B5F5B /* PDFReader.m in Sources */ = {isa = PBXBuildFile; fileRef = 28A1C5761767BC0B005B5F5B /* PDFReader.m */; };
@@ -170,6 +174,10 @@
 		2897460E1764EC9400CB2022 /* PlaceDefaultCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PlaceDefaultCell.m; sourceTree = "<group>"; };
 		289746101764ECCB00CB2022 /* PlaceRoomCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PlaceRoomCell.h; sourceTree = "<group>"; };
 		289746111764ECCB00CB2022 /* PlaceRoomCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PlaceRoomCell.m; sourceTree = "<group>"; };
+		289B4C821774D2B300B3560E /* white_home.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = white_home.png; sourceTree = "<group>"; };
+		289B4C841774DF5200B3560E /* back1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = back1.png; path = ECSlidingViewController/back1.png; sourceTree = "<group>"; };
+		289B4C861774E0B100B3560E /* back2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = back2.png; path = ECSlidingViewController/back2.png; sourceTree = "<group>"; };
+		289B4C8A1774E80200B3560E /* back3.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = back3.png; sourceTree = "<group>"; };
 		289CBC2E1773B594008B2EAF /* right_arrow_up.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = right_arrow_up.png; sourceTree = "<group>"; };
 		28A0112B1767892B002F73A5 /* arrow.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = arrow.png; sourceTree = "<group>"; };
 		28A1C5751767BC0B005B5F5B /* PDFReader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PDFReader.h; sourceTree = "<group>"; };
@@ -441,12 +449,16 @@
 			children = (
 				70C2D23B1773BEA900834236 /* AddSessionViewController.h */,
 				70C2D23C1773BEA900834236 /* AddSessionViewController.m */,
+				289B4C8A1774E80200B3560E /* back3.png */,
 				280C7832177244A5008239D7 /* AgendaPreview.h */,
 				280C7833177244A5008239D7 /* AgendaPreview.m */,
 				7078016917667E2000B3C4D4 /* AgendaViewController.h */,
+				289B4C841774DF5200B3560E /* back1.png */,
 				7078016A17667E2000B3C4D4 /* AgendaViewController.m */,
 				28586057176A826300FF4FF3 /* BlueprintContainerViewController.h */,
+				289B4C861774E0B100B3560E /* back2.png */,
 				28586058176A826400FF4FF3 /* BlueprintContainerViewController.m */,
+				289B4C821774D2B300B3560E /* white_home.png */,
 				289746011764EB4200CB2022 /* BluePrintsViewController.h */,
 				289746021764EB4200CB2022 /* BluePrintsViewController.m */,
 				280F373B1763F8DB00E72424 /* CollectionPeopleInSession.h */,
@@ -732,6 +744,10 @@
 				280C783817724A15008239D7 /* transparente.png in Resources */,
 				280C783A17724BEE008239D7 /* home_icon.png in Resources */,
 				289CBC2F1773B594008B2EAF /* right_arrow_up.png in Resources */,
+				289B4C831774D2B300B3560E /* white_home.png in Resources */,
+				289B4C851774DF5200B3560E /* back1.png in Resources */,
+				289B4C871774E0B100B3560E /* back2.png in Resources */,
+				289B4C8B1774E80200B3560E /* back3.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
