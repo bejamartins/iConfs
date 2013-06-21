@@ -26,7 +26,7 @@
 
 @implementation HomeViewController
 
-@synthesize MenuButton;
+@synthesize MenuButton,noConferencesLabel,noConferencesPicture,noNewsLabel,noNewsPicture;
 
 - (void)viewDidLoad
 {
@@ -110,12 +110,23 @@
             [news insertObject:n atIndex:numberOfNews];
             UIImage *p=[[myConfs objectAtIndex:i]getLogo];
             
-            //[pictures insertObject:p atIndex:numberOfNews];
+            [pictures insertObject:p atIndex:numberOfNews];
 
             numberOfNews++;
         }
         
     
+    }
+    
+    if([news count]==0){
+    
+        [noNewsPicture setHidden:NO];
+        [noNewsLabel setHidden:NO];
+    }
+    
+    if ([myConfs count]==0) {
+        [noConferencesPicture setHidden:NO];
+        [noConferencesLabel setHidden:NO];
     }
     
 }
@@ -138,6 +149,7 @@
 }
 
 -(NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section{
+    
     return [news count];
 }
 
@@ -145,7 +157,7 @@
     static NSString *CellIdentifier=@"cellOne";
     CustomCellOne *cell= [collectionView dequeueReusableCellWithReuseIdentifier:CellIdentifier forIndexPath:indexPath];
     News *n= [news objectAtIndex:indexPath.item];
-    //[[cell Image]setImage:[pictures objectAtIndex:indexPath.item]];
+    [[cell Image]setImage:[pictures objectAtIndex:indexPath.item]];
     
     [[cell Description]setText:[n getTitle]];
     
