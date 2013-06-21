@@ -34,7 +34,7 @@
 
 @implementation ConferenceScreenViewController
 @synthesize conferenceName;
-@synthesize MenuButton,notification_number,notification_title,Notification_text,date,title,picture;
+@synthesize MenuButton,notification_number,notification_title,Notification_text,date,title,picture,HomeButton;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -105,8 +105,16 @@
     
     [[self view] addSubview:MenuButton];
     
+    [self setHomeButton:[UIButton buttonWithType:UIButtonTypeCustom]];
     
+    [HomeButton setFrame:CGRectMake(45, 0, 43, 40)];
+    [HomeButton setBackgroundImage:[UIImage imageNamed:@"white_home.png"] forState:UIControlStateNormal];
+    [HomeButton addTarget:self action:@selector(goHome:) forControlEvents:UIControlEventTouchUpInside];
     
+    [[self view] addSubview:HomeButton];
+    
+
+
     
     NSArray *news=[[NSArray alloc] init];
     news=[conf getNews];
@@ -246,5 +254,20 @@
     currentNewsIndex=sender.currentPage;
 }
 }
+- (IBAction)goHome:(id)sender{
+    
+    NSString *iD = @"Home";
+    
+    UIViewController *newTopViewController = [[self storyboard]instantiateViewControllerWithIdentifier:iD];
+    
+    
+    CGRect frame = [[[[self slidingViewController] topViewController] view] frame];
+    [[self slidingViewController] setTopViewController:newTopViewController];
+    [[[[self slidingViewController] topViewController] view] setFrame:frame];
+    
+    
+}
+
+
 
 @end

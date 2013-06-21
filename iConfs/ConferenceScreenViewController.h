@@ -26,6 +26,7 @@
 
 @property (strong, nonatomic) IBOutlet UIImageView *picture;
 @property (strong, nonatomic) IBOutlet UILabel *title;
+@property (strong, nonatomic) UIButton *HomeButton;
 
 - (IBAction)changeNews:(UIPageControl *)sender ;
 

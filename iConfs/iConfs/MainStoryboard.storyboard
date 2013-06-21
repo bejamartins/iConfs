@@ -915,7 +915,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Naa-rH-3Xk" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-1013" y="1260"/>
+            <point key="canvasLocation" x="-1988" y="2416"/>
         </scene>
         <!--Organizer View Controller-->
         <scene sceneID="Chc-CJ-bx8">
@@ -1900,74 +1900,6 @@
             </objects>
             <point key="canvasLocation" x="2006" y="-1315"/>
         </scene>
-        <!--Conference News-->
-        <scene sceneID="3HU-Oh-PK2">
-            <objects>
-                <viewController id="c4s-Cp-tlR" customClass="Conference_News" sceneMemberID="viewController">
-                    <view key="view" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="T70-13-IVv">
-                        <rect key="frame" x="0.0" y="20" width="768" height="1004"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="4jo-NV-E8e">
-                                <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
-                            </imageView>
-                            <pageControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" numberOfPages="3" translatesAutoresizingMaskIntoConstraints="NO" id="4sP-2p-Fih">
-                                <connections>
-                                    <action selector="changeNews:" destination="c4s-Cp-tlR" eventType="valueChanged" id="VC5-My-H34"/>
-                                </connections>
-                            </pageControl>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" image="conf.jpg" translatesAutoresizingMaskIntoConstraints="NO" id="GeI-BP-gkq">
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="300" id="k2o-d7-SSl"/>
-                                </constraints>
-                            </imageView>
-                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Label" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="728" translatesAutoresizingMaskIntoConstraints="NO" id="yyr-aG-Bah">
-                                <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="41" id="iah-fc-gk5"/>
-                                </constraints>
-                                <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
-                                <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="   News" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Cee-9Y-N2c">
-                                <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="113" id="IoD-5F-EpE"/>
-                                    <constraint firstAttribute="height" constant="21" id="vz4-aE-8bz"/>
-                                </constraints>
-                                <fontDescription key="fontDescription" type="boldSystem" pointSize="22"/>
-                                <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                        </subviews>
-                        <color key="backgroundColor" cocoaTouchSystemColor="scrollViewTexturedBackgroundColor"/>
-                        <constraints>
-                            <constraint firstItem="4jo-NV-E8e" firstAttribute="leading" secondItem="T70-13-IVv" secondAttribute="leading" type="default" id="01b-MV-KOq"/>
-                            <constraint firstItem="GeI-BP-gkq" firstAttribute="leading" secondItem="T70-13-IVv" secondAttribute="leading" constant="20" symbolic="YES" type="default" id="0rz-Ey-nGl"/>
-                            <constraint firstItem="Cee-9Y-N2c" firstAttribute="leading" secondItem="T70-13-IVv" secondAttribute="leading" type="default" id="63A-rb-jfl"/>
-                            <constraint firstItem="GeI-BP-gkq" firstAttribute="top" secondItem="T70-13-IVv" secondAttribute="top" constant="37" id="PWL-8y-bBK"/>
-                            <constraint firstItem="Cee-9Y-N2c" firstAttribute="top" secondItem="T70-13-IVv" secondAttribute="top" type="default" id="Zdm-bf-gpQ"/>
-                            <constraint firstAttribute="bottom" secondItem="4sP-2p-Fih" secondAttribute="bottom" constant="18" id="dVH-6D-cFv"/>
-                            <constraint firstItem="4jo-NV-E8e" firstAttribute="trailing" secondItem="T70-13-IVv" secondAttribute="trailing" type="default" id="eZy-Rq-sZN"/>
-                            <constraint firstAttribute="trailing" secondItem="GeI-BP-gkq" secondAttribute="trailing" constant="20" symbolic="YES" type="default" id="ilA-i6-uBZ"/>
-                            <constraint firstAttribute="trailing" secondItem="yyr-aG-Bah" secondAttribute="trailing" constant="20" symbolic="YES" type="default" id="luH-j1-CBP"/>
-                            <constraint firstItem="4jo-NV-E8e" firstAttribute="top" secondItem="T70-13-IVv" secondAttribute="top" constant="20" symbolic="YES" type="default" id="mOE-pg-T6c"/>
-                            <constraint firstAttribute="bottom" secondItem="4jo-NV-E8e" secondAttribute="bottom" constant="20" symbolic="YES" type="default" id="qi4-aO-Psw"/>
-                            <constraint firstItem="yyr-aG-Bah" firstAttribute="leading" secondItem="T70-13-IVv" secondAttribute="leading" constant="20" symbolic="YES" type="default" id="vMp-Ye-6hb"/>
-                            <constraint firstAttribute="bottom" secondItem="yyr-aG-Bah" secondAttribute="bottom" constant="55" id="xNV-Ul-qaL"/>
-                            <constraint firstItem="yyr-aG-Bah" firstAttribute="centerX" secondItem="4sP-2p-Fih" secondAttribute="centerX" type="default" id="yd2-yV-FmN"/>
-                        </constraints>
-                    </view>
-                    <toolbarItems/>
-                    <connections>
-                        <outlet property="picture" destination="GeI-BP-gkq" id="PwY-U2-gOe"/>
-                    </connections>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="Uo2-yk-gzy" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="2006" y="3566"/>
-        </scene>
         <!--Map View Controller-->
         <scene sceneID="28O-90-BZJ">
             <objects>
@@ -2048,7 +1980,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="jmO-Jp-YD8" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2392" y="3207"/>
+            <point key="canvasLocation" x="2218" y="2649"/>
         </scene>
         <!--Add Session View Controller - Add Session-->
         <scene sceneID="hYl-cs-sPh">
@@ -2637,14 +2569,6 @@
                 <relationship kind="outlet" name="title" candidateClass="UILabel"/>
             </relationships>
         </class>
-        <class className="Conference_News" superclassName="UIViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/Conference_News.h"/>
-            <relationships>
-                <relationship kind="action" name="changeNews:" candidateClass="UIPageControl"/>
-                <relationship kind="outlet" name="picture" candidateClass="UIImageView"/>
-                <relationship kind="outlet" name="title" candidateClass="UILabel"/>
-            </relationships>
-        </class>
         <class className="CustomCellOne" superclassName="UICollectionViewCell">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/CustomCellOne.h"/>
             <relationships>
@@ -2667,6 +2591,8 @@
             <relationships>
                 <relationship kind="action" name="clickAgendaPreview:"/>
                 <relationship kind="action" name="clickMoreNews:"/>
+                <relationship kind="action" name="goBack:"/>
+                <relationship kind="action" name="goHome:"/>
                 <relationship kind="action" name="revealMenu:"/>
                 <relationship kind="outlet" name="CollectionOne" candidateClass="UICollectionView"/>
                 <relationship kind="outlet" name="agendaPreviewB" candidateClass="UIButton"/>
