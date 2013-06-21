@@ -424,31 +424,73 @@
                                     <action selector="clickAgendaPreview:" destination="ajv-CM-JT5" eventType="touchUpInside" id="5Gw-gb-xHk"/>
                                 </connections>
                             </button>
+                            <imageView hidden="YES" userInteractionEnabled="NO" contentMode="scaleToFill" image="pulpito.png" translatesAutoresizingMaskIntoConstraints="NO" id="eKn-Dk-W5p">
+                                <color key="backgroundColor" red="1" green="0.80000001190000003" blue="0.40000000600000002" alpha="0.58999999999999997" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="208" id="6Hx-x9-qbP"/>
+                                    <constraint firstAttribute="width" constant="425" id="BLe-gv-Upj"/>
+                                </constraints>
+                            </imageView>
+                            <label hidden="YES" opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="  There are no news available :(" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="425" translatesAutoresizingMaskIntoConstraints="NO" id="28E-Wa-p8g">
+                                <color key="backgroundColor" red="0.20000000300000001" green="0.20000000300000001" blue="0.20000000300000001" alpha="1" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="29" id="2HD-2T-0gA"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="20"/>
+                                <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <imageView hidden="YES" userInteractionEnabled="NO" contentMode="scaleToFill" image="pulpito.png" translatesAutoresizingMaskIntoConstraints="NO" id="nOi-97-Aak">
+                                <color key="backgroundColor" red="1" green="0.80000001190000003" blue="0.40000000600000002" alpha="0.58999999999999997" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="210" id="rt4-UD-Szm"/>
+                                </constraints>
+                            </imageView>
+                            <label hidden="YES" opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="You have no Conferences added. Go to Manage Conferences" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="425" translatesAutoresizingMaskIntoConstraints="NO" id="jvH-O7-wOi">
+                                <color key="backgroundColor" red="0.20000000300000001" green="0.20000000300000001" blue="0.20000000300000001" alpha="1" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="54" id="A7w-xP-x7k"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="20"/>
+                                <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" cocoaTouchSystemColor="scrollViewTexturedBackgroundColor"/>
                         <constraints>
                             <constraint firstItem="vaR-37-i9Q" firstAttribute="trailing" secondItem="RqT-X1-FGV" secondAttribute="trailing" type="default" id="35Z-Oh-fU9"/>
                             <constraint firstItem="pdW-gR-6p6" firstAttribute="top" secondItem="tmA-vE-w1H" secondAttribute="top" constant="398" id="5KT-o1-15u"/>
                             <constraint firstAttribute="bottom" secondItem="pdW-gR-6p6" secondAttribute="bottom" constant="302" id="6aU-4c-Hsw"/>
+                            <constraint firstAttribute="bottom" secondItem="jvH-O7-wOi" secondAttribute="bottom" constant="329" id="7Wg-sh-qHP"/>
                             <constraint firstItem="6AR-pd-1Yf" firstAttribute="leading" secondItem="tmA-vE-w1H" secondAttribute="leading" type="default" id="Bw1-dx-dMw"/>
                             <constraint firstItem="RqT-X1-FGV" firstAttribute="leading" secondItem="tmA-vE-w1H" secondAttribute="leading" constant="53" id="D6A-wk-xCw"/>
                             <constraint firstItem="6AR-pd-1Yf" firstAttribute="trailing" secondItem="tmA-vE-w1H" secondAttribute="trailing" type="default" id="EA9-vI-yat"/>
                             <constraint firstItem="vaR-37-i9Q" firstAttribute="baseline" secondItem="mUf-oo-pfF" secondAttribute="baseline" type="default" id="FaT-iQ-cIC"/>
                             <constraint firstItem="pdW-gR-6p6" firstAttribute="leading" secondItem="RqT-X1-FGV" secondAttribute="leading" type="default" id="GDu-eN-Mbq"/>
                             <constraint firstAttribute="trailing" secondItem="wDG-ps-XC4" secondAttribute="trailing" constant="20" symbolic="YES" type="default" id="HvA-9a-RNZ"/>
+                            <constraint firstItem="28E-Wa-p8g" firstAttribute="leading" secondItem="eKn-Dk-W5p" secondAttribute="leading" type="default" id="KQ0-hM-jU3"/>
+                            <constraint firstItem="eKn-Dk-W5p" firstAttribute="trailing" secondItem="28E-Wa-p8g" secondAttribute="trailing" type="default" id="LcM-Yt-v8A"/>
                             <constraint firstItem="pdW-gR-6p6" firstAttribute="leading" secondItem="FYb-Ku-8hU" secondAttribute="leading" type="default" id="PxG-tE-0XG"/>
                             <constraint firstItem="wDG-ps-XC4" firstAttribute="top" secondItem="tmA-vE-w1H" secondAttribute="top" constant="760" id="QFu-gS-KVT"/>
                             <constraint firstItem="vaR-37-i9Q" firstAttribute="centerY" secondItem="mUf-oo-pfF" secondAttribute="centerY" type="default" id="RdN-Cp-LD6"/>
+                            <constraint firstItem="vaR-37-i9Q" firstAttribute="top" secondItem="tmA-vE-w1H" secondAttribute="top" constant="344" id="VHH-2Z-Ff0"/>
+                            <constraint firstItem="nOi-97-Aak" firstAttribute="leading" secondItem="28E-Wa-p8g" secondAttribute="leading" type="default" id="VpV-mB-vMK"/>
                             <constraint firstItem="XiG-At-KK6" firstAttribute="leading" secondItem="tmA-vE-w1H" secondAttribute="leading" constant="47" id="WKM-AT-4KP"/>
                             <constraint firstItem="FYb-Ku-8hU" firstAttribute="top" secondItem="tmA-vE-w1H" secondAttribute="top" constant="725" id="Z1Y-wO-9TH"/>
                             <constraint firstItem="wDG-ps-XC4" firstAttribute="centerY" secondItem="FYb-Ku-8hU" secondAttribute="centerY" type="default" id="Zi1-1h-eBR"/>
                             <constraint firstItem="6AR-pd-1Yf" firstAttribute="top" secondItem="tmA-vE-w1H" secondAttribute="top" type="default" id="aXr-qB-6AR"/>
                             <constraint firstAttribute="trailing" secondItem="FYb-Ku-8hU" secondAttribute="trailing" constant="348" id="apk-b4-OME"/>
+                            <constraint firstItem="28E-Wa-p8g" firstAttribute="top" secondItem="tmA-vE-w1H" secondAttribute="top" constant="305" id="bRU-F8-QNd"/>
+                            <constraint firstItem="eKn-Dk-W5p" firstAttribute="top" secondItem="tmA-vE-w1H" secondAttribute="top" constant="97" id="cWH-ug-t6b"/>
                             <constraint firstItem="wDG-ps-XC4" firstAttribute="leading" secondItem="tmA-vE-w1H" secondAttribute="leading" constant="435" id="cmx-KK-GMF"/>
                             <constraint firstItem="RqT-X1-FGV" firstAttribute="top" secondItem="tmA-vE-w1H" secondAttribute="top" constant="74" id="f2M-0t-2FX"/>
                             <constraint firstAttribute="bottom" secondItem="XiG-At-KK6" secondAttribute="bottom" constant="26" id="frV-Nw-sS6"/>
+                            <constraint firstItem="nOi-97-Aak" firstAttribute="top" secondItem="tmA-vE-w1H" secondAttribute="top" constant="412" id="h6N-Ng-Qek"/>
                             <constraint firstAttribute="bottom" secondItem="FYb-Ku-8hU" secondAttribute="bottom" constant="20" symbolic="YES" type="default" id="j0i-ya-S7S"/>
-                            <constraint firstItem="vaR-37-i9Q" firstAttribute="top" secondItem="tmA-vE-w1H" secondAttribute="top" constant="344" id="qXg-Tt-cqO"/>
+                            <constraint firstItem="28E-Wa-p8g" firstAttribute="trailing" secondItem="nOi-97-Aak" secondAttribute="trailing" type="default" id="ksV-eW-1S9"/>
+                            <constraint firstItem="eKn-Dk-W5p" firstAttribute="centerX" secondItem="6AR-pd-1Yf" secondAttribute="centerX" type="default" id="sYf-Bn-HCk"/>
+                            <constraint firstItem="nOi-97-Aak" firstAttribute="trailing" secondItem="jvH-O7-wOi" secondAttribute="trailing" type="default" id="xV5-kP-YDy"/>
+                            <constraint firstItem="jvH-O7-wOi" firstAttribute="leading" secondItem="nOi-97-Aak" secondAttribute="leading" type="default" id="yKz-8q-dIz"/>
                             <constraint firstItem="mUf-oo-pfF" firstAttribute="leading" secondItem="tmA-vE-w1H" secondAttribute="leading" constant="66" id="zIu-aY-hBV"/>
                             <constraint firstItem="vaR-37-i9Q" firstAttribute="trailing" secondItem="pdW-gR-6p6" secondAttribute="trailing" type="default" id="zar-z1-oeP"/>
                         </constraints>
@@ -459,6 +501,10 @@
                         <outlet property="CollectionOne" destination="RqT-X1-FGV" id="7B9-O5-0BF"/>
                         <outlet property="agendaPreviewB" destination="XiG-At-KK6" id="2db-DI-Yz6"/>
                         <outlet property="moreNewsButton" destination="vaR-37-i9Q" id="QQS-WM-1lY"/>
+                        <outlet property="noConferencesLabel" destination="jvH-O7-wOi" id="Sbh-nc-NPa"/>
+                        <outlet property="noConferencesPicture" destination="nOi-97-Aak" id="dt6-iZ-bKw"/>
+                        <outlet property="noNewsLabel" destination="28E-Wa-p8g" id="CM0-2s-x7J"/>
+                        <outlet property="noNewsPicture" destination="eKn-Dk-W5p" id="3eg-V0-y91"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="fVY-QE-Ch9" sceneMemberID="firstResponder"/>
@@ -1993,10 +2039,10 @@
             </objects>
             <point key="canvasLocation" x="2392" y="3207"/>
         </scene>
-        <!--View Controller - Add Session-->
+        <!--Add Session View Controller - Add Session-->
         <scene sceneID="hYl-cs-sPh">
             <objects>
-                <viewController storyboardIdentifier="AddSession" title="Add Session" useStoryboardIdentifierAsRestorationIdentifier="YES" id="rij-cO-gY8" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="AddSession" title="Add Session" useStoryboardIdentifierAsRestorationIdentifier="YES" id="rij-cO-gY8" customClass="AddSessionViewController" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="HXF-yK-KEK">
                         <rect key="frame" x="0.0" y="20" width="768" height="1004"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -2149,6 +2195,9 @@
                         </constraints>
                     </view>
                     <nil key="simulatedTopBarMetrics"/>
+                    <connections>
+                        <outlet property="AgendaView" destination="hAd-LI-OYQ" id="xYS-oo-9ib"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="FpA-DB-XZh" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

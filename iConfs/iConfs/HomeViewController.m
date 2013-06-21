@@ -26,7 +26,7 @@
 
 @implementation HomeViewController
 
-@synthesize MenuButton;
+@synthesize MenuButton,noConferencesLabel,noConferencesPicture,noNewsLabel,noNewsPicture;
 
 - (void)viewDidLoad
 {
@@ -118,6 +118,17 @@
     
     }
     
+    if([news count]==0){
+    
+        [noNewsPicture setHidden:NO];
+        [noNewsLabel setHidden:NO];
+    }
+    
+    if ([myConfs count]==0) {
+        [noConferencesPicture setHidden:NO];
+        [noConferencesLabel setHidden:NO];
+    }
+    
 }
 
 - (void)didReceiveMemoryWarning
@@ -138,6 +149,7 @@
 }
 
 -(NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section{
+    
     return [news count];
 }
 

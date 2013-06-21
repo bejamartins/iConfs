@@ -13,5 +13,9 @@
 @property (weak, nonatomic) IBOutlet UICollectionView *CollectionOne;
 
 @property (strong, nonatomic) UIButton *MenuButton;
+@property (strong, nonatomic) IBOutlet UILabel *noNewsLabel;
+@property (strong, nonatomic) IBOutlet UIImageView *noNewsPicture;
+@property (strong, nonatomic) IBOutlet UIImageView *noConferencesPicture;
+@property (strong, nonatomic) IBOutlet UILabel *noConferencesLabel;
 
 @end

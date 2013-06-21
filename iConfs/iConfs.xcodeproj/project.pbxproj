@@ -68,6 +68,7 @@
 		707B7C15175D62CD00E4747A /* ECSlidingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 707B7C12175D62CD00E4747A /* ECSlidingViewController.m */; };
 		707B7C16175D62CD00E4747A /* UIImage+ImageWithUIView.m in Sources */ = {isa = PBXBuildFile; fileRef = 707B7C14175D62CD00E4747A /* UIImage+ImageWithUIView.m */; };
 		707B7C19175D6E2B00E4747A /* InitViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 707B7C18175D6E2B00E4747A /* InitViewController.m */; };
+		70C2D23D1773BEA900834236 /* AddSessionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 70C2D23C1773BEA900834236 /* AddSessionViewController.m */; };
 		A0570151175E2848000FED8F /* TestingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A0570150175E2848000FED8F /* TestingViewController.m */; };
 		A05A74FA1760F6CF00F021BD /* ioapi.c in Sources */ = {isa = PBXBuildFile; fileRef = A05A74F01760F6CF00F021BD /* ioapi.c */; };
 		A05A74FB1760F6CF00F021BD /* mztools.c in Sources */ = {isa = PBXBuildFile; fileRef = A05A74F21760F6CF00F021BD /* mztools.c */; };
@@ -228,6 +229,8 @@
 		707B7C14175D62CD00E4747A /* UIImage+ImageWithUIView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+ImageWithUIView.m"; sourceTree = "<group>"; };
 		707B7C17175D6E2B00E4747A /* InitViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InitViewController.h; sourceTree = "<group>"; };
 		707B7C18175D6E2B00E4747A /* InitViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InitViewController.m; sourceTree = "<group>"; };
+		70C2D23B1773BEA900834236 /* AddSessionViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AddSessionViewController.h; sourceTree = "<group>"; };
+		70C2D23C1773BEA900834236 /* AddSessionViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AddSessionViewController.m; sourceTree = "<group>"; };
 		A057014F175E2847000FED8F /* TestingViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TestingViewController.h; sourceTree = "<group>"; };
 		A0570150175E2848000FED8F /* TestingViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TestingViewController.m; sourceTree = "<group>"; };
 		A05A74EF1760F6CF00F021BD /* crypt.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = crypt.h; sourceTree = "<group>"; };
@@ -436,20 +439,18 @@
 		28A1C5741767B551005B5F5B /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
+				70C2D23B1773BEA900834236 /* AddSessionViewController.h */,
+				70C2D23C1773BEA900834236 /* AddSessionViewController.m */,
+				280C7832177244A5008239D7 /* AgendaPreview.h */,
+				280C7833177244A5008239D7 /* AgendaPreview.m */,
 				7078016917667E2000B3C4D4 /* AgendaViewController.h */,
 				7078016A17667E2000B3C4D4 /* AgendaViewController.m */,
 				28586057176A826300FF4FF3 /* BlueprintContainerViewController.h */,
-				280C782F177239AE008239D7 /* NewsViewController.h */,
-				280C7830177239AE008239D7 /* NewsViewController.m */,
 				28586058176A826400FF4FF3 /* BlueprintContainerViewController.m */,
 				289746011764EB4200CB2022 /* BluePrintsViewController.h */,
 				289746021764EB4200CB2022 /* BluePrintsViewController.m */,
-				2836BE5917711D6600A78C42 /* pubConferenceViewController.h */,
-				2836BE5A17711D6600A78C42 /* pubConferenceViewController.m */,
 				280F373B1763F8DB00E72424 /* CollectionPeopleInSession.h */,
 				280F373C1763F8DB00E72424 /* CollectionPeopleInSession.m */,
-				280C7832177244A5008239D7 /* AgendaPreview.h */,
-				280C7833177244A5008239D7 /* AgendaPreview.m */,
 				28ADEE1F1760D2D70059F458 /* Conference-News.h */,
 				28ADEE201760D2D70059F458 /* Conference-News.m */,
 				285FF4BB1760BE6A001135E1 /* ConferenceScreenViewController.h */,
@@ -460,32 +461,36 @@
 				707B7C18175D6E2B00E4747A /* InitViewController.m */,
 				A07887D4175A3CE500C1D90C /* ManageViewController.h */,
 				A07887D5175A3CE500C1D90C /* ManageViewController.m */,
+				3CD1D57017720D9E00A05BF3 /* MapViewController.h */,
+				3CD1D57117720D9E00A05BF3 /* MapViewController.m */,
 				A07887D6175A3CE500C1D90C /* MenuViewController.h */,
 				A07887D7175A3CE500C1D90C /* MenuViewController.m */,
 				285FF4B81760BE0C001135E1 /* newConferenceContainer.h */,
 				285FF4B91760BE0C001135E1 /* newConferenceContainer.m */,
+				280C782F177239AE008239D7 /* NewsViewController.h */,
+				280C7830177239AE008239D7 /* NewsViewController.m */,
+				707B76F2176E2F7700900A41 /* OrganizerViewController.h */,
+				707B76F3176E2F7700900A41 /* OrganizerViewController.m */,
 				28A1C5751767BC0B005B5F5B /* PDFReader.h */,
 				28A1C5761767BC0B005B5F5B /* PDFReader.m */,
 				A07887C8175A3CE500C1D90C /* PeopleCell.h */,
 				A07887C9175A3CE500C1D90C /* PeopleCell.m */,
 				A07887CA175A3CE500C1D90C /* PeopleViewController.h */,
 				A07887CB175A3CE500C1D90C /* PeopleViewController.m */,
-				707B76F2176E2F7700900A41 /* OrganizerViewController.h */,
-				707B76F3176E2F7700900A41 /* OrganizerViewController.m */,
 				28A3A88E175E9CAA0002BC93 /* PersonViewController.h */,
 				28A3A88F175E9CAA0002BC93 /* PersonViewController.m */,
 				289746041764EB7800CB2022 /* PlacesContainerViewController.h */,
 				289746051764EB7800CB2022 /* PlacesContainerViewController.m */,
 				289746071764EC5600CB2022 /* PlantContainerViewController.h */,
 				289746081764EC5600CB2022 /* PlantContainerViewController.m */,
+				2836BE5917711D6600A78C42 /* pubConferenceViewController.h */,
+				2836BE5A17711D6600A78C42 /* pubConferenceViewController.m */,
 				280F37351763F4F600E72424 /* SessionViewController.h */,
 				280F37361763F4F600E72424 /* SessionViewController.m */,
 				28CF7714175F8FD10070B4D5 /* Teste.h */,
 				28CF7715175F8FD10070B4D5 /* Teste.m */,
 				A057014F175E2847000FED8F /* TestingViewController.h */,
 				A0570150175E2848000FED8F /* TestingViewController.m */,
-				3CD1D57017720D9E00A05BF3 /* MapViewController.h */,
-				3CD1D57117720D9E00A05BF3 /* MapViewController.m */,
 			);
 			name = ViewControllers;
 			sourceTree = "<group>";
@@ -807,6 +812,7 @@
 				3CD1D57217720D9E00A05BF3 /* MapViewController.m in Sources */,
 				280C7831177239AE008239D7 /* NewsViewController.m in Sources */,
 				280C7834177244A5008239D7 /* AgendaPreview.m in Sources */,
+				70C2D23D1773BEA900834236 /* AddSessionViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
