@@ -16,6 +16,8 @@
 @property (weak, nonatomic) IBOutlet UIButton *AddConfButton;
 @property (weak, nonatomic) IBOutlet UIButton *RemConfButton;
 @property (strong, nonatomic) UIButton *MenuButton;
+@property (strong, nonatomic) UIButton *HomeButton;
+
 
 - (IBAction)addConfs:(id)sender;
 - (IBAction)remConfs:(id)sender;

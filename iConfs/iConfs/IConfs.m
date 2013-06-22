@@ -441,8 +441,8 @@
     SuperSession* supers;
     for(int i = 0; i<[ss count]; i++){
         supers = [[SuperSession alloc]init];
-        supers =[supers initWithData:[ss objectForKey:@"ID"] theme:NULL /*TODO on server*/];
-        [supersessions setObject:supers forKey:[ss objectForKey:@"ID"]];
+    //    supers =[supers initWithData:[ss objectForKey:@"ID"] theme:NULL /*TODO on server*/];
+   //     [supersessions setObject:supers forKey:[ss objectForKey:@"ID"]];
     }
 
     

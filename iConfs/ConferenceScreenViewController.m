@@ -56,6 +56,8 @@
     
     if(conf==nil){
         conf=[(MenuViewController*)[[self slidingViewController] underLeftViewController] selectedConf];
+        
+        
         newsToShow=[[NSMutableArray alloc] init];
 
         notifications=[conf getNotifications];

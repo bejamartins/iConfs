@@ -14,7 +14,7 @@
 @interface AgendaViewController : UIViewController<MAWeekViewDataSource, MAWeekViewDelegate, UITableViewDataSource, UITableViewDelegate> {
     MAEventKitDataSource *_eventKitDataSource;
 }
-
+@property (strong, nonatomic) UIButton *HomeButton;
 @property (strong, nonatomic) IBOutlet UIButton *MenuButton;
 @property (weak, nonatomic) IBOutlet UIView *AgendaView;
 

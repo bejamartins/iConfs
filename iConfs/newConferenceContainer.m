@@ -109,7 +109,8 @@
        Conference *c=[myConfs objectAtIndex:indexPath.item];
     
     [(MenuViewController*)[[self slidingViewController] underLeftViewController] setSelectedConf:c];
-
+    
+    [[(MenuViewController*)[[self slidingViewController] underLeftViewController] MenuView ] reloadData];
     NSLog(@"Valor de selectedConference =%@",[(MenuViewController*)[[self slidingViewController] underLeftViewController] selectedConf]);
         NSLog(@"Valor de c =%@",c);
     

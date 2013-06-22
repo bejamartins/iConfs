@@ -23,7 +23,7 @@
 
 @implementation ManageViewController
 
-@synthesize MenuButton;
+@synthesize MenuButton,HomeButton;
 
 #pragma - Data Fetch Method
 
@@ -80,6 +80,15 @@
     [MenuButton addTarget:self action:@selector(revealMenu:) forControlEvents:UIControlEventTouchUpInside];
     
     [[self view] addSubview:MenuButton];
+    
+    
+    [self setHomeButton:[UIButton buttonWithType:UIButtonTypeCustom]];
+    
+    [HomeButton setFrame:CGRectMake(45, 0, 43, 40)];
+    [HomeButton setBackgroundImage:[UIImage imageNamed:@"white_home.png"] forState:UIControlStateNormal];
+    [HomeButton addTarget:self action:@selector(goHome:) forControlEvents:UIControlEventTouchUpInside];
+    
+    [[self view] addSubview:HomeButton];
 }
 
 - (void)didReceiveMemoryWarning
@@ -207,6 +216,20 @@
                                           cancelButtonTitle:@"OK"
                                           otherButtonTitles:nil];
     [alert show];
+}
+
+- (IBAction)goHome:(id)sender{
+    
+    NSString *iD = @"Home";
+    
+    UIViewController *newTopViewController = [[self storyboard]instantiateViewControllerWithIdentifier:iD];
+    
+    
+    CGRect frame = [[[[self slidingViewController] topViewController] view] frame];
+    [[self slidingViewController] setTopViewController:newTopViewController];
+    [[[[self slidingViewController] topViewController] view] setFrame:frame];
+    
+    
 }
 
 @end
