@@ -12,6 +12,7 @@
 #import "OrganizerViewController.h"
 #import "ECSlidingViewController.h"
 #import "MenuViewController.h"
+#import "Speaker.h"
 
 @interface PeopleViewController ()
 {
@@ -23,7 +24,7 @@
 
 @implementation PeopleViewController
 
-@synthesize MenuButton;
+@synthesize MenuButton,peopleTable,speakerBio,personNameBar,iConfsImage;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -39,8 +40,12 @@
     [super viewDidLoad];
 	// Do any additional setup after loading the view.
     
-    [[self PeopleCollection]setDelegate:self];
-    [[self PeopleCollection]setDataSource:self];
+  //  [[self PeopleCollection]setDelegate:self];
+  //  [[self PeopleCollection]setDataSource:self];
+    
+    
+    [[self peopleTable] setDelegate:self];
+    [[self peopleTable] setDataSource:self];
     [[self Search]setDelegate:self];
     
     searchItem = NO;
@@ -81,59 +86,102 @@
 
 #pragma - Collection View Methods
 
-- (NSInteger)numberOfSectionsInCollectionView:(UICollectionView *)collectionView{
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView{
     return 1;
 }
 
-- (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section{
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
+
+//collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section{
     if (!searchItem)
         return [confPeople count];
     else
         return [confSearchPeople count];
 }
 
-- (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath{
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
+    
     static NSString *CellIdentifier=@"Cell";
     
-    PeopleCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:CellIdentifier forIndexPath:indexPath];
+    UITableViewCell *cell=[tableView dequeueReusableCellWithIdentifier:@"peopleCell" forIndexPath:indexPath];
     
+        
     NSString* tmpS=[[(MenuViewController*)[[self slidingViewController] underLeftViewController] selectedConf] getID];
     
     if (!searchItem) {
-        [[cell Image] setImage:[[(MenuViewController*)[[self slidingViewController] underLeftViewController] selectedConf] loadImage:tmpS :[(Person*)[confPeople objectAtIndex:[indexPath row]] getImagePath]]];
+     //   [[cell Image] setImage:[[(MenuViewController*)[[self slidingViewController] underLeftViewController] selectedConf] loadImage:tmpS :[(Person*)[confPeople objectAtIndex:[indexPath row]] getImagePath]]];
         
-        [[cell Name]setText:[(Person*)[confPeople objectAtIndex:[indexPath row]] getName]];
-        [[cell Company]setText:[(Person*)[confPeople objectAtIndex:[indexPath row]] getWork]];
+        [[cell textLabel]setText:[(Person*)[confPeople objectAtIndex:[indexPath row]] getName]];
+        [[cell detailTextLabel]setText:[(Person*)[confPeople objectAtIndex:[indexPath row]] getWork]];
     }else {
-        [[cell Image] setImage:[[(MenuViewController*)[[self slidingViewController] underLeftViewController] selectedConf] loadImage:tmpS :[(Person*)[confSearchPeople objectAtIndex:[indexPath row]] getImagePath]]];
-        [[cell Name]setText:[(Person*)[confSearchPeople objectAtIndex:[indexPath row]] getName]];
-        [[cell Company]setText:[(Person*)[confSearchPeople objectAtIndex:[indexPath row]] getWork]];
+     //   [[cell Image] setImage:[[(MenuViewController*)[[self slidingViewController] underLeftViewController] selectedConf] loadImage:tmpS :[(Person*)[confSearchPeople objectAtIndex:[indexPath row]] getImagePath]]];
+        [[cell textLabel]setText:[(Person*)[confSearchPeople objectAtIndex:[indexPath row]] getName]];
+        [[cell detailTextLabel]setText:[(Person*)[confSearchPeople objectAtIndex:[indexPath row]] getWork]];
     }
     
     return cell;
 }
 
-- (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath{
+//- (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath{
     
-    UIViewController *newTopViewController;
+-(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     
-    if ([[self Options] selectedSegmentIndex] != 2){
-        newTopViewController = [[self storyboard]instantiateViewControllerWithIdentifier:@"Person"];
-        
-        if (searchItem)
-            [(PersonViewController *)newTopViewController setShownPerson:[confSearchPeople objectAtIndex:[indexPath row]]];
-        else
-            [(PersonViewController *)newTopViewController setShownPerson:[confPeople objectAtIndex:[indexPath row]]];
-    }else{
-        newTopViewController = [[self storyboard]instantiateViewControllerWithIdentifier:@"Organizer"];
-        
-        if (searchItem)
-            [(OrganizerViewController *)newTopViewController setShownPerson:(Organizer *)[confSearchPeople objectAtIndex:[indexPath row]]];
-        else
-            [(OrganizerViewController *)newTopViewController setShownPerson:(Organizer *)[confPeople objectAtIndex:[indexPath row]]];
+    
+    if(![iConfsImage isHidden]){
+    
+        [iConfsImage setHidden:YES];
+      //  btn.titleLabel.font=[UIFont fontWithName:@"Helvetica neue" size:10];
+
+        speakerBio.font=[UIFont fontWithName:@"System" size:22];
+        [speakerBio setFont:[UIFont systemFontOfSize:20]];
+
     }
     
-    [[self slidingViewController] setTopViewController:newTopViewController];
+    
+    if ([[confPeople objectAtIndex:indexPath.row] isKindOfClass:[Speaker class]]) {
+        Speaker *s=[confPeople objectAtIndex:indexPath.row];
+        [speakerBio setText:[s getResume]];
+    }
+    
+    
+    
+    
+    if ([[confPeople objectAtIndex:indexPath.row] isKindOfClass:[Author class]]) {
+        Author *a=[confPeople objectAtIndex:indexPath.row];
+        
+        
+        
+        
+    }
+    
+    else{
+    
+    
+    }
+    
+    Person  *p= [confPeople objectAtIndex:indexPath.row];
+    
+    [personNameBar setTitle:[p getName]];
+    
+//    UIViewController *newTopViewController;
+//    
+//    if ([[self Options] selectedSegmentIndex] != 2){
+//        newTopViewController = [[self storyboard]instantiateViewControllerWithIdentifier:@"Person"];
+//        
+//        if (searchItem)
+//            [(PersonViewController *)newTopViewController setShownPerson:[confSearchPeople objectAtIndex:[indexPath row]]];
+//        else
+//            [(PersonViewController *)newTopViewController setShownPerson:[confPeople objectAtIndex:[indexPath row]]];
+//    }else{
+//        newTopViewController = [[self storyboard]instantiateViewControllerWithIdentifier:@"Organizer"];
+//        
+//        if (searchItem)
+//            [(OrganizerViewController *)newTopViewController setShownPerson:(Organizer *)[confSearchPeople objectAtIndex:[indexPath row]]];
+//        else
+//            [(OrganizerViewController *)newTopViewController setShownPerson:(Organizer *)[confPeople objectAtIndex:[indexPath row]]];
+//    }
+//    
+//    [[self slidingViewController] setTopViewController:newTopViewController];
 }
 
 #pragma - Search Bar Methods
@@ -163,7 +211,7 @@
         }
     }
     
-    [[self PeopleCollection]reloadData];
+    [[self peopleTable]reloadData];
 }
 
 #pragma - Segmented Button Methods
@@ -180,7 +228,7 @@
         [[[self NavBar] topItem] setTitle:@"Organizers"];
     }
 
-    [[self PeopleCollection]reloadData];
+    [[self peopleTable]reloadData];
 }
 
 @end

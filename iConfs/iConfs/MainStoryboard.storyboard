@@ -549,18 +549,18 @@
                                     <navigationItem title="Speakers" id="M3L-7J-nzj"/>
                                 </items>
                             </navigationBar>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="singleLineEtched" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="h4F-67-YNr">
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="h4F-67-YNr">
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="775" id="BBj-dg-Ieh"/>
+                                    <constraint firstAttribute="height" constant="597" id="cSH-mY-I8X"/>
                                 </constraints>
                                 <color key="separatorColor" red="0.20000000300000001" green="0.20000000300000001" blue="0.20000000300000001" alpha="1" colorSpace="calibratedRGB"/>
                                 <prototypes>
-                                    <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="personCell" textLabel="6a1-w3-fzY" detailTextLabel="QV4-5a-8qM" style="IBUITableViewCellStyleSubtitle" id="BDZ-O5-g7O">
-                                        <rect key="frame" x="0.0" y="22" width="320" height="45"/>
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="gray" accessoryType="disclosureIndicator" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="peopleCell" textLabel="6a1-w3-fzY" detailTextLabel="QV4-5a-8qM" style="IBUITableViewCellStyleSubtitle" id="BDZ-O5-g7O">
+                                        <rect key="frame" x="0.0" y="22" width="320" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
-                                            <rect key="frame" x="0.0" y="0.0" width="320" height="43"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="300" height="43"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="left" text="Title" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6a1-w3-fzY">
@@ -580,9 +580,6 @@
                                 </prototypes>
                             </tableView>
                             <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" barStyle="blackOpaque" translatesAutoresizingMaskIntoConstraints="NO" id="i2R-Pf-2IV">
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="350" id="OHR-zX-Yln"/>
-                                </constraints>
                                 <items>
                                     <barButtonItem title="Person's Name" width="289" style="plain" id="qtZ-Wb-jjW"/>
                                 </items>
@@ -599,17 +596,42 @@
                                 <textInputTraits key="textInputTraits"/>
                             </searchBar>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="pyD-PK-PAq">
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                                <subviews>
+                                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Choose someone for details." textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="12" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="310" translatesAutoresizingMaskIntoConstraints="NO" id="uAB-g0-JIE">
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="310" id="hXK-lS-sJb"/>
+                                            <constraint firstAttribute="height" constant="312" id="pc4-YA-1mr"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" type="boldSystem" pointSize="19"/>
+                                        <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" image="pulpito.png" translatesAutoresizingMaskIntoConstraints="NO" id="xLe-kV-HcE">
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="337" id="8OH-WE-PCm"/>
+                                            <constraint firstAttribute="width" constant="276" id="NJZ-ua-smJ"/>
+                                        </constraints>
+                                    </imageView>
+                                </subviews>
+                                <color key="backgroundColor" white="1" alpha="0.53000000000000003" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstItem="uAB-g0-JIE" firstAttribute="leading" secondItem="pyD-PK-PAq" secondAttribute="leading" constant="20" symbolic="YES" type="default" id="1cu-uq-qqc"/>
+                                    <constraint firstAttribute="trailing" secondItem="uAB-g0-JIE" secondAttribute="trailing" constant="20" symbolic="YES" type="default" id="KfO-gZ-jIH"/>
+                                    <constraint firstItem="xLe-kV-HcE" firstAttribute="top" secondItem="pyD-PK-PAq" secondAttribute="top" constant="54" id="X2C-cg-7Py"/>
+                                    <constraint firstItem="uAB-g0-JIE" firstAttribute="top" secondItem="pyD-PK-PAq" secondAttribute="top" constant="253" id="ePe-o8-1cF"/>
+                                    <constraint firstItem="xLe-kV-HcE" firstAttribute="leading" secondItem="pyD-PK-PAq" secondAttribute="leading" constant="49" id="v4r-W8-4RG"/>
+                                </constraints>
                             </view>
                         </subviews>
                         <color key="backgroundColor" cocoaTouchSystemColor="scrollViewTexturedBackgroundColor"/>
                         <constraints>
+                            <constraint firstItem="E02-vX-n9D" firstAttribute="leading" secondItem="i2R-Pf-2IV" secondAttribute="trailing" type="default" id="1QV-T2-h31"/>
                             <constraint firstItem="l4F-sJ-WgB" firstAttribute="trailing" secondItem="E02-vX-n9D" secondAttribute="trailing" type="default" id="4RQ-MC-Moq"/>
+                            <constraint firstItem="pyD-PK-PAq" firstAttribute="bottom" secondItem="h4F-67-YNr" secondAttribute="bottom" type="default" id="5cM-BZ-S41"/>
                             <constraint firstItem="E02-vX-n9D" firstAttribute="top" secondItem="xjg-QO-dYD" secondAttribute="top" constant="138" id="5cZ-bw-xIC"/>
                             <constraint firstItem="i2R-Pf-2IV" firstAttribute="trailing" secondItem="pyD-PK-PAq" secondAttribute="trailing" type="default" id="6Oh-s0-l8m"/>
                             <constraint firstItem="h4F-67-YNr" firstAttribute="top" secondItem="E02-vX-n9D" secondAttribute="bottom" type="default" id="7Fk-XC-YfP"/>
                             <constraint firstItem="h4F-67-YNr" firstAttribute="trailing" secondItem="E02-vX-n9D" secondAttribute="trailing" type="default" id="7SP-Fr-ya0"/>
-                            <constraint firstItem="E02-vX-n9D" firstAttribute="leading" secondItem="l4F-sJ-WgB" secondAttribute="leading" type="default" id="9xm-SR-j0r"/>
                             <constraint firstItem="i2R-Pf-2IV" firstAttribute="leading" secondItem="xjg-QO-dYD" secondAttribute="leading" constant="61" id="FHP-uo-f2f"/>
                             <constraint firstItem="XW2-UU-8S4" firstAttribute="trailing" secondItem="xjg-QO-dYD" secondAttribute="trailing" type="default" id="Fex-Ia-Bua"/>
                             <constraint firstItem="h4F-67-YNr" firstAttribute="top" secondItem="pyD-PK-PAq" secondAttribute="top" type="default" id="KdV-hm-Whs"/>
@@ -619,7 +641,6 @@
                             <constraint firstItem="l4F-sJ-WgB" firstAttribute="leading" secondItem="i2R-Pf-2IV" secondAttribute="trailing" type="default" id="aUh-IG-b4I"/>
                             <constraint firstItem="i2R-Pf-2IV" firstAttribute="leading" secondItem="pyD-PK-PAq" secondAttribute="leading" type="default" id="bCX-AG-Nxe"/>
                             <constraint firstItem="XW2-UU-8S4" firstAttribute="leading" secondItem="xjg-QO-dYD" secondAttribute="leading" type="default" id="ndF-lD-CrT"/>
-                            <constraint firstAttribute="bottom" secondItem="pyD-PK-PAq" secondAttribute="bottom" constant="225" id="rzT-Ey-1es"/>
                             <constraint firstItem="i2R-Pf-2IV" firstAttribute="top" secondItem="xjg-QO-dYD" secondAttribute="top" constant="137" id="ucf-AH-Hia"/>
                             <constraint firstItem="ZFs-iT-m0Y" firstAttribute="top" secondItem="xjg-QO-dYD" secondAttribute="top" constant="79" id="vEv-Bm-Lqo"/>
                             <constraint firstItem="i2R-Pf-2IV" firstAttribute="top" secondItem="l4F-sJ-WgB" secondAttribute="top" type="default" id="xcw-G9-No7"/>
@@ -630,6 +651,10 @@
                         <outlet property="NavBar" destination="XW2-UU-8S4" id="07G-sQ-gR8"/>
                         <outlet property="Options" destination="ZFs-iT-m0Y" id="Mfp-th-Jln"/>
                         <outlet property="Search" destination="E02-vX-n9D" id="01B-nm-Fsg"/>
+                        <outlet property="iConfsImage" destination="xLe-kV-HcE" id="E5N-5y-ITE"/>
+                        <outlet property="peopleTable" destination="h4F-67-YNr" id="M1t-g6-WyF"/>
+                        <outlet property="personNameBar" destination="qtZ-Wb-jjW" id="rkV-wM-Pr3"/>
+                        <outlet property="speakerBio" destination="uAB-g0-JIE" id="K6R-se-rbf"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="I0z-ge-gV8" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -2583,9 +2608,6 @@
         <class className="HomeViewController" superclassName="UIViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/HomeViewController.h"/>
             <relationships>
-                <relationship kind="action" name="clickAgendaPreview:"/>
-                <relationship kind="action" name="goHome:"/>
-                <relationship kind="action" name="revealMenu:"/>
                 <relationship kind="outlet" name="CollectionOne" candidateClass="UICollectionView"/>
                 <relationship kind="outlet" name="agendaPreviewB" candidateClass="UIButton"/>
                 <relationship kind="outlet" name="ct" candidateClass="UICollectionView"/>
@@ -2669,6 +2691,10 @@
                 <relationship kind="outlet" name="Options" candidateClass="UISegmentedControl"/>
                 <relationship kind="outlet" name="PeopleCollection" candidateClass="UICollectionView"/>
                 <relationship kind="outlet" name="Search" candidateClass="UISearchBar"/>
+                <relationship kind="outlet" name="iConfsImage" candidateClass="UIImageView"/>
+                <relationship kind="outlet" name="peopleTable" candidateClass="UITableView"/>
+                <relationship kind="outlet" name="personNameBar" candidateClass="UIBarButtonItem"/>
+                <relationship kind="outlet" name="speakerBio" candidateClass="UILabel"/>
             </relationships>
         </class>
         <class className="PersonViewController" superclassName="UIViewController">
