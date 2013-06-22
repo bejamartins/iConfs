@@ -450,6 +450,7 @@
     NSMutableArray* wcs = [[NSMutableArray alloc] init];
     NSMutableArray* eatingAreas = [[NSMutableArray alloc] init];
     NSMutableArray* rooms = [[NSMutableArray alloc] init];
+    NSMutableArray* otherPlaces = [[NSMutableArray alloc] init];
     Place* currPlace;
     NSString* placeType;
     Room* room;
@@ -475,6 +476,10 @@
         places = [[NSMutableArray alloc] init];
         //places = [bp[i] valueForKey:@"plantPlots"];
         places = [places1 valueForKey:[[[raw valueForKey:@"plant"] objectAtIndex:i] valueForKey:@"ID"]];
+        wcs = [[NSMutableArray alloc] init];
+        eatingAreas = [[NSMutableArray alloc] init];
+        rooms = [[NSMutableArray alloc] init];
+        otherPlaces = [[NSMutableArray alloc] init];
         for (int j = 0; j < [places count]; j++) {
             placeType = [[NSString alloc] init];
             placeType = [places[j] valueForKey:@"Type"];
@@ -497,7 +502,7 @@
                 currPlace = [[Place alloc] init];
                 currPlace = [currPlace initPlace: [places[j] valueForKey:@"ID"] name:[places[j] valueForKey:@"ID"] x:[[places[j] valueForKey:@"xPos"]intValue] y:[[places[j] valueForKey:@"yPos"]intValue]];
                 //[currPlace alterLogo:<#(NSString *)#>];
-                [places addObject:currPlace];
+                [otherPlaces addObject:currPlace];
             }
             
         }
@@ -506,7 +511,7 @@
         [[[raw valueForKey:@"plant"] objectAtIndex:i] valueForKey:@"Name"];
         [[[raw valueForKey:@"plant"] objectAtIndex:i] valueForKey:@"ImagePath"];
         //[places eatingAreas: eatingAreas WCs: wcs rooms: rooms];
-        bluePrint = [bluePrint initWithData: [[[raw valueForKey:@"plant"] objectAtIndex:i] valueForKey:@"ID"] title: [[[raw valueForKey:@"plant"] objectAtIndex:i] valueForKey:@"Name"] imagePath:[[[raw valueForKey:@"plant"] objectAtIndex:i] valueForKey:@"ImagePath"] otherPlaces: places eatingAreas: eatingAreas WCs: wcs rooms: rooms];
+        bluePrint = [bluePrint initWithData: [[[raw valueForKey:@"plant"] objectAtIndex:i] valueForKey:@"ID"] title: [[[raw valueForKey:@"plant"] objectAtIndex:i] valueForKey:@"Name"] imagePath:[[[raw valueForKey:@"plant"] objectAtIndex:i] valueForKey:@"ImagePath"] otherPlaces: otherPlaces eatingAreas: eatingAreas WCs: wcs rooms: rooms];
         [blueprints setObject:bluePrint forKey:[[[raw valueForKey:@"plant"] objectAtIndex:i] valueForKey:@"ID"] ];
         
     }
