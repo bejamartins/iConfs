@@ -24,7 +24,7 @@
 
 @implementation PeopleViewController
 
-@synthesize MenuButton,peopleTable,speakerBio,personNameBar,iConfsImage;
+@synthesize MenuButton,peopleTable,noSelectionLabel,personNameBar,iConfsImage,speakerBio,BIO;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -106,7 +106,7 @@
     UITableViewCell *cell=[tableView dequeueReusableCellWithIdentifier:@"peopleCell" forIndexPath:indexPath];
     
         
-    NSString* tmpS=[[(MenuViewController*)[[self slidingViewController] underLeftViewController] selectedConf] getID];
+  //  NSString* tmpS=[[(MenuViewController*)[[self slidingViewController] underLeftViewController] selectedConf] getID];
     
     if (!searchItem) {
      //   [[cell Image] setImage:[[(MenuViewController*)[[self slidingViewController] underLeftViewController] selectedConf] loadImage:tmpS :[(Person*)[confPeople objectAtIndex:[indexPath row]] getImagePath]]];
@@ -130,10 +130,9 @@
     if(![iConfsImage isHidden]){
     
         [iConfsImage setHidden:YES];
+        [noSelectionLabel setHidden:YES];
       //  btn.titleLabel.font=[UIFont fontWithName:@"Helvetica neue" size:10];
 
-        speakerBio.font=[UIFont fontWithName:@"System" size:22];
-        [speakerBio setFont:[UIFont systemFontOfSize:20]];
 
     }
     
@@ -141,6 +140,9 @@
     if ([[confPeople objectAtIndex:indexPath.row] isKindOfClass:[Speaker class]]) {
         Speaker *s=[confPeople objectAtIndex:indexPath.row];
         [speakerBio setText:[s getResume]];
+        [speakerBio setHidden:NO];
+        [BIO setHidden:NO];
+        
     }
     
     
@@ -155,6 +157,8 @@
     }
     
     else{
+        
+        Organizer *o =[confPeople objectAtIndex:indexPath.row];
     
     
     }

@@ -18,8 +18,10 @@
 @property (strong, nonatomic) IBOutlet UIBarButtonItem *personNameBar;
 @property (strong, nonatomic) IBOutlet UIImageView *iConfsImage;
 
-@property (strong, nonatomic) IBOutlet UILabel *speakerBio;
+@property (strong, nonatomic) IBOutlet UILabel *noSelectionLabel;
 @property (strong, nonatomic) IBOutlet UITableView *peopleTable;
 - (IBAction)selectedOption:(id)sender;
+@property (strong, nonatomic) IBOutlet UILabel *BIO;
+@property (strong, nonatomic) IBOutlet UILabel *speakerBio;
 
 @end

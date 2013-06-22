@@ -599,8 +599,7 @@
                                 <subviews>
                                     <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Choose someone for details." textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="12" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="310" translatesAutoresizingMaskIntoConstraints="NO" id="uAB-g0-JIE">
                                         <constraints>
-                                            <constraint firstAttribute="width" constant="310" id="hXK-lS-sJb"/>
-                                            <constraint firstAttribute="height" constant="312" id="pc4-YA-1mr"/>
+                                            <constraint firstAttribute="height" constant="42" id="e7I-h0-Njg"/>
                                         </constraints>
                                         <fontDescription key="fontDescription" type="boldSystem" pointSize="19"/>
                                         <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
@@ -612,13 +611,35 @@
                                             <constraint firstAttribute="width" constant="276" id="NJZ-ua-smJ"/>
                                         </constraints>
                                     </imageView>
+                                    <label hidden="YES" opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="speakerBio" lineBreakMode="tailTruncation" numberOfLines="10" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="324" translatesAutoresizingMaskIntoConstraints="NO" id="gUT-Qs-fP1">
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="324" id="5BI-wi-1dt"/>
+                                            <constraint firstAttribute="height" constant="383" id="nH5-FN-Tu3"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                        <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label hidden="YES" opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Bio" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="XqK-lq-QV5">
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="21" id="2AE-5s-SpI"/>
+                                            <constraint firstAttribute="width" constant="42" id="rqE-Vg-XHE"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" type="boldSystem" pointSize="22"/>
+                                        <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
                                 </subviews>
                                 <color key="backgroundColor" white="1" alpha="0.53000000000000003" colorSpace="custom" customColorSpace="calibratedWhite"/>
                                 <constraints>
                                     <constraint firstItem="uAB-g0-JIE" firstAttribute="leading" secondItem="pyD-PK-PAq" secondAttribute="leading" constant="20" symbolic="YES" type="default" id="1cu-uq-qqc"/>
+                                    <constraint firstItem="gUT-Qs-fP1" firstAttribute="top" secondItem="XqK-lq-QV5" secondAttribute="bottom" constant="8" symbolic="YES" type="default" id="JF4-ug-Qer"/>
                                     <constraint firstAttribute="trailing" secondItem="uAB-g0-JIE" secondAttribute="trailing" constant="20" symbolic="YES" type="default" id="KfO-gZ-jIH"/>
                                     <constraint firstItem="xLe-kV-HcE" firstAttribute="top" secondItem="pyD-PK-PAq" secondAttribute="top" constant="54" id="X2C-cg-7Py"/>
-                                    <constraint firstItem="uAB-g0-JIE" firstAttribute="top" secondItem="pyD-PK-PAq" secondAttribute="top" constant="253" id="ePe-o8-1cF"/>
+                                    <constraint firstItem="XqK-lq-QV5" firstAttribute="top" secondItem="pyD-PK-PAq" secondAttribute="top" constant="16" id="YT8-pR-h7O"/>
+                                    <constraint firstItem="gUT-Qs-fP1" firstAttribute="leading" secondItem="pyD-PK-PAq" secondAttribute="leading" constant="20" symbolic="YES" type="default" id="la3-p0-GuZ"/>
+                                    <constraint firstItem="XqK-lq-QV5" firstAttribute="leading" secondItem="pyD-PK-PAq" secondAttribute="leading" constant="20" symbolic="YES" type="default" id="o7z-aU-cw9"/>
+                                    <constraint firstAttribute="bottom" secondItem="uAB-g0-JIE" secondAttribute="bottom" constant="182" id="rMd-hM-YB2"/>
                                     <constraint firstItem="xLe-kV-HcE" firstAttribute="leading" secondItem="pyD-PK-PAq" secondAttribute="leading" constant="49" id="v4r-W8-4RG"/>
                                 </constraints>
                             </view>
@@ -640,6 +661,7 @@
                             <constraint firstItem="E02-vX-n9D" firstAttribute="leading" secondItem="h4F-67-YNr" secondAttribute="leading" type="default" id="UQo-s0-cWr"/>
                             <constraint firstItem="l4F-sJ-WgB" firstAttribute="leading" secondItem="i2R-Pf-2IV" secondAttribute="trailing" type="default" id="aUh-IG-b4I"/>
                             <constraint firstItem="i2R-Pf-2IV" firstAttribute="leading" secondItem="pyD-PK-PAq" secondAttribute="leading" type="default" id="bCX-AG-Nxe"/>
+                            <constraint firstAttribute="trailing" secondItem="h4F-67-YNr" secondAttribute="trailing" constant="37" id="bHq-rG-OZo"/>
                             <constraint firstItem="XW2-UU-8S4" firstAttribute="leading" secondItem="xjg-QO-dYD" secondAttribute="leading" type="default" id="ndF-lD-CrT"/>
                             <constraint firstItem="i2R-Pf-2IV" firstAttribute="top" secondItem="xjg-QO-dYD" secondAttribute="top" constant="137" id="ucf-AH-Hia"/>
                             <constraint firstItem="ZFs-iT-m0Y" firstAttribute="top" secondItem="xjg-QO-dYD" secondAttribute="top" constant="79" id="vEv-Bm-Lqo"/>
@@ -648,13 +670,15 @@
                     </view>
                     <navigationItem key="navigationItem" title="Speakers" id="kq7-sG-T1k"/>
                     <connections>
+                        <outlet property="BIO" destination="XqK-lq-QV5" id="hTn-xS-1GG"/>
                         <outlet property="NavBar" destination="XW2-UU-8S4" id="07G-sQ-gR8"/>
                         <outlet property="Options" destination="ZFs-iT-m0Y" id="Mfp-th-Jln"/>
                         <outlet property="Search" destination="E02-vX-n9D" id="01B-nm-Fsg"/>
                         <outlet property="iConfsImage" destination="xLe-kV-HcE" id="E5N-5y-ITE"/>
+                        <outlet property="noSelectionLabel" destination="uAB-g0-JIE" id="Aq7-oL-bWa"/>
                         <outlet property="peopleTable" destination="h4F-67-YNr" id="M1t-g6-WyF"/>
                         <outlet property="personNameBar" destination="qtZ-Wb-jjW" id="rkV-wM-Pr3"/>
-                        <outlet property="speakerBio" destination="uAB-g0-JIE" id="K6R-se-rbf"/>
+                        <outlet property="speakerBio" destination="gUT-Qs-fP1" id="q9S-a6-HFw"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="I0z-ge-gV8" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -2530,12 +2554,8 @@
         <class className="AgendaViewController" superclassName="UIViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/AgendaViewController.h"/>
             <relationships>
-                <relationship kind="action" name="RemoveSessions:"/>
-                <relationship kind="action" name="addSessions:"/>
-                <relationship kind="action" name="revealMenu:"/>
                 <relationship kind="outlet" name="AddSessionButton" candidateClass="UIButton"/>
                 <relationship kind="outlet" name="AgendaView" candidateClass="UIView"/>
-                <relationship kind="outlet" name="ConfsTable" candidateClass="UITableView"/>
                 <relationship kind="outlet" name="MenuButton" candidateClass="UIButton"/>
                 <relationship kind="outlet" name="RemoveSessionsButton" candidateClass="UIButton"/>
             </relationships>
@@ -2681,11 +2701,13 @@
             <relationships>
                 <relationship kind="action" name="revealMenu:"/>
                 <relationship kind="action" name="selectedOption:"/>
+                <relationship kind="outlet" name="BIO" candidateClass="UILabel"/>
                 <relationship kind="outlet" name="NavBar" candidateClass="UINavigationBar"/>
                 <relationship kind="outlet" name="Options" candidateClass="UISegmentedControl"/>
                 <relationship kind="outlet" name="PeopleCollection" candidateClass="UICollectionView"/>
                 <relationship kind="outlet" name="Search" candidateClass="UISearchBar"/>
                 <relationship kind="outlet" name="iConfsImage" candidateClass="UIImageView"/>
+                <relationship kind="outlet" name="noSelectionLabel" candidateClass="UILabel"/>
                 <relationship kind="outlet" name="peopleTable" candidateClass="UITableView"/>
                 <relationship kind="outlet" name="personNameBar" candidateClass="UIBarButtonItem"/>
                 <relationship kind="outlet" name="speakerBio" candidateClass="UILabel"/>
