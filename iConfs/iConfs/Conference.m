@@ -367,6 +367,14 @@
     
 }
 
+-(void)setSuperSessions:(NSMutableDictionary*)ss{
+    supersessions = ss;
+}
+
+-(NSMutableDictionary*)getSyperSessions{
+    return supersessions;
+}
+
 
 @end
 

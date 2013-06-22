@@ -385,6 +385,7 @@
     NSMutableArray* otherEvents;
     NSMutableArray* notifications;
     NSMutableDictionary* papers;
+    NSMutableDictionary* supersessions;
     
     speakers = [[NSMutableDictionary alloc] init];
     authors = [[NSMutableDictionary alloc] init];
@@ -434,8 +435,16 @@
     //[peperPersonID addObject:[[[json valueForKey:@"paper"] objectAtIndex:i] valueForKey:@"IDPerson"]];
     //[paperPath addObject:[[[json valueForKey:@"paper"] objectAtIndex:i] valueForKey:@"PaperPath"]];
     
-    
-    
+    //SuperSessions
+    NSDictionary* ss = [raw objectForKey:@"superSession"];
+    supersessions = [[NSMutableDictionary alloc]init];
+    SuperSession* supers;
+    for(int i = 0; i<[ss count]; i++){
+        supers = [[SuperSession alloc]init];
+        supers =[supers initWithData:[ss objectForKey:@"ID"] theme:NULL /*TODO on server*/];
+        [supersessions setObject:supers forKey:[ss objectForKey:@"ID"]];
+    }
+
     
     
     
@@ -450,6 +459,7 @@
     NSMutableArray* wcs = [[NSMutableArray alloc] init];
     NSMutableArray* eatingAreas = [[NSMutableArray alloc] init];
     NSMutableArray* rooms = [[NSMutableArray alloc] init];
+    NSMutableArray* otherPlaces = [[NSMutableArray alloc] init];
     Place* currPlace;
     NSString* placeType;
     Room* room;
@@ -475,6 +485,10 @@
         places = [[NSMutableArray alloc] init];
         //places = [bp[i] valueForKey:@"plantPlots"];
         places = [places1 valueForKey:[[[raw valueForKey:@"plant"] objectAtIndex:i] valueForKey:@"ID"]];
+        wcs = [[NSMutableArray alloc] init];
+        eatingAreas = [[NSMutableArray alloc] init];
+        rooms = [[NSMutableArray alloc] init];
+        otherPlaces = [[NSMutableArray alloc] init];
         for (int j = 0; j < [places count]; j++) {
             placeType = [[NSString alloc] init];
             placeType = [places[j] valueForKey:@"Type"];
@@ -497,7 +511,7 @@
                 currPlace = [[Place alloc] init];
                 currPlace = [currPlace initPlace: [places[j] valueForKey:@"ID"] name:[places[j] valueForKey:@"ID"] x:[[places[j] valueForKey:@"xPos"]intValue] y:[[places[j] valueForKey:@"yPos"]intValue]];
                 //[currPlace alterLogo:<#(NSString *)#>];
-                [places addObject:currPlace];
+                [otherPlaces addObject:currPlace];
             }
             
         }
@@ -506,7 +520,7 @@
         [[[raw valueForKey:@"plant"] objectAtIndex:i] valueForKey:@"Name"];
         [[[raw valueForKey:@"plant"] objectAtIndex:i] valueForKey:@"ImagePath"];
         //[places eatingAreas: eatingAreas WCs: wcs rooms: rooms];
-        bluePrint = [bluePrint initWithData: [[[raw valueForKey:@"plant"] objectAtIndex:i] valueForKey:@"ID"] title: [[[raw valueForKey:@"plant"] objectAtIndex:i] valueForKey:@"Name"] imagePath:[[[raw valueForKey:@"plant"] objectAtIndex:i] valueForKey:@"ImagePath"] otherPlaces: places eatingAreas: eatingAreas WCs: wcs rooms: rooms];
+        bluePrint = [bluePrint initWithData: [[[raw valueForKey:@"plant"] objectAtIndex:i] valueForKey:@"ID"] title: [[[raw valueForKey:@"plant"] objectAtIndex:i] valueForKey:@"Name"] imagePath:[[[raw valueForKey:@"plant"] objectAtIndex:i] valueForKey:@"ImagePath"] otherPlaces: otherPlaces eatingAreas: eatingAreas WCs: wcs rooms: rooms];
         [blueprints setObject:bluePrint forKey:[[[raw valueForKey:@"plant"] objectAtIndex:i] valueForKey:@"ID"] ];
         
     }
@@ -610,18 +624,21 @@
             e = [(Session*)e initWithDataAndSpeaker:currID date:[sess[i] valueForKey:@"DateTime"] title:[sess[i] valueForKey:@"Name"] theme:[sess[i] valueForKey:@"Description"] speaker: speakerAux athor: authorAux paper:currIDAUX];
             //[sessions addObject:e];
             [conf addSessions:(Session*)e];
+            [((SuperSession*)[supersessions valueForKey:[sess[i] valueForKey:@"IDSuperSession"]]) addSession:(Session*)e];
         }
         else if ([[sess[i] valueForKey:@"Type"] isEqual:@"Workshop"]){
             e = [[EventWorkshop alloc] init];
             e = [(EventWorkshop*)e initWithDataAndSpeaker:currID date:[sess[i] valueForKey:@"DateTime"] title:[sess[i] valueForKey:@"Name"] theme:[sess[i] valueForKey:@"Description"] speaker: speakerAux needs: [sess[i] valueForKey:@"Needs"]];
             //[workshops addObject:e];
             [conf addWorkshop:(EventWorkshop*)e];
+            [((SuperSession*)[supersessions valueForKey:[sess[i] valueForKey:@"IDSuperSession"]]) addWorkshop:(EventWorkshop*)e];
         }
         else{
             e = [[EventWorkshop alloc] init];
             e = [(Event*)e initWithData:currID date:[sess[i] valueForKey:@"DateTime"] title:[sess[i] valueForKey:@"Name"] theme:[sess[i] valueForKey:@"Description"]];
             //[otherEvents addObject: e];
             [conf addOtherEvent:e];
+            [((SuperSession*)[supersessions valueForKey:[sess[i] valueForKey:@"IDSuperSession"]]) addOtherEvent:e];
         }
         [e setRating:[[sess[i] valueForKey:@"Rating"] intValue]];
     }
@@ -634,6 +651,7 @@
     [conf setMap:map];
     
     
+    [conf setSuperSessions:supersessions];
     
     return conf;
 }

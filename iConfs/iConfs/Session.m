@@ -73,4 +73,8 @@
     return paperID;
 }
 
+- (NSComparisonResult)compare:(Event *)otherObject {
+    return [self.date compare:otherObject.date];
+}
+
 @end

@@ -153,5 +153,7 @@
 
 -(NSDate*)getEventEnd;
 
+-(NSComparisonResult)compare:(Event *)otherObject;
+
 
 @end

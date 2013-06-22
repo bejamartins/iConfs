@@ -20,6 +20,7 @@
 #import "Room.h"
 #import "EatingArea.h"
 #import "WC.h"
+#import "SuperSession.h"
 
 @interface IConfs : AppDataObject
 {

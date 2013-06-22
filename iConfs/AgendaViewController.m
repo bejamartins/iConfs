@@ -27,12 +27,11 @@
 @property (readonly) MAEventKitDataSource *eventKitDataSource;
 @property (weak, nonatomic) IBOutlet UIButton *AddSessionButton;
 @property (weak, nonatomic) IBOutlet UIButton *RemoveSessionsButton;
-@property (weak, nonatomic) IBOutlet UITableView *ConfsTable;
 @end
 
 @implementation AgendaViewController
 
-@synthesize MenuButton, AddSessionButton, RemoveSessionsButton, ConfsTable;
+@synthesize MenuButton, AddSessionButton, RemoveSessionsButton;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -104,19 +103,83 @@
 /*- (NSArray *)weekView:(MAWeekView *)weekView eventsForDate:(NSDate *)startDate {
     return [self.eventKitDataSource weekView:weekView eventsForDate:startDate];
 }*/
-
 - (NSArray *)weekView:(MAWeekView *)weekView eventsForDate:(NSDate *)startDate {
+    
+    NSArray *arr;
+    
+    NSDateComponents *components = [CURRENT_CALENDAR components:DATE_COMPONENTS fromDate:[NSDate date]];
+    NSDateComponents *componentsStart = [CURRENT_CALENDAR components:DATE_COMPONENTS fromDate:startDate];
+    
+    if ([components day] == [componentsStart day]) {
+        
+    arr = [NSArray arrayWithObjects: self.event, self.event, nil];
+        ((MAEvent *) [arr objectAtIndex:0]).title = @"Foo!";
+        ((MAEvent *) [arr objectAtIndex:1]).title = @"Fo!";
+        ((MAEvent *) [arr objectAtIndex:0]).start = [CURRENT_CALENDAR dateFromComponents:components];
+        ((MAEvent *) [arr objectAtIndex:1]).start = [CURRENT_CALENDAR dateFromComponents:components];
+        components.hour = components.hour+1;
+        ((MAEvent *) [arr objectAtIndex:0]).end = [CURRENT_CALENDAR dateFromComponents:components];
+        ((MAEvent *) [arr objectAtIndex:1]).end = [CURRENT_CALENDAR dateFromComponents:components];
+    }
+	
+	return arr;
+}
+
+- (MAEvent *)event {
+	static int counter;
+	
+	NSMutableDictionary *dict = [[NSMutableDictionary alloc] init];
+	
+	[dict setObject:[NSString stringWithFormat:@"number %i", counter++] forKey:@"test"];
+	
+	MAEvent *event = [[MAEvent alloc] init];
+	event.backgroundColor = [UIColor purpleColor];
+	event.textColor = [UIColor whiteColor];
+	event.allDay = NO;
+	event.userInfo = dict;
+    
+    event.backgroundColor = [UIColor brownColor];
+    
+	return event;
+}
+
+/*- (NSArray *)weekView:(MAWeekView *)weekView eventsForDate:(NSDate *)startDate {
 
 	NSMutableArray *arr;
-	
+    
+    Event *e = [[Event alloc] initWithData:0 date:[NSDate date] title:@"Title" theme:@"Theme"];
+	//Event *b = [[Event alloc] initWithData:0 date:[NSDate date] title:@"Title2" theme:@"Theme2"];
+    
 	for (Event *e in allEvents) {
         if ([e getDate] == startDate) {
             [arr addObject:[self event:e]];
         }
     }
+    
+    [arr addObject:[self event]];
+    //[arr addObject:b];
 	
 	return arr;
 }
+
+- (MAEvent *)event {
+	static int counter;
+	
+	NSMutableDictionary *dict = [[NSMutableDictionary alloc] init];
+	
+	[dict setObject:[NSString stringWithFormat:@"number %i", counter++] forKey:@"test"];
+	
+	MAEvent *event = [[MAEvent alloc] init];
+	event.backgroundColor = [UIColor purpleColor];
+	event.textColor = [UIColor whiteColor];
+	event.allDay = NO;
+	event.userInfo = dict;
+    [event setChecked:NO];
+    [event setTitle:@"Title"];
+    [event setStart:[NSDate date]];
+    [event setEnd:[[NSDate alloc] initWithTimeInterval:(30*60) sinceDate:[NSDate date]]];
+	return event;
+}*/
 
 - (MAEvent *)event:(Event *)e {
 	static int counter;
@@ -170,13 +233,7 @@
 }
 
 - (IBAction)addSessions:(id)sender {
-    if (choosingConf) {
-        [ConfsTable setHidden:YES];
-        choosingConf = NO;
-    }else{
-        [ConfsTable setHidden:NO];
-        choosingConf = YES;
-    }
+
 }
 
 - (IBAction)RemoveSessions:(id)sender {
@@ -198,47 +255,6 @@
         }
         [(MAWeekView*)[self AgendaView] reloadData];
     }
-}
-
-#pragma - Table View Methods
-
-- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
-{
-    return 1;
-}
-
-- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
-{
-    return [myConfs count];
-}
-
-- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    static NSString *cellID = @"Cell";
-    
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellID forIndexPath:indexPath];
-    
-    if (cell == nil) {
-        cell = [[UITableViewCell alloc]initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:cellID];	
-    }
-    
-    cell.textLabel.text = [NSString stringWithFormat:@"%@", [(Conference*)[myConfs objectAtIndex:[indexPath row]] getName]];
-    
-    
-    cell.textLabel.textAlignment = NSTextAlignmentCenter;
-    
-    return cell;
-}
-
-- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    [(MenuViewController*)[[self slidingViewController] underLeftViewController] setSelectedConf:(Conference*)[myConfs objectAtIndex:[indexPath row]]];
-    
-    UIViewController *newTopViewController;
-    
-    newTopViewController = [[self storyboard]instantiateViewControllerWithIdentifier:@"AddSession"];
-    
-    [[self slidingViewController] setTopViewController:newTopViewController];
 }
 
 @end

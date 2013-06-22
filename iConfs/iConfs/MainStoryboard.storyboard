@@ -2236,6 +2236,7 @@
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="F2s-xH-LTW">
                                 <constraints>
                                     <constraint firstAttribute="height" constant="57" id="0Qf-3j-0Rz"/>
+                                    <constraint firstAttribute="width" constant="200" id="Kkl-2f-Byt"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
                                 <state key="normal" title="Add Session">
@@ -2249,25 +2250,16 @@
                                     <action selector="addSessions:" destination="ItE-Rr-hyx" eventType="touchUpInside" id="zEc-Cz-VBS"/>
                                 </connections>
                             </button>
-                            <tableView hidden="YES" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="PoT-i2-XhM">
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="275" id="HA0-9z-9DZ"/>
-                                    <constraint firstAttribute="width" constant="200" id="czy-OB-oBe"/>
-                                </constraints>
-                            </tableView>
                         </subviews>
                         <color key="backgroundColor" cocoaTouchSystemColor="scrollViewTexturedBackgroundColor"/>
                         <constraints>
                             <constraint firstItem="ZDm-uR-2wW" firstAttribute="top" secondItem="gmq-pL-hkq" secondAttribute="top" constant="66" id="0BY-Xj-l8a"/>
-                            <constraint firstItem="PoT-i2-XhM" firstAttribute="centerX" secondItem="F2s-xH-LTW" secondAttribute="centerX" type="default" id="1zy-QQ-d6P"/>
                             <constraint firstItem="F2s-xH-LTW" firstAttribute="top" secondItem="H9M-TA-9k9" secondAttribute="top" type="default" id="2ye-vg-Y0V"/>
-                            <constraint firstAttribute="bottom" secondItem="PoT-i2-XhM" secondAttribute="bottom" constant="97" id="9Wy-30-5nu"/>
+                            <constraint firstItem="F2s-xH-LTW" firstAttribute="centerX" secondItem="ZDm-uR-2wW" secondAttribute="centerX" type="default" id="3UC-4D-ZRx"/>
                             <constraint firstAttribute="bottom" secondItem="F2s-xH-LTW" secondAttribute="bottom" constant="40" id="9oQ-GI-xcN"/>
                             <constraint firstAttribute="bottom" secondItem="ZDm-uR-2wW" secondAttribute="bottom" constant="137" id="F7s-EZ-drQ"/>
+                            <constraint firstItem="F2s-xH-LTW" firstAttribute="baseline" secondItem="H9M-TA-9k9" secondAttribute="baseline" type="default" id="PCC-0Q-m0Y"/>
                             <constraint firstItem="Oxd-iv-H4f" firstAttribute="trailing" secondItem="gmq-pL-hkq" secondAttribute="trailing" type="default" id="UdY-gx-Nek"/>
-                            <constraint firstItem="F2s-xH-LTW" firstAttribute="leading" secondItem="PoT-i2-XhM" secondAttribute="leading" type="default" id="VUa-6x-cGf"/>
-                            <constraint firstItem="ZDm-uR-2wW" firstAttribute="centerX" secondItem="PoT-i2-XhM" secondAttribute="centerX" type="default" id="YZG-Nv-wjb"/>
                             <constraint firstAttribute="trailing" secondItem="H9M-TA-9k9" secondAttribute="trailing" constant="39" id="b2A-bp-UHg"/>
                             <constraint firstAttribute="trailing" secondItem="ZDm-uR-2wW" secondAttribute="trailing" constant="20" symbolic="YES" type="default" id="cDg-pj-QmD"/>
                             <constraint firstItem="F2s-xH-LTW" firstAttribute="bottom" secondItem="H9M-TA-9k9" secondAttribute="bottom" type="default" id="cNr-YK-syB"/>
@@ -2279,7 +2271,6 @@
                     <connections>
                         <outlet property="AddSessionButton" destination="F2s-xH-LTW" id="0rj-aH-G26"/>
                         <outlet property="AgendaView" destination="ZDm-uR-2wW" id="dI4-MM-LKK"/>
-                        <outlet property="ConfsTable" destination="PoT-i2-XhM" id="T3W-51-MYn"/>
                         <outlet property="RemoveSessionsButton" destination="H9M-TA-9k9" id="mCc-yn-rGa"/>
                     </connections>
                 </viewController>
@@ -2539,6 +2530,9 @@
         <class className="AgendaViewController" superclassName="UIViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/AgendaViewController.h"/>
             <relationships>
+                <relationship kind="action" name="RemoveSessions:"/>
+                <relationship kind="action" name="addSessions:"/>
+                <relationship kind="action" name="revealMenu:"/>
                 <relationship kind="outlet" name="AddSessionButton" candidateClass="UIButton"/>
                 <relationship kind="outlet" name="AgendaView" candidateClass="UIView"/>
                 <relationship kind="outlet" name="ConfsTable" candidateClass="UITableView"/>

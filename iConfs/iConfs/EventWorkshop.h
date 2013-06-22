@@ -35,4 +35,6 @@
  */
 -(NSString*)getNeeds;
 
+- (NSComparisonResult)compare:(Event *)otherObject;
+
 @end

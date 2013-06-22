@@ -38,6 +38,8 @@
 -(Author*)getAuthor;
 
 -(int)getPaperID;
+
+- (NSComparisonResult)compare:(Event *)otherObject;
 @end
 
 
