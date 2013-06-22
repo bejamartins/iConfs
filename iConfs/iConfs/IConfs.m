@@ -385,6 +385,7 @@
     NSMutableArray* otherEvents;
     NSMutableArray* notifications;
     NSMutableDictionary* papers;
+    NSMutableDictionary* supersessions;
     
     speakers = [[NSMutableDictionary alloc] init];
     authors = [[NSMutableDictionary alloc] init];
@@ -434,8 +435,16 @@
     //[peperPersonID addObject:[[[json valueForKey:@"paper"] objectAtIndex:i] valueForKey:@"IDPerson"]];
     //[paperPath addObject:[[[json valueForKey:@"paper"] objectAtIndex:i] valueForKey:@"PaperPath"]];
     
-    
-    
+    //SuperSessions
+    NSDictionary* ss = [raw objectForKey:@"superSession"];
+    supersessions = [[NSMutableDictionary alloc]init];
+    SuperSession* supers;
+    for(int i = 0; i<[ss count]; i++){
+        supers = [[SuperSession alloc]init];
+        supers =[supers initWithData:[ss objectForKey:@"ID"] theme:NULL /*TODO on server*/];
+        [supersessions setObject:supers forKey:[ss objectForKey:@"ID"]];
+    }
+
     
     
     
@@ -615,18 +624,21 @@
             e = [(Session*)e initWithDataAndSpeaker:currID date:[sess[i] valueForKey:@"DateTime"] title:[sess[i] valueForKey:@"Name"] theme:[sess[i] valueForKey:@"Description"] speaker: speakerAux athor: authorAux paper:currIDAUX];
             //[sessions addObject:e];
             [conf addSessions:(Session*)e];
+            [((SuperSession*)[supersessions valueForKey:[sess[i] valueForKey:@"IDSuperSession"]]) addSession:(Session*)e];
         }
         else if ([[sess[i] valueForKey:@"Type"] isEqual:@"Workshop"]){
             e = [[EventWorkshop alloc] init];
             e = [(EventWorkshop*)e initWithDataAndSpeaker:currID date:[sess[i] valueForKey:@"DateTime"] title:[sess[i] valueForKey:@"Name"] theme:[sess[i] valueForKey:@"Description"] speaker: speakerAux needs: [sess[i] valueForKey:@"Needs"]];
             //[workshops addObject:e];
             [conf addWorkshop:(EventWorkshop*)e];
+            [((SuperSession*)[supersessions valueForKey:[sess[i] valueForKey:@"IDSuperSession"]]) addWorkshop:(EventWorkshop*)e];
         }
         else{
             e = [[EventWorkshop alloc] init];
             e = [(Event*)e initWithData:currID date:[sess[i] valueForKey:@"DateTime"] title:[sess[i] valueForKey:@"Name"] theme:[sess[i] valueForKey:@"Description"]];
             //[otherEvents addObject: e];
             [conf addOtherEvent:e];
+            [((SuperSession*)[supersessions valueForKey:[sess[i] valueForKey:@"IDSuperSession"]]) addOtherEvent:e];
         }
         [e setRating:[[sess[i] valueForKey:@"Rating"] intValue]];
     }
@@ -639,6 +651,7 @@
     [conf setMap:map];
     
     
+    [conf setSuperSessions:supersessions];
     
     return conf;
 }

@@ -15,6 +15,7 @@
 #import "EventWorkshop.h"
 #import "Session.h"
 #import "Map.h"
+#import "SuperSession.h"
 
 @interface Conference : NSObject
 {
@@ -33,6 +34,7 @@
     NSMutableArray* workshops;
     NSMutableArray* eventsList;
     Map* map;
+    NSMutableDictionary* supersessions;
     
 }
 
@@ -286,6 +288,10 @@
 -(UIImage*)loadImage:(NSString*)confID : (NSString*)imagePath;
 
 -(NSMutableDictionary*) getBlueprints;
+
+-(void)setSuperSessions:(NSMutableDictionary*)ss;
+
+-(NSMutableDictionary*)getSyperSessions;
 
 @end
 
