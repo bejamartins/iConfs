@@ -69,6 +69,7 @@
 		707B7C16175D62CD00E4747A /* UIImage+ImageWithUIView.m in Sources */ = {isa = PBXBuildFile; fileRef = 707B7C14175D62CD00E4747A /* UIImage+ImageWithUIView.m */; };
 		707B7C19175D6E2B00E4747A /* InitViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 707B7C18175D6E2B00E4747A /* InitViewController.m */; };
 		70C2D23D1773BEA900834236 /* AddSessionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 70C2D23C1773BEA900834236 /* AddSessionViewController.m */; };
+		A02A5536177551EC00723F3B /* SuperSession.m in Sources */ = {isa = PBXBuildFile; fileRef = A02A5535177551EC00723F3B /* SuperSession.m */; };
 		A0570151175E2848000FED8F /* TestingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A0570150175E2848000FED8F /* TestingViewController.m */; };
 		A05A74FA1760F6CF00F021BD /* ioapi.c in Sources */ = {isa = PBXBuildFile; fileRef = A05A74F01760F6CF00F021BD /* ioapi.c */; };
 		A05A74FB1760F6CF00F021BD /* mztools.c in Sources */ = {isa = PBXBuildFile; fileRef = A05A74F21760F6CF00F021BD /* mztools.c */; };
@@ -231,6 +232,8 @@
 		707B7C18175D6E2B00E4747A /* InitViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InitViewController.m; sourceTree = "<group>"; };
 		70C2D23B1773BEA900834236 /* AddSessionViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AddSessionViewController.h; sourceTree = "<group>"; };
 		70C2D23C1773BEA900834236 /* AddSessionViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AddSessionViewController.m; sourceTree = "<group>"; };
+		A02A5534177551EC00723F3B /* SuperSession.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SuperSession.h; sourceTree = "<group>"; };
+		A02A5535177551EC00723F3B /* SuperSession.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SuperSession.m; sourceTree = "<group>"; };
 		A057014F175E2847000FED8F /* TestingViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TestingViewController.h; sourceTree = "<group>"; };
 		A0570150175E2848000FED8F /* TestingViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TestingViewController.m; sourceTree = "<group>"; };
 		A05A74EF1760F6CF00F021BD /* crypt.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = crypt.h; sourceTree = "<group>"; };
@@ -370,6 +373,8 @@
 				A07887B1175A3CE500C1D90C /* EventWorkshop.m */,
 				28ADEE1C1760C7FB0059F458 /* IConfs.h */,
 				28ADEE1D1760C7FB0059F458 /* IConfs.m */,
+				A02A5534177551EC00723F3B /* SuperSession.h */,
+				A02A5535177551EC00723F3B /* SuperSession.m */,
 				A09DF2F51767783300310266 /* Map.h */,
 				A09DF2F61767783300310266 /* Map.m */,
 				3CD1D56D17720B3900A05BF3 /* MapPlace.h */,
@@ -813,6 +818,7 @@
 				280C7831177239AE008239D7 /* NewsViewController.m in Sources */,
 				280C7834177244A5008239D7 /* AgendaPreview.m in Sources */,
 				70C2D23D1773BEA900834236 /* AddSessionViewController.m in Sources */,
+				A02A5536177551EC00723F3B /* SuperSession.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
