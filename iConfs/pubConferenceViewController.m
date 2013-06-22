@@ -34,24 +34,28 @@
 
 - (void)viewDidLoad
 {
+    theAppData = [[IConfs alloc]init];
     ManageViewController *m=[ManageViewController alloc];
     theAppData= [m appData];
     [theAppData fetchConferences];
 
     otherConfs = [theAppData getRestOfConfs];
     //NSLog(<#NSString *format, ...#>)
-    Conference *final=[otherConfs objectAtIndex:0];
-    //Event *e= [[final getAllEvents] objectAtIndex:0];
-    // int counter=0;
-    for (Conference *c in otherConfs) {
-        //        NSArray *ev=[c getAllEvents];
-        //      Event *eAux=[ev objectAtIndex:<#(NSUInteger)#>];
-        //  if([[eAux getDate] )
-        
-        UIImage *im=[final getLogo];
-        
-        [picture setImage:im];
+    if([otherConfs count] != 0){
+        Conference *final=[otherConfs objectAtIndex:0];
+        //Event *e= [[final getAllEvents] objectAtIndex:0];
+        // int counter=0;
+        for (Conference *c in otherConfs) {
+            //        NSArray *ev=[c getAllEvents];
+            //      Event *eAux=[ev objectAtIndex:<#(NSUInteger)#>];
+            //  if([[eAux getDate] )
+            
+            UIImage *im=[final getLogo];
+            
+            [picture setImage:im];
+        }
     }
+    
 
     [super viewDidLoad];
 	// Do any additional setup after loading the view.
