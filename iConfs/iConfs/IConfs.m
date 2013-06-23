@@ -456,7 +456,7 @@
     //[paperPath addObject:[[[json valueForKey:@"paper"] objectAtIndex:i] valueForKey:@"PaperPath"]];
     
     //SuperSessions
-    NSDictionary* ss = [raw objectForKey:@"superSession"];
+    NSDictionary* ss = [raw valueForKey:@"superSession"];
     supersessions = [[NSMutableDictionary alloc]init];
     SuperSession* supers;
     for(int i = 0; i<[ss count]; i++){
