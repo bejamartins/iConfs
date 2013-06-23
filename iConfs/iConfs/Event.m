@@ -17,6 +17,7 @@
     theme = th;
     vote = -1;
     rating = -1;
+    supersessions = [[NSMutableArray alloc] init];
     return self;
 }
 
@@ -28,6 +29,7 @@
     speaker = s;
     vote = -1;
     rating = -1;
+    supersessions = [[NSMutableArray alloc] init];
     return self;
 }
 
@@ -98,5 +100,25 @@
 -(NSComparisonResult)compare:(Event *)otherObject {
     return [self.date compare:otherObject.date];
 }
+
+-(BOOL)addSuperSession:(NSString*)superSessionID{
+    BOOL isHere = false;
+    for (int i=0; i<[supersessions count]; i++) {
+        if ([((NSString*)[supersessions objectAtIndex:i]) isEqualToString:superSessionID]){
+            isHere = true;
+            //break;
+        }
+    }
+    if(isHere == false){
+        [supersessions addObject: superSessionID];
+        return true;
+    }
+    else return false;
+}
+
+-(NSArray*)getSuperSessions{
+    return supersessions;
+}
+
 
 @end

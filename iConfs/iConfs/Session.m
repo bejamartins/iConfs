@@ -18,6 +18,7 @@
     speaker = s;
     author = a;
     paperID = pID;
+    supersessions = [[NSMutableArray alloc] init];
     return self;
 }
 

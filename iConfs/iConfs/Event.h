@@ -22,6 +22,7 @@
     int eventID;
     NSString* placeID;
     NSDate* eventEnd;
+    NSMutableArray* supersessions;
 }
 
 //Date and time of the event
@@ -154,6 +155,10 @@
 -(NSDate*)getEventEnd;
 
 -(NSComparisonResult)compare:(Event *)otherObject;
+
+-(BOOL)addSuperSession:(NSString*)superSessionID;
+
+-(NSArray*)getSuperSessions;
 
 
 @end

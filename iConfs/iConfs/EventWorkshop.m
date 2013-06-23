@@ -17,6 +17,7 @@
     theme = th;
     speaker = s;
     needs = n;
+    supersessions = [[NSMutableArray alloc] init];
     return self;
 }
 -(NSString*)getNeeds{

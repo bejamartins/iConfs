@@ -641,6 +641,7 @@
             [((SuperSession*)[supersessions valueForKey:[sess[i] valueForKey:@"IDSuperSession"]]) addOtherEvent:e];
         }
         [e setRating:[[sess[i] valueForKey:@"Rating"] intValue]];
+        [e addSuperSession: [sess[i] valueForKey:@"IDSuperSession"]];
     }
     NSDictionary* mapR = [[NSDictionary alloc]init];
     mapR =[raw valueForKey:@"Map"];
