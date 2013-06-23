@@ -46,5 +46,20 @@
     return sessID;
 }
 
+-(BOOL)addAuthor:(NSString*)authorID{
+    BOOL isHere = false;
+    for (int i=0; i<[authors count]; i++) {
+        if ([((NSString*)[authors objectAtIndex:i]) isEqualToString:authorID]){
+            isHere = true;
+            //break;
+        }
+    }
+    if(isHere == false){
+        [authors addObject: authorID];
+        return true;
+    }
+    else return false;
+}
+
 
 @end

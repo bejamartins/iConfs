@@ -412,12 +412,14 @@
     Paper* pp;
     NSMutableArray* auth;
     NSMutableArray* papersList;
+    NSMutableDictionary* papersByID = [[NSMutableDictionary alloc]init];
     for(int i = 0; i<[papersR count]; i++){
         pp = [[Paper alloc] init];
         auth = [[NSMutableArray alloc] init];
         [auth addObject:[papersR[i] valueForKey:@"IDPerson"]];
         pp = [pp initWithData: [[[[papersR[i] valueForKey:@"ID"]componentsSeparatedByString:@"p"] objectAtIndex: 1]intValue] title:NULL /*falta titulo*/ authors: auth abstract:NULL link:[papersR[i] valueForKey:@"PaperPath"]];
         [pp setSession:[papersR[i] valueForKey:@"IDSession"]];
+        [papersByID setObject:pp forKey:[papersR[i] valueForKey:@"ID"]];
         if ([papers valueForKey:[papersR[i] valueForKey:@"IDPerson"]] == nil) {
             papersList = [[NSMutableArray alloc] init];
             [papersList addObject: pp];
@@ -425,6 +427,24 @@
         }
         else{
             [[papers objectForKey:[((NSDictionary*)papersR[i]) valueForKey:@"IDPerson"]] addObject: pp];
+            
+            //[[papers objectForKey:[papersR[i] valueForKey:@"IDPerson"]] addObject: papersR[i]];
+        }
+    }
+    
+    //more people to papers
+    NSArray* paperPeople = [raw objectForKey:@"paperPeople"];
+    for (int i =0; i<[paperPeople count]; i++) {
+        [((Paper*)[papersByID valueForKey:[paperPeople[i] valueForKey:@"IDPaper"]]) addAuthor:[paperPeople[i] valueForKey:@"IDPerson"]];
+        
+        if ([papers valueForKey:[paperPeople[i] valueForKey:@"IDPerson"]] == nil) {
+            papersList = [[NSMutableArray alloc] init];
+            [papersList addObject: [papersByID valueForKey:[paperPeople[i] valueForKey:@"IDPaper"]]];
+            [papers setObject:papersList forKey:[paperPeople[i] valueForKey:@"IDPerson"]];
+        }
+        else{
+            [[papers objectForKey:[paperPeople[i] valueForKey:@"IDPerson"]] addObject: [papersByID valueForKey:[paperPeople[i] valueForKey:@"IDPaper"]]];
+            
             //[[papers objectForKey:[papersR[i] valueForKey:@"IDPerson"]] addObject: papersR[i]];
         }
     }

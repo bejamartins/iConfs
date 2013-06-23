@@ -13,7 +13,7 @@
 @protected
     int paperID;
     NSString* title;
-    NSArray* authors;
+    NSMutableArray* authors;
     NSString* abstract;
     NSString* link;
     NSString* sessID;
@@ -77,5 +77,7 @@
 
 -(void)setSession:(NSString*)sID;
 -(NSString*)getSessID;
+
+-(BOOL)addAuthor:(NSString*)authorID;
 
 @end
