@@ -68,7 +68,10 @@
         
         conferenceName=  [conf getName];
         [[ self bar] setTitle:conferenceName];
-    
+        
+        if(currentNotIndex==0){
+            [self.backbutton setEnabled:NO];
+        }
 
     }
     

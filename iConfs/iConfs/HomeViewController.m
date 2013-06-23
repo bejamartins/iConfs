@@ -26,7 +26,7 @@
 
 @implementation HomeViewController
 
-@synthesize MenuButton,noConferencesLabel,noConferencesPicture,noNewsLabel,noNewsPicture,HomeButton,BackButton;
+@synthesize MenuButton,noConferencesLabel,noConferencesPicture,noNewsLabel,noNewsPicture;
 
 - (void)viewDidLoad
 {
@@ -57,23 +57,11 @@
     [[self view] addSubview:MenuButton];
     
     
-    [self setHomeButton:[UIButton buttonWithType:UIButtonTypeCustom]];
 
-    [HomeButton setFrame:CGRectMake(45, 0, 43, 40)];
-    [HomeButton setBackgroundImage:[UIImage imageNamed:@"white_home.png"] forState:UIControlStateNormal];
-    [HomeButton addTarget:self action:@selector(goHome:) forControlEvents:UIControlEventTouchUpInside];
-    
-    [[self view] addSubview:HomeButton];
     
     
     
-    [self setBackButton:[UIButton buttonWithType:UIButtonTypeCustom]];
-    
-    [BackButton setFrame:CGRectMake(717, 4, 43, 40)];
-    [BackButton setBackgroundImage:[UIImage imageNamed:@"back3.png"] forState:UIControlStateNormal];
-    [BackButton addTarget:self action:@selector(goBack:) forControlEvents:UIControlEventTouchUpInside];
-    
-    [[self view] addSubview:BackButton];
+
 
     
     //confPeople = [[(MenuViewController*)[[self slidingViewController] underLeftViewController] selectedConf] getSpeakers];
@@ -226,26 +214,10 @@
 }
 
 
-- (IBAction)goHome:(id)sender{
-
-    NSString *iD = @"Home";
-    
-    UIViewController *newTopViewController = [[self storyboard]instantiateViewControllerWithIdentifier:iD];
-    
-    
-    CGRect frame = [[[[self slidingViewController] topViewController] view] frame];
-    [[self slidingViewController] setTopViewController:newTopViewController];
-    [[[[self slidingViewController] topViewController] view] setFrame:frame];
-    
-
-}
-
-    
-- (IBAction)goBack:(id)sender{
-//TODO:
 
 
-}
+    
+
 
 
 

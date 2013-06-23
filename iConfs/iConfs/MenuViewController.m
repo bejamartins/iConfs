@@ -145,6 +145,7 @@
             CGRect frame = [[[[self slidingViewController] topViewController] view] frame];
             [[self slidingViewController] setTopViewController:newTopViewController];
             [[[[self slidingViewController] topViewController] view] setFrame:frame];
+            
             [[self slidingViewController] resetTopView];
         }];
     }else{

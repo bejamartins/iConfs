@@ -23,5 +23,11 @@
 - (IBAction)selectedOption:(id)sender;
 @property (strong, nonatomic) IBOutlet UILabel *BIO;
 @property (strong, nonatomic) IBOutlet UILabel *speakerBio;
+@property (strong, nonatomic) UIButton *ConferenceHome;
+@property UIViewController *previous;
+
+@property (strong, nonatomic) UIButton *HomeButton;
+- (void)changePrevious:(UIViewController*)vc;
+
 
 @end

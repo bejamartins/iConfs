@@ -46,13 +46,15 @@
 
 @implementation PeopleViewController
 
-
+@synthesize MenuButton,peopleTable,noSelectionLabel,personNameBar,iConfsImage,speakerBio,BIO,HomeButton,ConferenceHome,previous;
 
 - (IBAction)openPDF:(id)sender {
     
     NSString *iD = @"PDFReader";
     PDFReader *newTopViewController = [[self storyboard]instantiateViewControllerWithIdentifier:iD];
         [newTopViewController changePath:paperPath];
+    [newTopViewController changeToFullScreen];
+    [newTopViewController changePrevious:self];
         [newTopViewController viewDidLoad];
 
     CGRect frame = [[[[self slidingViewController] topViewController] view] frame];
@@ -65,7 +67,7 @@
     
 }
 
-@synthesize MenuButton,peopleTable,noSelectionLabel,personNameBar,iConfsImage,speakerBio,BIO;
+
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -112,6 +114,26 @@
     [MenuButton addTarget:self action:@selector(revealMenu:) forControlEvents:UIControlEventTouchUpInside];
     
     [[self view] addSubview:MenuButton];
+    
+    
+    [self setHomeButton:[UIButton buttonWithType:UIButtonTypeCustom]];
+    
+    [HomeButton setFrame:CGRectMake(45, 0, 43, 40)];
+    [HomeButton setBackgroundImage:[UIImage imageNamed:@"white_home.png"] forState:UIControlStateNormal];
+    [HomeButton addTarget:self action:@selector(goHome:) forControlEvents:UIControlEventTouchUpInside];
+    
+    [[self view] addSubview:HomeButton];
+    
+    
+    
+    [self setConferenceHome:[UIButton buttonWithType:UIButtonTypeCustom]];
+    
+    [ConferenceHome setFrame:CGRectMake(717, 4, 43, 40)];
+    [ConferenceHome setBackgroundImage:[UIImage imageNamed:@"white_home_conf2.png"] forState:UIControlStateNormal];
+    [ConferenceHome addTarget:self action:@selector(goToConferenceHome:) forControlEvents:UIControlEventTouchUpInside];
+    
+    [[self view] addSubview:ConferenceHome];
+
 }
 
 - (void)didReceiveMemoryWarning
@@ -349,6 +371,50 @@
     }
 
     [[self peopleTable]reloadData];
+}
+
+
+- (IBAction)goHome:(id)sender{
+    
+    NSString *iD = @"Home";
+    
+    UIViewController *newTopViewController = [[self storyboard]instantiateViewControllerWithIdentifier:iD];
+    
+    
+    CGRect frame = [[[[self slidingViewController] topViewController] view] frame];
+    [[self slidingViewController] setTopViewController:newTopViewController];
+    [[[[self slidingViewController] topViewController] view] setFrame:frame];
+    
+    
+}
+
+
+//- (IBAction)goBack:(id)sender{
+//    CGRect frame = [[[[self slidingViewController] topViewController] view] frame];
+//    [[self slidingViewController] setTopViewController:previous];
+//    [[[[self slidingViewController] topViewController] view] setFrame:frame];
+//    
+//}
+
+- (IBAction)goToConferenceHome:(id)sender{
+    
+    NSString *iD = @"Conference";
+    
+    UIViewController *newTopViewController = [[self storyboard]instantiateViewControllerWithIdentifier:iD];
+    
+    
+    CGRect frame = [[[[self slidingViewController] topViewController] view] frame];
+    [[self slidingViewController] setTopViewController:newTopViewController];
+    [[[[self slidingViewController] topViewController] view] setFrame:frame];
+
+}
+
+
+
+- (void)changePrevious:(UIViewController*)vc{
+    
+    previous=vc;
+    
 }
 
 @end
