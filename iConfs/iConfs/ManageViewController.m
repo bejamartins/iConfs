@@ -196,8 +196,8 @@
     for (int i = 0; i < [paths count]; i++) {
         cell = (ManageConfCell*)[[self ConfsCollection] cellForItemAtIndexPath:[paths objectAtIndex:i]];
         if ([cell checked]) {
+            message=[NSString stringWithFormat:@"%@%@%@", message,[[myConfs objectAtIndex:[(NSIndexPath*)[paths objectAtIndex:i] row]]getName],@"\n"];
             [theAppData removeConference:[(Conference*)[myConfs objectAtIndex:[(NSIndexPath*)[paths objectAtIndex:i] row]] getID]];
-            message=[NSString stringWithFormat:@"%@%@%@", message,[[otherConfs objectAtIndex:[(NSIndexPath*)[paths objectAtIndex:i] row]]getName],@"\n"];
 
         }
         
