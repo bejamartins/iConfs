@@ -30,7 +30,7 @@
 - (void)viewDidLoad
 {
     
-    
+    if(self.auxPath!=nil){
     path=[[NSBundle mainBundle] pathForAuxiliaryExecutable:self.auxPath];
     
     [super viewDidLoad];
@@ -39,7 +39,10 @@
     [webview loadRequest:request];
 	[webview setScalesPageToFit:YES];
     // Do any additional setup after loading the view.
-}
+
+    }
+    
+    }
 
 - (void)didReceiveMemoryWarning
 {

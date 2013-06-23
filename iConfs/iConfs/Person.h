@@ -20,6 +20,7 @@
     NSString *work;
     NSString *imagePath;
     NSInteger personID;
+    NSMutableArray* eventList;
 }
 
 //Name of the person
@@ -67,6 +68,10 @@
  @returns person's ID
  */
 -(int)getID;
+
+-(BOOL)addEvent:(int) eventID;
+-(NSArray*)getEventList;
+
 @end
 
 

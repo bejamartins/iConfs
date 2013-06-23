@@ -16,6 +16,7 @@
     imagePath = imgPath;
     personID = pID;
     job = j;
+    eventList = [[NSMutableArray alloc] init];
     return self;
 }
 

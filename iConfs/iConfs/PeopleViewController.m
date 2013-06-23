@@ -13,16 +13,57 @@
 #import "ECSlidingViewController.h"
 #import "MenuViewController.h"
 #import "Speaker.h"
+#import "PDFReader.h"
 
 @interface PeopleViewController ()
 {
     NSArray *confPeople;
     NSMutableArray *confSearchPeople;
     BOOL searchItem;
+    IBOutlet UIView *sessionView;
+    
+    IBOutlet UILabel *sessionName;
+    IBOutlet UIToolbar *toolbarAgenda;
+    
+    
+    IBOutlet UIButton *seePaperButton;
+    IBOutlet UIPageControl *pageControl;
+    
+    IBOutlet UILabel *PresentationName;
+    
+    IBOutlet UILabel *sessionDate;
+    
+    NSMutableArray *sessions;
+    
+    
+    IBOutlet UIView *pdfPreview;
+    
+    NSString *paperPath;
+    
+    
 }
 @end
 
 @implementation PeopleViewController
+
+
+
+- (IBAction)openPDF:(id)sender {
+    
+    NSString *iD = @"PDFReader";
+    PDFReader *newTopViewController = [[self storyboard]instantiateViewControllerWithIdentifier:iD];
+        [newTopViewController changePath:paperPath];
+        [newTopViewController viewDidLoad];
+
+    CGRect frame = [[[[self slidingViewController] topViewController] view] frame];
+    [[self slidingViewController] setTopViewController:newTopViewController];
+    [[[[self slidingViewController] topViewController] view] setFrame:frame];
+    
+//  PDFReader *reader = (PDFReader*)[[self slidingViewController] topViewController];
+//    [reader changePath:paperPath];
+
+    
+}
 
 @synthesize MenuButton,peopleTable,noSelectionLabel,personNameBar,iConfsImage,speakerBio,BIO;
 
@@ -47,7 +88,7 @@
     [[self peopleTable] setDelegate:self];
     [[self peopleTable] setDataSource:self];
     [[self Search]setDelegate:self];
-    
+    [sessionView setHidden:YES];
     searchItem = NO;
     
     confSearchPeople = [[NSMutableArray alloc] init];
@@ -119,6 +160,19 @@
         [[cell detailTextLabel]setText:[(Person*)[confSearchPeople objectAtIndex:[indexPath row]] getWork]];
     }
     
+    if(indexPath.row==0){
+    [peopleTable
+     selectRowAtIndexPath:indexPath
+     animated:TRUE
+     scrollPosition:UITableViewScrollPositionNone
+     ];
+    
+    [[peopleTable delegate]
+     tableView:peopleTable
+     didSelectRowAtIndexPath:indexPath
+     ];
+    }
+    
     return cell;
 }
 
@@ -126,6 +180,7 @@
     
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     
+    NSLog(@"Section e row :%d,%d ",indexPath.section, indexPath.row);
     
     if(![iConfsImage isHidden]){
     
@@ -142,6 +197,28 @@
         [speakerBio setText:[s getResume]];
         [speakerBio setHidden:NO];
         [BIO setHidden:NO];
+        [sessionView setHidden:YES];
+        [pdfPreview setHidden:YES];
+        
+        
+        NSArray *Events=[s getEventList];
+        
+        sessions=[[NSMutableArray alloc]init];
+        
+        for(int i=0;i<[Events count];i++){
+            
+            if([[Events objectAtIndex:i] isKindOfClass:[Session class]]){
+                
+                [sessions addObject:[Events objectAtIndex:i]];
+                
+            }
+            
+        }
+        [pageControl setNumberOfPages: [sessions count]];
+        
+        
+       [seePaperButton setHidden:YES];
+
         
     }
     
@@ -150,16 +227,66 @@
     
     if ([[confPeople objectAtIndex:indexPath.row] isKindOfClass:[Author class]]) {
         Author *a=[confPeople objectAtIndex:indexPath.row];
+        [speakerBio setHidden:YES];
+        [BIO setHidden:YES];
         
+        [sessionView setHidden:NO];
+        [seePaperButton setHidden:NO];
+
         
+        NSArray *Events=[a getEventList];
         
+        sessions=[[NSMutableArray alloc]init];
         
+        for(int i=0;i<[Events count];i++){
+            
+            if([[Events objectAtIndex:i] isKindOfClass:[Session class]]){
+            
+                [sessions addObject:[Events objectAtIndex:i]];
+            
+            }
+        
+        }
+        [pageControl setNumberOfPages: [sessions count]];
+        [pdfPreview setHidden:NO];
+
+        
+        for( UIViewController *childViewController in [self childViewControllers]){
+        
+            
+            if ([childViewController isKindOfClass:[PDFReader class]]){
+          
+                
+               // Session *s=[sessions objectAtIndex:0] ;
+                
+                PDFReader *pr = (PDFReader *)childViewController;
+              
+               // NSString *paperPath=[[a getPaper:[s getPaperID]]getLink];
+                 paperPath=@"pdf.pdf";
+                [pr changePath:paperPath];
+                [pr viewDidLoad];
+                
+                
+            }
+
+        
+        }
+
+        
+        //  [sessionName setText:[[sessions objectAtIndex:0]getName]];
+ //       [sessionDate setText:[[sessions objectAtIndex:0]getDate]];
+        
+
     }
     
     else{
         
         Organizer *o =[confPeople objectAtIndex:indexPath.row];
-    
+        [pdfPreview setHidden:YES];
+        [sessionView setHidden:YES];
+        [toolbarAgenda setHidden:YES];
+
+
     
     }
     
@@ -167,25 +294,7 @@
     
     [personNameBar setTitle:[p getName]];
     
-//    UIViewController *newTopViewController;
-//    
-//    if ([[self Options] selectedSegmentIndex] != 2){
-//        newTopViewController = [[self storyboard]instantiateViewControllerWithIdentifier:@"Person"];
-//        
-//        if (searchItem)
-//            [(PersonViewController *)newTopViewController setShownPerson:[confSearchPeople objectAtIndex:[indexPath row]]];
-//        else
-//            [(PersonViewController *)newTopViewController setShownPerson:[confPeople objectAtIndex:[indexPath row]]];
-//    }else{
-//        newTopViewController = [[self storyboard]instantiateViewControllerWithIdentifier:@"Organizer"];
-//        
-//        if (searchItem)
-//            [(OrganizerViewController *)newTopViewController setShownPerson:(Organizer *)[confSearchPeople objectAtIndex:[indexPath row]]];
-//        else
-//            [(OrganizerViewController *)newTopViewController setShownPerson:(Organizer *)[confPeople objectAtIndex:[indexPath row]]];
-//    }
-//    
-//    [[self slidingViewController] setTopViewController:newTopViewController];
+
 }
 
 #pragma - Search Bar Methods
@@ -221,6 +330,13 @@
 #pragma - Segmented Button Methods
 
 - (IBAction)selectedOption:(id)sender {
+    //[indexP];
+    
+    //[peopleTable selectRowAtIndexPath:indexPath animated:NO scrollPosition: UITableViewScrollPositionNone];
+    
+   
+    
+    
     if ([[self Options] selectedSegmentIndex] == 0) {
         confPeople = [[(MenuViewController*)[[self slidingViewController] underLeftViewController] selectedConf] getSpeakers];
         [[[self NavBar] topItem] setTitle:@"Speakers"];

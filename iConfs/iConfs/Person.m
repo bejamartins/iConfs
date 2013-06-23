@@ -15,6 +15,7 @@
     work = h;
     imagePath = imgPath;
     personID = pID;
+    eventList = [[NSMutableArray alloc] init];
     return self;
 }
 
@@ -32,6 +33,24 @@
 
 -(int)getID{
     return personID;
+}
+
+-(BOOL)addEvent:(int) eventID{
+    BOOL isHere = false;
+    for (int i=0; i<[eventList count]; i++) {
+        if ([((NSNumber*)[eventList objectAtIndex:i]) intValue] == eventID){
+            isHere = true;
+            //break;
+        }
+    }
+    if(isHere == false){
+        [eventList addObject: [NSNumber numberWithInteger: eventID]];
+        return true;
+    }
+    else return false;
+}
+-(NSArray*)getEventList{
+    return eventList;
 }
 
 @end
