@@ -28,6 +28,8 @@
 		285FF4B71760BC0E001135E1 /* CellMyConferences.m in Sources */ = {isa = PBXBuildFile; fileRef = 285FF4B61760BC0E001135E1 /* CellMyConferences.m */; };
 		285FF4BA1760BE0C001135E1 /* newConferenceContainer.m in Sources */ = {isa = PBXBuildFile; fileRef = 285FF4B91760BE0C001135E1 /* newConferenceContainer.m */; };
 		285FF4BD1760BE6A001135E1 /* ConferenceScreenViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 285FF4BC1760BE6A001135E1 /* ConferenceScreenViewController.m */; };
+		28929D921778FF4D0064B093 /* SessionsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 28929D911778FF4D0064B093 /* SessionsViewController.m */; };
+		28929D95177909260064B093 /* SScell.m in Sources */ = {isa = PBXBuildFile; fileRef = 28929D94177909260064B093 /* SScell.m */; };
 		289746031764EB4200CB2022 /* BluePrintsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 289746021764EB4200CB2022 /* BluePrintsViewController.m */; };
 		289746061764EB7800CB2022 /* PlacesContainerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 289746051764EB7800CB2022 /* PlacesContainerViewController.m */; };
 		289746091764EC5600CB2022 /* PlantContainerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 289746081764EC5600CB2022 /* PlantContainerViewController.m */; };
@@ -170,6 +172,10 @@
 		285FF4B91760BE0C001135E1 /* newConferenceContainer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = newConferenceContainer.m; path = ../newConferenceContainer.m; sourceTree = "<group>"; };
 		285FF4BB1760BE6A001135E1 /* ConferenceScreenViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ConferenceScreenViewController.h; path = ../ConferenceScreenViewController.h; sourceTree = "<group>"; };
 		285FF4BC1760BE6A001135E1 /* ConferenceScreenViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ConferenceScreenViewController.m; path = ../ConferenceScreenViewController.m; sourceTree = "<group>"; };
+		28929D901778FF4D0064B093 /* SessionsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SessionsViewController.h; sourceTree = "<group>"; };
+		28929D911778FF4D0064B093 /* SessionsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SessionsViewController.m; sourceTree = "<group>"; };
+		28929D93177909260064B093 /* SScell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SScell.h; sourceTree = "<group>"; };
+		28929D94177909260064B093 /* SScell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SScell.m; sourceTree = "<group>"; };
 		289746011764EB4200CB2022 /* BluePrintsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BluePrintsViewController.h; sourceTree = "<group>"; };
 		289746021764EB4200CB2022 /* BluePrintsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BluePrintsViewController.m; sourceTree = "<group>"; };
 		289746041764EB7800CB2022 /* PlacesContainerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PlacesContainerViewController.h; sourceTree = "<group>"; };
@@ -465,22 +471,20 @@
 			children = (
 				70C2D23B1773BEA900834236 /* AddSessionViewController.h */,
 				70C2D23C1773BEA900834236 /* AddSessionViewController.m */,
-				289B4C8A1774E80200B3560E /* back3.png */,
 				280C7832177244A5008239D7 /* AgendaPreview.h */,
 				280C7833177244A5008239D7 /* AgendaPreview.m */,
 				7078016917667E2000B3C4D4 /* AgendaViewController.h */,
-				289B4C841774DF5200B3560E /* back1.png */,
-				280482CF177792C30053E015 /* white_home_conf2.png */,
 				7078016A17667E2000B3C4D4 /* AgendaViewController.m */,
-				28586057176A826300FF4FF3 /* BlueprintContainerViewController.h */,
-				280482CD177791500053E015 /* white_home_conf.png */,
+				289B4C841774DF5200B3560E /* back1.png */,
+				28929D93177909260064B093 /* SScell.h */,
+				28929D94177909260064B093 /* SScell.m */,
 				289B4C861774E0B100B3560E /* back2.png */,
+				289B4C8A1774E80200B3560E /* back3.png */,
+				28586057176A826300FF4FF3 /* BlueprintContainerViewController.h */,
 				28586058176A826400FF4FF3 /* BlueprintContainerViewController.m */,
-				289B4C821774D2B300B3560E /* white_home.png */,
 				289746011764EB4200CB2022 /* BluePrintsViewController.h */,
 				289746021764EB4200CB2022 /* BluePrintsViewController.m */,
 				280F373B1763F8DB00E72424 /* CollectionPeopleInSession.h */,
-				280482D917779D320053E015 /* rounded-rectangle-final.png */,
 				280F373C1763F8DB00E72424 /* CollectionPeopleInSession.m */,
 				28ADEE1F1760D2D70059F458 /* Conference-News.h */,
 				28ADEE201760D2D70059F458 /* Conference-News.m */,
@@ -516,12 +520,18 @@
 				289746081764EC5600CB2022 /* PlantContainerViewController.m */,
 				2836BE5917711D6600A78C42 /* pubConferenceViewController.h */,
 				2836BE5A17711D6600A78C42 /* pubConferenceViewController.m */,
+				280482D917779D320053E015 /* rounded-rectangle-final.png */,
+				28929D901778FF4D0064B093 /* SessionsViewController.h */,
+				28929D911778FF4D0064B093 /* SessionsViewController.m */,
 				280F37351763F4F600E72424 /* SessionViewController.h */,
 				280F37361763F4F600E72424 /* SessionViewController.m */,
 				28CF7714175F8FD10070B4D5 /* Teste.h */,
 				28CF7715175F8FD10070B4D5 /* Teste.m */,
 				A057014F175E2847000FED8F /* TestingViewController.h */,
 				A0570150175E2848000FED8F /* TestingViewController.m */,
+				289B4C821774D2B300B3560E /* white_home.png */,
+				280482CD177791500053E015 /* white_home_conf.png */,
+				280482CF177792C30053E015 /* white_home_conf2.png */,
 			);
 			name = ViewControllers;
 			sourceTree = "<group>";
@@ -853,6 +863,8 @@
 				70C2D23D1773BEA900834236 /* AddSessionViewController.m in Sources */,
 				A02A5536177551EC00723F3B /* SuperSession.m in Sources */,
 				A0E0F9161777DCBB007093D1 /* CustomizableSuperSession.m in Sources */,
+				28929D921778FF4D0064B093 /* SessionsViewController.m in Sources */,
+				28929D95177909260064B093 /* SScell.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
