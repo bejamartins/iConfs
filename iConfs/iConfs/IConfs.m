@@ -141,6 +141,7 @@
     NSMutableArray* ret;
     for (int i=0; i<[conferences count]; i++) {
         [ret addObjectsFromArray:[[((Conference*)conferences[i]) getSuperSessions] allValues]];
+        [ret sortUsingSelector:@selector(compare:)];
     }
     return ret;
 }
