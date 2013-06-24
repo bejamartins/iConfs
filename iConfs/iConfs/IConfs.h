@@ -35,6 +35,13 @@
     NSMutableDictionary* agendaDic;
     NSMutableDictionary* agendaDicByConf;
     NSDate* agendaStartDate;
+    
+    NSArray *paths;
+    NSString *documentsDirectory;
+    //2) Create the full file path by appending the desired file name
+    NSString *agendaFile;
+    NSString *agendaDicFile;
+    NSString *agendaDicByConfFile;
 }
 
 //Subscribed conferences

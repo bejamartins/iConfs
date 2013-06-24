@@ -41,6 +41,9 @@
     if(aConferences != NULL){
         allConferences = [aConferences copy];
     }
+    
+    //(NSCoder*)decoder =
+    
     conferences = [NSMutableArray new];
     conferencesDic = [[NSMutableDictionary alloc] init];
     allConferencesDic = [[NSMutableDictionary alloc] init];
@@ -49,6 +52,17 @@
     agendaDic = [[NSMutableDictionary alloc] init];
     agendaDicByConf = [[NSMutableDictionary alloc] init];
     agendaStartDate = [[NSDate alloc] init];
+    /*agenda = [[decoder decodeObjectForKey:@"agenda"] retain];
+    agendaDic = [[decoder decodeObjectForKey:@"agendaDic"] retain];
+    agendaDicByConf = [[decoder decodeObjectForKey:@"agendaDicByConf"] retain];
+    agendaStartDate = [[decoder decodeObjectForKey:@"agendaStartDate"] retain];*/
+    
+    
+    
+    [self setAgendaPaths];
+    [self loadAgendaFromDisk];
+    
+    
     return self;
 }
 
@@ -90,6 +104,16 @@
     return [agenda copy];
 }*/
 
+- (void) encodeWithCoder:(NSCoder*)encoder {
+    // If parent class also adopts NSCoding, include a call to
+    // [super encodeWithCoder:encoder] as the first statement.
+    
+    [encoder encodeObject:agenda forKey:@"agenda"];
+    [encoder encodeObject:agendaDic forKey:@"agendaDic"];
+    [encoder encodeObject:agendaDicByConf forKey:@"agendaDicByConf"];
+    [encoder encodeObject:agendaStartDate forKey:@"agendaStartDate"];
+}
+
 
 -(BOOL)subscribeSuperSessionInAgenda: (SuperSession*)ss Conference: (NSString*)cID{
     if([agendaDic objectForKey:[ss getID]] != nil){
@@ -112,6 +136,7 @@
         //[agendaDicByConf setObject:css forKey:[css getID]];
         [agenda sortUsingSelector:@selector(compare:)];
         agendaStartDate = [((CustomizableSuperSession*)[agenda objectAtIndex:0]) getUserStartDate];
+        [self saveAgendaToDisk];
         return true;
     }
 }
@@ -144,6 +169,7 @@
         if ([array count] == 0) {
             [agendaDicByConf removeObjectForKey:[s getConfID]];
         }
+        [self saveAgendaToDisk];
         return true;
     }
 }
@@ -193,6 +219,7 @@
         for (int i=0; i<[ids count]; i++) {
             [self unsubscribeSuperSessionInAgenda:ids[i]];
         }
+        [self saveAgendaToDisk];
         return true;
     }
     else
@@ -206,6 +233,7 @@
     for(int i =0; i<[supersessions count];i++){
         [self subscribeSuperSessionInAgenda:((SuperSession*)supersessions[i]) Conference:cID];
     }
+    [self saveAgendaToDisk];
 }
 
 -(NSDate*)getAgendaStartDate{
@@ -1069,6 +1097,50 @@
     return img;
     
     
+}
+
+-(void)loadAgendaFromDisk{
+    if(paths == NULL){
+        return;
+    }
+    else{
+        agenda = [[NSMutableArray alloc] initWithContentsOfFile: agendaFile];
+        agendaDic = [[NSMutableDictionary alloc] initWithContentsOfFile: agendaDicFile];
+        agendaDicByConf = [[NSMutableDictionary alloc] initWithContentsOfFile: agendaDicByConfFile];
+        if(agenda == nil)
+        {
+            //Array file didn't exist... create a new one
+            agenda = [[NSMutableArray alloc] init];
+            agendaDic = [[NSMutableDictionary alloc] init];
+            agendaDicByConf = [[NSMutableDictionary alloc] init];
+            agendaStartDate = [[NSDate alloc] init];
+            //Fill with default values
+            
+        }
+        else{
+            agendaStartDate = [((CustomizableSuperSession*)agenda[0]) getUserStartDate];
+        }
+    }
+}
+
+-(void)setAgendaPaths{
+    //Creating a file path under iOS:
+    //1) Search for the app's documents directory (copy+paste from Documentation)
+    paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+    documentsDirectory = [paths objectAtIndex:0];
+    //2) Create the full file path by appending the desired file name
+    agendaFile = [documentsDirectory stringByAppendingPathComponent:@"agenda.dat"];
+    agendaDicFile = [documentsDirectory stringByAppendingPathComponent:@"agendaDic.dat"];
+    agendaDicByConfFile = [documentsDirectory stringByAppendingPathComponent:@"agendaDicByConf.dat"];
+}
+
+-(void)saveAgendaToDisk{
+    if(paths == NULL){
+        [self setAgendaPaths];
+    }
+    [agenda writeToFile:agendaFile atomically:YES];
+    [agendaDic writeToFile:agendaDicFile atomically:YES];
+    [agendaDicByConf writeToFile:agendaDicByConfFile atomically:YES];
 }
 
 -(void)theAlmightyGetter:(NSDictionary*)json{

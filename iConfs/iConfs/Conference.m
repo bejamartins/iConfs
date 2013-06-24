@@ -27,6 +27,7 @@
     self.confName = n;
     self.image = lp;
     self.bluePrints = bp;
+    supersessions = [[NSMutableDictionary alloc] init];
     return self;
 }
 
