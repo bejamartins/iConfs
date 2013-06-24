@@ -440,7 +440,7 @@
         [addedConfsIDs addObject:[current getID]];
         
         //agenda here, not totally TODO: this load agenda must pass the NSDictionary to a variable
-        [self loadAgenda:[tmpConfs objectAtIndex:i]];
+        agendaDic = [self loadAgenda:[tmpConfs objectAtIndex:i]];
     }
 }
 
