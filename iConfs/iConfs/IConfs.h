@@ -33,6 +33,7 @@
     NSMutableDictionary* allConferencesDic;
     NSMutableArray* addedConfsIDs;
     NSMutableDictionary* agendaDic;
+    NSMutableDictionary* agendaDicByConf;
     NSDate* agendaStartDate;
 }
 
@@ -78,9 +79,10 @@
 /**
  Subscribes a SuperSession to the agenda
  @param ss SuperSession to subscribe
+ @param cID ID of conference of origin
  @returns true if the SuperSession has been successfully subscribed, false if already had been subscribed
  */
--(BOOL)subscribeSuperSessionInAgenda: (SuperSession*)ss;
+-(BOOL)subscribeSuperSessionInAgenda: (SuperSession*)ss Conference: (NSString*)cID;
 
 /**
  Gets all the SuperSessions subscribed ordered by start date
@@ -118,6 +120,33 @@
  @returns list of unsubscribed SuperSessions by the user
  */
 -(NSArray*)getUnsubscribedSuperSessions;
+
+/**
+ Returns the list of subscribed SuperSessions (CustomizableSuperSession) of a given Conference, ordered by subscribed start date
+ @param cID conference ID
+ @returns list of subscribed SuperSessions by the user of a given Conference, ordered by subscribed start date
+ */
+-(NSArray*)getAgendaByConferenceOrderedByDate: (NSString*) cID;
+
+/**
+ Returns the list of unsubscribed SuperSessions of a given Conference, ordered by subscribed start date
+ @param cID conference ID
+ @returns list of unsubscribed SuperSessions by the user of a given Conference, ordered by subscribed start date
+ */
+-(NSArray*)getUnsubscribedSuperSessionsByConferenceOrderedByDate: (NSString*) cID;
+
+/**
+ Unsubscribes all SuperSessions from a given Conference
+ @param cID conference ID
+ @returns true if succsessful, false if there is nos SuperSession subscribed from that conference in agenda
+ */
+-(BOOL)unsubscribeAllSuperSessionsFromAConf:(NSString*)cID;
+
+/**
+ Subscribes to agenda all SuperSessions from a given Conference
+ @param cID conference ID
+ */
+-(void)subscribeAllSupserSessionsFromAConf:(NSString*)cID;
 
 /**
  Returns all conferences

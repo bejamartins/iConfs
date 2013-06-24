@@ -17,6 +17,7 @@
     NSMutableArray* userWorkshops;
     NSMutableArray* userAllEvents;
     NSDate* userStartDate;
+    NSString* confID;
 }
 
 /**
@@ -32,7 +33,7 @@
  @param ss existing SuperSession
  @returns a newly initialized object
  */
--(CustomizableSuperSession*)initWithSuperSession: (SuperSession*)ss;
+-(CustomizableSuperSession*)initWithSuperSession: (SuperSession*)ss Conference: (NSString*)cID;
 
 /**
  Subscribes to all events on the CustomizableSuperSession
@@ -153,5 +154,7 @@
 -(NSArray*)getUnsubscribedWorkshops;
 
 -(NSComparisonResult)compare:(CustomizableSuperSession*)otherObject;
+
+-(NSString*)getConfID;
 
 @end
