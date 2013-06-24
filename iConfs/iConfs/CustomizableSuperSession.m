@@ -30,7 +30,7 @@
     return self;
 }
 
--(CustomizableSuperSession*)initWithSuperSession: (SuperSession*)ss{
+-(CustomizableSuperSession*)initWithSuperSession: (SuperSession*)ss Conference: (NSString*)cID{
     sessions = [[ss getSessionsOrderedByDate] mutableCopy];
     workshops = [[ss getWorkshopsOrderedByDate] mutableCopy];
     allEvents = [[ss getAllEventsOrderedByDate] mutableCopy];
@@ -47,6 +47,7 @@
     userWorkshops = [[NSMutableArray alloc] init];
     userAllEvents = [[NSMutableArray alloc] init];
     userStartDate = [[NSDate alloc] init];
+    confID = cID;
     return self;
 }
 
@@ -253,6 +254,10 @@
 
 -(NSComparisonResult)compare:(CustomizableSuperSession *)otherObject{
     return [[self getUserStartDate] compare:[otherObject getUserStartDate]];
+}
+
+-(NSString*)getConfID{
+    return confID;
 }
 
 @end

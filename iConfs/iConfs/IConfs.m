@@ -47,6 +47,7 @@
     addedConfsIDs = [[NSMutableArray alloc] init];
     agenda = [[NSMutableArray alloc] init];
     agendaDic = [[NSMutableDictionary alloc] init];
+    agendaDicByConf = [[NSMutableDictionary alloc] init];
     agendaStartDate = [[NSDate alloc] init];
     return self;
 }
@@ -90,16 +91,25 @@
 }*/
 
 
--(BOOL)subscribeSuperSessionInAgenda: (SuperSession*)ss{
+-(BOOL)subscribeSuperSessionInAgenda: (SuperSession*)ss Conference: (NSString*)cID{
     if([agendaDic objectForKey:[ss getID]] != nil){
         return false;
     }
     else{
         CustomizableSuperSession* css;
         css = [[CustomizableSuperSession alloc]init];
-        css = [css initWithSuperSession:ss];
+        css = [css initWithSuperSession:ss Conference: cID];
         [agenda addObject: css];
-        [agendaDic setObject:css forKey:[css getID]];
+        [agendaDic setObject:css forKey:cID];
+        if([agendaDicByConf valueForKey:cID] != nil){
+            [((NSMutableArray*)[agendaDicByConf valueForKey:cID]) addObject:css];
+        }
+        else{
+            NSMutableArray* array = [[NSMutableArray alloc] init];
+            [array addObject:css];
+            [agendaDicByConf setObject:array forKey: cID];
+        }
+        //[agendaDicByConf setObject:css forKey:[css getID]];
         [agenda sortUsingSelector:@selector(compare:)];
         agendaStartDate = [((CustomizableSuperSession*)[agenda objectAtIndex:0]) getUserStartDate];
         return true;
@@ -129,7 +139,72 @@
         else{
             agendaStartDate = nil;
         }
+        NSMutableArray* array = ((NSMutableArray*)[agendaDicByConf valueForKey:[s getConfID]]);
+        [array removeObject:s];
+        if ([array count] == 0) {
+            [agendaDicByConf removeObjectForKey:[s getConfID]];
+        }
         return true;
+    }
+}
+
+-(NSArray*)getAgendaByConferenceOrderedByDate: (NSString*) cID{
+    NSMutableArray* ret = ((NSMutableArray*)[agendaDicByConf valueForKey:cID]);
+    [ret sortUsingSelector:@selector(compare:)];
+    return ret;
+}
+
+-(NSArray*)getUnsubscribedSuperSessionsByConferenceOrderedByDate: (NSString*) cID{
+    NSMutableArray* available = [[[((Conference*)[conferencesDic valueForKey:cID]) getSuperSessions] allValues] mutableCopy];
+    NSMutableArray* subscribed = ((NSMutableArray*)[agendaDicByConf valueForKey:cID]);
+    NSMutableArray* ret = [[NSMutableArray alloc] init];
+    [ret sortUsingSelector:@selector(compare:)];
+    NSString* a = NULL;
+    for (int i=0; i<[available count]; i++) {
+        for(int j=0; j< [((NSArray*)subscribed) count]; j++){
+            if ([[((CustomizableSuperSession*)subscribed[j]) getID] isEqualToString: [((SuperSession*)available[i]) getID]]) {
+                a = NULL;
+            }
+            else{
+                a = [((SuperSession*)available[i]) getID];
+                break;
+            }
+        }
+        if(a==NULL){
+            ;
+        }
+        else{
+            [ret addObject:a];
+        }
+    }
+    [ret sortUsingSelector:@selector(compare:)];
+    return ret;
+}
+
+-(BOOL)unsubscribeAllSuperSessionsFromAConf:(NSString*)cID{
+    NSNumber *value = [agendaDicByConf objectForKey:cID];
+    
+    if (value)
+    {
+        NSMutableArray* ids = [[NSMutableArray alloc] init];
+        for (int i =0; i<[((NSArray*)[agendaDicByConf objectForKey:cID])count]; i++) {
+            [ids addObject:[((CustomizableSuperSession*)((NSArray*)[agendaDicByConf objectForKey:cID])[i])getID]];
+        }
+        for (int i=0; i<[ids count]; i++) {
+            [self unsubscribeSuperSessionInAgenda:ids[i]];
+        }
+        return true;
+    }
+    else
+    {
+        return false;
+    }
+}
+
+-(void)subscribeAllSupserSessionsFromAConf:(NSString*)cID{
+    NSArray* supersessions = [[conferencesDic valueForKey:cID] getSuperSessions];
+    for(int i =0; i<[supersessions count];i++){
+        [self subscribeSuperSessionInAgenda:((SuperSession*)supersessions[i]) Conference:cID];
     }
 }
 
