@@ -56,6 +56,8 @@
 
 -(NSString*)getID;
 
+-(NSComparisonResult)compare:(News *)otherObject;
+
 @end
 
 

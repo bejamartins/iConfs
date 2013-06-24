@@ -52,6 +52,8 @@
  */
 -(NSDate*)getDate;
 
+-(NSComparisonResult)compare:(Notification *)otherObject;
+
 
 @end
 

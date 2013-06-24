@@ -31,5 +31,9 @@
     return newsID;
 }
 
+-(NSComparisonResult)compare:(News *)otherObject {
+    return [[self sentDate] compare:[otherObject sentDate]];
+}
+
 @end
 

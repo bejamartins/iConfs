@@ -31,4 +31,8 @@
     return notifID;
 }
 
+-(NSComparisonResult)compare:(Notification *)otherObject {
+    return [[self sentDate] compare:[otherObject sentDate]];
+}
+
 @end

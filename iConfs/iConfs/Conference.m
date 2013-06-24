@@ -154,6 +154,7 @@
 }
 
 -(NSArray*)getNews{
+    [news sortUsingSelector:@selector(compare:)];
     return [self.news copy];
 }
 
@@ -173,6 +174,7 @@
 }
 
 -(NSArray*)getNotifications{
+    [notifications sortUsingSelector:@selector(compare:)];
     return [self.notifications copy];
 }
 
