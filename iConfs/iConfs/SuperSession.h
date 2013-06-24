@@ -117,4 +117,10 @@
  */
 -(NSDictionary*)getAllEventsDicionary;
 
+-(NSString*)getID;
+
+-(NSString*)getTheme;
+
+-(NSComparisonResult)compare:(SuperSession*)otherObject;
+
 @end

@@ -135,6 +135,7 @@
 		A0817F3E1760A8240065E30A /* musepat.jpg in Resources */ = {isa = PBXBuildFile; fileRef = A0817F3B1760A8240065E30A /* musepat.jpg */; };
 		A09DF2F71767783400310266 /* Map.m in Sources */ = {isa = PBXBuildFile; fileRef = A09DF2F61767783300310266 /* Map.m */; };
 		A09DF2FA176784CC00310266 /* Blueprints.m in Sources */ = {isa = PBXBuildFile; fileRef = A09DF2F9176784CB00310266 /* Blueprints.m */; };
+		A0E0F9161777DCBB007093D1 /* CustomizableSuperSession.m in Sources */ = {isa = PBXBuildFile; fileRef = A0E0F9151777DCBB007093D1 /* CustomizableSuperSession.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -344,6 +345,8 @@
 		A09DF2F61767783300310266 /* Map.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Map.m; sourceTree = "<group>"; };
 		A09DF2F8176784CB00310266 /* Blueprints.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Blueprints.h; sourceTree = "<group>"; };
 		A09DF2F9176784CB00310266 /* Blueprints.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Blueprints.m; sourceTree = "<group>"; };
+		A0E0F9141777DCBB007093D1 /* CustomizableSuperSession.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CustomizableSuperSession.h; sourceTree = "<group>"; };
+		A0E0F9151777DCBB007093D1 /* CustomizableSuperSession.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CustomizableSuperSession.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -389,6 +392,8 @@
 				28ADEE1D1760C7FB0059F458 /* IConfs.m */,
 				A02A5534177551EC00723F3B /* SuperSession.h */,
 				A02A5535177551EC00723F3B /* SuperSession.m */,
+				A0E0F9141777DCBB007093D1 /* CustomizableSuperSession.h */,
+				A0E0F9151777DCBB007093D1 /* CustomizableSuperSession.m */,
 				A09DF2F51767783300310266 /* Map.h */,
 				A09DF2F61767783300310266 /* Map.m */,
 				3CD1D56D17720B3900A05BF3 /* MapPlace.h */,
@@ -847,6 +852,7 @@
 				280C7834177244A5008239D7 /* AgendaPreview.m in Sources */,
 				70C2D23D1773BEA900834236 /* AddSessionViewController.m in Sources */,
 				A02A5536177551EC00723F3B /* SuperSession.m in Sources */,
+				A0E0F9161777DCBB007093D1 /* CustomizableSuperSession.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

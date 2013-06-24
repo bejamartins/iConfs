@@ -291,7 +291,7 @@
 
 -(void)setSuperSessions:(NSMutableDictionary*)ss;
 
--(NSMutableDictionary*)getSyperSessions;
+-(NSMutableDictionary*)getSuperSessions;
 
 @end
 

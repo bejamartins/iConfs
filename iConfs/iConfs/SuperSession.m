@@ -19,6 +19,7 @@
     sessionsDic = [[NSMutableDictionary alloc] init];
     workshopsDic = [[NSMutableDictionary alloc] init];
     allEventsDic = [[NSMutableDictionary alloc] init];
+    startDate = [[NSDate alloc] init];
     return self;
 }
 
@@ -107,7 +108,7 @@
         return false;
     }
     else{
-        EventWorkshop* s = [sessionsDic objectForKey:[NSNumber numberWithInteger: workshopID]];
+        EventWorkshop* s = [workshopsDic objectForKey:[NSNumber numberWithInteger: workshopID]];
         [workshops removeObject:s];
         [allEvents removeObject: s];
         [workshopsDic removeObjectForKey:[NSNumber numberWithInteger: workshopID]];
@@ -129,7 +130,7 @@
         return false;
     }
     else{
-        Event* s = [sessionsDic objectForKey:[NSNumber numberWithInteger: eventID]];
+        Event* s = [allEventsDic objectForKey:[NSNumber numberWithInteger: eventID]];
         [allEvents removeObject: s];
         [allEventsDic removeObjectForKey:[NSNumber numberWithInteger: eventID]];
         [allEvents sortUsingSelector:@selector(compare:)];
@@ -157,6 +158,18 @@
 
 -(NSDictionary*)getAllEventsDicionary{
     return allEventsDic;
+}
+
+-(NSString*)getID{
+    return ssID;
+}
+
+-(NSString*)getTheme{
+    return theme;
+}
+
+-(NSComparisonResult)compare:(SuperSession *)otherObject{
+    return [[self getStartDate] compare:[otherObject getStartDate]];
 }
 
 @end

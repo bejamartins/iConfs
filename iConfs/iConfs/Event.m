@@ -98,7 +98,7 @@
 }
 
 -(NSComparisonResult)compare:(Event *)otherObject {
-    return [self.date compare:otherObject.date];
+    return [[self getDate] compare:[otherObject getDate]];
 }
 
 -(BOOL)addSuperSession:(NSString*)superSessionID{

@@ -21,6 +21,7 @@
 #import "EatingArea.h"
 #import "WC.h"
 #import "SuperSession.h"
+#import "CustomizableSuperSession.h"
 
 @interface IConfs : AppDataObject
 {
@@ -31,6 +32,8 @@
     NSMutableDictionary* conferencesDic;
     NSMutableDictionary* allConferencesDic;
     NSMutableArray* addedConfsIDs;
+    NSMutableDictionary* agendaDic;
+    NSDate* agendaStartDate;
 }
 
 //Subscribed conferences
@@ -49,25 +52,72 @@
  */
 -(IConfs*)initiConfs: (NSArray*)aConferences;
 
+
 /**
  Adds a new event to the agenda
  @param event event to add
  @returns true, if event is added, false if it has already been added
  */
--(BOOL)addEventToAgenda:(Event*)event;
+//-(BOOL)addEventToAgenda:(Event*)event;
 
 /**
  Removes the event from the agenda
  @param eventID event ID to remove
  @returns true, if event is deleted, false if is not in the agenda
  */
--(BOOL)removeEventFromAgenda:(int)eventID;
+//-(BOOL)removeEventFromAgenda:(int)eventID;
 
 /**
  Returns the agenda array of events
  @returns array of agenda events
  */
--(NSArray*)getAgenda;
+//-(NSArray*)getAgenda;
+
+
+
+/**
+ Subscribes a SuperSession to the agenda
+ @param ss SuperSession to subscribe
+ @returns true if the SuperSession has been successfully subscribed, false if already had been subscribed
+ */
+-(BOOL)subscribeSuperSessionInAgenda: (SuperSession*)ss;
+
+/**
+ Gets all the SuperSessions subscribed ordered by start date
+ @returns SuperSessions subscribed ordered by start date
+ */
+-(NSArray*)getAgendaOrderedByDate;
+
+/**
+ Gets a dictionary with all the subscribed SuperSessions indexed by ID
+ @returns dictionary with all the subscribed SuperSessions indexed by ID
+ */
+-(NSDictionary*)getAgendaDicionary;
+
+/**
+ Unsubscribes a SuperSession in the agenda
+ @param superSeessionID SuperSession ID to unsubscribe
+ @returns true if the SuperSession has been successfully unsubscribed, false if has not been subscribed
+ */
+-(BOOL)unsubscribeSuperSessionInAgenda:(NSString*)superSessionID;
+
+/**
+ Gets the starting date (and time) of the user agenda, i.e.: the starting date of the first SuperSession subscribed
+ @returns the starting date (and time) of the agenda
+ */
+-(NSDate*)getAgendaStartDate;
+
+/**
+ Returns the list of all available SuperSessions to subscribe
+ @returns list of available SuperSessions for the user to subscribe
+ */
+-(NSArray*)getAvailableSuperSessions;
+
+/**
+ Returns the list of unsubscribed SuperSessions
+ @returns list of unsubscribed SuperSessions by the user
+ */
+-(NSArray*)getUnsubscribedSuperSessions;
 
 /**
  Returns all conferences

@@ -371,7 +371,7 @@
     supersessions = ss;
 }
 
--(NSMutableDictionary*)getSyperSessions{
+-(NSMutableDictionary*)getSuperSessions{
     return supersessions;
 }
 
