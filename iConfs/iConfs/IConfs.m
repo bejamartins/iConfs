@@ -366,6 +366,9 @@
         current = [self jsonToConference:[tmpConfs objectAtIndex:i]];
         [conferences addObject:current];
         [addedConfsIDs addObject:[current getID]];
+        
+        //agenda here, not totally TODO: this load agenda must pass the NSDictionary to a variable
+        [self loadAgenda:[tmpConfs objectAtIndex:i]];
     }
 }
 
@@ -1084,6 +1087,27 @@
         }
     }
     
+}
+
+
+//saves an NSDictionary to the file agenda.info inside de folder of the correspondent conference
+-(void)saveAgenda:(NSDictionary*)sessions : (NSString*)confID{
+    NSString* savePath=[NSString stringWithFormat:@"%@%@%@%@",[NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES)objectAtIndex:0],@"/",confID,@"/agenda.info"];
+
+    [sessions writeToFile:savePath atomically:YES];
+
+
+}
+
+//loads an NSDictionary from the file agenda.info inside de folder of the correspondent conference
+-(NSDictionary*)loadAgenda:(NSString*)confID{
+    NSString* loadPath=[NSString stringWithFormat:@"%@%@%@%@",[NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES)objectAtIndex:0],@"/",confID,@"/agenda.info"];
+
+    NSDictionary* sessions=[NSDictionary dictionaryWithContentsOfFile:loadPath];
+    if(sessions==nil){//no file or could not retrieve then create new one
+        [[NSDictionary new] writeToFile:loadPath atomically:YES];
+    }
+    return sessions;
 }
 
 
