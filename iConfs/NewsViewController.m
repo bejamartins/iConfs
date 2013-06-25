@@ -36,7 +36,6 @@
 {
     ic=[(MenuViewController*)[[self slidingViewController] underLeftViewController] appData];
     myConfs=[ic getMyConferences];
-    
     [collection setDataSource:self];
     [collection setDelegate:self];
     
