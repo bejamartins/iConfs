@@ -68,11 +68,12 @@
     
     
     /*[theAppData fetchConferences];
-    [theAppData addConferenceWithID:@"c001"];
+    [theAppData addConferenceWithID:@"c002"];
     Conference* c = ((Conference*)[theAppData getMyConferences][0]);
-    [theAppData subscribeSuperSessionInAgenda: ((SuperSession*)[[c getSuperSessions]allValues][0]) Conference:@"c001"];
+    NSLog(@"This is it: %@", [((SuperSession*)[[c getSuperSessions] allValues][0]) getTheme]);
+    [theAppData subscribeSuperSessionInAgenda: ((SuperSession*)[[c getSuperSessions]allValues][0]) Conference:@"c002"];
     [theAppData getUnsubscribedSuperSessions];
-    NSArray* s = [theAppData getUnsubscribedSuperSessionsByConferenceOrderedByDate:@"c001"];
+    NSArray* s = [theAppData getUnsubscribedSuperSessionsByConferenceOrderedByDate:@"c002"];
     SuperSession* ss = ((SuperSession*)s[0]);*/
 }
 
