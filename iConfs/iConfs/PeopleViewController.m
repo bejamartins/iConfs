@@ -15,6 +15,7 @@
 #import "Speaker.h"
 #import "PDFReader.h"
 
+
 @interface PeopleViewController ()
 {
     NSArray *confPeople;
@@ -50,6 +51,8 @@
 
 - (IBAction)openPDF:(id)sender {
     
+    if(![pdfPreview isHidden]){
+    
     NSString *iD = @"PDFReader";
     PDFReader *newTopViewController = [[self storyboard]instantiateViewControllerWithIdentifier:iD];
         [newTopViewController changePath:paperPath];
@@ -60,7 +63,7 @@
     CGRect frame = [[[[self slidingViewController] topViewController] view] frame];
     [[self slidingViewController] setTopViewController:newTopViewController];
     [[[[self slidingViewController] topViewController] view] setFrame:frame];
-    
+    }
 //  PDFReader *reader = (PDFReader*)[[self slidingViewController] topViewController];
 //    [reader changePath:paperPath];
 
@@ -221,7 +224,8 @@
         [BIO setHidden:NO];
         [sessionView setHidden:YES];
         [pdfPreview setHidden:YES];
-        
+        [BIO setText:@"Bio"];
+
         
         NSArray *Events=[s getEventList];
         
@@ -301,15 +305,18 @@
 
     }
     
-    else{
+    else     if ([[confPeople objectAtIndex:indexPath.row] isKindOfClass:[Organizer class]]) {
         
         Organizer *o =[confPeople objectAtIndex:indexPath.row];
         [pdfPreview setHidden:YES];
         [sessionView setHidden:YES];
         [toolbarAgenda setHidden:YES];
+        [BIO setHidden:NO];
 
+        [speakerBio setHidden:NO];
+        [BIO setText:@"Job Title"];
+       [ speakerBio setText:[o getJob]];
 
-    
     }
     
     Person  *p= [confPeople objectAtIndex:indexPath.row];
