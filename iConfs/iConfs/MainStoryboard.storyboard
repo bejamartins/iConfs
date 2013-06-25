@@ -2884,7 +2884,7 @@
                     <connections>
                         <outlet property="AuthorsTable" destination="8jR-fm-1V0" id="UUG-6H-lVq"/>
                         <outlet property="abstract" destination="iru-Yc-5FW" id="5hf-Ov-sDl"/>
-                        <outlet property="collection" destination="z2M-yS-Fvj" id="H0A-9s-IYr"/>
+                        <outlet property="collection" destination="z2M-yS-Fvj" id="TJQ-zU-fOu"/>
                         <outlet property="searchBar" destination="loB-ub-bZP" id="IoY-qH-oQW"/>
                         <outlet property="sessionsTable" destination="Kcq-Ls-Hai" id="wiw-Z7-orF"/>
                     </connections>

@@ -26,7 +26,7 @@
     NSArray *autores;
     NSMutableArray *searchSessions;
     BOOL searchItem;
-
+    int ssIndex;
     
 }
 
@@ -54,6 +54,9 @@
     [self.AuthorsTable setDelegate:self];
     [self.sessionsTable setDelegate:self];
     [[self searchBar]setDelegate:self];
+    [self.collection setDataSource:self];
+    [self.collection setDelegate:self];
+
     searchItem = NO;
 
    
@@ -71,19 +74,23 @@
 
         conf=[(MenuViewController*)[[self slidingViewController] underLeftViewController] selectedConf];
     
-    sessions=[selectedSuperSession getSessionsOrderedByDate];
     
     superSessions=[[conf getSuperSessions]allValues];
 
         //selecciona a 1ª Supersessao por defeito
     if(selectedSession==nil){
 
- 
-        selectedSuperSession = [superSessions objectAtIndex:0];
+        superSessions=[[conf getSuperSessions]allValues];
+        
+        ssIndex=0;
+        selectedSuperSession = [superSessions objectAtIndex:ssIndex];
+
+        sessions=[selectedSuperSession getSessionsOrderedByDate];
+
         
         //escolhe por defeito a sessão
         
-        selectedSession =[[selectedSuperSession getSessionsOrderedByDate]objectAtIndex:0];
+  //      selectedSession =[[selectedSuperSession getSessionsOrderedByDate]objectAtIndex:0];
       //  [[selectedSuperSession getSessionsOrderedByDate]objectAtIndex:0];
     
         //adicionar abstract e autores
@@ -202,8 +209,9 @@
   //  selectedSS
   //  nonSelectedSS
     static NSString *CellIdentifier;
-    if([[superSessions objectAtIndex:indexPath.item]isEqual:selectedSuperSession]){
+    if(indexPath.item==ssIndex){
     CellIdentifier=@"selectedSS";
+        
     }
     else{
         CellIdentifier=@"nonSelectedSS";
@@ -211,9 +219,10 @@
     }
     
     SScell *cell= [collectionView dequeueReusableCellWithReuseIdentifier:CellIdentifier forIndexPath:indexPath];
-    
-    [[cell sessionName] setText:[superSessions objectAtIndex:indexPath.item]];
-    
+    SuperSession *ss=[superSessions objectAtIndex:indexPath.item];
+    [[cell sessionName] setText:[ss getTheme]];
+    NSString *x =[ss getTheme];
+    NSLog(@"Theme da sessão: %@",x);
 //    NSArray *keys = [self.blueprints allKeys];
 //    NSString *key = [keys objectAtIndex:indexPath.item];
 //    // NSLog(@"Vou buscar o 1º Mapa! :D item=%d",indexPath.item );
