@@ -116,7 +116,7 @@
 
 
 -(BOOL)subscribeSuperSessionInAgenda: (SuperSession*)ss Conference: (NSString*)cID{
-    if([agendaDic objectForKey:[ss getID]] != nil){
+    if([agendaDic valueForKey:[ss getID]] != nil){
         return false;
     }
     else{
@@ -150,11 +150,11 @@
 }
 
 -(BOOL)unsubscribeSuperSessionInAgenda:(NSString*)superSessionID{
-    if([agendaDic objectForKey: superSessionID] == nil){
+    if([agendaDic valueForKey: superSessionID] == nil){
         return false;
     }
     else{
-        CustomizableSuperSession* s = [agendaDic objectForKey:superSessionID];
+        CustomizableSuperSession* s = [agendaDic valueForKey:superSessionID];
         [agenda removeObject: s];
         [agendaDic removeObjectForKey:superSessionID];
         [agenda sortUsingSelector:@selector(compare:)];
@@ -213,8 +213,8 @@
     if (value)
     {
         NSMutableArray* ids = [[NSMutableArray alloc] init];
-        for (int i =0; i<[((NSArray*)[agendaDicByConf objectForKey:cID])count]; i++) {
-            [ids addObject:[((CustomizableSuperSession*)((NSArray*)[agendaDicByConf objectForKey:cID])[i])getID]];
+        for (int i =0; i<[((NSArray*)[agendaDicByConf valueForKey:cID])count]; i++) {
+            [ids addObject:[((CustomizableSuperSession*)((NSArray*)[agendaDicByConf valueForKey:cID])[i])getID]];
         }
         for (int i=0; i<[ids count]; i++) {
             [self unsubscribeSuperSessionInAgenda:ids[i]];
@@ -255,7 +255,7 @@
     NSArray* availableSS = [self getAvailableSuperSessions];
     for (int i=0; i<[availableSS count]; i++) {
         a = [(SuperSession*)[availableSS objectAtIndex:i] getID];
-        if([agendaDic objectForKey:a] == nil){
+        if([agendaDic valueForKey:a] == nil){
             [ret addObject: [availableSS objectAtIndex:i]];
         }
     }
@@ -605,14 +605,14 @@
             [papers setObject:papersList forKey:[((NSDictionary*)papersR[i]) valueForKey:@"IDPerson"]];
         }
         else{
-            [[papers objectForKey:[((NSDictionary*)papersR[i]) valueForKey:@"IDPerson"]] addObject: pp];
+            [[papers valueForKey:[((NSDictionary*)papersR[i]) valueForKey:@"IDPerson"]] addObject: pp];
             
             //[[papers objectForKey:[papersR[i] valueForKey:@"IDPerson"]] addObject: papersR[i]];
         }
     }
     
     //more people to papers
-    NSArray* paperPeople = [raw objectForKey:@"paperPeople"];
+    NSArray* paperPeople = [raw valueForKey:@"paperPeople"];
     for (int i =0; i<[paperPeople count]; i++) {
         [((Paper*)[papersByID valueForKey:[paperPeople[i] valueForKey:@"IDPaper"]]) addAuthor:[paperPeople[i] valueForKey:@"IDPerson"]];
         
@@ -622,7 +622,7 @@
             [papers setObject:papersList forKey:[paperPeople[i] valueForKey:@"IDPerson"]];
         }
         else{
-            [[papers objectForKey:[paperPeople[i] valueForKey:@"IDPerson"]] addObject: [papersByID valueForKey:[paperPeople[i] valueForKey:@"IDPaper"]]];
+            [[papers valueForKey:[paperPeople[i] valueForKey:@"IDPerson"]] addObject: [papersByID valueForKey:[paperPeople[i] valueForKey:@"IDPaper"]]];
             
             //[[papers objectForKey:[papersR[i] valueForKey:@"IDPerson"]] addObject: papersR[i]];
         }
@@ -677,7 +677,7 @@
             [places1 setObject:placesList forKey:[((NSDictionary*)plp[i]) valueForKey:@"IDPlant"]];
         }
         else{
-            [[places1 objectForKey:[((NSDictionary*)plp[i]) valueForKey:@"IDPlant"]] addObject: plp[i]];
+            [[places1 valueForKey:[((NSDictionary*)plp[i]) valueForKey:@"IDPlant"]] addObject: plp[i]];
         }
     }
     for (int i=0; i<[bp count]; i++) {
@@ -804,13 +804,13 @@
     for (int i = 0; i<[sess count]; i++) {
         if(![[sess[i] valueForKey:@"Speaker"] isEqual:@""]){
             parsedIDAUX = [[[sess[i] valueForKey:@"Speaker"]componentsSeparatedByString:@"p"] objectAtIndex: 1];
-            speakerAux = [speakers objectForKey:parsedIDAUX];
+            speakerAux = [speakers valueForKey:parsedIDAUX];
         }else{
             speakerAux = NULL;
         }
         if(![[sess[i] valueForKey:@"Author"] isEqual:@""]){
             parsedIDAUX = [[[sess[i] valueForKey:@"Author"]componentsSeparatedByString:@"p"] objectAtIndex: 1];
-            authorAux = [speakers objectForKey:parsedIDAUX];
+            authorAux = [speakers valueForKey:parsedIDAUX];
         }else{
             authorAux = NULL;
         }
@@ -907,7 +907,7 @@
 
 //saves conf from NSDictionary to the documents folder with name confID.json
 -(BOOL)saveConf:(NSDictionary*)conf : (NSData*)confData{
-    NSString* savePath=[NSString stringWithFormat:@"%@%@%@%@",[NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES)objectAtIndex:0],@"/",[[[conf objectForKey:@"conf"]valueForKey:@"ID"]objectAtIndex:0],@".json"];
+    NSString* savePath=[NSString stringWithFormat:@"%@%@%@%@",[NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES)objectAtIndex:0],@"/",[[[conf valueForKey:@"conf"]valueForKey:@"ID"]objectAtIndex:0],@".json"];
     //guarda conf
     [confData writeToFile:savePath atomically:YES];
     
