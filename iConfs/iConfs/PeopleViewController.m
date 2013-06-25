@@ -51,6 +51,8 @@
 
 - (IBAction)openPDF:(id)sender {
     
+    if(![pdfPreview isHidden]){
+    
     NSString *iD = @"PDFReader";
     PDFReader *newTopViewController = [[self storyboard]instantiateViewControllerWithIdentifier:iD];
         [newTopViewController changePath:paperPath];
@@ -61,7 +63,7 @@
     CGRect frame = [[[[self slidingViewController] topViewController] view] frame];
     [[self slidingViewController] setTopViewController:newTopViewController];
     [[[[self slidingViewController] topViewController] view] setFrame:frame];
-    
+    }
 //  PDFReader *reader = (PDFReader*)[[self slidingViewController] topViewController];
 //    [reader changePath:paperPath];
 
