@@ -65,6 +65,16 @@
     [[self slidingViewController] setUnderLeftWidthLayout:ECFullWidth];
     
     showMenuConf = NO;
+    
+    
+    /*[theAppData fetchConferences];
+    [theAppData addConferenceWithID:@"c002"];
+    Conference* c = ((Conference*)[theAppData getMyConferences][0]);
+    NSLog(@"This is it: %@", [((SuperSession*)[[c getSuperSessions] allValues][0]) getTheme]);
+    [theAppData subscribeSuperSessionInAgenda: ((SuperSession*)[[c getSuperSessions]allValues][0]) Conference:@"c002"];
+    [theAppData getUnsubscribedSuperSessions];
+    NSArray* s = [theAppData getUnsubscribedSuperSessionsByConferenceOrderedByDate:@"c002"];
+    SuperSession* ss = ((SuperSession*)s[0]);*/
 }
 
 - (void)didReceiveMemoryWarning

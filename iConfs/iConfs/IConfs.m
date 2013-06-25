@@ -116,7 +116,8 @@
 
 
 -(BOOL)subscribeSuperSessionInAgenda: (SuperSession*)ss Conference: (NSString*)cID{
-    if([agendaDic valueForKey:[ss getID]] != nil){
+    //if([agendaDic valueForKey:[ss getID]] != nil){
+    if([agendaDic objectForKey:[ss getID]] != nil){
         return false;
     }
     else{
@@ -640,7 +641,7 @@
     SuperSession* supers;
     for(int i = 0; i<[ss count]; i++){
         supers = [[SuperSession alloc]init];
-        supers =[supers initWithData:[ss valueForKey:@"ID"] theme:@"" /*TODO on server*/];
+        supers =[supers initWithData:[ss valueForKey:@"ID"] theme:[ss valueForKey:@"Name"] /*TODO on server*/];
         [supersessions setValue:supers forKey:[ss valueForKey:@"ID"]];
         //[supersessions setObject:supers forKey:[ss objectForKey:@"ID"]];
     }
