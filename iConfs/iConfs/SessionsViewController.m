@@ -85,6 +85,7 @@
         ssIndex=0;
         selectedSuperSession = [superSessions objectAtIndex:ssIndex];
 
+        NSLog(@"---tema da sessao: %@", [selectedSuperSession getTheme]);
         sessions=[selectedSuperSession getSessionsOrderedByDate];
 
         
@@ -152,7 +153,7 @@
 	// Do any additional setup after loading the view.
 }
 
--(NSInteger)numberOfSectionsInCollectionView:(UICollectionView *)collectionView{
+-(NSInteger)numberOfSectionsInCollectionView:(UIsCollectionView *)collectionView{
     return 1;
 
 }
