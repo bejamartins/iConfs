@@ -83,7 +83,7 @@
         
         //escolhe por defeito a sessão
         
-      //  selectedSession =[[selectedSuperSession getSessionsOrderedByDate]objectAtIndex:0];
+        selectedSession =[[selectedSuperSession getSessionsOrderedByDate]objectAtIndex:0];
       //  [[selectedSuperSession getSessionsOrderedByDate]objectAtIndex:0];
     
         //adicionar abstract e autores
