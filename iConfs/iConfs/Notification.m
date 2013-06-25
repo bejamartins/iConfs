@@ -35,4 +35,12 @@
     return [[self sentDate] compare:[otherObject sentDate]];
 }
 
+-(void)setConfID:(NSString*)cID{
+    confID = cID;
+}
+
+-(NSString*)getConfID{
+    return confID;
+}
+
 @end

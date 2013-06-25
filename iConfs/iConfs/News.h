@@ -16,6 +16,7 @@
     NSString* title;
     NSString* text;
     NSDate* sentDate;
+    NSString* confID;
 }
 
 //News title
@@ -57,6 +58,10 @@
 -(NSString*)getID;
 
 -(NSComparisonResult)compare:(News *)otherObject;
+
+-(void)setConfID:(NSString*)cID;
+
+-(NSString*)getConfID;
 
 @end
 

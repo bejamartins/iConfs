@@ -13,6 +13,7 @@
     NSString* text;
     NSDate* sentDate;
     NSString* notifID;
+    NSString* confID;
 }
 
 
@@ -53,6 +54,10 @@
 -(NSDate*)getDate;
 
 -(NSComparisonResult)compare:(Notification *)otherObject;
+
+-(void)setConfID:(NSString*)cID;
+
+-(NSString*)getConfID;
 
 
 @end

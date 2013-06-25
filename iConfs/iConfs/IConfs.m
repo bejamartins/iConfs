@@ -743,10 +743,12 @@
         if([[notif[i] valueForKey:@"Highlight"] isEqualToString: @"0"]){
             n = [n initWithData: [notif[i] valueForKey:@"ID"] title:[notif[i] valueForKey:@"Title"] text: [notif[i] valueForKey:@"Description"] date: (NSDate*)[notif[i] valueForKey:@"TimeStamp"]];
             //[notifications addObject: n];
+            [n setConfID: [notif valueForKey:@"IDConf"]];
             [conf addNotification:n];
         }
         else{
             nw = [nw initWithData: [notif[i] valueForKey:@"ID"] title:[notif[i] valueForKey:@"Title"] text: [notif[i] valueForKey:@"Description"] date:(NSDate*)[notif[i] valueForKey:@"TimeStamp"]];
+            [nw setConfID: [notif valueForKey:@"IDConf"]];
             [conf addNews:nw];
         }
         
