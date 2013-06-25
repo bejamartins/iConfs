@@ -83,12 +83,12 @@
         
         //escolhe por defeito a sessão
         
-        selectedSession =[[selectedSuperSession getSessionsOrderedByDate]objectAtIndex:0];
-        
+      //  selectedSession =[[selectedSuperSession getSessionsOrderedByDate]objectAtIndex:0];
+      //  [[selectedSuperSession getSessionsOrderedByDate]objectAtIndex:0];
     
         //adicionar abstract e autores
     
-        [abstract setText:[selectedSession getTheme]];
+    //    [abstract setText:[selectedSession getTheme]];
         
     }
     
@@ -99,8 +99,8 @@
     
     }
     //mudar
-    autores=[selectedSession getAuthor];
-    [abstract setText:[selectedSession getTheme]];
+   // autores=[selectedSession getAuthor];
+  //  [abstract setText:[selectedSession getTheme]];
 
     
     [[[self view] layer] setShadowOpacity:0.75f];

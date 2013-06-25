@@ -102,8 +102,8 @@
     pictures=[[NSMutableArray alloc] init];
 
 
-  //  IConfs *ic=[(MenuViewController*)[[self slidingViewController] underLeftViewController] appData];
-   // NSArray *myConfs=[ic getMyConferences];
+   // IConfs *ic=[(MenuViewController*)[[self slidingViewController] underLeftViewController] appData];
+   //NSArray *myConfs=[ic getMyConferences];
     for(int i=0;i<[myConfs count];i++){
      
         
