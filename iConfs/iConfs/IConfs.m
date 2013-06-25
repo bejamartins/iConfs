@@ -596,7 +596,7 @@
     for(int i = 0; i<[papersR count]; i++){
         pp = [[Paper alloc] init];
         auth = [[NSMutableArray alloc] init];
-        [auth addObject:[papersR[i] valueForKey:@"IDPerson"]];
+        //[auth addObject:[papersR[i] valueForKey:@"IDPerson"]];
         pp = [pp initWithData: [[[[papersR[i] valueForKey:@"ID"]componentsSeparatedByString:@"p"] objectAtIndex: 1]intValue] title:NULL /*falta titulo*/ authors: auth abstract:NULL link:[papersR[i] valueForKey:@"PaperPath"]];
         [pp setSession:[papersR[i] valueForKey:@"IDSession"]];
         [papersByID setObject:pp forKey:[papersR[i] valueForKey:@"ID"]];
