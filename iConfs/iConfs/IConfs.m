@@ -544,7 +544,7 @@
         [addedConfsIDs addObject:[current getID]];
         
         //agenda here, not totally TODO: this load agenda must pass the NSDictionary to a variable
-        [agendaDic setObject:[self loadAgenda:[tmpConfs objectAtIndex:i]] forKey:[tmpConfs objectAtIndex:i]];
+        [agendaDic setValue:[self loadAgenda:[tmpConfs objectAtIndex:i]] forKey:[tmpConfs objectAtIndex:i]];
     }
 }
 
@@ -640,8 +640,9 @@
     SuperSession* supers;
     for(int i = 0; i<[ss count]; i++){
         supers = [[SuperSession alloc]init];
-    //    supers =[supers initWithData:[ss objectForKey:@"ID"] theme:NULL /*TODO on server*/];
-   //     [supersessions setObject:supers forKey:[ss objectForKey:@"ID"]];
+        supers =[supers initWithData:[ss valueForKey:@"ID"] theme:@"" /*TODO on server*/];
+        [supersessions setValue:supers forKey:[ss valueForKey:@"ID"]];
+        //[supersessions setObject:supers forKey:[ss objectForKey:@"ID"]];
     }
 
     
