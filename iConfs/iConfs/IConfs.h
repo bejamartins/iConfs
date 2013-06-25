@@ -202,4 +202,7 @@
 -(void)bootableConfs;
 -(UIImage*)loadImageFromDrive:(NSString*)confID : (NSString*)imagePath;
 
+-(NSArray*)getAllNewsOrderedByDate;
+-(NSArray*)getAllNotifOrderedByDate;
+
 @end

@@ -1335,5 +1335,22 @@
 }
 
 
+-(NSArray*)getAllNewsOrderedByDate{
+    NSMutableArray* ret = [[NSMutableArray alloc] init];
+    for (int i=0; i <[conferences count]; i++) {
+        [ret addObjectsFromArray:[((Conference*) conferences[i]) getNews]];
+    }
+    [ret sortUsingSelector:@selector(compare:)];
+    return ret;
+}
+-(NSArray*)getAllNotifOrderedByDate{
+    NSMutableArray* ret = [[NSMutableArray alloc] init];
+    for (int i=0; i <[conferences count]; i++) {
+        [ret addObjectsFromArray:[((Conference*) conferences[i]) getNotifications]];
+    }
+    [ret sortUsingSelector:@selector(compare:)];
+    return ret;
+}
+
 
 @end
