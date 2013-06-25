@@ -636,13 +636,13 @@
     //[paperPath addObject:[[[json valueForKey:@"paper"] objectAtIndex:i] valueForKey:@"PaperPath"]];
     
     //SuperSessions
-    NSDictionary* ss = [raw valueForKey:@"superSession"];
+    NSArray* ss = [raw valueForKey:@"superSession"];
     supersessions = [[NSMutableDictionary alloc]init];
     SuperSession* supers;
     for(int i = 0; i<[ss count]; i++){
         supers = [[SuperSession alloc]init];
-        supers =[supers initWithData:[ss valueForKey:@"ID"] theme:[ss valueForKey:@"Name"] /*TODO on server*/];
-        [supersessions setValue:supers forKey:[ss valueForKey:@"ID"]];
+        supers =[supers initWithData:[ss[i] valueForKey:@"ID"] theme:[ss[i] valueForKey:@"Name"] /*TODO on server*/];
+        [supersessions setValue:supers forKey:[ss[i] valueForKey:@"ID"]];
         //[supersessions setObject:supers forKey:[ss objectForKey:@"ID"]];
     }
 
