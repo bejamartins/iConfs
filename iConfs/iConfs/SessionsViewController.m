@@ -70,7 +70,9 @@
 
 
         conf=[(MenuViewController*)[[self slidingViewController] underLeftViewController] selectedConf];
+    
     sessions=[selectedSuperSession getSessionsOrderedByDate];
+    
     superSessions=[[conf getSuperSessions]allValues];
 
         //selecciona a 1ª Supersessao por defeito
@@ -93,7 +95,7 @@
     //se foi dada uma sessão para dar detalhes.
     else{
     
-        selectedSuperSession=[selectedSession getS]; //MUDAR
+        //selectedSuperSession=[selectedSession  getS]; //MUDAR
     
     }
     //mudar
