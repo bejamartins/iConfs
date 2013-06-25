@@ -116,7 +116,8 @@
 
 
 -(BOOL)subscribeSuperSessionInAgenda: (SuperSession*)ss Conference: (NSString*)cID{
-    if([agendaDic valueForKey:[ss getID]] != nil){
+    //if([agendaDic valueForKey:[ss getID]] != nil){
+    if([agendaDic objectForKey:[ss getID]] != nil){
         return false;
     }
     else{
