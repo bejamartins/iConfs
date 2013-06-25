@@ -3059,6 +3059,7 @@
         <class className="NewsViewController" superclassName="UIViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/NewsViewController.h"/>
             <relationships>
+                <relationship kind="action" name="revealMenu:"/>
                 <relationship kind="action" name="segmentedChanged:"/>
                 <relationship kind="outlet" name="collection" candidateClass="UICollectionView"/>
                 <relationship kind="outlet" name="segmentedControl" candidateClass="UISegmentedControl"/>
@@ -3150,8 +3151,6 @@
         <class className="SessionsViewController" superclassName="UIViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/SessionsViewController.h"/>
             <relationships>
-                <relationship kind="action" name="goHome:"/>
-                <relationship kind="action" name="goToConferenceHome:"/>
                 <relationship kind="action" name="openPaper:"/>
                 <relationship kind="outlet" name="AuthorsTable" candidateClass="UITableView"/>
                 <relationship kind="outlet" name="abstract" candidateClass="UILabel"/>
