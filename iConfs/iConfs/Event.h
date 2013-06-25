@@ -23,6 +23,7 @@
     NSString* placeID;
     NSDate* eventEnd;
     NSMutableArray* supersessions;
+    //NSString* supersessionID;
 }
 
 //Date and time of the event
