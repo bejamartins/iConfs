@@ -20,6 +20,8 @@
     NSArray *notifications;
     NSMutableArray *newsToShow;
     int currentNewsIndex;
+      MenuViewController *menu;
+
 
 
     
@@ -57,6 +59,9 @@
     if(conf==nil){
         conf=[(MenuViewController*)[[self slidingViewController] underLeftViewController] selectedConf];
         
+        
+          menu=(MenuViewController*)[[self slidingViewController] underLeftViewController] ;
+
         
         newsToShow=[[NSMutableArray alloc] init];
 
@@ -261,6 +266,7 @@
 }
 - (IBAction)goHome:(id)sender{
     
+    
     NSString *iD = @"Home";
     
     UIViewController *newTopViewController = [[self storyboard]instantiateViewControllerWithIdentifier:iD];
@@ -270,9 +276,10 @@
     [[self slidingViewController] setTopViewController:newTopViewController];
     [[[[self slidingViewController] topViewController] view] setFrame:frame];
     
-    [(MenuViewController*)[[self slidingViewController] underLeftViewController] setSelectedConf:nil];
-    [[(MenuViewController*)[[self slidingViewController] underLeftViewController] MenuView ] reloadData];
-
+    
+    
+    [menu setSelectedConf:nil];
+    [[menu MenuView ]reloadData];
 }
 
 

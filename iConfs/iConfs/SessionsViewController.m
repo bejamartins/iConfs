@@ -27,6 +27,7 @@
     NSMutableArray *searchSessions;
     BOOL searchItem;
     int ssIndex;
+    MenuViewController *menu;
     
 }
 
@@ -73,7 +74,7 @@
 
 
         conf=[(MenuViewController*)[[self slidingViewController] underLeftViewController] selectedConf];
-    
+    menu=(MenuViewController*)[[self slidingViewController] underLeftViewController] ;
     
     superSessions=[[conf getSuperSessions]allValues];
 
@@ -294,6 +295,9 @@
 
 - (IBAction)goHome:(id)sender{
     
+  //  menu=(MenuViewController*)[[self slidingViewController] underLeftViewController] ;
+
+    
     NSString *iD = @"Home";
     
     UIViewController *newTopViewController = [[self storyboard]instantiateViewControllerWithIdentifier:iD];
@@ -302,20 +306,11 @@
     CGRect frame = [[[[self slidingViewController] topViewController] view] frame];
     [[self slidingViewController] setTopViewController:newTopViewController];
     [[[[self slidingViewController] topViewController] view] setFrame:frame];
-    Conference *c=[(MenuViewController*)[[self slidingViewController] underLeftViewController] selectedConf];
 
     
-    NSArray *confis=[(MenuViewController*)[[self slidingViewController] underLeftViewController] selectedConf];
 
-    [(MenuViewController*)[[self slidingViewController] underLeftViewController] setSelectedConf:nil];
-    [[(MenuViewController*)[[self slidingViewController] underLeftViewController] MenuView]reloadData];
-
-
-    
- //   [ (MenuViewController*)[[self slidingViewController] underLeftViewController]setSelectedConf:nil];
-  //  [(MenuViewController*)[[self slidingViewController] underLeftViewController]setShowMenuConf:NO];
-//    [[(MenuViewController*)[[self slidingViewController] underLeftViewController] MenuView]reloadData];
-    
+    [menu setSelectedConf:nil];
+    [[menu MenuView ]reloadData];
 }
 
 
