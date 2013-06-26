@@ -205,4 +205,6 @@
 -(NSArray*)getAllNewsOrderedByDate;
 -(NSArray*)getAllNotifOrderedByDate;
 
+-(Conference*)getConferenceWithID:(NSString*)cID;
+
 @end
