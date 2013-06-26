@@ -164,7 +164,7 @@ static const unsigned int TOP_BACKGROUND_HEIGHT               = 35;
 
 @synthesize labelFontSize=_labelFontSize;
 @synthesize delegate=_delegate;
-@synthesize eventDraggingEnabled;
+@synthesize eventDraggingEnabled, startDate, conflict;
 
 - (id)initWithFrame:(CGRect)frame {
     if (self = [super initWithFrame:frame]) {
@@ -183,7 +183,8 @@ static const unsigned int TOP_BACKGROUND_HEIGHT               = 35;
 - (void)setupCustomInitialisation {
 	self.labelFontSize = DEFAULT_LABEL_FONT_SIZE;
 	self.eventDraggingEnabled = NO;
-	self.week = [NSDate date];
+	self.week = startDate;
+    [self setConflict:NO];
     
 	[self addSubview:self.topBackground];
 	[self addSubview:self.leftArrow];
@@ -355,7 +356,7 @@ static const unsigned int TOP_BACKGROUND_HEIGHT               = 35;
 		_gridView.horizontalLines = YES;
 		_gridView.lineColor       = [UIColor lightGrayColor];
 		_gridView.lineWidth       = 1;
-        _gridView.isRemoving = NO;
+        _gridView.isEditing = NO;
 	}
 	return _gridView;
 }
@@ -463,6 +464,7 @@ static const unsigned int TOP_BACKGROUND_HEIGHT               = 35;
                 } else {
                     int count = 1;
                     MAEvent *e;
+                    NSMutableArray *sameTimeEvents = [[NSMutableArray alloc] initWithObjects:event, nil];
                     
                     for (; (count + i) < [events count]; count++) {
                         e = [events objectAtIndex:count + i];
@@ -472,14 +474,42 @@ static const unsigned int TOP_BACKGROUND_HEIGHT               = 35;
                         if (!(([eventStart compare:[event start]] == NSOrderedDescending || [eventStart compare:[event start]] == NSOrderedSame) && [eventStart compare:[event end]] == NSOrderedAscending)) {
                             break;
                         }
+                        
+                        [sameTimeEvents addObject:e];
                     }
                     
-                    [self.gridView addEventToOffset:d event:event weekView:self sameTimeEvents:count whichSame:0];
+                    [sameTimeEvents removeObject:event];
+                    [event setSameTimeEvents:sameTimeEvents];
+                    [sameTimeEvents addObject:event];
+                    
+                    if ([event checked]){
+                        for (id e in [event sameTimeEvents]) {
+                            if ([e checked]) {
+                                [event setBackgroundColor:[UIColor redColor]];
+                                [self setConflict:YES];
+                            }
+                        }
+                    }
+                    
+                    [self.gridView addEventToOffset:d event:event weekView:self sameTimeEvents:[sameTimeEvents count] whichSame:0];
                     
                     for (int y = 1; y < count; y++) {
                         
                         e = [events objectAtIndex:y + i];
-                        [self.gridView addEventToOffset:d event:e weekView:self sameTimeEvents:count whichSame:y];
+                        
+                        [sameTimeEvents removeObject:e];
+                        [e setSameTimeEvents:sameTimeEvents];
+                        [sameTimeEvents addObject:e];
+                        
+                        if ([e checked]){
+                            for (id anotherEvent in [e sameTimeEvents]) {
+                                if ([anotherEvent checked]) {
+                                    [e setBackgroundColor:[UIColor redColor]];
+                                }
+                            }
+                        }
+                        
+                        [self.gridView addEventToOffset:d event:e weekView:self sameTimeEvents:[sameTimeEvents count] whichSame:y];
                         
                     }
                     
@@ -551,12 +581,12 @@ static const unsigned int TOP_BACKGROUND_HEIGHT               = 35;
 			[components week]];
 }
 
-- (void)isRemoving{
-    [[self gridView] setIsRemoving:YES];
+- (void)isEditing{
+    [[self gridView] setIsEditing:YES];
 }
 
-- (void)doneRemoving{
-    [[self gridView] setIsRemoving:NO];
+- (void)doneEditing{
+    [[self gridView] setIsEditing:NO];
 }
 
 - (NSArray*)getWeekDays{
@@ -619,19 +649,16 @@ static NSString const * const HOURS_24[] = {
 
 @implementation MAGridView (MAWeekViewAdditions)
 
-- (void)addEventToOffset:(unsigned int)offset event:(MAEvent *)event weekView:(MAWeekView *)weekView sameTimeEvents:(int)numOfSame whichSame:(int)whichNumber {
+- (void)addEventToOffset:(unsigned int)offset event:(MAEvent *)event weekView:(MAWeekView *)weekView sameTimeEvents:(int)sameTimeEvents whichSame:(int)whichNumber {
 	MAEventView *eventView = [[MAEventView alloc] init];
 	eventView.weekView = weekView;
 	eventView.event = event;
-    if ([self isRemoving] && ![[eventView event] checked]) {
-        eventView.backgroundColor = [UIColor whiteColor];
-    }else
-        eventView.backgroundColor = event.backgroundColor;
+    eventView.backgroundColor = event.backgroundColor;
 	eventView.title = event.title;
 	eventView.textFont = weekView.regularFont;
 	eventView.textColor = event.textColor;
 	eventView.xOffset = offset;
-    [eventView setSameTimeEvents:numOfSame];
+    [eventView setSameTimeEvents:sameTimeEvents];
     [eventView setWhichSame:whichNumber];
     
 	[self addSubview:eventView];
@@ -835,7 +862,6 @@ static const CGFloat kCorner       = 5.0;
 @synthesize event=_event;
 @synthesize xOffset=_xOffset;
 @synthesize yOffset=_yOffset;
-@synthesize whichSame, sameTimeEvents;
 
 
 
