@@ -285,7 +285,9 @@
     }
     if(isHere == false){
         [self addConf: confID];
-        [conferences addObject: [self jsonToConference:confID]];
+        Conference* c = [self jsonToConference:confID];
+        [conferences addObject: c];
+        [conferencesDic setValue:c forKey:[c getID]];
         [addedConfsIDs addObject:confID];
         return true;
     }
@@ -542,10 +544,14 @@
     for (int i=0; i<[tmpConfs count]; i++) {
         current = [self jsonToConference:[tmpConfs objectAtIndex:i]];
         [conferences addObject:current];
+        [conferencesDic setValue:current forKey:[current getID]];
         [addedConfsIDs addObject:[current getID]];
         
         //agenda here, not totally TODO: this load agenda must pass the NSDictionary to a variable
         [agendaDic setValue:[self loadAgenda:[tmpConfs objectAtIndex:i]] forKey:[tmpConfs objectAtIndex:i]];
+        
+        [self setAgendaPaths];
+        [self loadAgendaFromDisk];
     }
 }
 
@@ -1350,6 +1356,11 @@
     }
     [ret sortUsingSelector:@selector(compare:)];
     return ret;
+}
+
+-(Conference*)getConferenceWithID:(NSString*)cID{
+    Conference* c = ((Conference*)[conferencesDic valueForKey:cID]);
+    return c;
 }
 
 
