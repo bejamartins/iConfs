@@ -285,7 +285,9 @@
     }
     if(isHere == false){
         [self addConf: confID];
-        [conferences addObject: [self jsonToConference:confID]];
+        Conference* c = [self jsonToConference:confID];
+        [conferences addObject: c];
+        [conferencesDic setValue:c forKey:[c getID]];
         [addedConfsIDs addObject:confID];
         return true;
     }
@@ -542,10 +544,14 @@
     for (int i=0; i<[tmpConfs count]; i++) {
         current = [self jsonToConference:[tmpConfs objectAtIndex:i]];
         [conferences addObject:current];
+        [conferencesDic setValue:current forKey:[current getID]];
         [addedConfsIDs addObject:[current getID]];
         
         //agenda here, not totally TODO: this load agenda must pass the NSDictionary to a variable
         [agendaDic setValue:[self loadAgenda:[tmpConfs objectAtIndex:i]] forKey:[tmpConfs objectAtIndex:i]];
+        
+        [self setAgendaPaths];
+        [self loadAgendaFromDisk];
     }
 }
 
@@ -596,7 +602,7 @@
     for(int i = 0; i<[papersR count]; i++){
         pp = [[Paper alloc] init];
         auth = [[NSMutableArray alloc] init];
-        [auth addObject:[papersR[i] valueForKey:@"IDPerson"]];
+        //[auth addObject:[papersR[i] valueForKey:@"IDPerson"]];
         pp = [pp initWithData: [[[[papersR[i] valueForKey:@"ID"]componentsSeparatedByString:@"p"] objectAtIndex: 1]intValue] title:NULL /*falta titulo*/ authors: auth abstract:NULL link:[papersR[i] valueForKey:@"PaperPath"]];
         [pp setSession:[papersR[i] valueForKey:@"IDSession"]];
         [papersByID setObject:pp forKey:[papersR[i] valueForKey:@"ID"]];
@@ -636,13 +642,13 @@
     //[paperPath addObject:[[[json valueForKey:@"paper"] objectAtIndex:i] valueForKey:@"PaperPath"]];
     
     //SuperSessions
-    NSDictionary* ss = [raw valueForKey:@"superSession"];
+    NSArray* ss = [raw valueForKey:@"superSession"];
     supersessions = [[NSMutableDictionary alloc]init];
     SuperSession* supers;
     for(int i = 0; i<[ss count]; i++){
         supers = [[SuperSession alloc]init];
-        supers =[supers initWithData:[ss valueForKey:@"ID"] theme:[ss valueForKey:@"Name"] /*TODO on server*/];
-        [supersessions setValue:supers forKey:[ss valueForKey:@"ID"]];
+        supers =[supers initWithData:[ss[i] valueForKey:@"ID"] theme:[ss[i] valueForKey:@"Name"] /*TODO on server*/];
+        [supersessions setValue:supers forKey:[ss[i] valueForKey:@"ID"]];
         //[supersessions setObject:supers forKey:[ss objectForKey:@"ID"]];
     }
 
@@ -1334,6 +1340,28 @@
     return sessions;
 }
 
+
+-(NSArray*)getAllNewsOrderedByDate{
+    NSMutableArray* ret = [[NSMutableArray alloc] init];
+    for (int i=0; i <[conferences count]; i++) {
+        [ret addObjectsFromArray:[((Conference*) conferences[i]) getNews]];
+    }
+    [ret sortUsingSelector:@selector(compare:)];
+    return ret;
+}
+-(NSArray*)getAllNotifOrderedByDate{
+    NSMutableArray* ret = [[NSMutableArray alloc] init];
+    for (int i=0; i <[conferences count]; i++) {
+        [ret addObjectsFromArray:[((Conference*) conferences[i]) getNotifications]];
+    }
+    [ret sortUsingSelector:@selector(compare:)];
+    return ret;
+}
+
+-(Conference*)getConferenceWithID:(NSString*)cID{
+    Conference* c = ((Conference*)[conferencesDic valueForKey:cID]);
+    return c;
+}
 
 
 @end
