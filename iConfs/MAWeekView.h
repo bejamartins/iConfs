@@ -64,12 +64,14 @@
 @property (readonly) MAWeekdayBarView *weekdayBarView;
 @property (nonatomic,unsafe_unretained) IBOutlet id<MAWeekViewDataSource> dataSource;
 @property (nonatomic,unsafe_unretained) IBOutlet id<MAWeekViewDelegate> delegate;
+@property (nonatomic) NSDate *startDate;
+@property (nonatomic, assign) BOOL conflict;
 
 - (void)reloadData;
 
-- (void)isRemoving;
+- (void)isEditing;
 
-- (void)doneRemoving;
+- (void)doneEditing;
 
 -(NSArray*)getWeekDays;
 

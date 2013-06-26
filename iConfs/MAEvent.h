@@ -26,6 +26,7 @@
  */
 
 #import <Foundation/Foundation.h>
+#import "SuperSession.h"
 
 NSInteger MAEvent_sortByStartTime(id ev1, id ev2, void *keyForSorting);
 
@@ -51,6 +52,10 @@ NSInteger MAEvent_sortByStartTime(id ev1, id ev2, void *keyForSorting);
 @property (nonatomic,strong) UIColor *textColor;
 @property (nonatomic,strong) NSDictionary *userInfo;
 @property (nonatomic) BOOL checked;
+@property (nonatomic) NSArray *sameTimeEvents;
+@property (nonatomic) NSArray *eventsOfSS;
+@property (nonatomic) NSString *ssID;
+@property (nonatomic) int sID;
 
 - (unsigned int)durationInMinutes;
 - (unsigned int)minutesSinceMidnight;

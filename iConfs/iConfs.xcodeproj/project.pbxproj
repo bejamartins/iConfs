@@ -59,6 +59,10 @@
 		3CD1D57217720D9E00A05BF3 /* MapViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3CD1D57117720D9E00A05BF3 /* MapViewController.m */; };
 		3CD1D57417720F4200A05BF3 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3CD1D57317720F4200A05BF3 /* MapKit.framework */; };
 		3CD1D57617720F4E00A05BF3 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3CD1D57517720F4E00A05BF3 /* CoreLocation.framework */; };
+		70445A3D177A708400D5F088 /* MAWeekView.m in Sources */ = {isa = PBXBuildFile; fileRef = 70445A38177A708400D5F088 /* MAWeekView.m */; };
+		70445A3E177A708400D5F088 /* MAGridView.m in Sources */ = {isa = PBXBuildFile; fileRef = 70445A3A177A708400D5F088 /* MAGridView.m */; };
+		70445A3F177A708400D5F088 /* MAEvent.m in Sources */ = {isa = PBXBuildFile; fileRef = 70445A3C177A708400D5F088 /* MAEvent.m */; };
+		70445A42177A709000D5F088 /* AddRemoveSessionsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 70445A40177A709000D5F088 /* AddRemoveSessionsViewController.m */; };
 		7074AAEB17667BD700197584 /* EventKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7074AAEA17667BD700197584 /* EventKit.framework */; };
 		707522FB175FDF7C002F8708 /* AppDataObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 707522FA175FDF7C002F8708 /* AppDataObject.m */; };
 		70755E1C176D42F9006FD261 /* MainStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 70755E1B176D42F9006FD261 /* MainStoryboard.storyboard */; };
@@ -66,9 +70,6 @@
 		707ADEC61765522F00AADD9C /* MAEventKitDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = 707ADEC51765522F00AADD9C /* MAEventKitDataSource.m */; };
 		707ADED81765524200AADD9C /* WeekViewExampleController.m in Sources */ = {isa = PBXBuildFile; fileRef = 707ADECA1765524200AADD9C /* WeekViewExampleController.m */; };
 		707ADEDA1765524200AADD9C /* TapDetectingView.m in Sources */ = {isa = PBXBuildFile; fileRef = 707ADECE1765524200AADD9C /* TapDetectingView.m */; };
-		707ADEDB1765524200AADD9C /* MAEvent.m in Sources */ = {isa = PBXBuildFile; fileRef = 707ADED01765524200AADD9C /* MAEvent.m */; };
-		707ADEDC1765524200AADD9C /* MAGridView.m in Sources */ = {isa = PBXBuildFile; fileRef = 707ADED21765524200AADD9C /* MAGridView.m */; };
-		707ADEDD1765524200AADD9C /* MAWeekView.m in Sources */ = {isa = PBXBuildFile; fileRef = 707ADED41765524200AADD9C /* MAWeekView.m */; };
 		707ADEE41765529D00AADD9C /* ma_leftArrow.png in Resources */ = {isa = PBXBuildFile; fileRef = 707ADEDF1765529D00AADD9C /* ma_leftArrow.png */; };
 		707ADEE51765529D00AADD9C /* ma_leftArrow@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 707ADEE01765529D00AADD9C /* ma_leftArrow@2x.png */; };
 		707ADEE61765529D00AADD9C /* ma_rightArrow.png in Resources */ = {isa = PBXBuildFile; fileRef = 707ADEE11765529D00AADD9C /* ma_rightArrow.png */; };
@@ -222,6 +223,14 @@
 		3CD1D57117720D9E00A05BF3 /* MapViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MapViewController.m; sourceTree = "<group>"; };
 		3CD1D57317720F4200A05BF3 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
 		3CD1D57517720F4E00A05BF3 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
+		70445A37177A708400D5F088 /* MAEvent.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MAEvent.h; sourceTree = "<group>"; };
+		70445A38177A708400D5F088 /* MAWeekView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MAWeekView.m; sourceTree = "<group>"; };
+		70445A39177A708400D5F088 /* MAWeekView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MAWeekView.h; sourceTree = "<group>"; };
+		70445A3A177A708400D5F088 /* MAGridView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MAGridView.m; sourceTree = "<group>"; };
+		70445A3B177A708400D5F088 /* MAGridView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MAGridView.h; sourceTree = "<group>"; };
+		70445A3C177A708400D5F088 /* MAEvent.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MAEvent.m; sourceTree = "<group>"; };
+		70445A40177A709000D5F088 /* AddRemoveSessionsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AddRemoveSessionsViewController.m; sourceTree = "<group>"; };
+		70445A41177A709000D5F088 /* AddRemoveSessionsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AddRemoveSessionsViewController.h; sourceTree = "<group>"; };
 		7074AAEA17667BD700197584 /* EventKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = EventKit.framework; path = System/Library/Frameworks/EventKit.framework; sourceTree = SDKROOT; };
 		707522F9175FDF7C002F8708 /* AppDataObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppDataObject.h; sourceTree = "<group>"; };
 		707522FA175FDF7C002F8708 /* AppDataObject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppDataObject.m; sourceTree = "<group>"; };
@@ -235,12 +244,6 @@
 		707ADECA1765524200AADD9C /* WeekViewExampleController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WeekViewExampleController.m; sourceTree = "<group>"; };
 		707ADECD1765524200AADD9C /* TapDetectingView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TapDetectingView.h; sourceTree = "<group>"; };
 		707ADECE1765524200AADD9C /* TapDetectingView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TapDetectingView.m; sourceTree = "<group>"; };
-		707ADECF1765524200AADD9C /* MAEvent.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MAEvent.h; sourceTree = "<group>"; };
-		707ADED01765524200AADD9C /* MAEvent.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MAEvent.m; sourceTree = "<group>"; };
-		707ADED11765524200AADD9C /* MAGridView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MAGridView.h; sourceTree = "<group>"; };
-		707ADED21765524200AADD9C /* MAGridView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MAGridView.m; sourceTree = "<group>"; };
-		707ADED31765524200AADD9C /* MAWeekView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MAWeekView.h; sourceTree = "<group>"; };
-		707ADED41765524200AADD9C /* MAWeekView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MAWeekView.m; sourceTree = "<group>"; };
 		707ADEDF1765529D00AADD9C /* ma_leftArrow.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ma_leftArrow.png; sourceTree = "<group>"; };
 		707ADEE01765529D00AADD9C /* ma_leftArrow@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "ma_leftArrow@2x.png"; sourceTree = "<group>"; };
 		707ADEE11765529D00AADD9C /* ma_rightArrow.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ma_rightArrow.png; sourceTree = "<group>"; };
@@ -472,6 +475,8 @@
 		28A1C5741767B551005B5F5B /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
+				70445A41177A709000D5F088 /* AddRemoveSessionsViewController.h */,
+				70445A40177A709000D5F088 /* AddRemoveSessionsViewController.m */,
 				70C2D23B1773BEA900834236 /* AddSessionViewController.h */,
 				70C2D23C1773BEA900834236 /* AddSessionViewController.m */,
 				280C7832177244A5008239D7 /* AgendaPreview.h */,
@@ -544,16 +549,16 @@
 		707ADEC3176551E800AADD9C /* WeekViewAgenda */ = {
 			isa = PBXGroup;
 			children = (
+				70445A37177A708400D5F088 /* MAEvent.h */,
+				70445A3C177A708400D5F088 /* MAEvent.m */,
+				70445A39177A708400D5F088 /* MAWeekView.h */,
+				70445A38177A708400D5F088 /* MAWeekView.m */,
+				70445A3B177A708400D5F088 /* MAGridView.h */,
+				70445A3A177A708400D5F088 /* MAGridView.m */,
 				707ADEC91765524200AADD9C /* WeekViewExampleController.h */,
 				707ADECA1765524200AADD9C /* WeekViewExampleController.m */,
 				707ADECD1765524200AADD9C /* TapDetectingView.h */,
 				707ADECE1765524200AADD9C /* TapDetectingView.m */,
-				707ADECF1765524200AADD9C /* MAEvent.h */,
-				707ADED01765524200AADD9C /* MAEvent.m */,
-				707ADED11765524200AADD9C /* MAGridView.h */,
-				707ADED21765524200AADD9C /* MAGridView.m */,
-				707ADED31765524200AADD9C /* MAWeekView.h */,
-				707ADED41765524200AADD9C /* MAWeekView.m */,
 				707ADEC41765522F00AADD9C /* MAEventKitDataSource.h */,
 				707ADEC51765522F00AADD9C /* MAEventKitDataSource.m */,
 			);
@@ -851,9 +856,6 @@
 				707ADEC61765522F00AADD9C /* MAEventKitDataSource.m in Sources */,
 				707ADED81765524200AADD9C /* WeekViewExampleController.m in Sources */,
 				707ADEDA1765524200AADD9C /* TapDetectingView.m in Sources */,
-				707ADEDB1765524200AADD9C /* MAEvent.m in Sources */,
-				707ADEDC1765524200AADD9C /* MAGridView.m in Sources */,
-				707ADEDD1765524200AADD9C /* MAWeekView.m in Sources */,
 				7078016B17667E2000B3C4D4 /* AgendaViewController.m in Sources */,
 				A09DF2F71767783400310266 /* Map.m in Sources */,
 				A09DF2FA176784CC00310266 /* Blueprints.m in Sources */,
@@ -871,6 +873,10 @@
 				28929D921778FF4D0064B093 /* SessionsViewController.m in Sources */,
 				28929D95177909260064B093 /* SScell.m in Sources */,
 				28960F7C1779D92E00AA1BF3 /* NewsCell.m in Sources */,
+				70445A3D177A708400D5F088 /* MAWeekView.m in Sources */,
+				70445A3E177A708400D5F088 /* MAGridView.m in Sources */,
+				70445A3F177A708400D5F088 /* MAEvent.m in Sources */,
+				70445A42177A709000D5F088 /* AddRemoveSessionsViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

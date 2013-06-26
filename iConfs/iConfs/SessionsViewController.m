@@ -25,6 +25,7 @@
     NSArray *superSessions;
     NSArray *autores;
     NSMutableArray *searchSessions;
+    
     BOOL searchItem;
     int ssIndex;
     MenuViewController *menu;
