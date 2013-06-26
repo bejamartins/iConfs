@@ -39,7 +39,12 @@
     [collection setDataSource:self];
     [collection setDelegate:self];
     
+    news=[[NSMutableArray alloc]init];
+    news=[ic getAllNewsOrderedByDate];
     
+    NSArray* reversedArray = [[news reverseObjectEnumerator] allObjects];
+    news=reversedArray;
+
     
     [[[self view] layer] setShadowOpacity:0.75f];
     [[[self view] layer] setShadowRadius:10.0f];
@@ -117,15 +122,19 @@
     
     if ([[self segmentedControl] selectedSegmentIndex] == 0) {
         news=[[NSMutableArray alloc]init];
+        news=[ic getAllNewsOrderedByDate];
         
+        NSArray* reversedArray = [[news reverseObjectEnumerator] allObjects];
+        news=reversedArray;
+
+        [collection reloadData];
+
 }
     else{
         news=[[NSArray alloc]init];
         for(Conference *conference in myConfs){
             NSArray *aux=[conference getNews];
-            NSLog(@"Data antes reversed %@", [[aux objectAtIndex:0]getDate]);
             NSArray* reversedArray = [[aux reverseObjectEnumerator] allObjects];
-            NSLog(@"Data depois reversed %@", [[reversedArray objectAtIndex:0]getDate ]);
 
         news=[news arrayByAddingObjectsFromArray:reversedArray];
         }
@@ -134,4 +143,5 @@
 
 
 }
+
 @end
