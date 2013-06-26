@@ -85,14 +85,12 @@
         ssIndex=0;
         selectedSuperSession = [superSessions objectAtIndex:ssIndex];
 
-        NSLog(@"---tema da sessao: %@", [selectedSuperSession getTheme]);
         sessions=[selectedSuperSession getSessionsOrderedByDate];
 
         
         //escolhe por defeito a sessão
         
-  //      selectedSession =[[selectedSuperSession getSessionsOrderedByDate]objectAtIndex:0];
-      //  [[selectedSuperSession getSessionsOrderedByDate]objectAtIndex:0];
+        selectedSession =[[selectedSuperSession getSessionsOrderedByDate]objectAtIndex:0];
     
         //adicionar abstract e autores
     
@@ -107,8 +105,11 @@
     
     }
     //mudar
-   // autores=[selectedSession getAuthor];
-  //  [abstract setText:[selectedSession getTheme]];
+    
+  //  autores=[[[selectedSession getAuthor]getPaper: [selectedSession getPaperID]]getAuthors];
+    
+    
+ //   [abstract setText:[selectedSession getTheme]];
 
     
     [[[self view] layer] setShadowOpacity:0.75f];
@@ -153,7 +154,7 @@
 	// Do any additional setup after loading the view.
 }
 
--(NSInteger)numberOfSectionsInCollectionView:(UIsCollectionView *)collectionView{
+-(NSInteger)numberOfSectionsInCollectionView:(UICollectionView *)collectionView{
     return 1;
 
 }
@@ -174,12 +175,16 @@
 }
 -(UITableViewCell *) tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     //sessionsTable
+    UITableViewCell *cell;
     if([tableView tag]==1){
+        cell=[tableView dequeueReusableCellWithIdentifier:@"sessionCell" forIndexPath:indexPath];
+
+              if (!searchItem) {
+
         
-        UITableViewCell *cell=[tableView dequeueReusableCellWithIdentifier:@"sessionCell" forIndexPath:indexPath];
         
-        
-        [[cell textLabel]setText:[[sessions objectAtIndex:indexPath.row]getName]];
+        Session *s=[sessions objectAtIndex:indexPath.row];
+        [[cell textLabel]setText:[s getTitle]];
         
         //  NSString* tmpS=[[(MenuViewController*)[[self slidingViewController] underLeftViewController] selectedConf] getID];
         
@@ -187,19 +192,26 @@
             //   [[cell Image] setImage:[[(MenuViewController*)[[self slidingViewController] underLeftViewController] selectedConf] loadImage:tmpS :[(Person*)[confPeople objectAtIndex:[indexPath row]] getImagePath]]];
             
         //    [[cell textLabel]setText:[(Person*)[confPeople objectAtIndex:[indexPath row]] getName]];
-
+              }
+              else{
+                  
+                  Session *s=[searchSessions objectAtIndex:indexPath.row];
+                  [[cell textLabel]setText:[s getTitle]];
+              
+              
+              }
     
     
     }
     //autores table
     else if([tableView tag]==2){
-         UITableViewCell *cell=[tableView dequeueReusableCellWithIdentifier:@"authorCell" forIndexPath:indexPath];
+          cell=[tableView dequeueReusableCellWithIdentifier:@"authorCell" forIndexPath:indexPath];
     
         
-        [[cell textLabel]setText:[[autores objectAtIndex:indexPath.row]getName]];
+    //    [[cell textLabel]setText:[[autores objectAtIndex:indexPath.row]getName]];
 
     }
-
+    return  cell;
 
 }
 
@@ -237,7 +249,15 @@
 }
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath{
     
+    ssIndex=indexPath.item;
     
+    selectedSuperSession=[superSessions objectAtIndex:ssIndex];
+    
+    sessions=[selectedSuperSession getSessionsOrderedByDate];
+
+    
+    [collection reloadData];
+    [sessionsTable reloadData];
     //no array de blueprints vai buscar o com index indexPath.item e depois
     //tem de reflectir essa escolha na planta mostrada ao user.
     
@@ -277,12 +297,24 @@
     NSString *iD = @"Home";
     
     UIViewController *newTopViewController = [[self storyboard]instantiateViewControllerWithIdentifier:iD];
-    
+
     
     CGRect frame = [[[[self slidingViewController] topViewController] view] frame];
     [[self slidingViewController] setTopViewController:newTopViewController];
     [[[[self slidingViewController] topViewController] view] setFrame:frame];
+    Conference *c=[(MenuViewController*)[[self slidingViewController] underLeftViewController] selectedConf];
+
     
+    NSArray *confis=[(MenuViewController*)[[self slidingViewController] underLeftViewController] selectedConf];
+
+    [(MenuViewController*)[[self slidingViewController] underLeftViewController] setSelectedConf:nil];
+    [[(MenuViewController*)[[self slidingViewController] underLeftViewController] MenuView]reloadData];
+
+
+    
+ //   [ (MenuViewController*)[[self slidingViewController] underLeftViewController]setSelectedConf:nil];
+  //  [(MenuViewController*)[[self slidingViewController] underLeftViewController]setShowMenuConf:NO];
+//    [[(MenuViewController*)[[self slidingViewController] underLeftViewController] MenuView]reloadData];
     
 }
 
@@ -339,5 +371,9 @@
     
     previous=vc;
     
+}
+- (IBAction)revealMenu:(id)sender
+{
+    [[self slidingViewController] anchorTopViewTo:ECRight];
 }
 @end

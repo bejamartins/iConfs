@@ -186,7 +186,10 @@
 }
 
 -(void)setSelectedConf:(Conference *)sConf{
+    
     selectedConf = sConf;
+    if (selectedConf!=nil) {
+        
     
     showMenuConf = YES;
     
@@ -198,8 +201,19 @@
         
         index++;
     }
-}
+    }
+    else{
+        showMenuConf = NO;
+        [self.MenuView reloadData];
 
+
+    }
+}
+-(void)setShowMenuConf:(BOOL)value{
+
+showMenuConf = value;
+    [self.MenuView reloadData];
+   }
 
 
 

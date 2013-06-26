@@ -270,7 +270,9 @@
     [[self slidingViewController] setTopViewController:newTopViewController];
     [[[[self slidingViewController] topViewController] view] setFrame:frame];
     
-    
+    [(MenuViewController*)[[self slidingViewController] underLeftViewController] setSelectedConf:nil];
+    [[(MenuViewController*)[[self slidingViewController] underLeftViewController] MenuView ] reloadData];
+
 }
 
 
