@@ -141,6 +141,27 @@
     if (section == 1 && showMenuConf) {
         return [selectedConf getName];
     }
+    
+    return @"";
+}
+
+- (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
+{
+    UIView* headerView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, [tableView bounds].size.width, 30)];
+    
+    UILabel* headerLabel = [[UILabel alloc] initWithFrame:CGRectMake(50, 8, [tableView bounds].size.width - 10, 18)];
+    
+    [headerLabel setTextColor:[UIColor whiteColor]];
+    
+    [headerLabel setBackgroundColor:[UIColor clearColor]];
+    
+    [headerLabel setText:[[tableView dataSource] tableView:tableView titleForHeaderInSection:section]];
+    
+    [headerLabel setFont:[UIFont boldSystemFontOfSize:18]];
+    
+    [headerView addSubview:headerLabel];
+    
+    return headerView;
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
@@ -153,8 +174,6 @@
         UIViewController *newTopViewController = [[self storyboard]instantiateViewControllerWithIdentifier:iD];
         
         [[self MenuView] reloadData];
-        
-        [[[self MenuView] cellForRowAtIndexPath:indexPath] setHighlighted:YES];
         
         [[self slidingViewController] anchorTopViewOffScreenTo:ECRight animations:nil onComplete:^{
             CGRect frame = [[[[self slidingViewController] topViewController] view] frame];
@@ -180,7 +199,6 @@
         selectedConf = (Conference*)[confs objectAtIndex:[indexPath row]];
         showMenuConf = YES;
         [[self MenuView] reloadData];
-        [[[self MenuView] cellForRowAtIndexPath:indexPath] setHighlighted:YES];
         
         NSString *iD = @"Conference";
         
@@ -210,23 +228,17 @@
         
     
     showMenuConf = YES;
-    
-    int index = 0;
-    for (Conference *i in confs) {
-        if ([i getID] == [selectedConf getID]) {
-            [[[self MenuView] cellForRowAtIndexPath:[NSIndexPath indexPathForRow:index inSection:3]] setHighlighted:YES];
-        }
         
-        index++;
-    }
-    }
-    else{
+    }else{
         showMenuConf = NO;
         [self.MenuView reloadData];
 
 
     }
 }
--(void)setShowMenuConf:(BOOL)value{
+
+
 
 @end
+
+
