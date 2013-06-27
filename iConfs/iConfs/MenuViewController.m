@@ -210,7 +210,8 @@
     }
 }
 
-- (IBAction)homeButtonPressed:(id)sender {
+- (IBAction)homeButtonPressed:(id)sender
+{
     UIViewController *newTopViewController = [[self storyboard]instantiateViewControllerWithIdentifier:@"Home"];
     
     [[self slidingViewController] anchorTopViewOffScreenTo:ECRight animations:nil onComplete:^{
@@ -221,23 +222,18 @@
     }];
 }
 
--(void)setSelectedConf:(Conference *)sConf{
-    
+- (void)setSelectedConf:(Conference *)sConf
+{
     selectedConf = sConf;
-    if (selectedConf!=nil) {
-        
-    
     showMenuConf = YES;
-        
-    }else{
-        showMenuConf = NO;
-        [self.MenuView reloadData];
-
-
-    }
+    [[self MenuView] reloadData];
 }
 
-
+- (void)deselectConf
+{
+    showMenuConf = NO;
+    [[self MenuView] reloadData];
+}
 
 @end
 

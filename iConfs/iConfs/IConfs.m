@@ -187,24 +187,29 @@
     NSMutableArray* ret = [[NSMutableArray alloc] init];
     [ret sortUsingSelector:@selector(compare:)];
     NSString* a = NULL;
-    for (int i=0; i<[available count]; i++) {
-        for(int j=0; j< [((NSArray*)subscribed) count]; j++){
-            if ([[((CustomizableSuperSession*)subscribed[j]) getID] isEqualToString: [((SuperSession*)available[i]) getID]]) {
-                a = NULL;
-            }
-            else{
-                a = [((SuperSession*)available[i]) getID];
-                break;
-            }
+    
+    if ([subscribed count] == 0) {
+        for (int i = 0; i<[available count]; i++) {
+            [ret addObject:[(SuperSession*)available[i] getID]];
         }
-        if(a==NULL){
-            ;
-        }
-        else{
+    } else
+        for (int i=0; i<[available count]; i++) {
+            for(int j=0; j< [((NSArray*)subscribed) count]; j++){
+                if ([[((CustomizableSuperSession*)subscribed[j]) getID] isEqualToString: [((SuperSession*)available[i]) getID]]) {
+                    a = NULL;
+                }
+                else{
+                    a = [((SuperSession*)available[i]) getID];
+                }
+            }
+            
+        if (a!=NULL) {
             [ret addObject:a];
         }
     }
+    NSLog(@"Aqui!");
     [ret sortUsingSelector:@selector(compare:)];
+    NSLog(@"Aqui!!");
     return ret;
 }
 

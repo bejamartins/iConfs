@@ -19,7 +19,8 @@
 - (IBAction)homeButtonPressed:(id)sender;
 
 - (IConfs*) appData;
--(void)setShowMenuConf:(BOOL)value;
+
+- (void) deselectConf;
 
 - (NSArray*)getMySuperSessions:(NSString*)iD;
 
