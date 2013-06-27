@@ -767,10 +767,12 @@
     Person* p;
     for (int i = 0; i<[people count]; i++) {
         currID = [[[[people[i] valueForKey:@"ID"]componentsSeparatedByString:@"p"] objectAtIndex: 1]intValue];
+        //int curr2 = [[[@"p001" componentsSeparatedByString:@"p"] objectAtIndex: 1]intValue];
         if ([[people[i] valueForKey:@"Type"] isEqual:@"Author"]){
             p = [[Author alloc] init];
             p = [(Author*)p initWithData: [people[i] valueForKey:@"Name"] work: [people[i] valueForKey:@"Company"] /*queremos o cargo e não a companhia*/ image:[people[i] valueForKey:@"ImagePath"] personID: currID];
-            [authors setObject:p forKey:[NSString stringWithFormat:@"%d",currID]];
+            //[authors setValue:p forKey:[NSString stringWithFormat:@"%d",currID]];
+            [authors setObject:p forKey:[NSNumber numberWithInteger:currID]];
             [conf addAuthor:(Author*)p];
             if([[papers allKeys] containsObject:[people[i] valueForKey:@"ID"]]){
                 for (int j = 0; j<[((NSArray*)[papers valueForKey:[people[i] valueForKey:@"ID"]]) count]; j++) {
@@ -781,13 +783,15 @@
         else if ([[people[i] valueForKey:@"Type"] isEqual:@"Speaker"]){
             p = [[Speaker alloc] init];
             p = [(Speaker*)p initWithData: [people[i] valueForKey:@"Name"] work: [people[i] valueForKey:@"Company"] image:[people[i] valueForKey:@"ImagePath"] personID: currID resume: [people[i] valueForKey:@"Description"]];
-            [speakers setObject:p forKey:[NSString stringWithFormat:@"%d",currID]];
+            //[speakers setObject:p forKey:[NSString stringWithFormat:@"%d",currID]];
+            [speakers setObject:p forKey:[NSNumber numberWithInteger:currID]];
             [conf addSpeaker:(Speaker*)p];
         }
         else if ([[people[i] valueForKey:@"Type"] isEqual:@"Organization"]){
             p = [[Organizer alloc] init];
             p = [(Organizer*)p initWithData: [people[i] valueForKey:@"Name"] work: [people[i] valueForKey:@"Company"] image:[people[i] valueForKey:@"ImagePath"] personID: currID job: [people[i] valueForKey:@"Description"]];
-            [organizers setObject:p forKey:[NSString stringWithFormat:@"%d",currID]];
+            //[organizers setObject:p forKey:[NSString stringWithFormat:@"%d",currID]];
+            [organizers setObject:p forKey:[NSNumber numberWithInteger:currID]];
             [conf addOrganizer:(Organizer*)p];
         } //Isto precisava de ser um ISA no MySQL do servidor...
     }
@@ -810,16 +814,21 @@
     NSArray* sess = [[NSArray alloc] init];
     sess = [raw valueForKey:@"session"];
     Event* e;
+    //int currID2;
     for (int i = 0; i<[sess count]; i++) {
         if(![[sess[i] valueForKey:@"Speaker"] isEqual:@""]){
             parsedIDAUX = [[[sess[i] valueForKey:@"Speaker"]componentsSeparatedByString:@"p"] objectAtIndex: 1];
-            speakerAux = [speakers valueForKey:parsedIDAUX];
+            currID = [parsedIDAUX intValue];
+            speakerAux = [speakers objectForKey:[NSNumber numberWithInteger:currID]];
+            
         }else{
             speakerAux = NULL;
         }
         if(![[sess[i] valueForKey:@"Author"] isEqual:@""]){
             parsedIDAUX = [[[sess[i] valueForKey:@"Author"]componentsSeparatedByString:@"p"] objectAtIndex: 1];
-            authorAux = [speakers valueForKey:parsedIDAUX];
+            currID = [parsedIDAUX intValue];
+            //authorAux = [speakers valueForKey:parsedIDAUX];
+            authorAux = [authors objectForKey:[NSNumber numberWithInteger:currID]];
         }else{
             authorAux = NULL;
         }
