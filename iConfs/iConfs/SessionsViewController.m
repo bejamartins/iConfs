@@ -25,8 +25,10 @@
     NSArray *superSessions;
     NSArray *autores;
     NSMutableArray *searchSessions;
+    
     BOOL searchItem;
-
+    int ssIndex;
+    MenuViewController *menu;
     
 }
 
@@ -54,6 +56,9 @@
     [self.AuthorsTable setDelegate:self];
     [self.sessionsTable setDelegate:self];
     [[self searchBar]setDelegate:self];
+    [self.collection setDataSource:self];
+    [self.collection setDelegate:self];
+
     searchItem = NO;
 
    
@@ -70,21 +75,24 @@
 
 
         conf=[(MenuViewController*)[[self slidingViewController] underLeftViewController] selectedConf];
-    
-    sessions=[selectedSuperSession getSessionsOrderedByDate];
+    menu=(MenuViewController*)[[self slidingViewController] underLeftViewController] ;
     
     superSessions=[[conf getSuperSessions]allValues];
 
         //selecciona a 1ª Supersessao por defeito
     if(selectedSession==nil){
 
- 
-        selectedSuperSession = [superSessions objectAtIndex:0];
+        superSessions=[[conf getSuperSessions]allValues];
+        
+        ssIndex=0;
+        selectedSuperSession = [superSessions objectAtIndex:ssIndex];
+
+        sessions=[selectedSuperSession getSessionsOrderedByDate];
+
         
         //escolhe por defeito a sessão
         
-      //  selectedSession =[[selectedSuperSession getSessionsOrderedByDate]objectAtIndex:0];
-      //  [[selectedSuperSession getSessionsOrderedByDate]objectAtIndex:0];
+        selectedSession =[[selectedSuperSession getSessionsOrderedByDate]objectAtIndex:0];
     
         //adicionar abstract e autores
     
@@ -99,8 +107,11 @@
     
     }
     //mudar
-   // autores=[selectedSession getAuthor];
-  //  [abstract setText:[selectedSession getTheme]];
+    
+  //  autores=[[[selectedSession getAuthor]getPaper: [selectedSession getPaperID]]getAuthors];
+    
+    
+ //   [abstract setText:[selectedSession getTheme]];
 
     
     [[[self view] layer] setShadowOpacity:0.75f];
@@ -166,12 +177,16 @@
 }
 -(UITableViewCell *) tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     //sessionsTable
+    UITableViewCell *cell;
     if([tableView tag]==1){
+        cell=[tableView dequeueReusableCellWithIdentifier:@"sessionCell" forIndexPath:indexPath];
+
+              if (!searchItem) {
+
         
-        UITableViewCell *cell=[tableView dequeueReusableCellWithIdentifier:@"sessionCell" forIndexPath:indexPath];
         
-        
-        [[cell textLabel]setText:[[sessions objectAtIndex:indexPath.row]getName]];
+        Session *s=[sessions objectAtIndex:indexPath.row];
+        [[cell textLabel]setText:[s getTitle]];
         
         //  NSString* tmpS=[[(MenuViewController*)[[self slidingViewController] underLeftViewController] selectedConf] getID];
         
@@ -179,19 +194,26 @@
             //   [[cell Image] setImage:[[(MenuViewController*)[[self slidingViewController] underLeftViewController] selectedConf] loadImage:tmpS :[(Person*)[confPeople objectAtIndex:[indexPath row]] getImagePath]]];
             
         //    [[cell textLabel]setText:[(Person*)[confPeople objectAtIndex:[indexPath row]] getName]];
-
+              }
+              else{
+                  
+                  Session *s=[searchSessions objectAtIndex:indexPath.row];
+                  [[cell textLabel]setText:[s getTitle]];
+              
+              
+              }
     
     
     }
     //autores table
     else if([tableView tag]==2){
-         UITableViewCell *cell=[tableView dequeueReusableCellWithIdentifier:@"authorCell" forIndexPath:indexPath];
+          cell=[tableView dequeueReusableCellWithIdentifier:@"authorCell" forIndexPath:indexPath];
     
         
-        [[cell textLabel]setText:[[autores objectAtIndex:indexPath.row]getName]];
+    //    [[cell textLabel]setText:[[autores objectAtIndex:indexPath.row]getName]];
 
     }
-
+    return  cell;
 
 }
 
@@ -202,8 +224,9 @@
   //  selectedSS
   //  nonSelectedSS
     static NSString *CellIdentifier;
-    if([[superSessions objectAtIndex:indexPath.item]isEqual:selectedSuperSession]){
+    if(indexPath.item==ssIndex){
     CellIdentifier=@"selectedSS";
+        
     }
     else{
         CellIdentifier=@"nonSelectedSS";
@@ -211,9 +234,10 @@
     }
     
     SScell *cell= [collectionView dequeueReusableCellWithReuseIdentifier:CellIdentifier forIndexPath:indexPath];
-    
-    [[cell sessionName] setText:[superSessions objectAtIndex:indexPath.item]];
-    
+    SuperSession *ss=[superSessions objectAtIndex:indexPath.item];
+    [[cell sessionName] setText:[ss getTheme]];
+    NSString *x =[ss getTheme];
+    NSLog(@"Theme da sessão: %@",x);
 //    NSArray *keys = [self.blueprints allKeys];
 //    NSString *key = [keys objectAtIndex:indexPath.item];
 //    // NSLog(@"Vou buscar o 1º Mapa! :D item=%d",indexPath.item );
@@ -227,7 +251,15 @@
 }
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath{
     
+    ssIndex=indexPath.item;
     
+    selectedSuperSession=[superSessions objectAtIndex:ssIndex];
+    
+    sessions=[selectedSuperSession getSessionsOrderedByDate];
+
+    
+    [collection reloadData];
+    [sessionsTable reloadData];
     //no array de blueprints vai buscar o com index indexPath.item e depois
     //tem de reflectir essa escolha na planta mostrada ao user.
     
@@ -264,16 +296,22 @@
 
 - (IBAction)goHome:(id)sender{
     
+  //  menu=(MenuViewController*)[[self slidingViewController] underLeftViewController] ;
+
+    
     NSString *iD = @"Home";
     
     UIViewController *newTopViewController = [[self storyboard]instantiateViewControllerWithIdentifier:iD];
-    
+
     
     CGRect frame = [[[[self slidingViewController] topViewController] view] frame];
     [[self slidingViewController] setTopViewController:newTopViewController];
     [[[[self slidingViewController] topViewController] view] setFrame:frame];
+
     
-    
+
+    [menu setSelectedConf:nil];
+    [[menu MenuView ]reloadData];
 }
 
 
@@ -329,5 +367,9 @@
     
     previous=vc;
     
+}
+- (IBAction)revealMenu:(id)sender
+{
+    [[self slidingViewController] anchorTopViewTo:ECRight];
 }
 @end

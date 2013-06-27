@@ -248,24 +248,7 @@
 }
 
 - (IBAction)RemoveSessions:(id)sender {
-    if (!isRemoving) {
-        isRemoving = YES;
-        [(MAWeekView*)[self AgendaView] isRemoving];
-        [(MAWeekView*)[self AgendaView] reloadData];
-    }else {
-        isRemoving = NO;
-        [(MAWeekView*)[self AgendaView] doneRemoving];
-        for (NSDate *weekday in [(MAWeekView*)[self AgendaView] getWeekDays]) {
-            NSArray *events = [self weekView:(MAWeekView*)[self AgendaView] eventsForDate:weekday];
-            
-            for (id e in events) {
-                if ([e checked]) {
-                    
-                }
-            }
-        }
-        [(MAWeekView*)[self AgendaView] reloadData];
-    }
+
 }
 
 

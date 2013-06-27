@@ -11,7 +11,7 @@
 #import "MenuViewController.h"
 
 @interface NewsViewController (){
-    NSMutableArray *news;
+    NSArray *news;
     IConfs *ic;
     NSArray *myConfs;
     NSMutableArray *arrayOfArrays;
@@ -36,7 +36,6 @@
 {
     ic=[(MenuViewController*)[[self slidingViewController] underLeftViewController] appData];
     myConfs=[ic getMyConferences];
-    
     [collection setDataSource:self];
     [collection setDelegate:self];
     
@@ -121,9 +120,14 @@
         
 }
     else{
-        news=[[NSMutableArray alloc]init];
+        news=[[NSArray alloc]init];
         for(Conference *conference in myConfs){
-        news=[news arrayByAddingObjectsFromArray:[conference getNews]];
+            NSArray *aux=[conference getNews];
+            NSLog(@"Data antes reversed %@", [[aux objectAtIndex:0]getDate]);
+            NSArray* reversedArray = [[aux reverseObjectEnumerator] allObjects];
+            NSLog(@"Data depois reversed %@", [[reversedArray objectAtIndex:0]getDate ]);
+
+        news=[news arrayByAddingObjectsFromArray:reversedArray];
         }
     }
     [collection reloadData];

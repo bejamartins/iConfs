@@ -13,6 +13,8 @@
 
 @interface PDFReader (){
     NSString *path;
+    MenuViewController *menu;
+
 }
 
 @end
@@ -49,6 +51,7 @@
     if(fullView){
     
         
+          menu=(MenuViewController*)[[self slidingViewController] underLeftViewController] ;
         
     [[[self view] layer] setShadowOpacity:0.75f];
     [[[self view] layer] setShadowRadius:10.0f];
@@ -114,6 +117,9 @@
     [[[[self slidingViewController] topViewController] view] setFrame:frame];
     
     
+    
+    [menu setSelectedConf:nil];
+    [[menu MenuView ]reloadData];
 }
 
 - (IBAction)revealMenu:(id)sender

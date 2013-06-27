@@ -38,7 +38,7 @@
 @synthesize lineWidth=_lineWidth;
 @synthesize lineColor=_lineColor;
 @synthesize outerBorder=_outerBorder;
-@synthesize isRemoving;
+@synthesize isEditing;
 
 - (id)initWithFrame:(CGRect)frame {
     if (self = [super initWithFrame:frame]) {
@@ -63,7 +63,7 @@
 	self.verticalLines    = YES;
 	self.outerBorder      = YES;
 	self.lineColor        = [UIColor lightGrayColor]; // retain
-    isRemoving = NO;
+    isEditing = NO;
 }
 
 - (void)setRows:(unsigned int)rows {
