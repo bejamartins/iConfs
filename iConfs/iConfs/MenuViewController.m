@@ -74,6 +74,7 @@
     [theAppData subscribeSuperSessionInAgenda: ((SuperSession*)[[c getSuperSessions]allValues][0]) Conference:@"c002"];
     [theAppData getUnsubscribedSuperSessions];
     NSArray* s = [theAppData getUnsubscribedSuperSessionsByConferenceOrderedByDate:@"c002"];
+    NSLog([[NSString alloc] initWithFormat:@"%d", [s count]]);
     SuperSession* ss = ((SuperSession*)s[0]);*/
 }
 
@@ -81,6 +82,16 @@
 {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+- (NSArray*)getMySuperSessions:(NSString*)iD
+{
+    return [theAppData getAgendaByConferenceOrderedByDate:iD];
+}
+
+- (NSArray*)getOtherSuperSessions:(NSString*)iD
+{
+    return [theAppData getUnsubscribedSuperSessionsByConferenceOrderedByDate:iD];
 }
 
 #pragma - Table View Methods
@@ -123,6 +134,13 @@
     //cell.textLabel.textAlignment = NSTextAlignmentCenter;
     
     return cell;
+}
+
+- (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section
+{
+    if (section == 1 && showMenuConf) {
+        return [selectedConf getName];
+    }
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
@@ -199,8 +217,5 @@
         index++;
     }
 }
-
-
-
 
 @end

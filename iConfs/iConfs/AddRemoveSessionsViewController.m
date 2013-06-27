@@ -149,9 +149,9 @@
     
     IConfs *data = [self appData];
     
-    NSArray *myDict = [[NSArray alloc] initWithArray:[[(MenuViewController*)[[self slidingViewController] underLeftViewController] appData] getAgendaByConferenceOrderedByDate:iD]];
+    NSArray *myDict = [(MenuViewController*)[[self slidingViewController] underLeftViewController] getMySuperSessions:iD];
     
-    NSArray *otherDict = [[NSArray alloc] initWithArray:[[(MenuViewController*)[[self slidingViewController] underLeftViewController] appData] getUnsubscribedSuperSessionsByConferenceOrderedByDate:iD]];
+    NSArray *otherDict = [(MenuViewController*)[[self slidingViewController] underLeftViewController] getOtherSuperSessions:iD];
     
     myDict = [data getAgendaByConferenceOrderedByDate:iD];
     otherDict = [data getUnsubscribedSuperSessionsByConferenceOrderedByDate:iD];

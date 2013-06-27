@@ -21,4 +21,8 @@
 
 - (IConfs*) appData;
 
+- (NSArray*)getMySuperSessions:(NSString*)iD;
+
+- (NSArray*)getOtherSuperSessions:(NSString*)iD;
+
 @end
