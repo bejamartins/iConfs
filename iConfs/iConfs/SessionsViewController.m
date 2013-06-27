@@ -65,22 +65,23 @@
     
     
     
-    
         
-    sessions=[[NSArray alloc]init];
-    superSessions=[[NSArray alloc]init];
-    autores=[[NSArray alloc]init];
-    searchSessions = [[NSMutableArray alloc] init];
 
 
 
-        conf=[(MenuViewController*)[[self slidingViewController] underLeftViewController] selectedConf];
-    menu=(MenuViewController*)[[self slidingViewController] underLeftViewController] ;
+//    menu=(MenuViewController*)[[self slidingViewController] underLeftViewController] ;
     
-    superSessions=[[conf getSuperSessions]allValues];
 
         //selecciona a 1ª Supersessao por defeito
     if(selectedSession==nil){
+        conf=[(MenuViewController*)[[self slidingViewController] underLeftViewController] selectedConf];
+
+
+        sessions=[[NSArray alloc]init];
+        superSessions=[[NSArray alloc]init];
+        autores=[[NSArray alloc]init];
+        searchSessions = [[NSMutableArray alloc] init];
+
 
         superSessions=[[conf getSuperSessions]allValues];
         
@@ -96,7 +97,7 @@
     
         //adicionar abstract e autores
     
-    //    [abstract setText:[selectedSession getTheme]];
+  //      [abstract setText:[selectedSession getTheme]];
         
     }
     
@@ -107,8 +108,8 @@
     
     }
     //mudar
-    
-  //  autores=[[[selectedSession getAuthor]getPaper: [selectedSession getPaperID]]getAuthors];
+    Paper *p=[[selectedSession getAuthor]getPaper: [selectedSession getPaperID]];
+    autores=[p getAuthors];
     
     
  //   [abstract setText:[selectedSession getTheme]];
@@ -175,6 +176,23 @@
     else return [searchSessions count];
 
 }
+
+
+- (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section
+{
+    NSString *sectionName;
+    switch (tableView.tag)
+    {
+        case 1:
+            sectionName = NSLocalizedString(@"Presentations", @"mySectionName");
+            break;
+        case 2:
+            sectionName = NSLocalizedString(@"Paper Authors", @"myOtherSectionName");
+            break;
+    }
+    
+    return sectionName;
+}
 -(UITableViewCell *) tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     //sessionsTable
     UITableViewCell *cell;
@@ -186,6 +204,10 @@
         
         
         Session *s=[sessions objectAtIndex:indexPath.row];
+                  NSString *x=[s getTitle];
+                  NSString *y=[s getTheme];
+                  NSLog(@"X =%@ Y =%@", x,y);
+                  NSArray *aut=autores;
         [[cell textLabel]setText:[s getTitle]];
         
         //  NSString* tmpS=[[(MenuViewController*)[[self slidingViewController] underLeftViewController] selectedConf] getID];
@@ -194,6 +216,20 @@
             //   [[cell Image] setImage:[[(MenuViewController*)[[self slidingViewController] underLeftViewController] selectedConf] loadImage:tmpS :[(Person*)[confPeople objectAtIndex:[indexPath row]] getImagePath]]];
             
         //    [[cell textLabel]setText:[(Person*)[confPeople objectAtIndex:[indexPath row]] getName]];
+              
+                  if(indexPath.row==0){
+                      [sessionsTable
+                       selectRowAtIndexPath:indexPath
+                       animated:TRUE
+                       scrollPosition:UITableViewScrollPositionNone
+                       ];
+                      
+                      [[sessionsTable delegate]
+                       tableView:sessionsTable
+                       didSelectRowAtIndexPath:indexPath
+                       ];
+                  }
+              
               }
               else{
                   
@@ -248,6 +284,18 @@
 //    
     
     return cell;
+}
+-(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+    
+    selectedSession=[sessions objectAtIndex:indexPath.row];
+
+
+    //adicionar abstract e autores
+    
+    [abstract setText:[selectedSession getTheme]];
+    [self viewDidLoad];
+    
+    [AuthorsTable reloadData];
 }
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath{
     

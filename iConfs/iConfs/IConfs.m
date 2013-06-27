@@ -181,32 +181,6 @@
     return ret;
 }
 
--(NSArray*)getUnsubscribedSuperSessionsByConferenceOrderedByDate: (NSString*) cID{
-    NSMutableArray* available = [[[((Conference*)[conferencesDic valueForKey:cID]) getSuperSessions] allValues] mutableCopy];
-    NSMutableArray* subscribed = ((NSMutableArray*)[agendaDicByConf valueForKey:cID]);
-    NSMutableArray* ret = [[NSMutableArray alloc] init];
-    [ret sortUsingSelector:@selector(compare:)];
-    NSString* a = NULL;
-    for (int i=0; i<[available count]; i++) {
-        for(int j=0; j< [((NSArray*)subscribed) count]; j++){
-            if ([[((CustomizableSuperSession*)subscribed[j]) getID] isEqualToString: [((SuperSession*)available[i]) getID]]) {
-                a = NULL;
-            }
-            else{
-                a = [((SuperSession*)available[i]) getID];
-                break;
-            }
-        }
-        if(a==NULL){
-            ;
-        }
-        else{
-            [ret addObject:a];
-        }
-    }
-    [ret sortUsingSelector:@selector(compare:)];
-    return ret;
-}
 
 -(BOOL)unsubscribeAllSuperSessionsFromAConf:(NSString*)cID{
     NSNumber *value = [agendaDicByConf objectForKey:cID];
@@ -1370,6 +1344,45 @@
 -(Conference*)getConferenceWithID:(NSString*)cID{
     Conference* c = ((Conference*)[conferencesDic valueForKey:cID]);
     return c;
+}
+-(NSArray*)getUnsubscribedSuperSessionsByConferenceOrderedByDate: (NSString*) cID{
+    NSMutableArray* available = [[[((Conference*)[conferencesDic valueForKey:cID]) getSuperSessions] allValues] mutableCopy];
+    [available sortUsingSelector:@selector(compare:)];
+    NSMutableArray* subscribed = ((NSMutableArray*)[agendaDicByConf valueForKey:cID]);
+    NSMutableArray* ret = [[NSMutableArray alloc] init];
+    [ret sortUsingSelector:@selector(compare:)];
+    NSString* a = NULL;
+    
+    if ([subscribed count] == 0) {
+        for (int i = 0; i<[available count]; i++) {
+            [ret addObject:[(SuperSession*)available[i] getID]];
+        }
+    } else
+        for (int i=0; i<[available count]; i++) {
+            for(int j=0; j< [((NSArray*)subscribed) count]; j++){
+                if ([[((CustomizableSuperSession*)subscribed[j]) getID] isEqualToString: [((SuperSession*)available[i]) getID]]) {
+                    a = NULL;
+                }
+                else{
+                    a = [((SuperSession*)available[i]) getID];
+                }
+            }
+            
+            if (a!=NULL) {
+                [ret addObject:a];
+            }
+        }
+    NSMutableArray* newRet = [[NSMutableArray alloc] init];
+    NSArray* ss = [self getAvailableSuperSessions];
+    for(int i =0; i< [ret count]; i++){
+        for (int j = 0; j < [ss count]; j++) {
+            if([[((SuperSession*)ss[j]) getID] isEqualToString: ret[i]]){
+                [newRet addObject:ss[j]];
+                break;
+            }
+        }
+    }
+    return ret;
 }
 
 
