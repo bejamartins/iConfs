@@ -142,6 +142,12 @@
 		A0817F3E1760A8240065E30A /* musepat.jpg in Resources */ = {isa = PBXBuildFile; fileRef = A0817F3B1760A8240065E30A /* musepat.jpg */; };
 		A09DF2F71767783400310266 /* Map.m in Sources */ = {isa = PBXBuildFile; fileRef = A09DF2F61767783300310266 /* Map.m */; };
 		A09DF2FA176784CC00310266 /* Blueprints.m in Sources */ = {isa = PBXBuildFile; fileRef = A09DF2F9176784CB00310266 /* Blueprints.m */; };
+		A0BA9F1F177BD9D7008A1FB1 /* Icon-72.png in Resources */ = {isa = PBXBuildFile; fileRef = A0BA9F1E177BD9D7008A1FB1 /* Icon-72.png */; };
+		A0BA9F21177BDB03008A1FB1 /* icon retina.png in Resources */ = {isa = PBXBuildFile; fileRef = A0BA9F20177BDB03008A1FB1 /* icon retina.png */; };
+		A0BA9F23177BDB11008A1FB1 /* Default-Portrait@2x~ipad.png in Resources */ = {isa = PBXBuildFile; fileRef = A0BA9F22177BDB11008A1FB1 /* Default-Portrait@2x~ipad.png */; };
+		A0BA9F25177BDB1D008A1FB1 /* Default-Portrait~ipad.png in Resources */ = {isa = PBXBuildFile; fileRef = A0BA9F24177BDB1D008A1FB1 /* Default-Portrait~ipad.png */; };
+		A0BA9F27177BDB28008A1FB1 /* Default-Landscape~ipad.png in Resources */ = {isa = PBXBuildFile; fileRef = A0BA9F26177BDB28008A1FB1 /* Default-Landscape~ipad.png */; };
+		A0BA9F29177BDB2F008A1FB1 /* Default-Landscape@2x~ipad.png in Resources */ = {isa = PBXBuildFile; fileRef = A0BA9F28177BDB2F008A1FB1 /* Default-Landscape@2x~ipad.png */; };
 		A0E0F9161777DCBB007093D1 /* CustomizableSuperSession.m in Sources */ = {isa = PBXBuildFile; fileRef = A0E0F9151777DCBB007093D1 /* CustomizableSuperSession.m */; };
 /* End PBXBuildFile section */
 
@@ -363,6 +369,12 @@
 		A09DF2F61767783300310266 /* Map.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Map.m; sourceTree = "<group>"; };
 		A09DF2F8176784CB00310266 /* Blueprints.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Blueprints.h; sourceTree = "<group>"; };
 		A09DF2F9176784CB00310266 /* Blueprints.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Blueprints.m; sourceTree = "<group>"; };
+		A0BA9F1E177BD9D7008A1FB1 /* Icon-72.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon-72.png"; sourceTree = "<group>"; };
+		A0BA9F20177BDB03008A1FB1 /* icon retina.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon retina.png"; sourceTree = "<group>"; };
+		A0BA9F22177BDB11008A1FB1 /* Default-Portrait@2x~ipad.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-Portrait@2x~ipad.png"; sourceTree = "<group>"; };
+		A0BA9F24177BDB1D008A1FB1 /* Default-Portrait~ipad.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-Portrait~ipad.png"; sourceTree = "<group>"; };
+		A0BA9F26177BDB28008A1FB1 /* Default-Landscape~ipad.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-Landscape~ipad.png"; sourceTree = "<group>"; };
+		A0BA9F28177BDB2F008A1FB1 /* Default-Landscape@2x~ipad.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-Landscape@2x~ipad.png"; sourceTree = "<group>"; };
 		A0E0F9141777DCBB007093D1 /* CustomizableSuperSession.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CustomizableSuperSession.h; sourceTree = "<group>"; };
 		A0E0F9151777DCBB007093D1 /* CustomizableSuperSession.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CustomizableSuperSession.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
