@@ -16,10 +16,10 @@
 @property (weak, nonatomic) IBOutlet UITableView *MenuView;
 
 
-
 - (IBAction)homeButtonPressed:(id)sender;
 
 - (IConfs*) appData;
+-(void)setShowMenuConf:(BOOL)value;
 
 - (NSArray*)getMySuperSessions:(NSString*)iD;
 

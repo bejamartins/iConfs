@@ -18,6 +18,8 @@
 
 @interface PeopleViewController ()
 {
+    MenuViewController *menu;
+
     NSArray *confPeople;
     NSMutableArray *confSearchPeople;
     BOOL searchItem;
@@ -58,7 +60,6 @@
         [newTopViewController changePath:paperPath];
     [newTopViewController changeToFullScreen];
     [newTopViewController changePrevious:self];
-        [newTopViewController viewDidLoad];
 
     CGRect frame = [[[[self slidingViewController] topViewController] view] frame];
     [[self slidingViewController] setTopViewController:newTopViewController];
@@ -136,6 +137,10 @@
     [ConferenceHome addTarget:self action:@selector(goToConferenceHome:) forControlEvents:UIControlEventTouchUpInside];
     
     [[self view] addSubview:ConferenceHome];
+
+    
+    
+      menu=(MenuViewController*)[[self slidingViewController] underLeftViewController] ;
 
 }
 
@@ -383,6 +388,8 @@
 
 - (IBAction)goHome:(id)sender{
     
+    
+    
     NSString *iD = @"Home";
     
     UIViewController *newTopViewController = [[self storyboard]instantiateViewControllerWithIdentifier:iD];
@@ -393,6 +400,9 @@
     [[[[self slidingViewController] topViewController] view] setFrame:frame];
     
     
+    
+    [menu setSelectedConf:nil];
+    [[menu MenuView ]reloadData];
 }
 
 
