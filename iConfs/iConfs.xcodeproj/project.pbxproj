@@ -616,7 +616,12 @@
 		A078877A175A3C7800C1D90C = {
 			isa = PBXGroup;
 			children = (
-				289A59EE177BAFDF00F5ED1C /* icon1.png */,
+				A0BA9F28177BDB2F008A1FB1 /* Default-Landscape@2x~ipad.png */,
+				A0BA9F26177BDB28008A1FB1 /* Default-Landscape~ipad.png */,
+				A0BA9F24177BDB1D008A1FB1 /* Default-Portrait~ipad.png */,
+				A0BA9F22177BDB11008A1FB1 /* Default-Portrait@2x~ipad.png */,
+				A0BA9F20177BDB03008A1FB1 /* icon retina.png */,
+				A0BA9F1E177BD9D7008A1FB1 /* Icon-72.png */,
 				3CD1D57517720F4E00A05BF3 /* CoreLocation.framework */,
 				3CD1D57317720F4200A05BF3 /* MapKit.framework */,
 				A05A74FF1760F7F600F021BD /* libz.1.2.5.dylib */,
@@ -811,9 +816,12 @@
 				280482CE177791500053E015 /* white_home_conf.png in Resources */,
 				280482D0177792C30053E015 /* white_home_conf2.png in Resources */,
 				280482DA17779D330053E015 /* rounded-rectangle-final.png in Resources */,
-				289A59EB177BAF6200F5ED1C /* icon72.png in Resources */,
-				289A59ED177BAFCE00F5ED1C /* icon1.png in Resources */,
-				289A59EF177BAFDF00F5ED1C /* icon1.png in Resources */,
+				A0BA9F1F177BD9D7008A1FB1 /* Icon-72.png in Resources */,
+				A0BA9F21177BDB03008A1FB1 /* icon retina.png in Resources */,
+				A0BA9F23177BDB11008A1FB1 /* Default-Portrait@2x~ipad.png in Resources */,
+				A0BA9F25177BDB1D008A1FB1 /* Default-Portrait~ipad.png in Resources */,
+				A0BA9F27177BDB28008A1FB1 /* Default-Landscape~ipad.png in Resources */,
+				A0BA9F29177BDB2F008A1FB1 /* Default-Landscape@2x~ipad.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
