@@ -1825,10 +1825,10 @@
                                 <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hSc-ul-6Bg">
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hSc-ul-6Bg">
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
-                                <state key="normal">
+                                <state key="normal" image="transparente.png" backgroundImage="transparente.png">
                                     <color key="titleColor" red="0.19607843459999999" green="0.30980393290000002" blue="0.52156865600000002" alpha="1" colorSpace="calibratedRGB"/>
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
@@ -1836,7 +1836,7 @@
                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
-                                    <action selector="openNews:" destination="28v-4d-CKz" eventType="touchUpInside" id="Yk2-kv-9hi"/>
+                                    <action selector="openNews:" destination="28v-4d-CKz" eventType="touchUpInside" id="8LS-4H-Mwv"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -1851,15 +1851,15 @@
                             <constraint firstItem="75s-V7-LKN" firstAttribute="top" secondItem="cQz-z0-F8O" secondAttribute="top" constant="122" id="5Uv-kf-IfV"/>
                             <constraint firstItem="NZD-Do-mcj" firstAttribute="leading" secondItem="cQz-z0-F8O" secondAttribute="leading" type="default" id="6Tf-w7-hMe"/>
                             <constraint firstItem="BR1-sq-iRx" firstAttribute="leading" secondItem="cQz-z0-F8O" secondAttribute="leading" constant="66" id="7wd-UI-8mE"/>
+                            <constraint firstItem="hSc-ul-6Bg" firstAttribute="centerX" secondItem="hhK-87-QXt" secondAttribute="centerX" type="default" id="8iK-0E-2GO"/>
                             <constraint firstItem="NZD-Do-mcj" firstAttribute="top" secondItem="cQz-z0-F8O" secondAttribute="top" type="default" id="C8v-j3-Fsb"/>
-                            <constraint firstItem="kg0-vh-YHW" firstAttribute="bottom" secondItem="hSc-ul-6Bg" secondAttribute="bottom" type="default" id="CDU-l1-D80"/>
                             <constraint firstItem="hSc-ul-6Bg" firstAttribute="trailing" secondItem="kg0-vh-YHW" secondAttribute="trailing" type="default" id="CIn-M8-uAx"/>
                             <constraint firstAttribute="bottom" secondItem="Cnu-GI-E7O" secondAttribute="bottom" constant="153" id="Cpf-a2-e45"/>
                             <constraint firstItem="0QI-0c-GUL" firstAttribute="trailing" secondItem="NDm-hC-fsD" secondAttribute="trailing" type="default" id="DJ5-s9-rTA"/>
                             <constraint firstAttribute="trailing" secondItem="hhK-87-QXt" secondAttribute="trailing" constant="20" symbolic="YES" type="default" id="DZg-U1-RI3"/>
+                            <constraint firstItem="hSc-ul-6Bg" firstAttribute="centerY" secondItem="kg0-vh-YHW" secondAttribute="centerY" type="default" id="Eig-X3-s7z"/>
                             <constraint firstItem="hhK-87-QXt" firstAttribute="top" secondItem="cQz-z0-F8O" secondAttribute="top" constant="109" id="Fw1-Mw-8JU"/>
                             <constraint firstItem="ASJ-fz-GMz" firstAttribute="bottom" secondItem="iLs-Wc-7E9" secondAttribute="bottom" type="default" id="GqA-oq-JWx"/>
-                            <constraint firstItem="hhK-87-QXt" firstAttribute="centerX" secondItem="Vj0-sR-RO8" secondAttribute="centerX" type="default" id="IXa-oL-kY5"/>
                             <constraint firstAttribute="bottom" secondItem="0QI-0c-GUL" secondAttribute="bottom" constant="206" id="JqP-eZ-5cH"/>
                             <constraint firstAttribute="bottom" secondItem="WhZ-8n-K1w" secondAttribute="bottom" constant="80" id="OUb-fU-kY1"/>
                             <constraint firstItem="0QI-0c-GUL" firstAttribute="leading" secondItem="cQz-z0-F8O" secondAttribute="leading" constant="416" id="PoB-A3-3Gy"/>
@@ -1889,6 +1889,7 @@
                         <outlet property="bar" destination="SoA-Qf-g4T" id="Nzi-9I-sMu"/>
                         <outlet property="date" destination="Cnu-GI-E7O" id="iUR-r7-Ibn"/>
                         <outlet property="forwardButton" destination="ASJ-fz-GMz" id="AEl-EH-Tne"/>
+                        <outlet property="newsButton" destination="hSc-ul-6Bg" id="MJ2-ZQ-axe"/>
                         <outlet property="notification_number" destination="9hK-7W-qyq" id="Hr5-za-Jrc"/>
                         <outlet property="notification_title" destination="F8U-rj-3gG" id="ZXs-0q-fdq"/>
                         <outlet property="pageControl" destination="Vj0-sR-RO8" id="B6N-p4-X6P"/>
@@ -2858,6 +2859,9 @@
         </class>
         <class className="AgendaPreview" superclassName="UIViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/AgendaPreview.h"/>
+            <relationships>
+                <relationship kind="action" name="openAgenda:"/>
+            </relationships>
         </class>
         <class className="AgendaViewController" superclassName="UIViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/AgendaViewController.h"/>
@@ -2897,12 +2901,18 @@
         <class className="ConferenceScreenViewController" superclassName="UIViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/ConferenceScreenViewController.h"/>
             <relationships>
+                <relationship kind="action" name="backButton:"/>
                 <relationship kind="action" name="changeNews:" candidateClass="UIPageControl"/>
+                <relationship kind="action" name="forwardButton:"/>
+                <relationship kind="action" name="goHome:"/>
+                <relationship kind="action" name="openNews:"/>
+                <relationship kind="action" name="revealMenu:"/>
                 <relationship kind="outlet" name="Notification_text" candidateClass="UILabel"/>
                 <relationship kind="outlet" name="backbutton" candidateClass="UIButton"/>
                 <relationship kind="outlet" name="bar" candidateClass="UINavigationItem"/>
                 <relationship kind="outlet" name="date" candidateClass="UILabel"/>
                 <relationship kind="outlet" name="forwardButton" candidateClass="UIButton"/>
+                <relationship kind="outlet" name="newsButton" candidateClass="UIButton"/>
                 <relationship kind="outlet" name="notification_number" candidateClass="UILabel"/>
                 <relationship kind="outlet" name="notification_title" candidateClass="UILabel"/>
                 <relationship kind="outlet" name="pageControl" candidateClass="UIPageControl"/>

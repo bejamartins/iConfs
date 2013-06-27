@@ -11,6 +11,7 @@
 #import "MenuViewController.h"
 #import "Conference.h"
 #import "Notification.h"
+#import "NewsViewController.h"
 
 @interface ConferenceScreenViewController (){
     Conference *conf;
@@ -37,8 +38,12 @@
 @implementation ConferenceScreenViewController
 @synthesize conferenceName;
 @synthesize MenuButton,notification_number,notification_title,Notification_text,date,title,picture,HomeButton;
-- (IBAction)openNews:(id)sender {
-}
+
+
+
+
+
+
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -129,6 +134,7 @@
 
     
     NSArray *news=[[NSArray alloc] init];
+    
     news=[conf getNews];
     NSString* tAux;
     int size= [news count];
@@ -211,7 +217,6 @@
 
 -(void)changeName:(NSString *)name{
     conferenceName=name;
-    NSLog(@"Mudei o nome em Screen, name= %@", conferenceName);
     [[ self bar] setTitle:conferenceName];
     
     
@@ -264,7 +269,32 @@
     
     [title setText:[n getTitle]];
     currentNewsIndex=sender.currentPage;
+        NSLog(@"valor do index %d",currentNewsIndex);
+
+    }
 }
+- (IBAction)openNews:(id)sender{
+
+    
+    NSString *iD = @"News";
+    
+    NSArray *news=[conf getNews];
+    NewsViewController *newTopViewController =[[self storyboard]instantiateViewControllerWithIdentifier:iD];
+    NSLog(@"valor do index openNews %d",currentNewsIndex);
+    NSLog(@"tITULO DA NOTICIA: %@",[[news objectAtIndex:currentNewsIndex]getTitle]);
+    NSArray *aux=[NSArray arrayWithObject:[newsToShow objectAtIndex:currentNewsIndex]];
+    
+    [newTopViewController changeNews:aux];
+    [newTopViewController changePrevious:self];
+    [newTopViewController viewDidLoad];
+    
+    CGRect frame = [[[[self slidingViewController] topViewController] view] frame];
+    [[self slidingViewController] setTopViewController:newTopViewController];
+    [[[[self slidingViewController] topViewController] view] setFrame:frame];
+
+    
+    
+    
 }
 - (IBAction)goHome:(id)sender{
     

@@ -16,12 +16,13 @@
     NSArray *myConfs;
     NSMutableArray *arrayOfArrays;
     BOOL oneNews;
+    BOOL inConference;
 }
 
 @end
 
 @implementation NewsViewController
-@synthesize MenuButton,collection,HomeButton;
+@synthesize MenuButton,collection,HomeButton,BackButton,previous,segmentedControl;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -76,6 +77,21 @@
     [HomeButton addTarget:self action:@selector(goHome:) forControlEvents:UIControlEventTouchUpInside];
     
     [[self view] addSubview:HomeButton];
+    
+    
+    if(inConference){
+
+  
+        
+        [self setBackButton:[UIButton buttonWithType:UIButtonTypeCustom]];
+        
+        [BackButton setFrame:CGRectMake(717, 4, 43, 40)];
+        [BackButton setBackgroundImage:[UIImage imageNamed:@"back3.png"] forState:UIControlStateNormal];
+        [BackButton addTarget:self action:@selector(goBack:) forControlEvents:UIControlEventTouchUpInside];
+        
+        [[self view] addSubview:BackButton];
+    }
+
     [super viewDidLoad];
 	// Do any additional setup after loading the view.
 }
@@ -95,7 +111,20 @@
     
     
 }
+- (IBAction)goBack:(id)sender{
+    CGRect frame = [[[[self slidingViewController] topViewController] view] frame];
+    [[self slidingViewController] setTopViewController:previous];
+    [[[[self slidingViewController] topViewController] view] setFrame:frame];
+    
+}
 
+
+
+- (void)changePrevious:(UIViewController*)vc{
+    inConference =YES;
+    previous=vc;
+    
+}
 
 - (void)didReceiveMemoryWarning
 {
@@ -178,13 +207,20 @@
 
 
 }
+    
+
 }
+
 -(void)changeNews:(NSArray*)nws{
     news=nws;
     oneNews =YES;
-    [self.segmentedControl setHidden:YES];
+    [segmentedControl setHidden:YES];
+    [self viewDidLoad];
     [collection reloadData];
 }
+
+
+
 -(Conference *) getConferenceOfNews:(News*)n{
     ic=[(MenuViewController*)[[self slidingViewController] underLeftViewController] appData];
     NSArray *ids=[n getConfID];

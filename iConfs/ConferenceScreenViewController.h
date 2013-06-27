@@ -23,12 +23,17 @@
 @property (strong, nonatomic) IBOutlet UILabel *Notification_text;
 @property (strong, nonatomic) IBOutlet UILabel *notification_title;
 @property (strong, nonatomic) IBOutlet UILabel *date;
+@property (strong, nonatomic) IBOutlet UIButton *newsButton;
 
 @property (strong, nonatomic) IBOutlet UIImageView *picture;
+
+
+
 @property (strong, nonatomic) IBOutlet UILabel *title;
 @property (strong, nonatomic) UIButton *HomeButton;
 
 - (IBAction)changeNews:(UIPageControl *)sender ;
+- (IBAction)openNews:(id)sender;
 
 @end
 
