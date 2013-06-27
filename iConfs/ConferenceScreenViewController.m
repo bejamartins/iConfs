@@ -303,15 +303,11 @@
     
     UIViewController *newTopViewController = [[self storyboard]instantiateViewControllerWithIdentifier:iD];
     
+    [(MenuViewController*)[[self slidingViewController] underLeftViewController] deselectConf];
     
     CGRect frame = [[[[self slidingViewController] topViewController] view] frame];
     [[self slidingViewController] setTopViewController:newTopViewController];
     [[[[self slidingViewController] topViewController] view] setFrame:frame];
-    
-    
-    
-    [menu setSelectedConf:nil];
-    [[menu MenuView ]reloadData];
 }
 
 

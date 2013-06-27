@@ -68,19 +68,33 @@
     
     
     /*[theAppData fetchConferences];
-    [theAppData addConferenceWithID:@"c002"];
+    [theAppData addConferenceWithID:@"c001"];
     Conference* c = ((Conference*)[theAppData getMyConferences][0]);
     NSLog(@"This is it: %@", [((SuperSession*)[[c getSuperSessions] allValues][0]) getTheme]);
-    [theAppData subscribeSuperSessionInAgenda: ((SuperSession*)[[c getSuperSessions]allValues][0]) Conference:@"c002"];
+    [theAppData subscribeSuperSessionInAgenda: ((SuperSession*)[[c getSuperSessions]allValues][0]) Conference:@"c001"];
     [theAppData getUnsubscribedSuperSessions];
-    NSArray* s = [theAppData getUnsubscribedSuperSessionsByConferenceOrderedByDate:@"c002"];
-    SuperSession* ss = ((SuperSession*)s[0]);*/
+    NSArray* s = [theAppData getUnsubscribedSuperSessionsByConferenceOrderedByDate:@"c001"];
+    SuperSession* ss = ((SuperSession*)s[0]);
+    //NSDictionary* eventsDic = [ss getAllEventsDicionary];
+    NSArray* events = [ss getAllEventsOrderedByDate];
+    Event* event = ((Event*)events[0]);
+    //Event* eventD = ((Event*)[eventsDic allValues][0]);*/
 }
 
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+- (NSArray*)getMySuperSessions:(NSString*)iD
+{
+    return [theAppData getAgendaByConferenceOrderedByDate:iD];
+}
+
+- (NSArray*)getOtherSuperSessions:(NSString*)iD
+{
+    return [theAppData getUnsubscribedSuperSessionsByConferenceOrderedByDate:iD];
 }
 
 #pragma - Table View Methods
@@ -125,6 +139,34 @@
     return cell;
 }
 
+- (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section
+{
+    if (section == 1 && showMenuConf) {
+        return [selectedConf getName];
+    }
+    
+    return @"";
+}
+
+- (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
+{
+    UIView* headerView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, [tableView bounds].size.width, 30)];
+    
+    UILabel* headerLabel = [[UILabel alloc] initWithFrame:CGRectMake(50, 8, [tableView bounds].size.width - 10, 18)];
+    
+    [headerLabel setTextColor:[UIColor whiteColor]];
+    
+    [headerLabel setBackgroundColor:[UIColor clearColor]];
+    
+    [headerLabel setText:[[tableView dataSource] tableView:tableView titleForHeaderInSection:section]];
+    
+    [headerLabel setFont:[UIFont boldSystemFontOfSize:18]];
+    
+    [headerView addSubview:headerLabel];
+    
+    return headerView;
+}
+
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     
@@ -135,8 +177,6 @@
         UIViewController *newTopViewController = [[self storyboard]instantiateViewControllerWithIdentifier:iD];
         
         [[self MenuView] reloadData];
-        
-        [[[self MenuView] cellForRowAtIndexPath:indexPath] setHighlighted:YES];
         
         [[self slidingViewController] anchorTopViewOffScreenTo:ECRight animations:nil onComplete:^{
             CGRect frame = [[[[self slidingViewController] topViewController] view] frame];
@@ -162,7 +202,6 @@
         selectedConf = (Conference*)[confs objectAtIndex:[indexPath row]];
         showMenuConf = YES;
         [[self MenuView] reloadData];
-        [[[self MenuView] cellForRowAtIndexPath:indexPath] setHighlighted:YES];
         
         NSString *iD = @"Conference";
         
@@ -174,7 +213,8 @@
     }
 }
 
-- (IBAction)homeButtonPressed:(id)sender {
+- (IBAction)homeButtonPressed:(id)sender
+{
     UIViewController *newTopViewController = [[self storyboard]instantiateViewControllerWithIdentifier:@"Home"];
     
     [[self slidingViewController] anchorTopViewOffScreenTo:ECRight animations:nil onComplete:^{
@@ -185,36 +225,19 @@
     }];
 }
 
--(void)setSelectedConf:(Conference *)sConf{
-    
+- (void)setSelectedConf:(Conference *)sConf
+{
     selectedConf = sConf;
-    if (selectedConf!=nil) {
-        
-    
     showMenuConf = YES;
-    
-    int index = 0;
-    for (Conference *i in confs) {
-        if ([i getID] == [selectedConf getID]) {
-            [[[self MenuView] cellForRowAtIndexPath:[NSIndexPath indexPathForRow:index inSection:3]] setHighlighted:YES];
-        }
-        
-        index++;
-    }
-    }
-    else{
-        showMenuConf = NO;
-        [self.MenuView reloadData];
-
-
-    }
+    [[self MenuView] reloadData];
 }
--(void)setShowMenuConf:(BOOL)value{
 
-showMenuConf = value;
-    [self.MenuView reloadData];
-   }
-
-
+- (void)deselectConf
+{
+    showMenuConf = NO;
+    [[self MenuView] reloadData];
+}
 
 @end
+
+

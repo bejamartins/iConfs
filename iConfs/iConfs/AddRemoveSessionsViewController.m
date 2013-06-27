@@ -89,6 +89,8 @@
     [self sessionToMAEvents];
     
     [[self AgendaView] setStartDate:[(MAEvent*)[Events objectAtIndex:0] start]];
+    
+    NSLog(@"Aqui!!");
 }
 
 - (void)didReceiveMemoryWarning
@@ -145,19 +147,9 @@
 - (void)sessionToMAEvents {
 	NSString *iD = [[NSString alloc] initWithString:[[(MenuViewController*)[[self slidingViewController] underLeftViewController] selectedConf] getID]];
     
-    NSLog([[(MenuViewController*)[[self slidingViewController] underLeftViewController] selectedConf] getName]);
+    NSArray *myDict = [[(MenuViewController*)[[self slidingViewController] underLeftViewController] appData] getAgendaByConferenceOrderedByDate:iD];
     
-    IConfs *data = [self appData];
-    
-    NSArray *myDict = [[NSArray alloc] initWithArray:[[(MenuViewController*)[[self slidingViewController] underLeftViewController] appData] getAgendaByConferenceOrderedByDate:iD]];
-    
-    NSArray *otherDict = [[NSArray alloc] initWithArray:[[(MenuViewController*)[[self slidingViewController] underLeftViewController] appData] getUnsubscribedSuperSessionsByConferenceOrderedByDate:iD]];
-    
-    myDict = [data getAgendaByConferenceOrderedByDate:iD];
-    otherDict = [data getUnsubscribedSuperSessionsByConferenceOrderedByDate:iD];
-    
-    NSLog([NSString stringWithFormat:@"myEvents count : %d", [myDict count]]);
-    NSLog([NSString stringWithFormat:@"otherEvents count : %d", [otherDict count]]);
+    NSArray *otherDict = [[(MenuViewController*)[[self slidingViewController] underLeftViewController] appData] getUnsubscribedSuperSessionsByConferenceOrderedByDate:iD];
 	
     NSMutableArray *tempEvents = [[NSMutableArray alloc] init];
     
@@ -248,6 +240,8 @@
 
         Events = [[NSArray alloc] initWithArray:tempEvents];
     }
+    
+    NSLog(@"Aqui!");
 }
 
 /* Implementation for the MAWeekViewDelegate protocol */

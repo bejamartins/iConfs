@@ -37,9 +37,6 @@
 		2897460C1764EC8700CB2022 /* FloorCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 2897460B1764EC8700CB2022 /* FloorCell.m */; };
 		2897460F1764EC9400CB2022 /* PlaceDefaultCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 2897460E1764EC9400CB2022 /* PlaceDefaultCell.m */; };
 		289746121764ECCB00CB2022 /* PlaceRoomCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 289746111764ECCB00CB2022 /* PlaceRoomCell.m */; };
-		289A59EB177BAF6200F5ED1C /* icon72.png in Resources */ = {isa = PBXBuildFile; fileRef = 289A59EA177BAF6200F5ED1C /* icon72.png */; };
-		289A59ED177BAFCE00F5ED1C /* icon1.png in Resources */ = {isa = PBXBuildFile; fileRef = 289A59EC177BAFCE00F5ED1C /* icon1.png */; };
-		289A59EF177BAFDF00F5ED1C /* icon1.png in Resources */ = {isa = PBXBuildFile; fileRef = 289A59EE177BAFDF00F5ED1C /* icon1.png */; };
 		289B4C831774D2B300B3560E /* white_home.png in Resources */ = {isa = PBXBuildFile; fileRef = 289B4C821774D2B300B3560E /* white_home.png */; };
 		289B4C851774DF5200B3560E /* back1.png in Resources */ = {isa = PBXBuildFile; fileRef = 289B4C841774DF5200B3560E /* back1.png */; };
 		289B4C871774E0B100B3560E /* back2.png in Resources */ = {isa = PBXBuildFile; fileRef = 289B4C861774E0B100B3560E /* back2.png */; };
@@ -203,7 +200,6 @@
 		289746111764ECCB00CB2022 /* PlaceRoomCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PlaceRoomCell.m; sourceTree = "<group>"; };
 		289A59EA177BAF6200F5ED1C /* icon72.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon72.png; sourceTree = "<group>"; };
 		289A59EC177BAFCE00F5ED1C /* icon1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon1.png; sourceTree = "<group>"; };
-		289A59EE177BAFDF00F5ED1C /* icon1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon1.png; sourceTree = "<group>"; };
 		289B4C821774D2B300B3560E /* white_home.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = white_home.png; sourceTree = "<group>"; };
 		289B4C841774DF5200B3560E /* back1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = back1.png; path = ECSlidingViewController/back1.png; sourceTree = "<group>"; };
 		289B4C861774E0B100B3560E /* back2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = back2.png; path = ECSlidingViewController/back2.png; sourceTree = "<group>"; };
