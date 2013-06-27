@@ -15,13 +15,13 @@
     IConfs *ic;
     NSArray *myConfs;
     NSMutableArray *arrayOfArrays;
-    IBOutlet UICollectionView *collection;
+    BOOL oneNews;
 }
 
 @end
 
 @implementation NewsViewController
-@synthesize MenuButton;
+@synthesize MenuButton,collection,HomeButton;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -34,18 +34,22 @@
 
 - (void)viewDidLoad
 {
-    ic=[(MenuViewController*)[[self slidingViewController] underLeftViewController] appData];
-    myConfs=[ic getMyConferences];
+    
     [collection setDataSource:self];
     [collection setDelegate:self];
     
+    if(news==nil){
+    ic=[(MenuViewController*)[[self slidingViewController] underLeftViewController] appData];
+    myConfs=[ic getMyConferences];
+ 
+    
     news=[[NSMutableArray alloc]init];
     news=[ic getAllNewsOrderedByDate];
-    
+        oneNews=NO;
     NSArray* reversedArray = [[news reverseObjectEnumerator] allObjects];
     news=reversedArray;
-
     
+    }
     [[[self view] layer] setShadowOpacity:0.75f];
     [[[self view] layer] setShadowRadius:10.0f];
     [[[self view] layer] setShadowColor:[UIColor blackColor].CGColor];
@@ -53,9 +57,10 @@
     if (![[[self slidingViewController] underLeftViewController] isKindOfClass:[MenuViewController class]]) {
         [self slidingViewController].UnderLeftViewController = [[self storyboard]instantiateViewControllerWithIdentifier:@"Menu"];
     }
+    if (!oneNews) {
     
     [[self view] addGestureRecognizer:[self slidingViewController].panGesture];
-    
+    }
     [self setMenuButton:[UIButton buttonWithType:UIButtonTypeCustom]];
     
     [MenuButton setFrame:CGRectMake(8, 10, 34, 24)];
@@ -63,10 +68,34 @@
     [MenuButton addTarget:self action:@selector(revealMenu:) forControlEvents:UIControlEventTouchUpInside];
     
     [[self view] addSubview:MenuButton];
-
+    
+    [self setHomeButton:[UIButton buttonWithType:UIButtonTypeCustom]];
+    
+    [HomeButton setFrame:CGRectMake(45, 0, 43, 40)];
+    [HomeButton setBackgroundImage:[UIImage imageNamed:@"white_home.png"] forState:UIControlStateNormal];
+    [HomeButton addTarget:self action:@selector(goHome:) forControlEvents:UIControlEventTouchUpInside];
+    
+    [[self view] addSubview:HomeButton];
     [super viewDidLoad];
 	// Do any additional setup after loading the view.
 }
+- (IBAction)goHome:(id)sender{
+    
+    
+    
+    NSString *iD = @"Home";
+    
+    UIViewController *newTopViewController = [[self storyboard]instantiateViewControllerWithIdentifier:iD];
+    
+    
+    CGRect frame = [[[[self slidingViewController] topViewController] view] frame];
+    [[self slidingViewController] setTopViewController:newTopViewController];
+    [[[[self slidingViewController] topViewController] view] setFrame:frame];
+    
+    
+    
+}
+
 
 - (void)didReceiveMemoryWarning
 {
@@ -110,8 +139,13 @@
     [[cell title]setText:[n getTitle]];
     
     [[cell date] setText:[n getDate]];
-//    [[cell conferenceName]setText:[]];
-    [[cell picture]setImage:[UIImage imageNamed:@"conf.jpg"]];
+    
+    NSArray *id=[n getConfID];
+    
+    Conference *c=[self getConferenceOfNews:n];
+    
+    [[cell conferenceName]setText:[c getName]];
+    [[cell picture]setImage:[c getLogo]];
     
     
     return cell;
@@ -120,6 +154,7 @@
 
 - (IBAction)segmentedChanged:(id)sender {
     
+    if(!oneNews){
     if ([[self segmentedControl] selectedSegmentIndex] == 0) {
         news=[[NSMutableArray alloc]init];
         news=[ic getAllNewsOrderedByDate];
@@ -143,5 +178,19 @@
 
 
 }
+}
+-(void)changeNews:(NSArray*)nws{
+    news=nws;
+    oneNews =YES;
+    [self.segmentedControl setHidden:YES];
+    [collection reloadData];
+}
+-(Conference *) getConferenceOfNews:(News*)n{
+    ic=[(MenuViewController*)[[self slidingViewController] underLeftViewController] appData];
+    NSArray *ids=[n getConfID];
+    NSString *id=[ids objectAtIndex:0];
+    Conference* c=[ic getConferenceWithID:id];
 
+    return c;
+}
 @end

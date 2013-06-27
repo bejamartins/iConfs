@@ -13,8 +13,9 @@
 #import "MenuViewController.h"
 #import "newConferenceContainer.h"
 #import "News.h"
+#import "NewsViewController.h"
 @interface HomeViewController (){
-    NSMutableArray *news;
+    NSArray *news;
     NSMutableArray *pictures;
     
     IBOutlet UIButton *moreNewsButton;
@@ -70,14 +71,7 @@
  
     IConfs *ic=[(MenuViewController*)[[self slidingViewController] underLeftViewController] appData];
     NSArray *myConfs=[ic getMyConferences];
-    
-  //  NSString *imagePath=[selectedBlueprint getImagePath];
-    
-   // NSString* tmpS=[[(MenuViewController*)[[self slidingViewController] underLeftViewController] selectedConf] getID];
-    //
-   // UIImage *image=[[(MenuViewController*)[[self slidingViewController] underLeftViewController] selectedConf] loadImage:tmpS :imagePath];
-    
-    //  [self.bpContainer changeBlueprint: image];
+
     
     
     for (UIViewController *childViewController in [self childViewControllers])
@@ -102,36 +96,36 @@
     pictures=[[NSMutableArray alloc] init];
 
 
-   // IConfs *ic=[(MenuViewController*)[[self slidingViewController] underLeftViewController] appData];
-   //NSArray *myConfs=[ic getMyConferences];
-    for(int i=0;i<[myConfs count];i++){
-     
-        
-       NSArray *newsAux=[[NSArray alloc] init];
-
-        newsAux=[[myConfs objectAtIndex:i]getNews];
-        NSInteger count= [newsAux count];
-        
-        
-        
-        //[[[myConfs objectAtIndex:i]getNews ] objectAtIndex:[[[myConfs objectAtIndex:i]getNews ] ]count];
-        if(count!=0){
-            News *n=[newsAux objectAtIndex:count-1];
-            [news addObject:n];
-            UIImage *p=[[myConfs objectAtIndex:i]getLogo];
-            
-            [pictures addObject: p];
-
-        }
-        
     
+    
+    news=[[NSMutableArray alloc]init];
+    news=[ic getAllNewsOrderedByDate];
+    
+    NSArray* reversedArray = [[news reverseObjectEnumerator] allObjects];
+    NSMutableArray *aux=[[NSMutableArray alloc] init];
+    int counter;
+    if([reversedArray count]>=5)
+        counter=5;
+    else counter= [reversedArray count];
+    
+    for (int i=0; i<counter ;i++){
+    
+        [aux addObject:[reversedArray objectAtIndex:i] ];
+        News *n=[reversedArray objectAtIndex:i];
+        NSArray *id=[n getConfID];
+      Conference *c=  [ic getConferenceWithID:[id objectAtIndex:0]];
+        [pictures addObject:[c getLogo]];
     }
+    news= [[NSArray alloc] initWithArray:aux];
+;
     
+       
     if([news count]==0){
     
         [noNewsPicture setHidden:NO];
         [noNewsLabel setHidden:NO];
     }
+    
     
     if ([myConfs count]==0) {
         [noConferencesPicture setHidden:NO];
@@ -214,9 +208,25 @@
 }
 
 
-
-
+- (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath{
     
+NSString *iD = @"News";
+
+NewsViewController *newTopViewController =[[self storyboard]instantiateViewControllerWithIdentifier:iD];
+    int item=indexPath.item;
+    
+    NSArray *aux=[NSArray arrayWithObject:[news objectAtIndex:indexPath.item]];
+    [newTopViewController changeNews:aux];
+    [newTopViewController viewDidLoad];
+
+CGRect frame = [[[[self slidingViewController] topViewController] view] frame];
+[[self slidingViewController] setTopViewController:newTopViewController];
+[[[[self slidingViewController] topViewController] view] setFrame:frame];
+    
+
+
+
+}
 
 
 

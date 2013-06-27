@@ -14,5 +14,6 @@
 @property (strong, nonatomic) IBOutlet UILabel *date;
 @property (strong, nonatomic) IBOutlet UILabel *text;
 @property (strong, nonatomic) IBOutlet UILabel *title;
+-(void)changeNews:(NSArray*)nws;
 
 @end

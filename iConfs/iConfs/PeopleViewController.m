@@ -60,7 +60,6 @@
         [newTopViewController changePath:paperPath];
     [newTopViewController changeToFullScreen];
     [newTopViewController changePrevious:self];
-        [newTopViewController viewDidLoad];
 
     CGRect frame = [[[[self slidingViewController] topViewController] view] frame];
     [[self slidingViewController] setTopViewController:newTopViewController];

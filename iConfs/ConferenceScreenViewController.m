@@ -37,6 +37,8 @@
 @implementation ConferenceScreenViewController
 @synthesize conferenceName;
 @synthesize MenuButton,notification_number,notification_title,Notification_text,date,title,picture,HomeButton;
+- (IBAction)openNews:(id)sender {
+}
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {

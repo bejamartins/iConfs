@@ -10,8 +10,11 @@
 
 @interface NewsViewController : UIViewController<UICollectionViewDataSource,UICollectionViewDelegate>
 @property (strong, nonatomic) UIButton *MenuButton;
+@property (strong, nonatomic) IBOutlet UICollectionView *collection;
+@property (strong, nonatomic) UIButton *HomeButton;
 
 @property (strong, nonatomic) IBOutlet UISegmentedControl *segmentedControl;
 - (IBAction)segmentedChanged:(id)sender;
+-(void)changeNews:(NSArray*)nws;
 
 @end
