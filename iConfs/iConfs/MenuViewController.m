@@ -68,13 +68,17 @@
     
     
     /*[theAppData fetchConferences];
-    [theAppData addConferenceWithID:@"c002"];
+    [theAppData addConferenceWithID:@"c001"];
     Conference* c = ((Conference*)[theAppData getMyConferences][0]);
     NSLog(@"This is it: %@", [((SuperSession*)[[c getSuperSessions] allValues][0]) getTheme]);
-    [theAppData subscribeSuperSessionInAgenda: ((SuperSession*)[[c getSuperSessions]allValues][0]) Conference:@"c002"];
+    [theAppData subscribeSuperSessionInAgenda: ((SuperSession*)[[c getSuperSessions]allValues][0]) Conference:@"c001"];
     [theAppData getUnsubscribedSuperSessions];
-    NSArray* s = [theAppData getUnsubscribedSuperSessionsByConferenceOrderedByDate:@"c002"];
-    SuperSession* ss = ((SuperSession*)s[0]);*/
+    NSArray* s = [theAppData getUnsubscribedSuperSessionsByConferenceOrderedByDate:@"c001"];
+    SuperSession* ss = ((SuperSession*)s[0]);
+    //NSDictionary* eventsDic = [ss getAllEventsDicionary];
+    NSArray* events = [ss getAllEventsOrderedByDate];
+    Event* event = ((Event*)events[0]);
+    //Event* eventD = ((Event*)[eventsDic allValues][0]);*/
 }
 
 - (void)didReceiveMemoryWarning
