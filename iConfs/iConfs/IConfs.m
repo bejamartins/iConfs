@@ -216,11 +216,12 @@
 }
 
 -(NSArray*)getAvailableSuperSessions{
-    NSMutableArray* ret;
+    NSMutableArray* ret = [[NSMutableArray alloc] init];
     for (int i=0; i<[conferences count]; i++) {
         [ret addObjectsFromArray:[[((Conference*)conferences[i]) getSuperSessions] allValues]];
         [ret sortUsingSelector:@selector(compare:)];
     }
+    
     return ret;
 }
 
@@ -716,6 +717,7 @@
     NSArray* notif = [[NSArray alloc] init];
     NSArray* news = [[NSArray alloc] init];
     notif = [raw valueForKey:@"notif"];
+    
     Notification* n;
     News* nw;
     for (int i = 0; i<[notif count]; i++) {
@@ -1357,7 +1359,7 @@
         for (int i = 0; i<[available count]; i++) {
             [ret addObject:[(SuperSession*)available[i] getID]];
         }
-    } else
+    } else {
         for (int i=0; i<[available count]; i++) {
             for(int j=0; j< [((NSArray*)subscribed) count]; j++){
                 if ([[((CustomizableSuperSession*)subscribed[j]) getID] isEqualToString: [((SuperSession*)available[i]) getID]]) {
@@ -1372,6 +1374,8 @@
                 [ret addObject:a];
             }
         }
+    }
+    
     NSMutableArray* newRet = [[NSMutableArray alloc] init];
     NSArray* ss = [self getAvailableSuperSessions];
     for(int i =0; i< [ret count]; i++){
@@ -1382,7 +1386,8 @@
             }
         }
     }
-    return ret;
+    
+    return newRet;
 }
 
 

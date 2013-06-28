@@ -11,4 +11,7 @@
 
 @interface AddRemoveSessionsViewController : UIViewController<MAWeekViewDataSource, MAWeekViewDelegate>
 
+@property (nonatomic) NSArray* Events;
+@property (weak, nonatomic) IBOutlet MAWeekView *AgendaView;
+
 @end

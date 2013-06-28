@@ -20,10 +20,8 @@
 
 @interface AddRemoveSessionsViewController (){
     BOOL isEditing;
-    NSArray *Events;
 }
 
-@property (weak, nonatomic) IBOutlet MAWeekView *AgendaView;
 @property (readonly) MAEventKitDataSource *eventKitDataSource;
 @property (weak, nonatomic) IBOutlet UIButton *EditButton;
 @property (strong, nonatomic) IBOutlet UIButton *MenuButton;
@@ -34,7 +32,7 @@
 
 @implementation AddRemoveSessionsViewController
 
-@synthesize AgendaView, EditButton, MenuButton, HomeButton, ViewOptions;
+@synthesize AgendaView, EditButton, MenuButton, HomeButton, ViewOptions, Events;
 
 - (IConfs*) appData;
 {
@@ -85,12 +83,6 @@
     [[self view] addSubview:HomeButton];
     
     isEditing = NO;
-    
-    [self sessionToMAEvents];
-    
-    [[self AgendaView] setStartDate:[(MAEvent*)[Events objectAtIndex:0] start]];
-    
-    NSLog(@"Aqui!!");
 }
 
 - (void)didReceiveMemoryWarning
@@ -124,10 +116,14 @@
 
 - (NSArray *)weekView:(MAWeekView *)weekView eventsForDate:(NSDate *)startDate {
     
+    
+    
     NSMutableArray *arr;
     
     for (MAEvent *ss in Events) {
-        NSDateComponents *components = [CURRENT_CALENDAR components:DATE_COMPONENTS fromDate:[ss start]];
+        unsigned unitFlags = NSYearCalendarUnit;
+        
+        NSDateComponents *components = [[NSCalendar currentCalendar] components:unitFlags fromDate:[ss start]];
         NSDateComponents *componentsStart = [CURRENT_CALENDAR components:DATE_COMPONENTS fromDate:startDate];
         
         if ([components day] == [componentsStart day]) {
@@ -153,7 +149,6 @@
 	
     NSMutableArray *tempEvents = [[NSMutableArray alloc] init];
     
-    if ([ViewOptions selectedSegmentIndex] == 0) {
         for (id ss in myDict) {
             MAEvent *event = [[MAEvent alloc] init];
             event.textColor = [UIColor whiteColor];
@@ -163,11 +158,11 @@
             event.backgroundColor = [UIColor brownColor];
             [event setTitle:[ss getTheme]];
             [event setStart:[ss getStartDate]];
-            [event setEnd:[[NSDate alloc] initWithTimeInterval:(30*60) sinceDate:[ss getStartDate]]];
             [event setSsID:[(SuperSession*)ss getID]];
             
             NSMutableArray *eventsInSS;
-            for (id e in [ss getUserAllEventsOrderedByDate]) {
+            
+            /*for (id e in [ss getUserAllEventsOrderedByDate]) {
                 MAEvent *tEvent = [[MAEvent alloc] init];
                 event.textColor = [UIColor whiteColor];
                 event.allDay = NO;
@@ -176,14 +171,13 @@
                 event.backgroundColor = [UIColor purpleColor];
                 [event setTitle:[e getTheme]];
                 [event setStart:[e getStartDate]];
-                [event setEnd:[[NSDate alloc] initWithTimeInterval:(30*60) sinceDate:[e getStartDate]]];
                 [event setSsID:[(SuperSession*)ss getID]];
                 [event setSID:[(Event*)e getID]];
                 
                 [eventsInSS addObject:tEvent];
-            }
+            }*/
             
-            for (id e in [ss getUnsubscribedEvents]) {
+            /*for (id e in [ss getUnsubscribedEvents]) {
                 MAEvent *tEvent = [[MAEvent alloc] init];
                 event.textColor = [UIColor whiteColor];
                 event.allDay = NO;
@@ -192,19 +186,18 @@
                 event.backgroundColor = [UIColor purpleColor];
                 [event setTitle:[e getTheme]];
                 [event setStart:[e getStartDate]];
-                [event setEnd:[[NSDate alloc] initWithTimeInterval:(30*60) sinceDate:[e getStartDate]]];
                 [event setSsID:[(SuperSession*)ss getID]];
                 [event setSID:[(Event*)e getID]];
                 
                 [eventsInSS addObject:tEvent];
-            }
+            }*/
             
             [event setEventsOfSS:eventsInSS];
             
             [tempEvents addObject:event];
         }
         
-        for (id ss in otherDict) {
+        for (SuperSession* ss in otherDict) {
             MAEvent *event = [[MAEvent alloc] init];
             event.textColor = [UIColor whiteColor];
             event.allDay = NO;
@@ -213,11 +206,10 @@
             event.backgroundColor = [UIColor purpleColor];
             [event setTitle:[ss getTheme]];
             [event setStart:[ss getStartDate]];
-            [event setEnd:[[NSDate alloc] initWithTimeInterval:(30*60) sinceDate:[ss getStartDate]]];
             [event setSsID:[(SuperSession*)ss getID]];
             
             NSMutableArray *eventsInSS;
-            for (id e in [ss getUnsubscribedEvents]) {
+            /*for (id e in [ss getUnsubscribedEvents]) {
                 MAEvent *tEvent = [[MAEvent alloc] init];
                 event.textColor = [UIColor whiteColor];
                 event.allDay = NO;
@@ -226,22 +218,18 @@
                 event.backgroundColor = [UIColor purpleColor];
                 [event setTitle:[e getTheme]];
                 [event setStart:[e getStartDate]];
-                [event setEnd:[[NSDate alloc] initWithTimeInterval:(30*60) sinceDate:[e getStartDate]]];
                 [event setSsID:[(SuperSession*)ss getID]];
                 [event setSID:[(Event*)e getID]];
                 
                 [eventsInSS addObject:tEvent];
-            }
+            }*/
             
             [event setEventsOfSS:eventsInSS];
             
             [tempEvents addObject:event];
         }
 
-        Events = [[NSArray alloc] initWithArray:tempEvents];
-    }
-    
-    NSLog(@"Aqui!");
+    Events = tempEvents;
 }
 
 /* Implementation for the MAWeekViewDelegate protocol */

@@ -200,6 +200,8 @@ static const unsigned int TOP_BACKGROUND_HEIGHT               = 35;
 	
 	[self.gridView addGestureRecognizer:self.swipeLeftRecognizer];
 	[self.gridView addGestureRecognizer:self.swipeRightRecognizer];
+    
+    
 }
 
 - (void)layoutSubviews {

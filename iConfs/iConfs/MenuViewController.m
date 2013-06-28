@@ -12,6 +12,8 @@
 #import "IConfs.h"
 #import "OrganizerViewController.h"
 #import "PersonViewController.h"
+#import "AddRemoveSessionsViewController.h"
+#import "MAEvent.h"
 
 @interface MenuViewController ()
 {
@@ -167,6 +169,98 @@
     return headerView;
 }
 
+- (NSArray*)sessionToMAEvents {
+	NSString *iD = [[NSString alloc] initWithString:[[(MenuViewController*)[[self slidingViewController] underLeftViewController] selectedConf] getID]];
+    
+    NSArray *myDict = [[(MenuViewController*)[[self slidingViewController] underLeftViewController] appData] getAgendaByConferenceOrderedByDate:iD];
+    
+    NSArray *otherDict = [[(MenuViewController*)[[self slidingViewController] underLeftViewController] appData] getUnsubscribedSuperSessionsByConferenceOrderedByDate:iD];
+	
+    NSMutableArray *tempEvents = [[NSMutableArray alloc] init];
+    
+    for (id ss in myDict) {
+        MAEvent *event = [[MAEvent alloc] init];
+        event.textColor = [UIColor whiteColor];
+        event.allDay = NO;
+        event.userInfo = NULL;
+        [event setChecked:YES];
+        event.backgroundColor = [UIColor brownColor];
+        [event setTitle:[ss getTheme]];
+        [event setStart:[ss getStartDate]];
+        [event setSsID:[(SuperSession*)ss getID]];
+        
+        NSMutableArray *eventsInSS;
+        
+        /*for (id e in [ss getUserAllEventsOrderedByDate]) {
+         MAEvent *tEvent = [[MAEvent alloc] init];
+         event.textColor = [UIColor whiteColor];
+         event.allDay = NO;
+         event.userInfo = NULL;
+         [event setChecked:YES];
+         event.backgroundColor = [UIColor purpleColor];
+         [event setTitle:[e getTheme]];
+         [event setStart:[e getStartDate]];
+         [event setSsID:[(SuperSession*)ss getID]];
+         [event setSID:[(Event*)e getID]];
+         
+         [eventsInSS addObject:tEvent];
+         }*/
+        
+        /*for (id e in [ss getUnsubscribedEvents]) {
+         MAEvent *tEvent = [[MAEvent alloc] init];
+         event.textColor = [UIColor whiteColor];
+         event.allDay = NO;
+         event.userInfo = NULL;
+         [event setChecked:NO];
+         event.backgroundColor = [UIColor purpleColor];
+         [event setTitle:[e getTheme]];
+         [event setStart:[e getStartDate]];
+         [event setSsID:[(SuperSession*)ss getID]];
+         [event setSID:[(Event*)e getID]];
+         
+         [eventsInSS addObject:tEvent];
+         }*/
+        
+        [event setEventsOfSS:eventsInSS];
+        
+        [tempEvents addObject:event];
+    }
+    
+    for (SuperSession* ss in otherDict) {
+        MAEvent *event = [[MAEvent alloc] init];
+        event.textColor = [UIColor whiteColor];
+        event.allDay = NO;
+        event.userInfo = NULL;
+        [event setChecked:NO];
+        event.backgroundColor = [UIColor purpleColor];
+        [event setTitle:[ss getTheme]];
+        [event setStart:[ss getStartDate]];
+        [event setSsID:[(SuperSession*)ss getID]];
+        
+        NSMutableArray *eventsInSS;
+        /*for (id e in [ss getUnsubscribedEvents]) {
+         MAEvent *tEvent = [[MAEvent alloc] init];
+         event.textColor = [UIColor whiteColor];
+         event.allDay = NO;
+         event.userInfo = NULL;
+         [event setChecked:NO];
+         event.backgroundColor = [UIColor purpleColor];
+         [event setTitle:[e getTheme]];
+         [event setStart:[e getStartDate]];
+         [event setSsID:[(SuperSession*)ss getID]];
+         [event setSID:[(Event*)e getID]];
+         
+         [eventsInSS addObject:tEvent];
+         }*/
+        
+        [event setEventsOfSS:eventsInSS];
+        
+        [tempEvents addObject:event];
+    }
+    
+    return tempEvents;
+}
+
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     
@@ -188,6 +282,11 @@
         NSString *iD = [NSString stringWithFormat:@"%@", [self.MenuView cellForRowAtIndexPath:indexPath].textLabel.text];
         
         UIViewController *newTopViewController = [[self storyboard]instantiateViewControllerWithIdentifier:iD];
+        
+        if ([iD compare:@"Sessions"] == NSOrderedSame) {
+            [(AddRemoveSessionsViewController*)newTopViewController setEvents:[self sessionToMAEvents]];
+            [[(AddRemoveSessionsViewController*)newTopViewController AgendaView] setStartDate:[[(AddRemoveSessionsViewController*)newTopViewController Events] objectAtIndex:0]];
+        }
         
         [[self MenuView] deselectRowAtIndexPath:indexPath animated:NO];
         
