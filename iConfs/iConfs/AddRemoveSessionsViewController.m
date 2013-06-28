@@ -123,7 +123,7 @@
     for (MAEvent *ss in Events) {
         unsigned unitFlags = NSYearCalendarUnit;
         
-        NSDateComponents *components = [[NSCalendar currentCalendar] components:unitFlags fromDate:[ss start]];
+        NSDateComponents *components = [CURRENT_CALENDAR components:DATE_COMPONENTS fromDate:[ss start]];
         NSDateComponents *componentsStart = [CURRENT_CALENDAR components:DATE_COMPONENTS fromDate:startDate];
         
         if ([components day] == [componentsStart day]) {
