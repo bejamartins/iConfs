@@ -35,7 +35,8 @@
     NSMutableDictionary* agendaDic;
     NSMutableDictionary* agendaDicByConf;
     NSDate* agendaStartDate;
-    
+    NSString* strDate;
+    NSDate *date;
     NSArray *paths;
     NSString *documentsDirectory;
     //2) Create the full file path by appending the desired file name
