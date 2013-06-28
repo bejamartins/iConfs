@@ -108,6 +108,9 @@
     
     }
     //mudar
+    int x=[selectedSession getPaperID];
+    NSString* ttitle = [selectedSession getTitle];
+    int authorID = [[selectedSession getAuthor] getID];
     Paper *p=[[selectedSession getAuthor]getPaper: [selectedSession getPaperID]];
     autores=[p getAuthors];
     
