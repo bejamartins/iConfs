@@ -23,6 +23,7 @@
     self.workshops = [[NSMutableArray alloc] init];
     self.eventsList = [[NSMutableArray alloc] init];
     self.image = [[UIImage alloc] init];
+    self.map = [[Map alloc] init];
     self.confID = cID;
     self.confName = n;
     self.image = lp;

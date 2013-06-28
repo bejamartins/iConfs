@@ -14,4 +14,9 @@
 
 @property (weak, nonatomic) IBOutlet MKMapView *map;
 
+@property (strong, nonatomic) UIButton *MenuButton;
+@property (strong, nonatomic) UIButton *HomeButton;
+@property (strong, nonatomic) UIButton *BackButton;
+
+
 @end

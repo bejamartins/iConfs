@@ -838,11 +838,11 @@
         [e addSuperSession: [sess[i] valueForKey:@"IDSuperSession"]];
     }
     NSDictionary* mapR = [[NSDictionary alloc]init];
-    mapR =[raw valueForKey:@"Map"];
+    mapR =[raw valueForKey:@"map"][0];
     Map* map = [[Map alloc]init];
     NSString* latitude = [mapR valueForKey:@"Latitude"];
     NSString* longitude = [mapR valueForKey:@"Longitude"];
-    map = [map initWithData:[mapR valueForKey:@"ID"] lat:[latitude floatValue] longi:[longitude floatValue] placeName:[mapR valueForKey:@"PlaceName"] address:[mapR valueForKey:@"AddressName"]];
+    map = [map initWithData:[mapR valueForKey:@"ID"] lat:[latitude floatValue] longi:[longitude floatValue] placeName:[mapR valueForKey:@"PlaceName"] address:[mapR valueForKey:@"AdressName"]];
     [conf setMap:map];
     
     
