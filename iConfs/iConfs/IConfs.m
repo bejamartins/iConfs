@@ -791,6 +791,8 @@
     sess = [raw valueForKey:@"session"];
     Event* e;
     //int currID2;
+    NSDate* date1;
+    NSDate* date2;
     for (int i = 0; i<[sess count]; i++) {
         if(![[sess[i] valueForKey:@"Speaker"] isEqual:@""]){
             parsedIDAUX = [[[sess[i] valueForKey:@"Speaker"]componentsSeparatedByString:@"p"] objectAtIndex: 1];
@@ -809,27 +811,29 @@
             authorAux = NULL;
         }
         currID = [[[[sess[i] valueForKey:@"ID"]componentsSeparatedByString:@"s"] objectAtIndex: 1]intValue];
+        date1 = [self dateWithJSONString:[sess[i] valueForKey:@"DateTime"]];
+        //date2 = [self dateWithJSONString: ];
         if ([[sess[i] valueForKey:@"Type"] isEqual:@"Session"]) {
             e = [[Session alloc] init];
             NSString* tmpS=((NSString*)[sess[i] valueForKey:@"PaperID"]);
             if(!([tmpS isEqual:@""])){
                 currIDAUX = [[[tmpS componentsSeparatedByString:@"p"] objectAtIndex: 1] intValue];
             }else currIDAUX=-1;
-            e = [(Session*)e initWithDataAndSpeaker:currID date:[sess[i] valueForKey:@"DateTime"] title:[sess[i] valueForKey:@"Name"] theme:[sess[i] valueForKey:@"Description"] speaker: speakerAux athor: authorAux paper:currIDAUX];
+            e = [(Session*)e initWithDataAndSpeaker:currID date: date1 title:[sess[i] valueForKey:@"Name"] theme:[sess[i] valueForKey:@"Description"] speaker: speakerAux athor: authorAux paper:currIDAUX];
             //[sessions addObject:e];
             [conf addSessions:(Session*)e];
             [((SuperSession*)[supersessions valueForKey:[sess[i] valueForKey:@"IDSuperSession"]]) addSession:(Session*)e];
         }
         else if ([[sess[i] valueForKey:@"Type"] isEqual:@"Workshop"]){
             e = [[EventWorkshop alloc] init];
-            e = [(EventWorkshop*)e initWithDataAndSpeaker:currID date:[sess[i] valueForKey:@"DateTime"] title:[sess[i] valueForKey:@"Name"] theme:[sess[i] valueForKey:@"Description"] speaker: speakerAux needs: [sess[i] valueForKey:@"Needs"]];
+            e = [(EventWorkshop*)e initWithDataAndSpeaker:currID date:date1 title:[sess[i] valueForKey:@"Name"] theme:[sess[i] valueForKey:@"Description"] speaker: speakerAux needs: [sess[i] valueForKey:@"Needs"]];
             //[workshops addObject:e];
             [conf addWorkshop:(EventWorkshop*)e];
             [((SuperSession*)[supersessions valueForKey:[sess[i] valueForKey:@"IDSuperSession"]]) addWorkshop:(EventWorkshop*)e];
         }
         else{
             e = [[EventWorkshop alloc] init];
-            e = [(Event*)e initWithData:currID date:[sess[i] valueForKey:@"DateTime"] title:[sess[i] valueForKey:@"Name"] theme:[sess[i] valueForKey:@"Description"]];
+            e = [(Event*)e initWithData:currID date:date1 title:[sess[i] valueForKey:@"Name"] theme:[sess[i] valueForKey:@"Description"]];
             //[otherEvents addObject: e];
             [conf addOtherEvent:e];
             [((SuperSession*)[supersessions valueForKey:[sess[i] valueForKey:@"IDSuperSession"]]) addOtherEvent:e];
@@ -838,13 +842,12 @@
         [e addSuperSession: [sess[i] valueForKey:@"IDSuperSession"]];
     }
     NSDictionary* mapR = [[NSDictionary alloc]init];
-    mapR =[raw valueForKey:@"map"][0];
+    mapR =[raw valueForKey:@"Map"];
     Map* map = [[Map alloc]init];
     NSString* latitude = [mapR valueForKey:@"Latitude"];
     NSString* longitude = [mapR valueForKey:@"Longitude"];
-    map = [map initWithData:[mapR valueForKey:@"ID"] lat:[latitude floatValue] longi:[longitude floatValue] placeName:[mapR valueForKey:@"PlaceName"] address:[mapR valueForKey:@"AdressName"]];
+    map = [map initWithData:[mapR valueForKey:@"ID"] lat:[latitude floatValue] longi:[longitude floatValue] placeName:[mapR valueForKey:@"PlaceName"] address:[mapR valueForKey:@"AddressName"]];
     [conf setMap:map];
-    
     
     [conf setSuperSessions:supersessions];
     
@@ -1388,6 +1391,22 @@
     }
     
     return newRet;
+}
+
+- (NSDate*)dateWithJSONString:(NSString*)dateStr
+{
+    // Convert string to date object
+    NSDateFormatter *dateFormat = [[NSDateFormatter alloc] init];
+    [dateFormat setDateFormat:@"yyyy'-'MM'-'dd'T'HH':'mm':'ss'Z'"];
+    NSDate *date = [dateFormat dateFromString:dateStr];
+    
+    // This is for check the output
+    // Convert date object to desired output format
+    [dateFormat setDateFormat:@"yyyy'-'MM'-'dd'T'HH':'mm':'ss'Z'"]; // Here you can change your require output date format EX. @"EEE, MMM d YYYY"
+    dateStr = [dateFormat stringFromDate:date];
+    NSLog(@"Date -- %@",dateStr);
+    
+    return date;
 }
 
 
