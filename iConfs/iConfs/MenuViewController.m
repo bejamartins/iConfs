@@ -62,7 +62,7 @@
     theAppData = [self appData];
     
     menuGen = [[NSArray alloc] initWithObjects:@"Manage Conferences", @"Personal Agenda", nil];
-    menuConf = [[NSArray alloc] initWithObjects:@"Sessions",@"People",@"Session Detail",@"Locations",@"Map View", @"Locations", nil];
+    menuConf = [[NSArray alloc] initWithObjects:@"Sessions",@"People",@"Session Detail",@"Locations",@"Map View", nil];
     confs = [[NSArray alloc] initWithArray:[theAppData getMyConferences]];
     
     [[self slidingViewController] setAnchorRightPeekAmount:450.0f];

@@ -224,6 +224,7 @@
     
     if ([[confPeople objectAtIndex:indexPath.row] isKindOfClass:[Speaker class]]) {
         Speaker *s=[confPeople objectAtIndex:indexPath.row];
+        
         [speakerBio setText:[s getResume]];
         [speakerBio setHidden:NO];
         [BIO setHidden:NO];
