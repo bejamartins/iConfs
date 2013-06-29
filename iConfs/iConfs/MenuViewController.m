@@ -285,10 +285,9 @@
         
         UIViewController *newTopViewController = [[self storyboard]instantiateViewControllerWithIdentifier:iD];
         
-        if ([iD compare:@"Sessions"] == NSOrderedSame) {
+        /*if ([iD compare:@"Sessions"] == NSOrderedSame) {
             [(AddRemoveSessionsViewController*)newTopViewController setEvents:[self sessionToMAEvents]];
-            [[(AddRemoveSessionsViewController*)newTopViewController AgendaView] setStartDate:[[(AddRemoveSessionsViewController*)newTopViewController Events] objectAtIndex:0]];
-        }
+        }*/
         
         [[self MenuView] deselectRowAtIndexPath:indexPath animated:NO];
         

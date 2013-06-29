@@ -2242,6 +2242,9 @@
                                     <segment title="First"/>
                                     <segment title="Second"/>
                                 </segments>
+                                <connections>
+                                    <action selector="changedOption:" destination="rij-cO-gY8" eventType="valueChanged" id="pij-ba-mAF"/>
+                                </connections>
                             </segmentedControl>
                         </subviews>
                         <color key="backgroundColor" cocoaTouchSystemColor="scrollViewTexturedBackgroundColor"/>
@@ -2905,6 +2908,10 @@
         <class className="AddRemoveSessionsViewController" superclassName="UIViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/AddRemoveSessionsViewController.h"/>
             <relationships>
+                <relationship kind="action" name="changedOption:"/>
+                <relationship kind="action" name="editEvents:"/>
+                <relationship kind="action" name="goHome:"/>
+                <relationship kind="action" name="revealMenu:"/>
                 <relationship kind="outlet" name="AgendaView" candidateClass="MAWeekView"/>
                 <relationship kind="outlet" name="EditButton" candidateClass="UIButton"/>
                 <relationship kind="outlet" name="HomeButton" candidateClass="UIButton"/>
@@ -2927,7 +2934,6 @@
         <class className="BluePrintsViewController" superclassName="UIViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/BluePrintsViewController.h"/>
             <relationships>
-                <relationship kind="action" name="revealMenu:"/>
                 <relationship kind="outlet" name="bpContainer" candidateClass="UIView"/>
                 <relationship kind="outlet" name="collection" candidateClass="UICollectionView"/>
                 <relationship kind="outlet" name="firstArrow" candidateClass="UIImageView"/>

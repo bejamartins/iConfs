@@ -92,6 +92,8 @@
  */
 -(BOOL)subscribeSuperSessionInAgenda: (SuperSession*)ss Conference: (NSString*)cID;
 
+-(BOOL)subscribeSuperSessionInAgendaByID: (NSString*)ssID Conference: (NSString*)cID;
+
 /**
  Gets all the SuperSessions subscribed ordered by start date
  @returns SuperSessions subscribed ordered by start date
