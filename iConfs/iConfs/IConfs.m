@@ -813,6 +813,7 @@
         }
         currID = [[[[sess[i] valueForKey:@"ID"]componentsSeparatedByString:@"s"] objectAtIndex: 1]intValue];
         date1 = [self dateWithJSONString:[sess[i] valueForKey:@"DateTime"]];
+        date2 = [self dateWithJSONString:[sess[i] valueForKey:@"EndDateTime"]];
         //date2 = [self dateWithJSONString: ];
         if ([[sess[i] valueForKey:@"Type"] isEqual:@"Session"]) {
             e = [[Session alloc] init];
@@ -821,6 +822,7 @@
                 currIDAUX = [[[tmpS componentsSeparatedByString:@"p"] objectAtIndex: 1] intValue];
             }else currIDAUX=-1;
             e = [(Session*)e initWithDataAndSpeaker:currID date: date1 title:[sess[i] valueForKey:@"Name"] theme:[sess[i] valueForKey:@"Description"] speaker: speakerAux athor: authorAux paper:currIDAUX];
+            [e setEventEnd:date2];
             //[sessions addObject:e];
             [conf addSessions:(Session*)e];
             [((SuperSession*)[supersessions valueForKey:[sess[i] valueForKey:@"IDSuperSession"]]) addSession:(Session*)e];
@@ -829,6 +831,7 @@
             e = [[EventWorkshop alloc] init];
             e = [(EventWorkshop*)e initWithDataAndSpeaker:currID date:date1 title:[sess[i] valueForKey:@"Name"] theme:[sess[i] valueForKey:@"Description"] speaker: speakerAux needs: [sess[i] valueForKey:@"Needs"]];
             //[workshops addObject:e];
+            [e setEventEnd:date2];
             [conf addWorkshop:(EventWorkshop*)e];
             [((SuperSession*)[supersessions valueForKey:[sess[i] valueForKey:@"IDSuperSession"]]) addWorkshop:(EventWorkshop*)e];
         }
@@ -836,6 +839,7 @@
             e = [[EventWorkshop alloc] init];
             e = [(Event*)e initWithData:currID date:date1 title:[sess[i] valueForKey:@"Name"] theme:[sess[i] valueForKey:@"Description"]];
             //[otherEvents addObject: e];
+            [e setEventEnd:date2];
             [conf addOtherEvent:e];
             [((SuperSession*)[supersessions valueForKey:[sess[i] valueForKey:@"IDSuperSession"]]) addOtherEvent:e];
         }
@@ -1389,7 +1393,8 @@
     for(int i =0; i< [ret count]; i++){
         for (int j = 0; j < [ss count]; j++) {
             if([[((SuperSession*)ss[j]) getID] isEqualToString: ret[i]]){
-                [newRet addObject:ss[j]];
+                CustomizableSuperSession* n = [[CustomizableSuperSession alloc] initWithSuperSession:ss[j] Conference:cID];
+                [newRet addObject:n];
                 break;
             }
         }
@@ -1402,9 +1407,26 @@
 {
     NSDateFormatter *dateFormat = [[NSDateFormatter alloc] init];
     [dateFormat setDateFormat:@"yyyy'-'MM'-'dd' 'HH':'mm':'ss'"];
-    NSDate *date = [dateFormat dateFromString:dateStr];
+    NSDate *retDate = [dateFormat dateFromString:dateStr];
     
-    return date;
+    return retDate;
+}
+
+-(BOOL)subscribeSuperSessionInAgendaByID: (NSString*)ssID Conference: (NSString*)cID;{
+    if([agendaDic objectForKey:ssID] ==nil){
+        Conference* c = [conferencesDic objectForKey:cID];
+        NSMutableDictionary* ssessions = [c getSuperSessions];
+        SuperSession* ss = ((SuperSession*)[ssessions objectForKey:ssID]);
+        if([self subscribeSuperSessionInAgenda:ss Conference:cID]){
+            return true;
+        }else{
+            return false;
+        }
+        
+    }
+    else{
+        return false;
+    }
 }
 
 

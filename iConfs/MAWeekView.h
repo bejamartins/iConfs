@@ -75,6 +75,8 @@
 
 -(NSArray*)getWeekDays;
 
+- (void)setupCustomInitialisation;
+
 @end
 
 @protocol MAWeekViewDataSource <NSObject>
