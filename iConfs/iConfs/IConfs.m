@@ -75,7 +75,7 @@
  isHere = true;
  break;
  }
- }
+ }d
  if(isHere == false){
  [agenda addObject: event];
  return true;

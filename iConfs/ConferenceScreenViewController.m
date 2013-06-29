@@ -12,8 +12,9 @@
 #import "Conference.h"
 #import "Notification.h"
 #import "NewsViewController.h"
-
+#import "PeopleCell.h"
 @interface ConferenceScreenViewController (){
+    NSArray *authorsShown;
     Conference *conf;
     NSUInteger currentNotIndex;
     Notification *currentNotification;
@@ -42,7 +43,58 @@
 
 
 
+-(NSInteger)numberOfSectionsInCollectionView:(UICollectionView *)collectionView{
+    return 1;
+}
 
+-(NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section{
+
+    return 3;
+}
+
+-(UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath{
+    static NSString *CellIdentifier=@"author_cell";
+    PeopleCell *cell= [collectionView dequeueReusableCellWithReuseIdentifier:CellIdentifier forIndexPath:indexPath];
+    
+    int aux = arc4random() % [[conf getAuthors] count];
+    while([self checkInAuthorsShown:aux]){
+        aux = arc4random() % [[conf getAuthors] count];
+    }
+
+    Author *author=[[conf getAuthors]objectAtIndex:aux];
+    
+    [[cell Image]setImage:[UIImage imageNamed:@"profile_icon.png"]];
+    
+    [[cell type]setText:@"Author"];
+    
+    [[cell Name]setText:[author getName]];
+    
+    
+    cell.backgroundColor =  [UIColor colorWithPatternImage:[UIImage imageNamed:@"white_rect.png"]];
+
+  //  [cell setBackgroundColor:[UIColor colorWithPatternImage:@"white_rect.png"]];
+    return cell;
+}
+
+- (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath{
+    
+//    NSString *iD = @"News";
+//    
+//    NewsViewController *newTopViewController =[[self storyboard]instantiateViewControllerWithIdentifier:iD];
+//    int item=indexPath.item;
+//    
+//    NSArray *aux=[NSArray arrayWithObject:[news objectAtIndex:indexPath.item]];
+//    [newTopViewController changeNews:aux];
+//    [newTopViewController viewDidLoad];
+//    
+//    CGRect frame = [[[[self slidingViewController] topViewController] view] frame];
+//    [[self slidingViewController] setTopViewController:newTopViewController];
+//    [[[[self slidingViewController] topViewController] view] setFrame:frame];
+    
+    
+    
+    
+}
 
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
@@ -58,7 +110,8 @@
 {
     //NSLog(@"Name em ConferenceScreen= %@", conferenceName);
   
-    
+    [self.collection setDelegate:self];
+    [self.collection setDataSource:self];
     
     [super viewDidLoad];
 
@@ -66,7 +119,7 @@
     if(conf==nil){
         conf=[(MenuViewController*)[[self slidingViewController] underLeftViewController] selectedConf];
         
-        
+        authorsShown=[[NSArray alloc]init];
           menu=(MenuViewController*)[[self slidingViewController] underLeftViewController] ;
 
         
@@ -250,6 +303,20 @@
     
     
     }
+
+-(BOOL)checkInAuthorsShown:(int)aux{
+    BOOL final=NO;
+    for(int i =0;i<[authorsShown count];i++){
+        int a=(int)[authorsShown objectAtIndex:i];
+        if(a==aux){
+            final=YES;
+            break;
+        }
+    }
+    return final;
+}
+
+
 -(Conference*) getConference{
 
            Conference *c=[(MenuViewController*)[[self slidingViewController] underLeftViewController] selectedConf];

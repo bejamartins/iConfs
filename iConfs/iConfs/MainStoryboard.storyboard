@@ -1897,32 +1897,35 @@
                                 </connections>
                             </button>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" minimumZoomScale="0.0" maximumZoomScale="0.0" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="CG7-wK-j5N">
-                                <color key="backgroundColor" red="0.50196081400000003" green="1" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="389" id="IMa-4h-R3H"/>
                                     <constraint firstAttribute="width" constant="291" id="dVt-GZ-DY5"/>
                                 </constraints>
                                 <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="1Hh-Wr-D3m">
-                                    <size key="itemSize" width="270" height="122"/>
+                                    <size key="itemSize" width="281" height="122"/>
                                     <size key="headerReferenceSize" width="0.0" height="0.0"/>
                                     <size key="footerReferenceSize" width="0.0" height="0.0"/>
                                     <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                                 </collectionViewFlowLayout>
                                 <cells>
-                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="umI-b1-Qxx">
-                                        <rect key="frame" x="10" y="0.0" width="270" height="122"/>
+                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="author_cell" id="umI-b1-Qxx" customClass="PeopleCell">
+                                        <rect key="frame" x="5" y="0.0" width="281" height="122"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                         <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
-                                            <rect key="frame" x="0.0" y="0.0" width="270" height="122"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="281" height="122"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="kCb-mh-d0V">
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" image="profile_icon.png" translatesAutoresizingMaskIntoConstraints="NO" id="kCb-mh-d0V">
                                                     <constraints>
                                                         <constraint firstAttribute="width" constant="96" id="GCh-vs-daP"/>
                                                         <constraint firstAttribute="height" constant="87" id="N4y-6H-X1h"/>
                                                     </constraints>
                                                 </imageView>
-                                                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fe0-Kc-mvS">
+                                                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Author" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fe0-Kc-mvS">
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" constant="108" id="WM0-wq-8MY"/>
+                                                    </constraints>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                                     <nil key="highlightedColor"/>
@@ -1939,32 +1942,20 @@
                                             </subviews>
                                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                         </view>
+                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                         <constraints>
-                                            <constraint firstItem="kCb-mh-d0V" firstAttribute="leading" secondItem="umI-b1-Qxx" secondAttribute="leading" constant="8" id="VtZ-xk-0nj"/>
-                                            <constraint firstItem="fe0-Kc-mvS" firstAttribute="top" secondItem="umI-b1-Qxx" secondAttribute="top" constant="20" type="default" id="YE7-sZ-B9Z"/>
+                                            <constraint firstItem="kCb-mh-d0V" firstAttribute="leading" secondItem="umI-b1-Qxx" secondAttribute="leading" constant="21" id="1XC-ju-DwY"/>
+                                            <constraint firstItem="fe0-Kc-mvS" firstAttribute="top" secondItem="umI-b1-Qxx" secondAttribute="top" constant="20" type="default" id="9bL-0y-L0Y"/>
+                                            <constraint firstItem="fe0-Kc-mvS" firstAttribute="leading" secondItem="umI-b1-Qxx" secondAttribute="leading" constant="127" id="Cl3-uO-T7Z"/>
                                             <constraint firstItem="M7O-SF-ftm" firstAttribute="leading" secondItem="fe0-Kc-mvS" secondAttribute="leading" type="default" id="bYA-dt-5zL"/>
                                             <constraint firstItem="M7O-SF-ftm" firstAttribute="top" secondItem="umI-b1-Qxx" secondAttribute="top" constant="55" id="mjw-oR-hbp"/>
-                                            <constraint firstItem="fe0-Kc-mvS" firstAttribute="centerX" secondItem="umI-b1-Qxx" secondAttribute="centerX" type="default" id="ncG-hn-TVx"/>
                                             <constraint firstItem="kCb-mh-d0V" firstAttribute="top" secondItem="umI-b1-Qxx" secondAttribute="top" constant="14" id="zmI-Eb-fc9"/>
                                         </constraints>
-                                    </collectionViewCell>
-                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="PVv-A5-0Cf">
-                                        <rect key="frame" x="10" y="132" width="270" height="122"/>
-                                        <autoresizingMask key="autoresizingMask"/>
-                                        <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
-                                            <rect key="frame" x="0.0" y="0.0" width="270" height="122"/>
-                                            <autoresizingMask key="autoresizingMask"/>
-                                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                                        </view>
-                                    </collectionViewCell>
-                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="h0u-Yn-394">
-                                        <rect key="frame" x="10" y="264" width="270" height="122"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                        <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
-                                            <rect key="frame" x="0.0" y="0.0" width="270" height="122"/>
-                                            <autoresizingMask key="autoresizingMask"/>
-                                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                                        </view>
+                                        <connections>
+                                            <outlet property="Image" destination="kCb-mh-d0V" id="Ffb-tS-oXM"/>
+                                            <outlet property="Name" destination="M7O-SF-ftm" id="ZmT-Oe-NT8"/>
+                                            <outlet property="type" destination="fe0-Kc-mvS" id="Elv-tA-AoI"/>
+                                        </connections>
                                     </collectionViewCell>
                                 </cells>
                             </collectionView>
@@ -2014,6 +2005,7 @@
                         <outlet property="Notification_text" destination="BR1-sq-iRx" id="kQZ-kX-GU7"/>
                         <outlet property="backbutton" destination="iLs-Wc-7E9" id="ATD-25-tmN"/>
                         <outlet property="bar" destination="SoA-Qf-g4T" id="Nzi-9I-sMu"/>
+                        <outlet property="collection" destination="CG7-wK-j5N" id="q1n-uk-cYr"/>
                         <outlet property="date" destination="Cnu-GI-E7O" id="iUR-r7-Ibn"/>
                         <outlet property="forwardButton" destination="ASJ-fz-GMz" id="AEl-EH-Tne"/>
                         <outlet property="newsButton" destination="hSc-ul-6Bg" id="MJ2-ZQ-axe"/>
@@ -3026,6 +3018,7 @@
         <image name="clip_art_food.gif" width="400" height="401"/>
         <image name="conf.jpg" width="370" height="229"/>
         <image name="menuIcon.png" width="348" height="348"/>
+        <image name="profile_icon.png" width="128" height="128"/>
         <image name="pulpito.png" width="375" height="375"/>
         <image name="right_arrow_up.png" width="128" height="128"/>
         <image name="rounded-rectangle-final.png" width="503" height="241"/>
@@ -3035,10 +3028,6 @@
         <class className="AddRemoveSessionsViewController" superclassName="UIViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/AddRemoveSessionsViewController.h"/>
             <relationships>
-                <relationship kind="action" name="changedOption:"/>
-                <relationship kind="action" name="editEvents:"/>
-                <relationship kind="action" name="goHome:"/>
-                <relationship kind="action" name="revealMenu:"/>
                 <relationship kind="outlet" name="AgendaView" candidateClass="MAWeekView"/>
                 <relationship kind="outlet" name="EditButton" candidateClass="UIButton"/>
                 <relationship kind="outlet" name="HomeButton" candidateClass="UIButton"/>
@@ -3087,11 +3076,16 @@
         <class className="ConferenceScreenViewController" superclassName="UIViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/ConferenceScreenViewController.h"/>
             <relationships>
+                <relationship kind="action" name="backButton:"/>
                 <relationship kind="action" name="changeNews:" candidateClass="UIPageControl"/>
+                <relationship kind="action" name="forwardButton:"/>
+                <relationship kind="action" name="goHome:"/>
                 <relationship kind="action" name="openNews:"/>
+                <relationship kind="action" name="revealMenu:"/>
                 <relationship kind="outlet" name="Notification_text" candidateClass="UILabel"/>
                 <relationship kind="outlet" name="backbutton" candidateClass="UIButton"/>
                 <relationship kind="outlet" name="bar" candidateClass="UINavigationItem"/>
+                <relationship kind="outlet" name="collection" candidateClass="UICollectionView"/>
                 <relationship kind="outlet" name="date" candidateClass="UILabel"/>
                 <relationship kind="outlet" name="forwardButton" candidateClass="UIButton"/>
                 <relationship kind="outlet" name="newsButton" candidateClass="UIButton"/>
@@ -3209,6 +3203,14 @@
             <source key="sourceIdentifier" type="project" relativePath="./Classes/PDFReader.h"/>
             <relationships>
                 <relationship kind="outlet" name="webview" candidateClass="UIWebView"/>
+            </relationships>
+        </class>
+        <class className="PeopleCell" superclassName="UICollectionViewCell">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/PeopleCell.h"/>
+            <relationships>
+                <relationship kind="outlet" name="Image" candidateClass="UIImageView"/>
+                <relationship kind="outlet" name="Name" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="type" candidateClass="UILabel"/>
             </relationships>
         </class>
         <class className="PeopleViewController" superclassName="UIViewController">
