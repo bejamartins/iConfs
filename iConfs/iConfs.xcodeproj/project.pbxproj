@@ -60,6 +60,7 @@
 		28ECE06B177F668E00BFCC84 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 28ECE06A177F668E00BFCC84 /* SystemConfiguration.framework */; };
 		28ECE06F177F75B200BFCC84 /* profile_icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 28ECE06E177F75B200BFCC84 /* profile_icon.png */; };
 		28ECE071177F789000BFCC84 /* white_rect.png in Resources */ = {isa = PBXBuildFile; fileRef = 28ECE070177F789000BFCC84 /* white_rect.png */; };
+		28ECE073177F9E9B00BFCC84 /* icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 28ECE072177F9E9B00BFCC84 /* icon.png */; };
 		3CD1D56F17720B3A00A05BF3 /* MapPlace.m in Sources */ = {isa = PBXBuildFile; fileRef = 3CD1D56E17720B3A00A05BF3 /* MapPlace.m */; };
 		3CD1D57217720D9E00A05BF3 /* MapViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3CD1D57117720D9E00A05BF3 /* MapViewController.m */; };
 		3CD1D57417720F4200A05BF3 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3CD1D57317720F4200A05BF3 /* MapKit.framework */; };
@@ -150,7 +151,6 @@
 		A0BA9F25177BDB1D008A1FB1 /* Default-Portrait~ipad.png in Resources */ = {isa = PBXBuildFile; fileRef = A0BA9F24177BDB1D008A1FB1 /* Default-Portrait~ipad.png */; };
 		A0BA9F27177BDB28008A1FB1 /* Default-Landscape~ipad.png in Resources */ = {isa = PBXBuildFile; fileRef = A0BA9F26177BDB28008A1FB1 /* Default-Landscape~ipad.png */; };
 		A0BA9F29177BDB2F008A1FB1 /* Default-Landscape@2x~ipad.png in Resources */ = {isa = PBXBuildFile; fileRef = A0BA9F28177BDB2F008A1FB1 /* Default-Landscape@2x~ipad.png */; };
-		A0D18788177F76D700F2750D /* icon.png in Resources */ = {isa = PBXBuildFile; fileRef = A0D18787177F76D700F2750D /* icon.png */; };
 		A0E0F9161777DCBB007093D1 /* CustomizableSuperSession.m in Sources */ = {isa = PBXBuildFile; fileRef = A0E0F9151777DCBB007093D1 /* CustomizableSuperSession.m */; };
 /* End PBXBuildFile section */
 
@@ -236,6 +236,7 @@
 		28ECE06A177F668E00BFCC84 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
 		28ECE06E177F75B200BFCC84 /* profile_icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = profile_icon.png; sourceTree = "<group>"; };
 		28ECE070177F789000BFCC84 /* white_rect.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = white_rect.png; sourceTree = "<group>"; };
+		28ECE072177F9E9B00BFCC84 /* icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon.png; sourceTree = "<group>"; };
 		3CD1D56D17720B3900A05BF3 /* MapPlace.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MapPlace.h; sourceTree = "<group>"; };
 		3CD1D56E17720B3A00A05BF3 /* MapPlace.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MapPlace.m; sourceTree = "<group>"; };
 		3CD1D57017720D9E00A05BF3 /* MapViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MapViewController.h; sourceTree = "<group>"; };
@@ -382,7 +383,6 @@
 		A0BA9F24177BDB1D008A1FB1 /* Default-Portrait~ipad.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-Portrait~ipad.png"; sourceTree = "<group>"; };
 		A0BA9F26177BDB28008A1FB1 /* Default-Landscape~ipad.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-Landscape~ipad.png"; sourceTree = "<group>"; };
 		A0BA9F28177BDB2F008A1FB1 /* Default-Landscape@2x~ipad.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-Landscape@2x~ipad.png"; sourceTree = "<group>"; };
-		A0D18787177F76D700F2750D /* icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon.png; sourceTree = "<group>"; };
 		A0E0F9141777DCBB007093D1 /* CustomizableSuperSession.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CustomizableSuperSession.h; sourceTree = "<group>"; };
 		A0E0F9151777DCBB007093D1 /* CustomizableSuperSession.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CustomizableSuperSession.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -467,6 +467,7 @@
 		289745FF1764DF7100CB2022 /* Interfaces */ = {
 			isa = PBXGroup;
 			children = (
+				28ECE072177F9E9B00BFCC84 /* icon.png */,
 				70755E1B176D42F9006FD261 /* MainStoryboard.storyboard */,
 				28A1C5741767B551005B5F5B /* ViewControllers */,
 				289746001764DFCC00CB2022 /* Cells */,
@@ -635,7 +636,6 @@
 				A0BA9F24177BDB1D008A1FB1 /* Default-Portrait~ipad.png */,
 				28C70B0D177E63AB003F3A6D /* icon retina.svg */,
 				A0BA9F22177BDB11008A1FB1 /* Default-Portrait@2x~ipad.png */,
-				A0D18787177F76D700F2750D /* icon.png */,
 				A0BA9F1E177BD9D7008A1FB1 /* Icon-72.png */,
 				3CD1D57517720F4E00A05BF3 /* CoreLocation.framework */,
 				3CD1D57317720F4200A05BF3 /* MapKit.framework */,
@@ -841,6 +841,7 @@
 				28C70B10177E650B003F3A6D /* menuIcon.png in Resources */,
 				28ECE06F177F75B200BFCC84 /* profile_icon.png in Resources */,
 				28ECE071177F789000BFCC84 /* white_rect.png in Resources */,
+				28ECE073177F9E9B00BFCC84 /* icon.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

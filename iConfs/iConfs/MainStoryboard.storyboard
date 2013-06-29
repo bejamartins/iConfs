@@ -2198,37 +2198,6 @@
             </objects>
             <point key="canvasLocation" x="-106" y="1307"/>
         </scene>
-        <!--View Controller-->
-        <scene sceneID="hBo-Hc-tOb">
-            <objects>
-                <viewController id="Eha-TR-pc0" sceneMemberID="viewController">
-                    <view key="view" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="jdp-5t-NkU">
-                        <rect key="frame" x="0.0" y="20" width="768" height="1004"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="infoDark" showsTouchWhenHighlighted="YES" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="JpU-3X-bNu">
-                                <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
-                                <state key="normal">
-                                    <color key="titleColor" red="0.19607843459999999" green="0.30980393290000002" blue="0.52156865600000002" alpha="1" colorSpace="calibratedRGB"/>
-                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                                <state key="highlighted">
-                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                            </button>
-                        </subviews>
-                        <color key="backgroundColor" cocoaTouchSystemColor="scrollViewTexturedBackgroundColor"/>
-                        <constraints>
-                            <constraint firstItem="JpU-3X-bNu" firstAttribute="top" secondItem="jdp-5t-NkU" secondAttribute="top" constant="9" id="2ub-VV-6cd"/>
-                            <constraint firstAttribute="trailing" secondItem="JpU-3X-bNu" secondAttribute="trailing" constant="9" id="Bge-ha-gfc"/>
-                        </constraints>
-                    </view>
-                    <toolbarItems/>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="ehG-HM-zbY" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="2006" y="-1315"/>
-        </scene>
         <!--Map View Controller-->
         <scene sceneID="28O-90-BZJ">
             <objects>
@@ -3017,7 +2986,7 @@
         <image name="checkbox.png" width="16" height="16"/>
         <image name="clip_art_food.gif" width="400" height="401"/>
         <image name="conf.jpg" width="370" height="229"/>
-        <image name="menuIcon.png" width="348" height="348"/>
+        <image name="icon.png" width="1024" height="1024"/>
         <image name="profile_icon.png" width="128" height="128"/>
         <image name="pulpito.png" width="375" height="375"/>
         <image name="right_arrow_up.png" width="128" height="128"/>
@@ -3076,12 +3045,8 @@
         <class className="ConferenceScreenViewController" superclassName="UIViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/ConferenceScreenViewController.h"/>
             <relationships>
-                <relationship kind="action" name="backButton:"/>
                 <relationship kind="action" name="changeNews:" candidateClass="UIPageControl"/>
-                <relationship kind="action" name="forwardButton:"/>
-                <relationship kind="action" name="goHome:"/>
                 <relationship kind="action" name="openNews:"/>
-                <relationship kind="action" name="revealMenu:"/>
                 <relationship kind="outlet" name="Notification_text" candidateClass="UILabel"/>
                 <relationship kind="outlet" name="backbutton" candidateClass="UIButton"/>
                 <relationship kind="outlet" name="bar" candidateClass="UINavigationItem"/>
