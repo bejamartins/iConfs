@@ -817,7 +817,7 @@
         if ([[sess[i] valueForKey:@"Type"] isEqual:@"Session"]) {
             e = [[Session alloc] init];
             NSString* tmpS=((NSString*)[sess[i] valueForKey:@"PaperID"]);
-            if(!([tmpS isEqual:@""])){
+            if(!([tmpS isEqualToString:@""])){
                 currIDAUX = [[[tmpS componentsSeparatedByString:@"p"] objectAtIndex: 1] intValue];
             }else currIDAUX=-1;
             e = [(Session*)e initWithDataAndSpeaker:currID date: date1 title:[sess[i] valueForKey:@"Name"] theme:[sess[i] valueForKey:@"Description"] speaker: speakerAux athor: authorAux paper:currIDAUX];
