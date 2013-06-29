@@ -57,6 +57,7 @@
 		28CF7719175FC2EE0070B4D5 /* speaker.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 28CF7717175FC2ED0070B4D5 /* speaker.jpg */; };
 		28CF771A175FC2EE0070B4D5 /* author.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 28CF7718175FC2ED0070B4D5 /* author.jpg */; };
 		28D97F38175BFF8300AA3A80 /* Post-it-note-transparent.png in Resources */ = {isa = PBXBuildFile; fileRef = 28D97F37175BFF8300AA3A80 /* Post-it-note-transparent.png */; };
+		28ECE06B177F668E00BFCC84 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 28ECE06A177F668E00BFCC84 /* SystemConfiguration.framework */; };
 		3CD1D56F17720B3A00A05BF3 /* MapPlace.m in Sources */ = {isa = PBXBuildFile; fileRef = 3CD1D56E17720B3A00A05BF3 /* MapPlace.m */; };
 		3CD1D57217720D9E00A05BF3 /* MapViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3CD1D57117720D9E00A05BF3 /* MapViewController.m */; };
 		3CD1D57417720F4200A05BF3 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3CD1D57317720F4200A05BF3 /* MapKit.framework */; };
@@ -229,6 +230,7 @@
 		28CF7717175FC2ED0070B4D5 /* speaker.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = speaker.jpg; sourceTree = "<group>"; };
 		28CF7718175FC2ED0070B4D5 /* author.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = author.jpg; sourceTree = "<group>"; };
 		28D97F37175BFF8300AA3A80 /* Post-it-note-transparent.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Post-it-note-transparent.png"; sourceTree = "<group>"; };
+		28ECE06A177F668E00BFCC84 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
 		3CD1D56D17720B3900A05BF3 /* MapPlace.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MapPlace.h; sourceTree = "<group>"; };
 		3CD1D56E17720B3A00A05BF3 /* MapPlace.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MapPlace.m; sourceTree = "<group>"; };
 		3CD1D57017720D9E00A05BF3 /* MapViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MapViewController.h; sourceTree = "<group>"; };
@@ -384,6 +386,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				28ECE06B177F668E00BFCC84 /* SystemConfiguration.framework in Frameworks */,
 				3CD1D57617720F4E00A05BF3 /* CoreLocation.framework in Frameworks */,
 				3CD1D57417720F4200A05BF3 /* MapKit.framework in Frameworks */,
 				7074AAEB17667BD700197584 /* EventKit.framework in Frameworks */,
@@ -618,6 +621,7 @@
 		A078877A175A3C7800C1D90C = {
 			isa = PBXGroup;
 			children = (
+				28ECE06A177F668E00BFCC84 /* SystemConfiguration.framework */,
 				A0BA9F28177BDB2F008A1FB1 /* Default-Landscape@2x~ipad.png */,
 				A0BA9F26177BDB28008A1FB1 /* Default-Landscape~ipad.png */,
 				A0BA9F24177BDB1D008A1FB1 /* Default-Portrait~ipad.png */,
@@ -991,6 +995,10 @@
 		A07887A6175A3C7800C1D90C /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)\"",
+				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "iConfs/iConfs-Prefix.pch";
 				INFOPLIST_FILE = "iConfs/iConfs-Info.plist";
@@ -1002,6 +1010,10 @@
 		A07887A7175A3C7800C1D90C /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)\"",
+				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "iConfs/iConfs-Prefix.pch";
 				INFOPLIST_FILE = "iConfs/iConfs-Info.plist";

@@ -196,6 +196,9 @@
  */
 -(NSArray*)getRestOfConfs;
 
+-(BOOL)hasConnectivity;
+
+
 -(NSString*)getfetchedIDs;
 
 -(BOOL)addConferenceWithID:(NSString*)confID;
