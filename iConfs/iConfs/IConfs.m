@@ -1400,16 +1400,9 @@
 
 - (NSDate*)dateWithJSONString:(NSString*)dateStr
 {
-    // Convert string to date object
     NSDateFormatter *dateFormat = [[NSDateFormatter alloc] init];
-    [dateFormat setDateFormat:@"yyyy'-'MM'-'dd'T'HH':'mm':'ss'Z'"];
+    [dateFormat setDateFormat:@"yyyy'-'MM'-'dd' 'HH':'mm':'ss'"];
     NSDate *date = [dateFormat dateFromString:dateStr];
-    
-    // This is for check the output
-    // Convert date object to desired output format
-    [dateFormat setDateFormat:@"yyyy'-'MM'-'dd'T'HH':'mm':'ss'Z'"]; // Here you can change your require output date format EX. @"EEE, MMM d YYYY"
-    dateStr = [dateFormat stringFromDate:date];
-    NSLog(@"Date -- %@",dateStr);
     
     return date;
 }
