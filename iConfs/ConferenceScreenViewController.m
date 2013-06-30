@@ -14,6 +14,7 @@
 #import "NewsViewController.h"
 #import "PeopleCell.h"
 #import "PeopleViewController.h"
+#import "SessionsViewController.h"
 @interface ConferenceScreenViewController (){
     NSArray *authorsShown;
     Conference *conf;
@@ -56,7 +57,7 @@
 -(UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath{
     static NSString *CellIdentifier=@"author_cell";
     PeopleCell *cell= [collectionView dequeueReusableCellWithReuseIdentifier:CellIdentifier forIndexPath:indexPath];
-    
+    if(indexPath.item<2){
     int aux = arc4random() % [[conf getAuthors] count];
     while([self checkInAuthorsShown:aux]){
         aux = arc4random() % [[conf getAuthors] count];
@@ -70,14 +71,36 @@
     
     [[cell Name]setText:[author getName]];
     [cell setIndex:aux];
+    }
+    else{
+        
+        int aux = arc4random() % [[[conf getSuperSessions]allValues] count];
+        [cell setIndexSupersessions:aux];
+        SuperSession *selectedSuperSession = [[[conf getSuperSessions]allValues] objectAtIndex:aux];
+
+        aux = arc4random() % [[selectedSuperSession getSessionsOrderedByDate] count];
+        [cell setIndexSession:aux];
+        
+        Session *selectedSession =[[selectedSuperSession getSessionsOrderedByDate]objectAtIndex:aux];
+
+
+        [[cell type]setText:@"Presentation"];
+        [[cell Name]setText:[selectedSession getTitle]];
+
+    
+        [[cell Image]setImage:[UIImage imageNamed:@"profile_icon.png"]];
+
+
+    }
+  //  [cell setBackgroundColor:[UIColor colorWithPatternImage:@"white_rect.png"]];
+    
     cell.backgroundColor =  [UIColor colorWithPatternImage:[UIImage imageNamed:@"white_rect.png"]];
 
-  //  [cell setBackgroundColor:[UIColor colorWithPatternImage:@"white_rect.png"]];
     return cell;
 }
 
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath{
-    
+    if(indexPath.item<2){
     
     NSString *iD = @"People";
     
@@ -96,6 +119,42 @@
     [[[[self slidingViewController] topViewController] view] setFrame:frame];
     [newTopViewController changeAuthor:[cell getIndex]];
 
+    }
+    
+    else{
+    
+        NSString *iD = @"Session Detail";
+        
+         SessionsViewController* newTopViewController =[[self storyboard]instantiateViewControllerWithIdentifier:iD];
+        
+        
+        PeopleCell *cell = (PeopleCell*)[collectionView cellForItemAtIndexPath:indexPath];
+        
+        
+        int ssi=[cell getIndexSupersessions];
+       
+        [newTopViewController viewDidLoad];
+
+   //     [newTopViewController auxChangeSuperSession:ssi];
+        
+     //   [newTopViewController changeSession:[cell getIndexSession]];
+
+        
+        
+        CGRect frame = [[[[self slidingViewController] topViewController] view] frame];
+        [[self slidingViewController] setTopViewController:newTopViewController];
+        [[[[self slidingViewController] topViewController] view] setFrame:frame];
+       
+        [newTopViewController auxChangeSuperSession:ssi];
+        
+        [newTopViewController changeSession:[cell getIndexSession]];
+        
+   
+
+    }
+    
+    
+    
     
     
 }
@@ -236,7 +295,6 @@
         [title setText:[n getTitle]];
     }
     else{
-         tAux = [NSString stringWithFormat:@"Welcome To %@ iConfs page!",[conf getName]];
       
                                                        
        [picture setImage:[conf getLogo]];
@@ -246,7 +304,6 @@
     
     
     
-    NSLog(@"valor do index %d",currentNewsIndex);
     
     
     
