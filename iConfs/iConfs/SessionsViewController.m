@@ -47,6 +47,42 @@
     return self;
 }
 
+
+
+
+-(void)auxChangeSuperSession:(int)index{
+    selectedSuperSession =[superSessions objectAtIndex:index];
+    sessions=[selectedSuperSession getSessionsOrderedByDate];
+}
+
+-(void)changeSession:(int)indexSession{
+    //seleciona autor
+    selectedSession =[sessions objectAtIndex:indexSession];
+
+    [collection reloadData];
+    
+
+    NSIndexPath *indexPath=[NSIndexPath indexPathForRow:index inSection:0 ];
+//    confPeople = [[(MenuViewController*)[[self slidingViewController] underLeftViewController] selectedConf] getAuthors];
+    
+//    receivedAuthor=YES;
+//    [peopleTable reloadData];
+//    [peopleTable
+//     selectRowAtIndexPath:indexPath
+//     animated:TRUE
+//     scrollPosition:UITableViewScrollPositionNone
+//     ];
+//    
+//    [[peopleTable delegate]
+//     tableView:peopleTable
+//     didSelectRowAtIndexPath:indexPath
+ //    ];
+    
+    
+}
+
+
+
 - (void)viewDidLoad
 {
     [super viewDidLoad];
@@ -114,19 +150,31 @@
     NSString* dateInString = [currentDate description];
 
     NSLog(@"Horassss : %@",dateInString);
-//    
-//    NSDateFormatter *dateFormat = [[NSDateFormatter alloc] init];
-//    [dateFormat setDateFormat:@"yyyy-MM-dd HH:mm"];
-//    [dateFormat setTimeZone:[NSTimeZone timeZoneForSecondsFromGMT:0]];
-//     [dateFormat setTimeZone:[NSTimeZone timeZoneWithAbbreviation:@"WEST"]];
-//
-//    NSDate *date = [dateFormat dateFromString:currentDate];
-    //mudar
+   
+
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    //////////////////////////////////////////////////////////
+    
+    //////////////////////////////////////////////////////////
+    
+    //////////////////////////////////////////////////////////
+    
+    //DEBUG EDUARDO
     
     int x=[selectedSession getPaperID];
     if(x !=-1){
     int authorID = [[selectedSession getAuthor] getID];
-    Paper *p=[[selectedSession getAuthor]getPaper: [selectedSession getPaperID]];
+        Author *aut=(Author*)[selectedSession getAuthor];
+    Paper *p=[aut getPaper: x];
     autores=[p getAuthors];
     }
     
