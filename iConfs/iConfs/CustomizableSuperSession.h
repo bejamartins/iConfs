@@ -157,4 +157,6 @@
 
 -(NSString*)getConfID;
 
+-(BOOL)unsubscribeAnyEvent:(int)eventID;
+
 @end

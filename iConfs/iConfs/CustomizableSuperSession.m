@@ -260,4 +260,14 @@
     return confID;
 }
 
+-(BOOL)unsubscribeAnyEvent:(int)eventID{
+    if([sessionsDic objectForKey:[NSNumber numberWithInteger: eventID]] != nil){
+        return [self unsubscribeSession:eventID];
+    }
+    else if([workshopsDic objectForKey:[NSNumber numberWithInteger: eventID]] != nil){
+        return [self unsubscribeWorkshop:eventID];
+    }
+    else return [self unsubscribeOtherEvent:eventID];
+}
+
 @end
