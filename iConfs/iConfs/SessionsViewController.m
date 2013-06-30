@@ -322,10 +322,20 @@
                   Session *s=[searchSessions objectAtIndex:indexPath.row];
                   [[cell textLabel]setText:[s getTitle]];
               
-              
+            
+                  if(indexPath.row==0){
+                  [sessionsTable
+                   selectRowAtIndexPath:indexPath
+                   animated:TRUE
+                   scrollPosition:UITableViewScrollPositionNone
+                   ];
+                  
+                  [[sessionsTable delegate]
+                   tableView:sessionsTable
+                   didSelectRowAtIndexPath:indexPath
+                   ];
               }
-    
-    
+}
     }
     //autores table
     else if([tableView tag]==2){
@@ -481,12 +491,12 @@
         NSString *strCompany = [[NSString alloc]init];
         
         for (int i = 0; i < [sessions count]; i++) {
-            strName = [[sessions objectAtIndex:i] getName];
+            strName = [[sessions objectAtIndex:i] getTitle];
             
             NSRange stringRangeName = [strName rangeOfString:searchText options:NSCaseInsensitiveSearch];
-            NSRange stringRangeCompany = [strCompany rangeOfString:searchText options:NSCaseInsensitiveSearch];
+           // NSRange stringRangeCompany = [strCompany rangeOfString:searchText options:NSCaseInsensitiveSearch];
             
-            if (stringRangeName.location != NSNotFound || stringRangeCompany.location != NSNotFound) {
+            if (stringRangeName.location != NSNotFound) {
                 [searchSessions addObject:[sessions objectAtIndex:i]];
             }
         }
