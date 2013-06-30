@@ -59,7 +59,8 @@
     
     
 
-    
+    UIColor *background = [[UIColor alloc] initWithPatternImage:[UIImage imageNamed:@"GB.jpg"]];
+    self.view.backgroundColor = background;
     
     
 

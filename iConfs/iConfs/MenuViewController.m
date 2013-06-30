@@ -15,6 +15,8 @@
 #import "AddRemoveSessionsViewController.h"
 #import "MAEvent.h"
 
+#import "MapViewController.h"
+
 @interface MenuViewController ()
 {
     NSArray *menuGen;
@@ -60,13 +62,17 @@
     theAppData = [self appData];
     
     menuGen = [[NSArray alloc] initWithObjects:@"Manage Conferences", @"Personal Agenda", nil];
-    menuConf = [[NSArray alloc] initWithObjects:@"Sessions",@"People",@"Session Detail",@"Locations",@"Where am I?", nil];
+    menuConf = [[NSArray alloc] initWithObjects:@"Sessions",@"People",@"Session Detail",@"Locations",@"Map View", nil];
     confs = [[NSArray alloc] initWithArray:[theAppData getMyConferences]];
     
     [[self slidingViewController] setAnchorRightPeekAmount:450.0f];
     [[self slidingViewController] setUnderLeftWidthLayout:ECFullWidth];
     
     showMenuConf = NO;
+    
+    UIColor *background = [[UIColor alloc] initWithPatternImage:[UIImage imageNamed:@"WP(42).jpg"]];
+    self.view.backgroundColor = background;
+    //[background release];
     
     
     /*[theAppData fetchConferences];
@@ -283,10 +289,9 @@
         
         UIViewController *newTopViewController = [[self storyboard]instantiateViewControllerWithIdentifier:iD];
         
-        if ([iD compare:@"Sessions"] == NSOrderedSame) {
+        /*if ([iD compare:@"Sessions"] == NSOrderedSame) {
             [(AddRemoveSessionsViewController*)newTopViewController setEvents:[self sessionToMAEvents]];
-            [[(AddRemoveSessionsViewController*)newTopViewController AgendaView] setStartDate:[[(AddRemoveSessionsViewController*)newTopViewController Events] objectAtIndex:0]];
-        }
+        }*/
         
         [[self MenuView] deselectRowAtIndexPath:indexPath animated:NO];
         

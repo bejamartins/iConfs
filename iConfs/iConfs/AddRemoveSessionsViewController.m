@@ -83,6 +83,12 @@
     [[self view] addSubview:HomeButton];
     
     isEditing = NO;
+    
+    [self sessionToMAEvents];
+    
+    [AgendaView setStartDate:[(MAEvent*)[Events objectAtIndex:0] start]];
+    
+    [AgendaView setupCustomInitialisation];
 }
 
 - (void)didReceiveMemoryWarning
@@ -118,10 +124,9 @@
     
     
     
-    NSMutableArray *arr;
+    NSMutableArray *arr = [[NSMutableArray alloc] init];
     
-    for (MAEvent *ss in Events) {
-        unsigned unitFlags = NSYearCalendarUnit;
+    for (MAEvent* ss in Events) {
         
         NSDateComponents *components = [[NSCalendar currentCalendar] components:unitFlags fromDate:[NSDate date]];
         NSDateComponents *componentsStart = [CURRENT_CALENDAR components:DATE_COMPONENTS fromDate:startDate];
@@ -149,7 +154,7 @@
 	
     NSMutableArray *tempEvents = [[NSMutableArray alloc] init];
     
-        for (id ss in myDict) {
+        for (CustomizableSuperSession* ss in myDict) {
             MAEvent *event = [[MAEvent alloc] init];
             event.textColor = [UIColor whiteColor];
             event.allDay = NO;
@@ -160,44 +165,46 @@
             [event setStart:[ss getStartDate]];
             [event setSsID:[(SuperSession*)ss getID]];
             
-            NSMutableArray *eventsInSS;
+            NSMutableArray *eventsInSS = [[NSMutableArray alloc] init];
             
-            /*for (id e in [ss getUserAllEventsOrderedByDate]) {
+            for (Session* e in [ss getUserAllEventsOrderedByDate]) {
                 MAEvent *tEvent = [[MAEvent alloc] init];
-                event.textColor = [UIColor whiteColor];
-                event.allDay = NO;
-                event.userInfo = NULL;
-                [event setChecked:YES];
-                event.backgroundColor = [UIColor purpleColor];
-                [event setTitle:[e getTheme]];
-                [event setStart:[e getStartDate]];
-                [event setSsID:[(SuperSession*)ss getID]];
-                [event setSID:[(Event*)e getID]];
+                tEvent.textColor = [UIColor whiteColor];
+                tEvent.allDay = NO;
+                tEvent.userInfo = NULL;
+                [tEvent setChecked:YES];
+                tEvent.backgroundColor = [UIColor purpleColor];
+                [tEvent setTitle:[e getTheme]];
+                [tEvent setStart:[e getDate]];
+                [tEvent setEnd:[e getEventEnd]];
+                [tEvent setSsID:[(SuperSession*)ss getID]];
+                [tEvent setSID:[(Event*)e getID]];
                 
                 [eventsInSS addObject:tEvent];
-            }*/
+            }
             
-            /*for (id e in [ss getUnsubscribedEvents]) {
+            for (Session* e in [ss getUnsubscribedEvents]) {
                 MAEvent *tEvent = [[MAEvent alloc] init];
-                event.textColor = [UIColor whiteColor];
-                event.allDay = NO;
-                event.userInfo = NULL;
-                [event setChecked:NO];
-                event.backgroundColor = [UIColor purpleColor];
-                [event setTitle:[e getTheme]];
-                [event setStart:[e getStartDate]];
-                [event setSsID:[(SuperSession*)ss getID]];
-                [event setSID:[(Event*)e getID]];
+                tEvent.textColor = [UIColor whiteColor];
+                tEvent.allDay = NO;
+                tEvent.userInfo = NULL;
+                [tEvent setChecked:NO];
+                tEvent.backgroundColor = [UIColor purpleColor];
+                [tEvent setTitle:[e getTheme]];
+                [tEvent setStart:[e getDate]];
+                [tEvent setEnd:[e getEventEnd]];
+                [tEvent setSsID:[(SuperSession*)ss getID]];
+                [tEvent setSID:[(Event*)e getID]];
                 
                 [eventsInSS addObject:tEvent];
-            }*/
+            }
             
             [event setEventsOfSS:eventsInSS];
             
             [tempEvents addObject:event];
         }
         
-        for (SuperSession* ss in otherDict) {
+        for (CustomizableSuperSession* ss in otherDict) {
             MAEvent *event = [[MAEvent alloc] init];
             event.textColor = [UIColor whiteColor];
             event.allDay = NO;
@@ -208,21 +215,23 @@
             [event setStart:[ss getStartDate]];
             [event setSsID:[(SuperSession*)ss getID]];
             
-            NSMutableArray *eventsInSS;
-            /*for (id e in [ss getUnsubscribedEvents]) {
+            NSMutableArray *eventsInSS = [[NSMutableArray alloc] init];
+            
+            for (Session* e in [ss getUnsubscribedEvents]) {
                 MAEvent *tEvent = [[MAEvent alloc] init];
-                event.textColor = [UIColor whiteColor];
-                event.allDay = NO;
-                event.userInfo = NULL;
-                [event setChecked:NO];
-                event.backgroundColor = [UIColor purpleColor];
-                [event setTitle:[e getTheme]];
-                [event setStart:[e getStartDate]];
-                [event setSsID:[(SuperSession*)ss getID]];
-                [event setSID:[(Event*)e getID]];
+                tEvent.textColor = [UIColor whiteColor];
+                tEvent.allDay = NO;
+                tEvent.userInfo = NULL;
+                [tEvent setChecked:NO];
+                tEvent.backgroundColor = [UIColor purpleColor];
+                [tEvent setTitle:[e getTheme]];
+                [tEvent setStart:[e getDate]];
+                [tEvent setEnd:[e getEventEnd]];
+                [tEvent setSsID:[(SuperSession*)ss getID]];
+                [tEvent setSID:[(Event*)e getID]];
                 
                 [eventsInSS addObject:tEvent];
-            }*/
+            }
             
             [event setEventsOfSS:eventsInSS];
             

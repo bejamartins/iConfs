@@ -45,12 +45,15 @@
     c=[(MenuViewController*)[[self slidingViewController] underLeftViewController] selectedConf] ;
 
     self.blueprints= [[(MenuViewController*)[[self slidingViewController] underLeftViewController] selectedConf] getBlueprints];
-   // NSLog(@"Tamanho bps=%d",[self.blueprints count]);
-    NSArray *keys = [self.blueprints allKeys];
-    id aKey = [keys objectAtIndex:0];
-    Blueprints *b1 = [self.blueprints objectForKey:aKey];
-    aKey=[keys objectAtIndex:1];
-    Blueprints *b2=[self.blueprints objectForKey:aKey];
+
+    NSArray *x=self.blueprints;
+    
+    // NSLog(@"Tamanho bps=%d",[self.blueprints count]);
+//    NSArray *keys = [self.blueprints allKeys];
+ //   id aKey = [keys objectAtIndex:0];
+ //   Blueprints *b1 = [self.blueprints objectForKey:aKey];
+//    aKey=[keys objectAtIndex:1];
+//    Blueprints *b2=[self.blueprints objectForKey:aKey];
     
     if (selectedBlueprint==nil) {
         NSArray *keys = [self.blueprints allKeys];

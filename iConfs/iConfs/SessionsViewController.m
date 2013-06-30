@@ -107,10 +107,28 @@
         //selectedSuperSession=[selectedSession  getS]; //MUDAR
     
     }
+    
+    NSDate* currentDate = [NSDate date];
+   // [currentDate setTimeZone:[NSTimeZone timeZoneWithAbbreviation:@"WEST"]];
+
+    NSString* dateInString = [currentDate description];
+
+    NSLog(@"Horassss : %@",dateInString);
+//    
+//    NSDateFormatter *dateFormat = [[NSDateFormatter alloc] init];
+//    [dateFormat setDateFormat:@"yyyy-MM-dd HH:mm"];
+//    [dateFormat setTimeZone:[NSTimeZone timeZoneForSecondsFromGMT:0]];
+//     [dateFormat setTimeZone:[NSTimeZone timeZoneWithAbbreviation:@"WEST"]];
+//
+//    NSDate *date = [dateFormat dateFromString:currentDate];
     //mudar
+    
+    int x=[selectedSession getPaperID];
+    if(x !=-1){
+    int authorID = [[selectedSession getAuthor] getID];
     Paper *p=[[selectedSession getAuthor]getPaper: [selectedSession getPaperID]];
     autores=[p getAuthors];
-    
+    }
     
  //   [abstract setText:[selectedSession getTheme]];
 
@@ -245,8 +263,8 @@
     else if([tableView tag]==2){
           cell=[tableView dequeueReusableCellWithIdentifier:@"authorCell" forIndexPath:indexPath];
     
-        
-    //    [[cell textLabel]setText:[[autores objectAtIndex:indexPath.row]getName]];
+        if([autores count]!=0)
+        [[cell textLabel]setText:[[autores objectAtIndex:indexPath.row]getName]];
 
     }
     return  cell;

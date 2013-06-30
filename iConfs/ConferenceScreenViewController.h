@@ -9,7 +9,7 @@
 #import <UIKit/UIKit.h>
 #import "Conference.h"
 
-@interface ConferenceScreenViewController : UIViewController
+@interface ConferenceScreenViewController : UIViewController<UICollectionViewDataSource,UICollectionViewDelegate>
 
 @property NSString *conferenceName;
 
@@ -19,6 +19,7 @@
 -(void)changeName:(NSString *)name;
 -(Conference*)getConference;
 
+@property (strong, nonatomic) IBOutlet UICollectionView *collection;
 @property (strong, nonatomic) IBOutlet UILabel *notification_number;
 @property (strong, nonatomic) IBOutlet UILabel *Notification_text;
 @property (strong, nonatomic) IBOutlet UILabel *notification_title;
@@ -34,6 +35,7 @@
 
 - (IBAction)changeNews:(UIPageControl *)sender ;
 - (IBAction)openNews:(id)sender;
+-(BOOL)checkInAuthorsShown:(int)aux;
 
 @end
 

@@ -30,7 +30,9 @@
 
 #import "IConfs.h"
 #import "ZipArchive.h"
-
+#import <sys/socket.h>
+#import <netinet/in.h>
+#import <SystemConfiguration/SystemConfiguration.h>
 @implementation IConfs
 
 
@@ -73,7 +75,7 @@
  isHere = true;
  break;
  }
- }
+ }d
  if(isHere == false){
  [agenda addObject: event];
  return true;
@@ -346,10 +348,61 @@
     NSString* imgPath=[NSString stringWithFormat:@"%@%@%@",@"http://193.136.122.141/",confID,@"/confLogo.jpg"];
     NSURL* imgURL=[NSURL URLWithString:imgPath];
     
-    NSData* imgData=[NSData dataWithContentsOfURL:imgURL options:kNilOptions error:NULL];
+    NSData* imgData=[NSData dataWithContentsOfURL:imgURL options:kNilOptions error:nil];
     UIImage* img =[UIImage imageWithData:imgData];
     
     return img;
+}
+
+
+-(BOOL)hasConnectivity {
+    struct sockaddr_in zeroAddress;
+    bzero(&zeroAddress, sizeof(zeroAddress));
+    zeroAddress.sin_len = sizeof(zeroAddress);
+    zeroAddress.sin_family = AF_INET;
+    
+    SCNetworkReachabilityRef reachability = SCNetworkReachabilityCreateWithAddress(kCFAllocatorDefault, (const struct sockaddr*)&zeroAddress);
+    if(reachability != NULL) {
+        //NetworkStatus retVal = NotReachable;
+        SCNetworkReachabilityFlags flags;
+        if (SCNetworkReachabilityGetFlags(reachability, &flags)) {
+            if ((flags & kSCNetworkReachabilityFlagsReachable) == 0)
+            {
+                // if target host is not reachable
+                return NO;
+            }
+            
+            if ((flags & kSCNetworkReachabilityFlagsConnectionRequired) == 0)
+            {
+                // if target host is reachable and no connection is required
+                //  then we'll assume (for now) that your on Wi-Fi
+                return YES;
+            }
+            
+            
+            if ((((flags & kSCNetworkReachabilityFlagsConnectionOnDemand ) != 0) ||
+                 (flags & kSCNetworkReachabilityFlagsConnectionOnTraffic) != 0))
+            {
+                // ... and the connection is on-demand (or on-traffic) if the
+                //     calling application is using the CFSocketStream or higher APIs
+                
+                if ((flags & kSCNetworkReachabilityFlagsInterventionRequired) == 0)
+                {
+                    // ... and no [user] intervention is needed
+                    return YES;
+                }
+            }
+            
+            if ((flags & kSCNetworkReachabilityFlagsIsWWAN) == kSCNetworkReachabilityFlagsIsWWAN)
+            {
+                // ... but WWAN connections are OK if the calling application
+                //     is using the CFNetwork (CFSocketStream?) APIs.
+                return YES;
+            }
+        }
+    }
+    
+    return NO;
 }
 
 //returns dictionary in the form of {ID;ImagePath;Name}
@@ -358,16 +411,19 @@
     NSURL *url= [NSURL URLWithString:@"http://193.136.122.141/showConfs.php"];
     NSURLRequest *request= [NSURLRequest requestWithURL:url
                                             cachePolicy:NSURLRequestReturnCacheDataElseLoad
-                                        timeoutInterval:30];
+                                        timeoutInterval:5];
     
     NSData *data;
     NSURLResponse *response;
     // NSError *error;
     
-    data=[NSURLConnection sendSynchronousRequest: request returningResponse: &response error: NULL];
+    data=[NSURLConnection sendSynchronousRequest: request returningResponse: &response error: nil];
+    
+        NSDictionary *json = [NSJSONSerialization JSONObjectWithData:data options:kNilOptions error:nil];
+        return json;
+
     
     
-    NSDictionary *json = [NSJSONSerialization JSONObjectWithData:data options:kNilOptions error:NULL];
     
     //get all the values with key=ID
     //NSArray *array=[json valueForKey:@"ID"];
@@ -375,21 +431,22 @@
     //NSArray *array1=[[json valueForKey:@"Name"] objectAtIndex:1];
     //log results
     //return [[NSString alloc] initWithData:data encoding: NSUTF8StringEncoding];
-    return json;
     
     
 }
 
+
+
 -(BOOL)fetchConferences{
     NSDictionary* fetch = [self getConfsFromServer];
-    if(fetch == NULL){
+    if(fetch == nil){
         return false;
     }
     else{
         NSArray* dataIDs = [self getConfsIDFromServer: fetch];
         NSArray* dataNames = [self getConfsNameFromServer: fetch];
         
-        if(dataIDs == NULL || dataNames == NULL){
+        if(dataIDs == nil || dataNames == nil){
             return false;
         }
         
@@ -399,10 +456,10 @@
         Conference* current;
         for (int i=0; i < [dataIDs count]; i++) {
             current = [Conference new];
-            current = [current initWithData: dataIDs[i] name: dataNames[i] image: NULL /*alterar depois*/ bluePrint: NULL];
+            current = [current initWithData: dataIDs[i] name: dataNames[i] image: nil /*alterar depois*/ bluePrint: NULL];
             if ([self addToAllConference: current] == true){
                 currentImg = [self getConfImageFromServer:dataIDs[i]];
-                if(currentImg == NULL){
+                if(currentImg == nil){
                     return false;
                 }
                 [((Conference*)[allConferences lastObject]) changeLogo: currentImg];
@@ -465,7 +522,7 @@
 -(BOOL)addConf:(NSString*)confID{
     
     NSData* tmpData=[self getConf:confID];
-    if(tmpData!=NULL){
+    if(tmpData!=nil){
         NSDictionary* tmpConf=[self parseJSON:tmpData];
         [self saveConf:tmpConf:tmpData];
         if([self getConfFiles:confID]==NO){
@@ -500,11 +557,12 @@
     [request setValue:postLength forHTTPHeaderField:@"Content-Length"];
     [request setValue:@"application/x-www-form-urlencoded" forHTTPHeaderField:@"Content-Type"];
     [request setHTTPBody:postData];
+    [request setTimeoutInterval:5];
     
     // NSURLConnection* conn=[[NSURLConnection alloc]initWithRequest:request delegate:self];
     // NSData* data =[[conn] sendSy
     NSURLResponse* response;
-    return[NSURLConnection sendSynchronousRequest:request returningResponse:&response error:NULL];
+    return[NSURLConnection sendSynchronousRequest:request returningResponse:&response error:nil];
     
     // NSData* data= conn;
     // NSDictionary* json;
@@ -791,6 +849,8 @@
     sess = [raw valueForKey:@"session"];
     Event* e;
     //int currID2;
+    NSDate* date1;
+    NSDate* date2;
     for (int i = 0; i<[sess count]; i++) {
         if(![[sess[i] valueForKey:@"Speaker"] isEqual:@""]){
             parsedIDAUX = [[[sess[i] valueForKey:@"Speaker"]componentsSeparatedByString:@"p"] objectAtIndex: 1];
@@ -809,28 +869,34 @@
             authorAux = NULL;
         }
         currID = [[[[sess[i] valueForKey:@"ID"]componentsSeparatedByString:@"s"] objectAtIndex: 1]intValue];
+        date1 = [self dateWithJSONString:[sess[i] valueForKey:@"DateTime"]];
+        date2 = [self dateWithJSONString:[sess[i] valueForKey:@"EndDateTime"]];
+        //date2 = [self dateWithJSONString: ];
         if ([[sess[i] valueForKey:@"Type"] isEqual:@"Session"]) {
             e = [[Session alloc] init];
             NSString* tmpS=((NSString*)[sess[i] valueForKey:@"PaperID"]);
-            if(!([tmpS isEqual:@""])){
+            if(!([tmpS isEqualToString:@""])){
                 currIDAUX = [[[tmpS componentsSeparatedByString:@"p"] objectAtIndex: 1] intValue];
             }else currIDAUX=-1;
-            e = [(Session*)e initWithDataAndSpeaker:currID date:[sess[i] valueForKey:@"DateTime"] title:[sess[i] valueForKey:@"Name"] theme:[sess[i] valueForKey:@"Description"] speaker: speakerAux athor: authorAux paper:currIDAUX];
+            e = [(Session*)e initWithDataAndSpeaker:currID date: date1 title:[sess[i] valueForKey:@"Name"] theme:[sess[i] valueForKey:@"Description"] speaker: speakerAux athor: authorAux paper:currIDAUX];
+            [e setEventEnd:date2];
             //[sessions addObject:e];
             [conf addSessions:(Session*)e];
             [((SuperSession*)[supersessions valueForKey:[sess[i] valueForKey:@"IDSuperSession"]]) addSession:(Session*)e];
         }
         else if ([[sess[i] valueForKey:@"Type"] isEqual:@"Workshop"]){
             e = [[EventWorkshop alloc] init];
-            e = [(EventWorkshop*)e initWithDataAndSpeaker:currID date:[sess[i] valueForKey:@"DateTime"] title:[sess[i] valueForKey:@"Name"] theme:[sess[i] valueForKey:@"Description"] speaker: speakerAux needs: [sess[i] valueForKey:@"Needs"]];
+            e = [(EventWorkshop*)e initWithDataAndSpeaker:currID date:date1 title:[sess[i] valueForKey:@"Name"] theme:[sess[i] valueForKey:@"Description"] speaker: speakerAux needs: [sess[i] valueForKey:@"Needs"]];
             //[workshops addObject:e];
+            [e setEventEnd:date2];
             [conf addWorkshop:(EventWorkshop*)e];
             [((SuperSession*)[supersessions valueForKey:[sess[i] valueForKey:@"IDSuperSession"]]) addWorkshop:(EventWorkshop*)e];
         }
         else{
             e = [[EventWorkshop alloc] init];
-            e = [(Event*)e initWithData:currID date:[sess[i] valueForKey:@"DateTime"] title:[sess[i] valueForKey:@"Name"] theme:[sess[i] valueForKey:@"Description"]];
+            e = [(Event*)e initWithData:currID date:date1 title:[sess[i] valueForKey:@"Name"] theme:[sess[i] valueForKey:@"Description"]];
             //[otherEvents addObject: e];
+            [e setEventEnd:date2];
             [conf addOtherEvent:e];
             [((SuperSession*)[supersessions valueForKey:[sess[i] valueForKey:@"IDSuperSession"]]) addOtherEvent:e];
         }
@@ -838,13 +904,12 @@
         [e addSuperSession: [sess[i] valueForKey:@"IDSuperSession"]];
     }
     NSDictionary* mapR = [[NSDictionary alloc]init];
-    mapR =[raw valueForKey:@"Map"];
+    mapR =[raw valueForKey:@"map"][0];
     Map* map = [[Map alloc]init];
     NSString* latitude = [mapR valueForKey:@"Latitude"];
     NSString* longitude = [mapR valueForKey:@"Longitude"];
-    map = [map initWithData:[mapR valueForKey:@"ID"] lat:[latitude floatValue] longi:[longitude floatValue] placeName:[mapR valueForKey:@"PlaceName"] address:[mapR valueForKey:@"AddressName"]];
+    map = [map initWithData:[mapR valueForKey:@"ID"] lat:[latitude floatValue] longi:[longitude floatValue] placeName:[mapR valueForKey:@"PlaceName"] address:[mapR valueForKey:@"AdressName"]];
     [conf setMap:map];
-    
     
     [conf setSuperSessions:supersessions];
     
@@ -854,7 +919,7 @@
 
 //used to created the NSDictionary with the JSON, receives NSData
 -(NSDictionary*) parseJSON:(NSData*)confData{
-    return [NSJSONSerialization JSONObjectWithData:confData options:kNilOptions error:NULL];
+    return [NSJSONSerialization JSONObjectWithData:confData options:kNilOptions error:nil];
 }
 
 //saves conference files (zip) from server to folder confID inside documents
@@ -872,12 +937,13 @@
     [request setValue:postLength forHTTPHeaderField:@"Content-Length"];
     [request setValue:@"application/x-www-form-urlencoded" forHTTPHeaderField:@"Content-Type"];
     [request setHTTPBody:postData];
+    [request setTimeoutInterval:5];
     
     
     NSURLResponse* response;
-    NSData* data=[NSURLConnection sendSynchronousRequest:request returningResponse:&response error:NULL];
+    NSData* data=[NSURLConnection sendSynchronousRequest:request returningResponse:&response error:nil];
     
-    if (data!=NULL){
+    if (data!=nil){
         NSString* savePath=[NSString stringWithFormat:@"%@%@%@",[NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES)objectAtIndex:0],@"/",confID];
         
         NSString* saveZip=[NSString stringWithFormat:@"%@%@",savePath,@".zip"];
@@ -892,7 +958,7 @@
         //[zipArchive release];
         //elimina zip
         NSFileManager* fileManager=[NSFileManager defaultManager];
-        [fileManager removeItemAtPath:saveZip error:NULL];
+        [fileManager removeItemAtPath:saveZip error:nil];
         
         return YES;
     }else return NO;
@@ -918,14 +984,14 @@
     NSFileManager* fileManager=[NSFileManager defaultManager];
     
     if([self saveConfsIDs:[self removeConfsIDs:[self loadConfsIDs] : confID]])
-        return [fileManager removeItemAtPath:savePath error:NULL] && [fileManager removeItemAtPath:savePath1 error:NULL];
+        return [fileManager removeItemAtPath:savePath error:nil] && [fileManager removeItemAtPath:savePath1 error:nil];
     else return NO;
 }
 
 //loads nsdata from file with name confID (.json) in documents
 -(NSData*)loadData:(NSString*)confID{
     NSString* loadPath=[NSString stringWithFormat:@"%@%@%@%@",[NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES)objectAtIndex:0],@"/",confID,@".json"];
-    return [NSData dataWithContentsOfFile:loadPath options:kNilOptions error:NULL];
+    return [NSData dataWithContentsOfFile:loadPath options:kNilOptions error:nil];
     
 }
 
@@ -934,7 +1000,7 @@
 //loads nsdata from file with name confID (.json) in documents
 -(NSData*)loadDataFromDrive:(NSString*)confID{
     NSString* loadPath=[NSString stringWithFormat:@"%@%@%@%@",[NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES)objectAtIndex:0],@"/",confID,@".json"];
-    return [NSData dataWithContentsOfFile:loadPath options:kNilOptions error:NULL];
+    return [NSData dataWithContentsOfFile:loadPath options:kNilOptions error:nil];
     
 }
 
@@ -943,7 +1009,7 @@
 //creates NSArray new file if none found
 -(NSArray*)loadConfsIDs{
     NSString* loadPath=[NSString stringWithFormat:@"%@%@",[NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES)objectAtIndex:0],@"/confs.json"];
-    //NSData* tmpData =[NSData dataWithContentsOfFile:loadPath options:kNilOptions error:NULL];
+    //NSData* tmpData =[NSData dataWithContentsOfFile:loadPath options:kNilOptions error:nil];
     NSArray* confs=[NSArray arrayWithContentsOfFile:loadPath];
     if(confs==nil){//no file or could not retrieve then create new one
         [[NSArray new] writeToFile:loadPath atomically:YES];
@@ -1005,13 +1071,14 @@
     [request setValue:postLength forHTTPHeaderField:@"Content-Length"];
     [request setValue:@"application/x-www-form-urlencoded" forHTTPHeaderField:@"Content-Type"];
     [request setHTTPBody:postData];
+    [request setTimeoutInterval:5];
     
     
     NSURLResponse* response;
-    NSData* data=[NSURLConnection sendSynchronousRequest:request returningResponse:&response error:NULL];
+    NSData* data=[NSURLConnection sendSynchronousRequest:request returningResponse:&response error:nil];
     
-    if(data!=NULL){
-        NSDictionary*json=[NSJSONSerialization JSONObjectWithData:data options:kNilOptions error:NULL];
+    if(data!=nil){
+        NSDictionary*json=[NSJSONSerialization JSONObjectWithData:data options:kNilOptions error:nil];
         
         double trouble= [[[json valueForKey:@"Rating"] objectAtIndex:0] doubleValue];
         return trouble;
@@ -1033,12 +1100,13 @@
     [request setValue:postLength forHTTPHeaderField:@"Content-Length"];
     [request setValue:@"application/x-www-form-urlencoded" forHTTPHeaderField:@"Content-Type"];
     [request setHTTPBody:postData];
+    [request setTimeoutInterval:5];
     
     
     NSURLResponse* response;
-    NSData* data=[NSURLConnection sendSynchronousRequest:request returningResponse:&response error:NULL];
+    NSData* data=[NSURLConnection sendSynchronousRequest:request returningResponse:&response error:nil];
     
-    if(data!=NULL){
+    if(data!=nil){
         return YES;
     }else return NO;
     
@@ -1047,7 +1115,7 @@
 //getNotifs in NSDictionary for confID where notifDate > timeStamp
 //timeStamp will only count the first 10 digits ex.:1356998400
 //may return empty dictionary if none found
-//returns null if cannot fetch
+//returns nil if cannot fetch
 //NOTA IMPORTANTE QUE NAO POSSO PARAR DE REFERIR
 //CUIDADO COM AS HORAS EM CONCRETO VISTO O SERVIDOR FUNCIONAR COM AS HORAS PORTUGUESAS
 //O QUE IMPLICA QUE TEM DAYLIGHT SAVINGS LIGADO DE MOMENTO, LOGO TEEM DE TIRAR 1 (UMA)
@@ -1064,28 +1132,29 @@
     [request setValue:postLength forHTTPHeaderField:@"Content-Length"];
     [request setValue:@"application/x-www-form-urlencoded" forHTTPHeaderField:@"Content-Type"];
     [request setHTTPBody:postData];
+    [request setTimeoutInterval:5];
     
     
     NSURLResponse* response;
-    NSData* data=[NSURLConnection sendSynchronousRequest:request returningResponse:&response error:NULL];
+    NSData* data=[NSURLConnection sendSynchronousRequest:request returningResponse:&response error:nil];
     
-    if(data!=NULL){
-        NSDictionary*json=[NSJSONSerialization JSONObjectWithData:data options:kNilOptions error:NULL];
+    if(data!=nil){
+        NSDictionary*json=[NSJSONSerialization JSONObjectWithData:data options:kNilOptions error:nil];
         return json;
-    }else return NULL;
+    }else return nil;
     
 }
 
 //dado o confID e a variavel imagePath (ex.: @"confImage.jpg") devolve a imagem respectiva
-// ou null caso nao a consiga encontrar/aceder
+// ou nil caso nao a consiga encontrar/aceder
 -(UIImage*)loadImageFromDrive:(NSString*)confID : (NSString*)imagePath{
     
     NSString* imgPath=[NSString stringWithFormat:@"%@%@%@%@%@",[NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES)objectAtIndex:0],@"/",confID,@"/",imagePath];
     
-    NSData* imgData=[NSData dataWithContentsOfFile:imgPath options:kNilOptions error:NULL];
+    NSData* imgData=[NSData dataWithContentsOfFile:imgPath options:kNilOptions error:nil];
     UIImage* img;
-    if (imgData == NULL)
-        img = NULL;
+    if (imgData == nil)
+        img = nil;
     else
         img =[UIImage imageWithData:imgData];
     
@@ -1296,7 +1365,7 @@
 	NSArray*tmp=[self loadConfsIDs];
 	for (int i=0; i<[tmp count]; i++) {
         NSData* tmpData=[self getConf:[tmp objectAtIndex:i]];
-        if(tmpData!=NULL){
+        if(tmpData!=nil){
             NSDictionary* tmpConf=[self parseJSON:tmpData];
             [self saveConf:tmpConf:tmpData];
         }
@@ -1381,13 +1450,40 @@
     for(int i =0; i< [ret count]; i++){
         for (int j = 0; j < [ss count]; j++) {
             if([[((SuperSession*)ss[j]) getID] isEqualToString: ret[i]]){
-                [newRet addObject:ss[j]];
+                CustomizableSuperSession* n = [[CustomizableSuperSession alloc] initWithSuperSession:ss[j] Conference:cID];
+                [newRet addObject:n];
                 break;
             }
         }
     }
     
     return newRet;
+}
+
+- (NSDate*)dateWithJSONString:(NSString*)dateStr
+{
+    NSDateFormatter *dateFormat = [[NSDateFormatter alloc] init];
+    [dateFormat setDateFormat:@"yyyy'-'MM'-'dd' 'HH':'mm':'ss'"];
+    NSDate *retDate = [dateFormat dateFromString:dateStr];
+    
+    return retDate;
+}
+
+-(BOOL)subscribeSuperSessionInAgendaByID: (NSString*)ssID Conference: (NSString*)cID;{
+    if([agendaDic objectForKey:ssID] ==nil){
+        Conference* c = [conferencesDic objectForKey:cID];
+        NSMutableDictionary* ssessions = [c getSuperSessions];
+        SuperSession* ss = ((SuperSession*)[ssessions objectForKey:ssID]);
+        if([self subscribeSuperSessionInAgenda:ss Conference:cID]){
+            return true;
+        }else{
+            return false;
+        }
+        
+    }
+    else{
+        return false;
+    }
 }
 
 

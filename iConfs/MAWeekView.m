@@ -138,7 +138,6 @@ static const unsigned int TOP_BACKGROUND_HEIGHT               = 35;
 @end
 
 @interface MAWeekView (PrivateMethods)
-- (void)setupCustomInitialisation;
 - (void)changeWeek:(UIButton *)sender;
 - (NSDate *)firstDayOfWeekFromDate:(NSDate *)date;
 - (NSDate *)nextWeekFromDate:(NSDate *)date;
@@ -473,7 +472,7 @@ static const unsigned int TOP_BACKGROUND_HEIGHT               = 35;
                         
                         NSDate *eventStart = [e start];
                         
-                        if (!(([eventStart compare:[event start]] == NSOrderedDescending || [eventStart compare:[event start]] == NSOrderedSame) && [eventStart compare:[event end]] == NSOrderedAscending)) {
+                        if (!([eventStart compare:[event start]] == NSOrderedSame || [eventStart compare:[event end]] == NSOrderedAscending)) {
                             break;
                         }
                         

@@ -35,7 +35,8 @@
     NSMutableDictionary* agendaDic;
     NSMutableDictionary* agendaDicByConf;
     NSDate* agendaStartDate;
-    
+    NSString* strDate;
+    NSDate *date;
     NSArray *paths;
     NSString *documentsDirectory;
     //2) Create the full file path by appending the desired file name
@@ -90,6 +91,8 @@
  @returns true if the SuperSession has been successfully subscribed, false if already had been subscribed
  */
 -(BOOL)subscribeSuperSessionInAgenda: (SuperSession*)ss Conference: (NSString*)cID;
+
+-(BOOL)subscribeSuperSessionInAgendaByID: (NSString*)ssID Conference: (NSString*)cID;
 
 /**
  Gets all the SuperSessions subscribed ordered by start date
@@ -192,6 +195,9 @@
  @returns list of conferences not subscribbed by the user
  */
 -(NSArray*)getRestOfConfs;
+
+-(BOOL)hasConnectivity;
+
 
 -(NSString*)getfetchedIDs;
 
