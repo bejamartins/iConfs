@@ -19,6 +19,9 @@
 @property UIViewController *previous;
 
 @property (strong, nonatomic) UIButton *HomeButton;
+
 - (IBAction)openPaper:(id)sender;
+-(void)changeSession:(int)indexSession;
+-(void)auxChangeSuperSession:(int)index;
 
 @end
