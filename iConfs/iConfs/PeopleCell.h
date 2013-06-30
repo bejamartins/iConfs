@@ -14,5 +14,12 @@
 @property (weak, nonatomic) IBOutlet UIImageView *Image;
 @property (weak, nonatomic) IBOutlet UILabel *Name;
 @property (weak, nonatomic) IBOutlet UILabel *type;
+@property  int index;
+@property  int indexSupersessions;
+@property  int indexSession;
+
+-(int)getIndexSupersessions;
+-(int)getIndexSession;
+-(int)getIndex;
 
 @end

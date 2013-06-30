@@ -27,6 +27,7 @@
     userAllEvents = [[NSMutableArray alloc] init];
     userStartDate = [[NSDate alloc] init];
     startDate = [[NSDate alloc] init];
+    userEndDate = nil;
     return self;
 }
 
@@ -48,6 +49,7 @@
     userAllEvents = [[NSMutableArray alloc] init];
     userStartDate = [[NSDate alloc] init];
     confID = cID;
+    userEndDate = nil;
     return self;
 }
 
@@ -258,6 +260,38 @@
 
 -(NSString*)getConfID{
     return confID;
+}
+
+-(BOOL)unsubscribeAnyEvent:(int)eventID{
+    if([sessionsDic objectForKey:[NSNumber numberWithInteger: eventID]] != nil){
+        return [self unsubscribeSession:eventID];
+    }
+    else if([workshopsDic objectForKey:[NSNumber numberWithInteger: eventID]] != nil){
+        return [self unsubscribeWorkshop:eventID];
+    }
+    else return [self unsubscribeOtherEvent:eventID];
+}
+
+-(NSDate*)calculateEndDate{
+    for (int i=0; i<[userAllEvents]; i++) {
+        NSDate* currDate = [((Event*)userAllEvents[i]) getEventEnd];
+        if(userEndDate == nil){
+            userEndDate =  currDate;
+        }
+        else{
+            if ([userEndDate compare: currDate] == NSOrderedDescending) {
+                ;
+                
+            } else if ([userEndDate compare:currDate] == NSOrderedAscending) {
+                userEndDate = currDate;
+                
+            } else {
+                ;
+                
+            }
+        }
+    }
+    return userEndDate;
 }
 
 @end

@@ -19,6 +19,7 @@
 @interface PeopleViewController ()
 {
     MenuViewController *menu;
+    BOOL receivedAuthor;
 
     NSArray *confPeople;
     NSMutableArray *confSearchPeople;
@@ -42,6 +43,7 @@
     IBOutlet UIView *pdfPreview;
     
     NSString *paperPath;
+    NSArray *authores;
     
     
 }
@@ -49,8 +51,33 @@
 
 @implementation PeopleViewController
 
-@synthesize MenuButton,peopleTable,noSelectionLabel,personNameBar,iConfsImage,speakerBio,BIO,HomeButton,ConferenceHome,previous;
+@synthesize MenuButton,peopleTable,noSelectionLabel,personNameBar,iConfsImage,speakerBio,BIO,HomeButton,ConferenceHome,previous,segmentedControl;
 
+
+-(void)changeAuthor:(int)index{
+    //seleciona autor
+    
+    [segmentedControl setSelectedSegmentIndex:1];
+    [[self Options]setSelectedSegmentIndex:1];
+    
+    NSIndexPath *indexPath=[NSIndexPath indexPathForRow:index inSection:0 ];
+    confPeople = [[(MenuViewController*)[[self slidingViewController] underLeftViewController] selectedConf] getAuthors];
+    
+    receivedAuthor=YES;
+    [peopleTable reloadData];
+    [peopleTable
+     selectRowAtIndexPath:indexPath
+     animated:TRUE
+     scrollPosition:UITableViewScrollPositionNone
+     ];
+    
+    [[peopleTable delegate]
+     tableView:peopleTable
+     didSelectRowAtIndexPath:indexPath
+     ];
+    
+    
+}
 - (IBAction)openPDF:(id)sender {
     
     if(![pdfPreview isHidden]){
@@ -96,10 +123,14 @@
     [[self Search]setDelegate:self];
     [sessionView setHidden:YES];
     searchItem = NO;
+    receivedAuthor=NO;
     
     confSearchPeople = [[NSMutableArray alloc] init];
-    
+    authores = [[NSArray alloc] init];
+
     confPeople = [[(MenuViewController*)[[self slidingViewController] underLeftViewController] selectedConf] getSpeakers];
+    authores = [[(MenuViewController*)[[self slidingViewController] underLeftViewController] selectedConf] getSpeakers];
+
     
     [[[self view] layer] setShadowOpacity:0.75f];
     [[[self view] layer] setShadowRadius:10.0f];
@@ -109,7 +140,7 @@
         [[self slidingViewController] setUnderLeftViewController:[[self storyboard]instantiateViewControllerWithIdentifier:@"Menu"]];
     }
     
-    [[self view] addGestureRecognizer:[self slidingViewController].panGesture];
+//    [[self view] addGestureRecognizer:[self slidingViewController].panGesture];
     
     [self setMenuButton:[UIButton buttonWithType:UIButtonTypeCustom]];
     
@@ -172,7 +203,6 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     
-    static NSString *CellIdentifier=@"Cell";
     
     UITableViewCell *cell=[tableView dequeueReusableCellWithIdentifier:@"peopleCell" forIndexPath:indexPath];
     
@@ -190,7 +220,7 @@
         [[cell detailTextLabel]setText:[(Person*)[confSearchPeople objectAtIndex:[indexPath row]] getWork]];
     }
     
-    if(indexPath.row==0){
+    if(indexPath.row==0&&!receivedAuthor){
     [peopleTable
      selectRowAtIndexPath:indexPath
      animated:TRUE
@@ -371,7 +401,6 @@
     
    
     
-    
     if ([[self Options] selectedSegmentIndex] == 0) {
         confPeople = [[(MenuViewController*)[[self slidingViewController] underLeftViewController] selectedConf] getSpeakers];
         [[[self NavBar] topItem] setTitle:@"Speakers"];
@@ -434,5 +463,7 @@
     previous=vc;
     
 }
+
+
 
 @end

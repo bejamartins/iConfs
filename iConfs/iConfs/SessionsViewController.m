@@ -25,11 +25,11 @@
     NSArray *superSessions;
     NSArray *autores;
     NSMutableArray *searchSessions;
-    
+    BOOL givenSession;
     BOOL searchItem;
     int ssIndex;
     MenuViewController *menu;
-    
+    int load;
 }
 
 @property (strong, nonatomic) IBOutlet UISearchBar *searchBar;
@@ -42,10 +42,73 @@
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
-        // Custom initialization
+        load=0;
+        givenSession=NO;
     }
     return self;
 }
+
+
+
+
+-(void)auxChangeSuperSession:(int)index{
+    givenSession=YES;
+    [self.sessionsTable setDataSource:self];
+    [self.sessionsTable setDelegate:self];
+    [self.collection setDataSource:self];
+    [self.collection setDelegate:self];
+    
+    conf=[(MenuViewController*)[[self slidingViewController] underLeftViewController] selectedConf];
+    superSessions=[[conf getSuperSessions] allValues];
+    selectedSuperSession =[[[conf getSuperSessions]allValues] objectAtIndex:index];
+    sessions=[selectedSuperSession getSessionsOrderedByDate];
+    
+    
+    
+    
+    
+    
+    [collection reloadData];
+    
+    
+    
+    NSIndexPath *indexPath=[NSIndexPath indexPathForItem:index inSection:0 ];
+    
+    [collection reloadData];
+    [collection selectItemAtIndexPath:indexPath animated:TRUE scrollPosition:UICollectionViewScrollPositionNone ];
+    
+   // [[collection delegate] collectionView:collection didDeselectItemAtIndexPath:indexPath];
+    ssIndex=index;
+    [collection reloadData];
+
+}
+
+-(void)changeSession:(int)indexSession{
+    //seleciona autor
+    selectedSession =[sessions objectAtIndex:indexSession];
+
+    [collection reloadData];
+
+    NSIndexPath *indexPath=[NSIndexPath indexPathForRow:indexSession inSection:0 ];
+//    confPeople = [[(MenuViewController*)[[self slidingViewController] underLeftViewController] selectedConf] getAuthors];
+    
+//    receivedAuthor=YES;
+    [sessionsTable reloadData];
+    [sessionsTable
+     selectRowAtIndexPath:indexPath
+     animated:TRUE
+     scrollPosition:UITableViewScrollPositionNone
+     ];
+    
+    [[sessionsTable delegate]
+     tableView:sessionsTable
+     didSelectRowAtIndexPath:indexPath
+     ];
+    
+    
+}
+
+
 
 - (void)viewDidLoad
 {
@@ -61,7 +124,7 @@
 
     searchItem = NO;
 
-   
+  
     
     
     
@@ -73,7 +136,7 @@
     
 
         //selecciona a 1ª Supersessao por defeito
-    if(selectedSession==nil){
+    if(selectedSession==nil&&load==0){
         conf=[(MenuViewController*)[[self slidingViewController] underLeftViewController] selectedConf];
 
 
@@ -82,8 +145,8 @@
         autores=[[NSArray alloc]init];
         searchSessions = [[NSMutableArray alloc] init];
 
-
         superSessions=[[conf getSuperSessions]allValues];
+
         
         ssIndex=0;
         selectedSuperSession = [superSessions objectAtIndex:ssIndex];
@@ -99,14 +162,7 @@
     
   //      [abstract setText:[selectedSession getTheme]];
         
-    }
-    
-    //se foi dada uma sessão para dar detalhes.
-    else{
-    
-        //selectedSuperSession=[selectedSession  getS]; //MUDAR
-    
-    }
+   
     
     NSDate* currentDate = [NSDate date];
    // [currentDate setTimeZone:[NSTimeZone timeZoneWithAbbreviation:@"WEST"]];
@@ -114,62 +170,74 @@
     NSString* dateInString = [currentDate description];
 
     NSLog(@"Horassss : %@",dateInString);
-//    
-//    NSDateFormatter *dateFormat = [[NSDateFormatter alloc] init];
-//    [dateFormat setDateFormat:@"yyyy-MM-dd HH:mm"];
-//    [dateFormat setTimeZone:[NSTimeZone timeZoneForSecondsFromGMT:0]];
-//     [dateFormat setTimeZone:[NSTimeZone timeZoneWithAbbreviation:@"WEST"]];
-//
-//    NSDate *date = [dateFormat dateFromString:currentDate];
-    //mudar
-    
-    int x=[selectedSession getPaperID];
-    if(x !=-1){
-    int authorID = [[selectedSession getAuthor] getID];
-    Paper *p=[[selectedSession getAuthor]getPaper: [selectedSession getPaperID]];
-    autores=[p getAuthors];
+        [[[self view] layer] setShadowOpacity:0.75f];
+        [[[self view] layer] setShadowRadius:10.0f];
+        [[[self view] layer] setShadowColor:[UIColor blackColor].CGColor];
+        
+        if (![[[self slidingViewController] underLeftViewController] isKindOfClass:[MenuViewController class]]) {
+            [[self slidingViewController] setUnderLeftViewController:[[self storyboard]instantiateViewControllerWithIdentifier:@"Menu"]];
+        }
+        
+   //     [[self view] addGestureRecognizer:[self slidingViewController].panGesture];
+        
+        [self setMenuButton:[UIButton buttonWithType:UIButtonTypeCustom]];
+        
+        [MenuButton setFrame:CGRectMake(8, 10, 34, 24)];
+        [MenuButton setBackgroundImage:[UIImage imageNamed:@"menuButton.png"] forState:UIControlStateNormal];
+        [MenuButton addTarget:self action:@selector(revealMenu:) forControlEvents:UIControlEventTouchUpInside];
+        
+        [[self view] addSubview:MenuButton];
+        
+        
+        [self setHomeButton:[UIButton buttonWithType:UIButtonTypeCustom]];
+        
+        [HomeButton setFrame:CGRectMake(45, 0, 43, 40)];
+        [HomeButton setBackgroundImage:[UIImage imageNamed:@"white_home.png"] forState:UIControlStateNormal];
+        [HomeButton addTarget:self action:@selector(goHome:) forControlEvents:UIControlEventTouchUpInside];
+        
+        [[self view] addSubview:HomeButton];
+        
+        
+        
+        [self setConferenceHome:[UIButton buttonWithType:UIButtonTypeCustom]];
+        
+        [ConferenceHome setFrame:CGRectMake(717, 4, 43, 40)];
+        [ConferenceHome setBackgroundImage:[UIImage imageNamed:@"white_home_conf2.png"] forState:UIControlStateNormal];
+        [ConferenceHome addTarget:self action:@selector(goToConferenceHome:) forControlEvents:UIControlEventTouchUpInside];
+        
+        [[self view] addSubview:ConferenceHome];
+
+
     }
+    
+    
+    
+      load++;
+    
+    
+    
+    
+    
+    //////////////////////////////////////////////////////////
+    
+    //////////////////////////////////////////////////////////
+    
+    //////////////////////////////////////////////////////////
+    
+    //DEBUG EDUARDO
+    
+//    int x=[selectedSession getPaperID];
+//    if(x !=-1){
+//    int authorID = [[selectedSession getAuthor] getID];
+//        Author *aut=(Author*)[selectedSession getAuthor];
+//    Paper *p=[aut getPaper: x];
+//    autores=[p getAuthors];
+    //}
     
  //   [abstract setText:[selectedSession getTheme]];
 
     
-    [[[self view] layer] setShadowOpacity:0.75f];
-    [[[self view] layer] setShadowRadius:10.0f];
-    [[[self view] layer] setShadowColor:[UIColor blackColor].CGColor];
-    
-    if (![[[self slidingViewController] underLeftViewController] isKindOfClass:[MenuViewController class]]) {
-        [[self slidingViewController] setUnderLeftViewController:[[self storyboard]instantiateViewControllerWithIdentifier:@"Menu"]];
-    }
-    
-    [[self view] addGestureRecognizer:[self slidingViewController].panGesture];
-    
-    [self setMenuButton:[UIButton buttonWithType:UIButtonTypeCustom]];
-    
-    [MenuButton setFrame:CGRectMake(8, 10, 34, 24)];
-    [MenuButton setBackgroundImage:[UIImage imageNamed:@"menuButton.png"] forState:UIControlStateNormal];
-    [MenuButton addTarget:self action:@selector(revealMenu:) forControlEvents:UIControlEventTouchUpInside];
-    
-    [[self view] addSubview:MenuButton];
-    
-    
-    [self setHomeButton:[UIButton buttonWithType:UIButtonTypeCustom]];
-    
-    [HomeButton setFrame:CGRectMake(45, 0, 43, 40)];
-    [HomeButton setBackgroundImage:[UIImage imageNamed:@"white_home.png"] forState:UIControlStateNormal];
-    [HomeButton addTarget:self action:@selector(goHome:) forControlEvents:UIControlEventTouchUpInside];
-    
-    [[self view] addSubview:HomeButton];
-    
-    
-    
-    [self setConferenceHome:[UIButton buttonWithType:UIButtonTypeCustom]];
-    
-    [ConferenceHome setFrame:CGRectMake(717, 4, 43, 40)];
-    [ConferenceHome setBackgroundImage:[UIImage imageNamed:@"white_home_conf2.png"] forState:UIControlStateNormal];
-    [ConferenceHome addTarget:self action:@selector(goToConferenceHome:) forControlEvents:UIControlEventTouchUpInside];
-    
-    [[self view] addSubview:ConferenceHome];
-
+  
 
 
 	// Do any additional setup after loading the view.
@@ -235,7 +303,7 @@
             
         //    [[cell textLabel]setText:[(Person*)[confPeople objectAtIndex:[indexPath row]] getName]];
               
-                  if(indexPath.row==0){
+                  if(indexPath.row==0&&!givenSession){
                       [sessionsTable
                        selectRowAtIndexPath:indexPath
                        animated:TRUE
@@ -254,10 +322,20 @@
                   Session *s=[searchSessions objectAtIndex:indexPath.row];
                   [[cell textLabel]setText:[s getTitle]];
               
-              
+            
+                  if(indexPath.row==0){
+                  [sessionsTable
+                   selectRowAtIndexPath:indexPath
+                   animated:TRUE
+                   scrollPosition:UITableViewScrollPositionNone
+                   ];
+                  
+                  [[sessionsTable delegate]
+                   tableView:sessionsTable
+                   didSelectRowAtIndexPath:indexPath
+                   ];
               }
-    
-    
+}
     }
     //autores table
     else if([tableView tag]==2){
@@ -413,12 +491,12 @@
         NSString *strCompany = [[NSString alloc]init];
         
         for (int i = 0; i < [sessions count]; i++) {
-            strName = [[sessions objectAtIndex:i] getName];
+            strName = [[sessions objectAtIndex:i] getTitle];
             
             NSRange stringRangeName = [strName rangeOfString:searchText options:NSCaseInsensitiveSearch];
-            NSRange stringRangeCompany = [strCompany rangeOfString:searchText options:NSCaseInsensitiveSearch];
+           // NSRange stringRangeCompany = [strCompany rangeOfString:searchText options:NSCaseInsensitiveSearch];
             
-            if (stringRangeName.location != NSNotFound || stringRangeCompany.location != NSNotFound) {
+            if (stringRangeName.location != NSNotFound) {
                 [searchSessions addObject:[sessions objectAtIndex:i]];
             }
         }
