@@ -18,6 +18,7 @@
     NSMutableArray* userAllEvents;
     NSDate* userStartDate;
     NSString* confID;
+    NSDate* userEndDate;
 }
 
 /**
@@ -158,5 +159,7 @@
 -(NSString*)getConfID;
 
 -(BOOL)unsubscribeAnyEvent:(int)eventID;
+
+-(NSDate*)calculateEndDate;
 
 @end
