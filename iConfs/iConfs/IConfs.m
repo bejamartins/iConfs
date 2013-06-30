@@ -1369,6 +1369,9 @@
             NSDictionary* tmpConf=[self parseJSON:tmpData];
             [self saveConf:tmpConf:tmpData];
         }
+        else{
+            break;
+        }
     }
     
 }
