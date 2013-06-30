@@ -19,19 +19,19 @@
 @interface AgendaViewController ()
 {
     BOOL isRemoving;
-    BOOL choosingConf;
-    NSArray *myConfs;
-    NSArray *allEvents;
+    NSArray *Events;
 }
 @property (readonly) MAEvent *event;
 @property (readonly) MAEventKitDataSource *eventKitDataSource;
 @property (weak, nonatomic) IBOutlet UIButton *AddSessionButton;
 @property (weak, nonatomic) IBOutlet UIButton *RemoveSessionsButton;
+@property (weak, nonatomic) IBOutlet MAWeekView *AgendaView;
+@property (weak, nonatomic) IBOutlet UISegmentedControl *ViewOptions;
 @end
 
 @implementation AgendaViewController
 
-@synthesize MenuButton, AddSessionButton, RemoveSessionsButton,HomeButton;
+@synthesize MenuButton, AddSessionButton, RemoveSessionsButton,HomeButton, AgendaView, ViewOptions;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -65,7 +65,6 @@
     
     [[self view] addSubview:MenuButton];
     
-    
     [self setHomeButton:[UIButton buttonWithType:UIButtonTypeCustom]];
     
     [HomeButton setFrame:CGRectMake(45, 0, 43, 40)];
@@ -74,28 +73,9 @@
     
     [[self view] addSubview:HomeButton];
     
-
+    [self sessionToMAEvents];
     
-    isRemoving = NO;
-    choosingConf = NO;
-    
-    myConfs = [[(MenuViewController*)[[self slidingViewController] underLeftViewController] appData] getMyConferences];
-    allEvents = [self getEventsFromConfs];
-}
-
-- (IBAction)revealMenu:(id)sender
-{
-    [[self slidingViewController] anchorTopViewTo:ECRight];
-}
-
-- (NSArray*)getEventsFromConfs{
-    NSMutableArray *e = [[NSMutableArray alloc] init];
-    
-    for (Conference* c in myConfs) {
-        [e addObjectsFromArray:[c getSessions]];
-    }
-    
-    return e;
+    [AgendaView setupCustomInitialisation];
 }
 
 - (void)didReceiveMemoryWarning
@@ -104,153 +84,10 @@
     // Dispose of any resources that can be recreated.
 }
 
-- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation {
-	return YES;
+- (IBAction)revealMenu:(id)sender
+{
+    [[self slidingViewController] anchorTopViewTo:ECRight];
 }
-
-/* Implementation for the MAWeekViewDataSource protocol */
-
-
-/*- (NSArray *)weekView:(MAWeekView *)weekView eventsForDate:(NSDate *)startDate {
-    return [self.eventKitDataSource weekView:weekView eventsForDate:startDate];
-}*/
-- (NSArray *)weekView:(MAWeekView *)weekView eventsForDate:(NSDate *)startDate {
-    
-    NSArray *arr;
-    
-    NSDateComponents *components = [CURRENT_CALENDAR components:DATE_COMPONENTS fromDate:[NSDate date]];
-    NSDateComponents *componentsStart = [CURRENT_CALENDAR components:DATE_COMPONENTS fromDate:startDate];
-    
-    if ([components day] == [componentsStart day]) {
-        
-    arr = [NSArray arrayWithObjects: self.event, self.event, nil];
-        ((MAEvent *) [arr objectAtIndex:0]).title = @"Foo!";
-        ((MAEvent *) [arr objectAtIndex:1]).title = @"Fo!";
-        ((MAEvent *) [arr objectAtIndex:0]).start = [CURRENT_CALENDAR dateFromComponents:components];
-        ((MAEvent *) [arr objectAtIndex:1]).start = [CURRENT_CALENDAR dateFromComponents:components];
-        components.hour = components.hour+1;
-        ((MAEvent *) [arr objectAtIndex:0]).end = [CURRENT_CALENDAR dateFromComponents:components];
-        ((MAEvent *) [arr objectAtIndex:1]).end = [CURRENT_CALENDAR dateFromComponents:components];
-    }
-	
-	return arr;
-}
-
-- (MAEvent *)event {
-	static int counter;
-	
-	NSMutableDictionary *dict = [[NSMutableDictionary alloc] init];
-	
-	[dict setObject:[NSString stringWithFormat:@"number %i", counter++] forKey:@"test"];
-	
-	MAEvent *event = [[MAEvent alloc] init];
-	event.backgroundColor = [UIColor purpleColor];
-	event.textColor = [UIColor whiteColor];
-	event.allDay = NO;
-	event.userInfo = dict;
-    
-    event.backgroundColor = [UIColor brownColor];
-    
-	return event;
-}
-
-/*- (NSArray *)weekView:(MAWeekView *)weekView eventsForDate:(NSDate *)startDate {
-
-	NSMutableArray *arr;
-    
-    Event *e = [[Event alloc] initWithData:0 date:[NSDate date] title:@"Title" theme:@"Theme"];
-	//Event *b = [[Event alloc] initWithData:0 date:[NSDate date] title:@"Title2" theme:@"Theme2"];
-    
-	for (Event *e in allEvents) {
-        if ([e getDate] == startDate) {
-            [arr addObject:[self event:e]];
-        }
-    }
-    
-    [arr addObject:[self event]];
-    //[arr addObject:b];
-	
-	return arr;
-}
-
-- (MAEvent *)event {
-	static int counter;
-	
-	NSMutableDictionary *dict = [[NSMutableDictionary alloc] init];
-	
-	[dict setObject:[NSString stringWithFormat:@"number %i", counter++] forKey:@"test"];
-	
-	MAEvent *event = [[MAEvent alloc] init];
-	event.backgroundColor = [UIColor purpleColor];
-	event.textColor = [UIColor whiteColor];
-	event.allDay = NO;
-	event.userInfo = dict;
-    [event setChecked:NO];
-    [event setTitle:@"Title"];
-    [event setStart:[NSDate date]];
-    [event setEnd:[[NSDate alloc] initWithTimeInterval:(30*60) sinceDate:[NSDate date]]];
-	return event;
-}*/
-
-- (MAEvent *)event:(Event *)e {
-	static int counter;
-	
-	NSMutableDictionary *dict = [[NSMutableDictionary alloc] init];
-	
-	[dict setObject:[NSString stringWithFormat:@"number %i", counter++] forKey:@"test"];
-	
-	MAEvent *event = [[MAEvent alloc] init];
-	event.backgroundColor = [UIColor purpleColor];
-	event.textColor = [UIColor whiteColor];
-	event.allDay = NO;
-	event.userInfo = dict;
-    [event setChecked:NO];
-    [event setTitle:[e getTitle]];
-    [event setStart:[e getDate]];
-    [event setEnd:[[NSDate alloc] initWithTimeInterval:(30*60) sinceDate:[e getDate]]];
-	return event;
-}
-
-- (MAEventKitDataSource *)eventKitDataSource {
-    if (!_eventKitDataSource) {
-        _eventKitDataSource = [[MAEventKitDataSource alloc] init];
-    }
-    return _eventKitDataSource;
-}
-
-/* Implementation for the MAWeekViewDelegate protocol */
-
-- (void)weekView:(MAWeekView *)weekView eventTapped:(MAEvent *)event {
-    if (isRemoving) {
-        [event setChecked:YES];
-        [(MAWeekView*)[self AgendaView] reloadData];
-    }else {
-        NSDateComponents *components = [CURRENT_CALENDAR components:DATE_COMPONENTS fromDate:event.start];
-        NSString *eventInfo = [NSString stringWithFormat:@"Event tapped: %02i:%02i. Userinfo: %@", [components hour], [components minute], [event.userInfo objectForKey:@"test"]];
-	
-        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:event.title
-                                                    message:eventInfo delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
-        [alert show];
-    }
-}
-
-- (void)weekView:(MAWeekView *)weekView eventDragged:(MAEvent *)event {
-	NSDateComponents *components = [CURRENT_CALENDAR components:DATE_COMPONENTS fromDate:event.start];
-	NSString *eventInfo = [NSString stringWithFormat:@"Event dragged to %02i:%02i. Userinfo: %@", [components hour], [components minute], [event.userInfo objectForKey:@"test"]];
-	
-	UIAlertView *alert = [[UIAlertView alloc] initWithTitle:event.title
-                                                    message:eventInfo delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
-	[alert show];
-}
-
-- (IBAction)addSessions:(id)sender {
-
-}
-
-- (IBAction)RemoveSessions:(id)sender {
-
-}
-
 
 - (IBAction)goHome:(id)sender{
     
@@ -262,8 +99,178 @@
     CGRect frame = [[[[self slidingViewController] topViewController] view] frame];
     [[self slidingViewController] setTopViewController:newTopViewController];
     [[[[self slidingViewController] topViewController] view] setFrame:frame];
+}
+
+- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation {
+	return YES;
+}
+
+/* Implementation for the MAWeekViewDataSource protocol */
+
+- (NSArray *)weekView:(MAWeekView *)weekView eventsForDate:(NSDate *)startDate {
     
     
+    
+    NSMutableArray *arr = [[NSMutableArray alloc] init];
+    
+    for (MAEvent* ss in Events) {
+        
+        NSDateComponents *components = [CURRENT_CALENDAR components:DATE_COMPONENTS fromDate:[(MAEvent*)ss start]];
+        NSDateComponents *componentsStart = [CURRENT_CALENDAR components:DATE_COMPONENTS fromDate:startDate];
+        
+        if ([components day] == [componentsStart day]) {
+            if ([ViewOptions selectedSegmentIndex] == 0) {
+                [arr addObject:ss];
+            } else {
+                for (id e in [ss eventsOfSS]) {
+                    [arr addObject:e];
+                }
+            }
+        }
+    }
+    
+	return arr;
+}
+
+- (void)sessionToMAEvents {
+	NSString *iD = [[NSString alloc] initWithString:[[(MenuViewController*)[[self slidingViewController] underLeftViewController] selectedConf] getID]];
+    
+    NSArray *myDict = [[(MenuViewController*)[[self slidingViewController] underLeftViewController] appData] getAgendaByConferenceOrderedByDate:iD];
+    
+    NSArray *otherDict = [[(MenuViewController*)[[self slidingViewController] underLeftViewController] appData] getUnsubscribedSuperSessionsByConferenceOrderedByDate:iD];
+	
+    NSMutableArray *tempEvents = [[NSMutableArray alloc] init];
+    
+    for (CustomizableSuperSession* ss in myDict) {
+        MAEvent *event = [[MAEvent alloc] init];
+        event.textColor = [UIColor whiteColor];
+        event.allDay = NO;
+        event.userInfo = NULL;
+        [event setChecked:YES];
+        event.backgroundColor = [UIColor brownColor];
+        [event setTitle:[ss getTheme]];
+        [event setStart:[ss getStartDate]];
+        [event setSsID:[(SuperSession*)ss getID]];
+        
+        NSMutableArray *eventsInSS = [[NSMutableArray alloc] init];
+        
+        for (Session* e in [ss getUserAllEventsOrderedByDate]) {
+            MAEvent *tEvent = [[MAEvent alloc] init];
+            tEvent.textColor = [UIColor whiteColor];
+            tEvent.allDay = NO;
+            tEvent.userInfo = NULL;
+            [tEvent setChecked:YES];
+            tEvent.backgroundColor = [UIColor purpleColor];
+            [tEvent setTitle:[e getTheme]];
+            [tEvent setStart:[e getDate]];
+            [tEvent setEnd:[e getEventEnd]];
+            [tEvent setSsID:[(SuperSession*)ss getID]];
+            [tEvent setSID:[(Event*)e getID]];
+            
+            [eventsInSS addObject:tEvent];
+        }
+        
+        for (Session* e in [ss getUnsubscribedEvents]) {
+            MAEvent *tEvent = [[MAEvent alloc] init];
+            tEvent.textColor = [UIColor whiteColor];
+            tEvent.allDay = NO;
+            tEvent.userInfo = NULL;
+            [tEvent setChecked:NO];
+            tEvent.backgroundColor = [UIColor purpleColor];
+            [tEvent setTitle:[e getTheme]];
+            [tEvent setStart:[e getDate]];
+            [tEvent setEnd:[e getEventEnd]];
+            [tEvent setSsID:[(SuperSession*)ss getID]];
+            [tEvent setSID:[(Event*)e getID]];
+            
+            [eventsInSS addObject:tEvent];
+        }
+        
+        [event setEventsOfSS:eventsInSS];
+        
+        [tempEvents addObject:event];
+    }
+    
+    for (CustomizableSuperSession* ss in otherDict) {
+        MAEvent *event = [[MAEvent alloc] init];
+        event.textColor = [UIColor whiteColor];
+        event.allDay = NO;
+        event.userInfo = NULL;
+        [event setChecked:NO];
+        event.backgroundColor = [UIColor purpleColor];
+        [event setTitle:[ss getTheme]];
+        [event setStart:[ss getStartDate]];
+        [event setSsID:[(SuperSession*)ss getID]];
+        
+        NSMutableArray *eventsInSS = [[NSMutableArray alloc] init];
+        
+        for (Session* e in [ss getUnsubscribedEvents]) {
+            MAEvent *tEvent = [[MAEvent alloc] init];
+            tEvent.textColor = [UIColor whiteColor];
+            tEvent.allDay = NO;
+            tEvent.userInfo = NULL;
+            [tEvent setChecked:NO];
+            tEvent.backgroundColor = [UIColor purpleColor];
+            [tEvent setTitle:[e getTheme]];
+            [tEvent setStart:[e getDate]];
+            [tEvent setEnd:[e getEventEnd]];
+            [tEvent setSsID:[(SuperSession*)ss getID]];
+            [tEvent setSID:[(Event*)e getID]];
+            
+            [eventsInSS addObject:tEvent];
+        }
+        
+        [event setEventsOfSS:eventsInSS];
+        
+        [tempEvents addObject:event];
+    }
+    
+    Events = tempEvents;
+}
+
+/* Implementation for the MAWeekViewDelegate protocol */
+
+- (void)weekView:(MAWeekView *)weekView eventTapped:(MAEvent *)event {
+    
+        if ([ViewOptions selectedSegmentIndex] == 0) {
+            if ([event checked]) {
+                for (MAEvent *ss in Events) {
+                    if ([ss ssID] == [event ssID]){
+                        [ss setChecked:NO];
+                        
+                        for (MAEvent *e in [ss eventsOfSS]) {
+                            [e setChecked:NO];
+                        }
+                        
+                        break;
+                    }
+                }
+            } else {
+                for (MAEvent *ss in Events) {
+                    if ([ss ssID] == [event ssID]){
+                        [ss setChecked:YES];
+                        for (MAEvent *e in [ss eventsOfSS]) {
+                            [e setChecked:YES];
+                        }
+                        
+                        break;
+                    }
+                }
+            }
+        
+        [AgendaView reloadData];
+    } else {
+        NSDateComponents *components = [CURRENT_CALENDAR components:DATE_COMPONENTS fromDate:event.start];
+        NSString *eventInfo = [NSString stringWithFormat:@"Event tapped: %02i:%02i. Userinfo: %@", [components hour], [components minute], [event.userInfo objectForKey:@"test"]];
+        
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:event.title
+                                                        message:eventInfo delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
+        [alert show];
+    }
+}
+
+- (IBAction)changedOption:(id)sender {
+    [AgendaView reloadData];
 }
 
 @end

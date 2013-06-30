@@ -289,10 +289,6 @@
         
         UIViewController *newTopViewController = [[self storyboard]instantiateViewControllerWithIdentifier:iD];
         
-        /*if ([iD compare:@"Sessions"] == NSOrderedSame) {
-            [(AddRemoveSessionsViewController*)newTopViewController setEvents:[self sessionToMAEvents]];
-        }*/
-        
         [[self MenuView] deselectRowAtIndexPath:indexPath animated:NO];
         
         [[self slidingViewController] anchorTopViewOffScreenTo:ECRight animations:nil onComplete:^{

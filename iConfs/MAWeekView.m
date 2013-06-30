@@ -484,6 +484,7 @@ static const unsigned int TOP_BACKGROUND_HEIGHT               = 35;
                     [sameTimeEvents addObject:event];
                     
                     if ([event checked]){
+                        [event setBackgroundColor:[UIColor brownColor]];
                         for (id e in [event sameTimeEvents]) {
                             if ([e checked]) {
                                 [event setBackgroundColor:[UIColor redColor]];
@@ -503,6 +504,7 @@ static const unsigned int TOP_BACKGROUND_HEIGHT               = 35;
                         [sameTimeEvents addObject:e];
                         
                         if ([e checked]){
+                            [e setBackgroundColor:[UIColor brownColor]];
                             for (id anotherEvent in [e sameTimeEvents]) {
                                 if ([anotherEvent checked]) {
                                     [e setBackgroundColor:[UIColor redColor]];

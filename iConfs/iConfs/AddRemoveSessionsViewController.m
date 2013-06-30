@@ -34,14 +34,6 @@
 
 @synthesize AgendaView, EditButton, MenuButton, HomeButton, ViewOptions, Events;
 
-- (IConfs*) appData;
-{
-	id<AppDelegateProtocol> theDelegate = (id<AppDelegateProtocol>) [UIApplication sharedApplication].delegate;
-	IConfs* theAppDataObject;
-	theAppDataObject = (IConfs*)[theDelegate appData];
-	return theAppDataObject;
-}
-
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
@@ -128,7 +120,7 @@
     
     for (MAEvent* ss in Events) {
         
-        NSDateComponents *components = [[NSCalendar currentCalendar] components:unitFlags fromDate:[NSDate date]];
+        NSDateComponents *components = [CURRENT_CALENDAR components:DATE_COMPONENTS fromDate:[(MAEvent*)ss start]];
         NSDateComponents *componentsStart = [CURRENT_CALENDAR components:DATE_COMPONENTS fromDate:startDate];
         
         if ([components day] == [componentsStart day]) {
