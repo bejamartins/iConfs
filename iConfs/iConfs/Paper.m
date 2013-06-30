@@ -10,7 +10,7 @@
 
 @implementation Paper
 
--(Paper*)initWithData: (int) pID title:(NSString*) t authors: (NSArray*) a abstract:(NSString*)ab link:(NSString*) l{
+-(Paper*)initWithData: (int) pID title:(NSString*) t authors: (NSMutableArray*) a abstract:(NSString*)ab link:(NSString*) l{
     paperID = pID;
     title = t;
     authors = a;

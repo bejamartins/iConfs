@@ -43,7 +43,7 @@
  @param l paper's link
  @returns a newly initialized object
  */
--(Paper*)initWithData: (int) pID title:(NSString*) t authors: (NSArray*) a abstract:(NSString*)ab link:(NSString*) l;
+-(Paper*)initWithData: (int) pID title:(NSString*) t authors: (NSMutableArray*) a abstract:(NSString*)ab link:(NSString*) l;
 
 /**
  Gets the paper's title
