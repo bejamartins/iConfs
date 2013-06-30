@@ -16,13 +16,14 @@
     imagePath = imgPath;
     personID = pID;
     eventList = [[NSMutableArray alloc] init];
+    papers = [[NSMutableDictionary alloc] init];
     return self;
 }
 
 
 -(Paper*)getPaper:(int)paperID{
     NSNumber *value = [papers objectForKey:[NSNumber numberWithInteger: paperID]];
-    
+    papers;
     if (value)
     {
         return ((Paper*)[papers objectForKey:[NSNumber numberWithInteger: paperID]]);
@@ -47,6 +48,7 @@
     else
     {
         [papers setObject:p forKey:[NSNumber numberWithInteger: p.getID]];
+        Paper* f = [papers objectForKey:[NSNumber numberWithInteger: p.getID]];
         return true;
     }
 }
