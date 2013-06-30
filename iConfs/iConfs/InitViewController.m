@@ -42,6 +42,9 @@
     theAppData = [self appData];
     [theAppData updateConferences];
     [theAppData bootableConfs];
+    NSTimer* updateIt = [NSTimer scheduledTimerWithTimeInterval:300 target:self selector:@selector(timedUpdate:) userInfo:nil repeats:YES];
+    
+    
     
     self.TopViewController = [self.storyboard  instantiateViewControllerWithIdentifier:@"Home"];
 }
@@ -51,5 +54,20 @@
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
+
+
+- (void)timedUpdate:(NSTimer*) timy{
+    
+    NSLog(@"I'm at the timer");
+    [self performSelectorInBackground:@selector(doUpdate) withObject:nil];
+    
+    
+}
+
+- (void)doUpdate{
+    NSLog(@"I'm at the thread");
+    [theAppData updateConferences];
+}
+
 
 @end
