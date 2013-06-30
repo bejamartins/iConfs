@@ -14,5 +14,6 @@
 @property (weak, nonatomic) IBOutlet UIImageView *Image;
 @property (weak, nonatomic) IBOutlet UILabel *Name;
 @property (weak, nonatomic) IBOutlet UILabel *type;
-
+@property  int index;
+-(int)getIndex;
 @end

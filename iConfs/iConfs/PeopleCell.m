@@ -10,6 +10,7 @@
 
 @implementation PeopleCell
 
+@synthesize index;
 - (id)initWithFrame:(CGRect)frame
 {
     self = [super initWithFrame:frame];
@@ -17,6 +18,11 @@
 
     }
     return self;
+}
+
+-(int)getIndex{
+
+    return index;
 }
 
 @end

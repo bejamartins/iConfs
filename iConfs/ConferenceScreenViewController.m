@@ -13,6 +13,7 @@
 #import "Notification.h"
 #import "NewsViewController.h"
 #import "PeopleCell.h"
+#import "PeopleViewController.h"
 @interface ConferenceScreenViewController (){
     NSArray *authorsShown;
     Conference *conf;
@@ -68,8 +69,7 @@
     [[cell type]setText:@"Author"];
     
     [[cell Name]setText:[author getName]];
-    
-    
+    [cell setIndex:aux];
     cell.backgroundColor =  [UIColor colorWithPatternImage:[UIImage imageNamed:@"white_rect.png"]];
 
   //  [cell setBackgroundColor:[UIColor colorWithPatternImage:@"white_rect.png"]];
@@ -78,20 +78,24 @@
 
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath{
     
-//    NSString *iD = @"News";
-//    
-//    NewsViewController *newTopViewController =[[self storyboard]instantiateViewControllerWithIdentifier:iD];
-//    int item=indexPath.item;
-//    
-//    NSArray *aux=[NSArray arrayWithObject:[news objectAtIndex:indexPath.item]];
-//    [newTopViewController changeNews:aux];
-//    [newTopViewController viewDidLoad];
-//    
-//    CGRect frame = [[[[self slidingViewController] topViewController] view] frame];
-//    [[self slidingViewController] setTopViewController:newTopViewController];
-//    [[[[self slidingViewController] topViewController] view] setFrame:frame];
     
+    NSString *iD = @"People";
     
+    PeopleViewController *newTopViewController =[[self storyboard]instantiateViewControllerWithIdentifier:iD];
+   
+    
+    PeopleCell *cell = (PeopleCell*)[collectionView cellForItemAtIndexPath:indexPath];
+    [newTopViewController changeAuthor:[cell getIndex]];
+
+    [newTopViewController viewDidLoad];
+
+    [newTopViewController changeAuthor:[cell getIndex]];
+    
+    CGRect frame = [[[[self slidingViewController] topViewController] view] frame];
+    [[self slidingViewController] setTopViewController:newTopViewController];
+    [[[[self slidingViewController] topViewController] view] setFrame:frame];
+    [newTopViewController changeAuthor:[cell getIndex]];
+
     
     
 }

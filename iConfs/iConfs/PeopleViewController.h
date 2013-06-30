@@ -25,9 +25,11 @@
 @property (strong, nonatomic) IBOutlet UILabel *speakerBio;
 @property (strong, nonatomic) UIButton *ConferenceHome;
 @property UIViewController *previous;
+@property (strong, nonatomic) IBOutlet UISegmentedControl *segmentedControl;
 
 @property (strong, nonatomic) UIButton *HomeButton;
 - (void)changePrevious:(UIViewController*)vc;
+-(void)changeAuthor:(int)index;
 
 
 @end
