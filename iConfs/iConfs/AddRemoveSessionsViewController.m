@@ -152,7 +152,7 @@
             event.allDay = NO;
             event.userInfo = NULL;
             [event setChecked:YES];
-            event.backgroundColor = [UIColor brownColor];
+            event.backgroundColor = [UIColor greenColor];
             [event setTitle:[ss getTheme]];
             [event setStart:[ss getStartDate]];
             [event setSsID:[(SuperSession*)ss getID]];
@@ -165,7 +165,7 @@
                 tEvent.allDay = NO;
                 tEvent.userInfo = NULL;
                 [tEvent setChecked:YES];
-                tEvent.backgroundColor = [UIColor purpleColor];
+                tEvent.backgroundColor = [UIColor blueColor];
                 [tEvent setTitle:[e getTheme]];
                 [tEvent setStart:[e getDate]];
                 [tEvent setEnd:[e getEventEnd]];
@@ -181,7 +181,7 @@
                 tEvent.allDay = NO;
                 tEvent.userInfo = NULL;
                 [tEvent setChecked:NO];
-                tEvent.backgroundColor = [UIColor purpleColor];
+                tEvent.backgroundColor = [UIColor orangeColor];
                 [tEvent setTitle:[e getTheme]];
                 [tEvent setStart:[e getDate]];
                 [tEvent setEnd:[e getEventEnd]];
@@ -202,7 +202,7 @@
             event.allDay = NO;
             event.userInfo = NULL;
             [event setChecked:NO];
-            event.backgroundColor = [UIColor purpleColor];
+            event.backgroundColor = [UIColor brownColor];
             [event setTitle:[ss getTheme]];
             [event setStart:[ss getStartDate]];
             [event setSsID:[(SuperSession*)ss getID]];
@@ -215,7 +215,7 @@
                 tEvent.allDay = NO;
                 tEvent.userInfo = NULL;
                 [tEvent setChecked:NO];
-                tEvent.backgroundColor = [UIColor purpleColor];
+                tEvent.backgroundColor = [UIColor orangeColor];
                 [tEvent setTitle:[e getTheme]];
                 [tEvent setStart:[e getDate]];
                 [tEvent setEnd:[e getEventEnd]];
@@ -243,9 +243,10 @@
                 for (MAEvent *ss in Events) {
                     if ([ss ssID] == [event ssID]){
                         [ss setChecked:NO];
-                        
+                        [ss setBackgroundColor:[UIColor brownColor]];
                         for (MAEvent *e in [ss eventsOfSS]) {
                             [e setChecked:NO];
+                            [e setBackgroundColor:[UIColor orangeColor]];
                         }
                         
                         break;
@@ -255,8 +256,10 @@
                 for (MAEvent *ss in Events) {
                     if ([ss ssID] == [event ssID]){
                         [ss setChecked:YES];
+                        [ss setBackgroundColor:[UIColor greenColor]];
                         for (MAEvent *e in [ss eventsOfSS]) {
                             [e setChecked:YES];
+                            [e setBackgroundColor:[UIColor blueColor]];
                         }
                         
                         break;
@@ -268,11 +271,14 @@
                 for (MAEvent *ss in Events) {
                     if ([ss ssID] == [event ssID]){
                         [ss setChecked:NO];
+                        [ss setBackgroundColor:[UIColor brownColor]];
                         for (MAEvent *e in [ss eventsOfSS]) {
                             if ([e sID] == [event sID]) {
                                 [e setChecked:NO];
+                                [e setBackgroundColor:[UIColor orangeColor]];
                             } else if ([e checked]) {
                                 [ss setChecked:YES];
+                                [ss setBackgroundColor:[UIColor greenColor]];
                             }
                         }
                         
@@ -283,9 +289,11 @@
                 for (MAEvent *ss in Events) {
                     if ([ss ssID] == [event ssID]){
                         [ss setChecked:YES];
+                        [ss setBackgroundColor:[UIColor greenColor]];
                         for (MAEvent *e in [ss eventsOfSS]) {
                             if ([e sID] == [event sID]) {
                                 [e setChecked:YES];
+                                [e setBackgroundColor:[UIColor blueColor]];
                             }
                         }
                         
@@ -309,14 +317,39 @@
 - (IBAction)editEvents:(id)sender {
     if (isEditing) {
         isEditing = NO;
-        [AgendaView doneEditing];
+        
         [[self EditButton] setTitle:@"Add/Remove Sessions" forState:UIControlStateNormal];
         [AgendaView reloadData];
     } else {
         isEditing = YES;
-        [AgendaView isEditing];
         [[self EditButton] setTitle:@"Finished" forState:UIControlStateNormal];
         [AgendaView reloadData];
+    }
+}
+
+- (void)saveChanges {
+    
+    NSString *iD = [[NSString alloc] initWithString:[[(MenuViewController*)[[self slidingViewController] underLeftViewController] selectedConf] getID]];
+    
+    for (MAEvent* e in Events) {
+            if ([e checked]) {
+                 [[(MenuViewController*)[[self slidingViewController] underLeftViewController] appData] subscribeSuperSessionInAgendaByID:[e ssID] Conference:iD];
+                CustomizableSuperSession *ss = [CustomizableSuperSession alloc];
+                
+                for (CustomizableSuperSession* cSS in [[(MenuViewController*)[[self slidingViewController] underLeftViewController] appData] getAgendaByConferenceOrderedByDate:iD]) {
+                    if ([cSS getID] == [e ssID]) {
+                        for (MAEvent* event in [e eventsOfSS]) {
+                            if (![event checked]) {
+                                
+                            }
+                        }
+                        
+                        break;
+                    }
+                }
+            } else {
+                [[(MenuViewController*)[[self slidingViewController] underLeftViewController] appData] unsubscribeSuperSessionInAgenda:[e ssID]];
+        }
     }
 }
 

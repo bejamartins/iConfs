@@ -167,6 +167,7 @@ static const unsigned int TOP_BACKGROUND_HEIGHT               = 35;
 
 - (id)initWithFrame:(CGRect)frame {
     if (self = [super initWithFrame:frame]) {
+        startDate = [NSDate date];
 		[self setupCustomInitialisation];
     }
     return self;
@@ -174,6 +175,7 @@ static const unsigned int TOP_BACKGROUND_HEIGHT               = 35;
 
 - (id)initWithCoder:(NSCoder *)decoder {
 	if (self = [super initWithCoder:decoder]) {
+        startDate = [NSDate date];
 		[self setupCustomInitialisation];
 	}
 	return self;
@@ -182,7 +184,7 @@ static const unsigned int TOP_BACKGROUND_HEIGHT               = 35;
 - (void)setupCustomInitialisation {
 	self.labelFontSize = DEFAULT_LABEL_FONT_SIZE;
 	self.eventDraggingEnabled = NO;
-	self.week = startDate;
+    self.week = startDate;
     [self setConflict:NO];
     
 	[self addSubview:self.topBackground];
@@ -484,7 +486,6 @@ static const unsigned int TOP_BACKGROUND_HEIGHT               = 35;
                     [sameTimeEvents addObject:event];
                     
                     if ([event checked]){
-                        [event setBackgroundColor:[UIColor brownColor]];
                         for (id e in [event sameTimeEvents]) {
                             if ([e checked]) {
                                 [event setBackgroundColor:[UIColor redColor]];

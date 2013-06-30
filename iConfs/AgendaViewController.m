@@ -136,8 +136,6 @@
 	NSString *iD = [[NSString alloc] initWithString:[[(MenuViewController*)[[self slidingViewController] underLeftViewController] selectedConf] getID]];
     
     NSArray *myDict = [[(MenuViewController*)[[self slidingViewController] underLeftViewController] appData] getAgendaByConferenceOrderedByDate:iD];
-    
-    NSArray *otherDict = [[(MenuViewController*)[[self slidingViewController] underLeftViewController] appData] getUnsubscribedSuperSessionsByConferenceOrderedByDate:iD];
 	
     NSMutableArray *tempEvents = [[NSMutableArray alloc] init];
     
@@ -147,7 +145,7 @@
         event.allDay = NO;
         event.userInfo = NULL;
         [event setChecked:YES];
-        event.backgroundColor = [UIColor brownColor];
+        event.backgroundColor = [UIColor greenColor];
         [event setTitle:[ss getTheme]];
         [event setStart:[ss getStartDate]];
         [event setSsID:[(SuperSession*)ss getID]];
@@ -160,57 +158,7 @@
             tEvent.allDay = NO;
             tEvent.userInfo = NULL;
             [tEvent setChecked:YES];
-            tEvent.backgroundColor = [UIColor purpleColor];
-            [tEvent setTitle:[e getTheme]];
-            [tEvent setStart:[e getDate]];
-            [tEvent setEnd:[e getEventEnd]];
-            [tEvent setSsID:[(SuperSession*)ss getID]];
-            [tEvent setSID:[(Event*)e getID]];
-            
-            [eventsInSS addObject:tEvent];
-        }
-        
-        for (Session* e in [ss getUnsubscribedEvents]) {
-            MAEvent *tEvent = [[MAEvent alloc] init];
-            tEvent.textColor = [UIColor whiteColor];
-            tEvent.allDay = NO;
-            tEvent.userInfo = NULL;
-            [tEvent setChecked:NO];
-            tEvent.backgroundColor = [UIColor purpleColor];
-            [tEvent setTitle:[e getTheme]];
-            [tEvent setStart:[e getDate]];
-            [tEvent setEnd:[e getEventEnd]];
-            [tEvent setSsID:[(SuperSession*)ss getID]];
-            [tEvent setSID:[(Event*)e getID]];
-            
-            [eventsInSS addObject:tEvent];
-        }
-        
-        [event setEventsOfSS:eventsInSS];
-        
-        [tempEvents addObject:event];
-    }
-    
-    for (CustomizableSuperSession* ss in otherDict) {
-        MAEvent *event = [[MAEvent alloc] init];
-        event.textColor = [UIColor whiteColor];
-        event.allDay = NO;
-        event.userInfo = NULL;
-        [event setChecked:NO];
-        event.backgroundColor = [UIColor purpleColor];
-        [event setTitle:[ss getTheme]];
-        [event setStart:[ss getStartDate]];
-        [event setSsID:[(SuperSession*)ss getID]];
-        
-        NSMutableArray *eventsInSS = [[NSMutableArray alloc] init];
-        
-        for (Session* e in [ss getUnsubscribedEvents]) {
-            MAEvent *tEvent = [[MAEvent alloc] init];
-            tEvent.textColor = [UIColor whiteColor];
-            tEvent.allDay = NO;
-            tEvent.userInfo = NULL;
-            [tEvent setChecked:NO];
-            tEvent.backgroundColor = [UIColor purpleColor];
+            tEvent.backgroundColor = [UIColor blueColor];
             [tEvent setTitle:[e getTheme]];
             [tEvent setStart:[e getDate]];
             [tEvent setEnd:[e getEventEnd]];
@@ -232,14 +180,17 @@
 
 - (void)weekView:(MAWeekView *)weekView eventTapped:(MAEvent *)event {
     
+    if (isRemoving) {
         if ([ViewOptions selectedSegmentIndex] == 0) {
             if ([event checked]) {
                 for (MAEvent *ss in Events) {
                     if ([ss ssID] == [event ssID]){
                         [ss setChecked:NO];
+                        [ss setBackgroundColor:[UIColor brownColor]];
                         
                         for (MAEvent *e in [ss eventsOfSS]) {
                             [e setChecked:NO];
+                            [e setBackgroundColor:[UIColor orangeColor]];
                         }
                         
                         break;
@@ -249,17 +200,59 @@
                 for (MAEvent *ss in Events) {
                     if ([ss ssID] == [event ssID]){
                         [ss setChecked:YES];
+                        [ss setBackgroundColor:[UIColor greenColor]];
+                        
                         for (MAEvent *e in [ss eventsOfSS]) {
                             [e setChecked:YES];
+                            [e setBackgroundColor:[UIColor blueColor]];
                         }
                         
                         break;
                     }
                 }
             }
+        } else {
+            if ([event checked]) {
+                for (MAEvent *ss in Events) {
+                    if ([ss ssID] == [event ssID]){
+                        
+                        [ss setChecked:NO];
+                        [ss setBackgroundColor:[UIColor brownColor]];
+                        for (MAEvent *e in [ss eventsOfSS]) {
+                            if ([e sID] == [event sID]) {
+                                [e setChecked:NO];
+                                [e setBackgroundColor:[UIColor orangeColor]];
+                            } else if ([e checked]) {
+                                [ss setChecked:YES];
+                                [ss setBackgroundColor:[UIColor greenColor]];
+                            }
+                        }
+                                                
+                        break;
+                    }
+                }
+            } else {
+                for (MAEvent *ss in Events) {
+                    if ([ss ssID] == [event ssID]){
+                        [ss setChecked:YES];
+                        [ss setBackgroundColor:[UIColor greenColor]];
+                        
+                        for (MAEvent *e in [ss eventsOfSS]) {
+                            if ([event sID] == [e sID]) {
+                                [e setChecked:YES];
+                                [e setBackgroundColor:[UIColor blueColor]];
+                            }
+                        }
+                        
+                        break;
+                    }
+                }
+            }
+        }
         
         [AgendaView reloadData];
     } else {
+        
         NSDateComponents *components = [CURRENT_CALENDAR components:DATE_COMPONENTS fromDate:event.start];
         NSString *eventInfo = [NSString stringWithFormat:@"Event tapped: %02i:%02i. Userinfo: %@", [components hour], [components minute], [event.userInfo objectForKey:@"test"]];
         

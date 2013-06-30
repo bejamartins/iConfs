@@ -4,38 +4,6 @@
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="2083"/>
     </dependencies>
     <scenes>
-        <!--Testing View Controller-->
-        <scene sceneID="Kea-JV-FJw">
-            <objects>
-                <viewController id="cff-pG-6Z1" customClass="TestingViewController" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="gue-L8-hQW">
-                        <rect key="frame" x="0.0" y="20" width="768" height="1004"/>
-                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                        <subviews>
-                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="No shit" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="11" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="768" translatesAutoresizingMaskIntoConstraints="NO" id="zz9-e2-Cvm">
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="493" id="YxH-av-aXR"/>
-                                </constraints>
-                                <fontDescription key="fontDescription" type="system" pointSize="11"/>
-                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                        </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
-                        <constraints>
-                            <constraint firstItem="zz9-e2-Cvm" firstAttribute="top" secondItem="gue-L8-hQW" secondAttribute="top" type="default" id="OYG-7l-G25"/>
-                            <constraint firstItem="zz9-e2-Cvm" firstAttribute="leading" secondItem="gue-L8-hQW" secondAttribute="leading" type="default" id="sd2-u4-2Kt"/>
-                            <constraint firstItem="zz9-e2-Cvm" firstAttribute="trailing" secondItem="gue-L8-hQW" secondAttribute="trailing" type="default" id="vqn-hX-VS5"/>
-                        </constraints>
-                    </view>
-                    <connections>
-                        <outlet property="testLabel" destination="zz9-e2-Cvm" id="b49-iX-Hv3"/>
-                    </connections>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="PrU-lq-Jco" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="1020" y="-1365"/>
-        </scene>
         <!--Menu View Controller-->
         <scene sceneID="ddI-Ph-BLx">
             <objects>
@@ -2257,8 +2225,8 @@
                             </view>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="H9M-TA-9k9">
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="57" id="Nmn-Mr-VkO"/>
-                                    <constraint firstAttribute="width" constant="201" id="S0W-98-ruf"/>
+                                    <constraint firstAttribute="height" constant="40" type="user" id="Nmn-Mr-VkO"/>
+                                    <constraint firstAttribute="width" constant="175" type="user" id="S0W-98-ruf"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
                                 <state key="normal" title="Remove Sessions">
@@ -2287,17 +2255,17 @@
                         </subviews>
                         <color key="backgroundColor" cocoaTouchSystemColor="scrollViewTexturedBackgroundColor"/>
                         <constraints>
-                            <constraint firstItem="ZDm-uR-2wW" firstAttribute="top" secondItem="gmq-pL-hkq" secondAttribute="top" constant="100" id="DCq-MF-ZJC"/>
-                            <constraint firstAttribute="bottom" secondItem="ZDm-uR-2wW" secondAttribute="bottom" constant="137" id="F7s-EZ-drQ"/>
-                            <constraint firstAttribute="trailing" secondItem="m5j-49-1He" secondAttribute="trailing" constant="29" id="Kxi-Mq-qsy"/>
-                            <constraint firstAttribute="bottom" secondItem="H9M-TA-9k9" secondAttribute="bottom" constant="40" id="N8M-Rz-sMa"/>
+                            <constraint firstAttribute="bottom" secondItem="H9M-TA-9k9" secondAttribute="bottom" constant="20" symbolic="YES" type="default" id="0rx-Cn-4rW"/>
+                            <constraint firstItem="ZDm-uR-2wW" firstAttribute="top" secondItem="gmq-pL-hkq" secondAttribute="top" constant="110" type="user" id="DKT-t6-wOJ"/>
+                            <constraint firstAttribute="bottom" secondItem="ZDm-uR-2wW" secondAttribute="bottom" constant="75" type="user" id="Mih-ke-DCL"/>
                             <constraint firstItem="Oxd-iv-H4f" firstAttribute="trailing" secondItem="gmq-pL-hkq" secondAttribute="trailing" type="default" id="UdY-gx-Nek"/>
-                            <constraint firstItem="m5j-49-1He" firstAttribute="top" secondItem="gmq-pL-hkq" secondAttribute="top" constant="55" id="awv-RH-fXl"/>
+                            <constraint firstAttribute="trailing" secondItem="m5j-49-1He" secondAttribute="trailing" constant="20" symbolic="YES" type="default" id="Veu-Dt-8YV"/>
                             <constraint firstAttribute="trailing" secondItem="ZDm-uR-2wW" secondAttribute="trailing" constant="20" symbolic="YES" type="default" id="cDg-pj-QmD"/>
                             <constraint firstItem="Oxd-iv-H4f" firstAttribute="leading" secondItem="gmq-pL-hkq" secondAttribute="leading" type="default" id="ezO-4i-Nwe"/>
                             <constraint firstItem="ZDm-uR-2wW" firstAttribute="leading" secondItem="gmq-pL-hkq" secondAttribute="leading" constant="20" symbolic="YES" type="default" id="fGa-va-N2s"/>
+                            <constraint firstItem="m5j-49-1He" firstAttribute="top" secondItem="gmq-pL-hkq" secondAttribute="top" constant="60" type="user" id="iwb-zG-rp2"/>
                             <constraint firstItem="Oxd-iv-H4f" firstAttribute="top" secondItem="gmq-pL-hkq" secondAttribute="top" type="default" id="mw5-Qx-tPO"/>
-                            <constraint firstAttribute="trailing" secondItem="H9M-TA-9k9" secondAttribute="trailing" constant="39" id="uZ7-Rg-SKx"/>
+                            <constraint firstAttribute="trailing" secondItem="H9M-TA-9k9" secondAttribute="trailing" constant="20" symbolic="YES" type="default" id="tVf-E7-dmE"/>
                         </constraints>
                     </view>
                     <connections>
@@ -3097,12 +3065,6 @@
                 <relationship kind="outlet" name="collection" candidateClass="UICollectionView"/>
                 <relationship kind="outlet" name="searchBar" candidateClass="UISearchBar"/>
                 <relationship kind="outlet" name="sessionsTable" candidateClass="UITableView"/>
-            </relationships>
-        </class>
-        <class className="TestingViewController" superclassName="UIViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/TestingViewController.h"/>
-            <relationships>
-                <relationship kind="outlet" name="testLabel" candidateClass="UILabel"/>
             </relationships>
         </class>
         <class className="UICollectionReusableView" superclassName="UIView">
