@@ -65,8 +65,8 @@
     menuConf = [[NSArray alloc] initWithObjects:@"Sessions",@"People",@"Session Detail",@"Locations",@"Map View", nil];
     confs = [[NSArray alloc] initWithArray:[theAppData getMyConferences]];
     
-    [[self slidingViewController] setAnchorRightPeekAmount:450.0f];
-    [[self slidingViewController] setUnderLeftWidthLayout:ECFullWidth];
+    [[self slidingViewController] setAnchorRightRevealAmount:260.f];
+    [[self slidingViewController] setUnderLeftWidthLayout:ECFixedRevealWidth];
     
     showMenuConf = NO;
     
@@ -175,98 +175,6 @@
     return headerView;
 }
 
-- (NSArray*)sessionToMAEvents {
-	NSString *iD = [[NSString alloc] initWithString:[[(MenuViewController*)[[self slidingViewController] underLeftViewController] selectedConf] getID]];
-    
-    NSArray *myDict = [[(MenuViewController*)[[self slidingViewController] underLeftViewController] appData] getAgendaByConferenceOrderedByDate:iD];
-    
-    NSArray *otherDict = [[(MenuViewController*)[[self slidingViewController] underLeftViewController] appData] getUnsubscribedSuperSessionsByConferenceOrderedByDate:iD];
-	
-    NSMutableArray *tempEvents = [[NSMutableArray alloc] init];
-    
-    for (id ss in myDict) {
-        MAEvent *event = [[MAEvent alloc] init];
-        event.textColor = [UIColor whiteColor];
-        event.allDay = NO;
-        event.userInfo = NULL;
-        [event setChecked:YES];
-        event.backgroundColor = [UIColor brownColor];
-        [event setTitle:[ss getTheme]];
-        [event setStart:[ss getStartDate]];
-        [event setSsID:[(SuperSession*)ss getID]];
-        
-        NSMutableArray *eventsInSS;
-        
-        /*for (id e in [ss getUserAllEventsOrderedByDate]) {
-         MAEvent *tEvent = [[MAEvent alloc] init];
-         event.textColor = [UIColor whiteColor];
-         event.allDay = NO;
-         event.userInfo = NULL;
-         [event setChecked:YES];
-         event.backgroundColor = [UIColor purpleColor];
-         [event setTitle:[e getTheme]];
-         [event setStart:[e getStartDate]];
-         [event setSsID:[(SuperSession*)ss getID]];
-         [event setSID:[(Event*)e getID]];
-         
-         [eventsInSS addObject:tEvent];
-         }*/
-        
-        /*for (id e in [ss getUnsubscribedEvents]) {
-         MAEvent *tEvent = [[MAEvent alloc] init];
-         event.textColor = [UIColor whiteColor];
-         event.allDay = NO;
-         event.userInfo = NULL;
-         [event setChecked:NO];
-         event.backgroundColor = [UIColor purpleColor];
-         [event setTitle:[e getTheme]];
-         [event setStart:[e getStartDate]];
-         [event setSsID:[(SuperSession*)ss getID]];
-         [event setSID:[(Event*)e getID]];
-         
-         [eventsInSS addObject:tEvent];
-         }*/
-        
-        [event setEventsOfSS:eventsInSS];
-        
-        [tempEvents addObject:event];
-    }
-    
-    for (SuperSession* ss in otherDict) {
-        MAEvent *event = [[MAEvent alloc] init];
-        event.textColor = [UIColor whiteColor];
-        event.allDay = NO;
-        event.userInfo = NULL;
-        [event setChecked:NO];
-        event.backgroundColor = [UIColor purpleColor];
-        [event setTitle:[ss getTheme]];
-        [event setStart:[ss getStartDate]];
-        [event setSsID:[(SuperSession*)ss getID]];
-        
-        NSMutableArray *eventsInSS;
-        /*for (id e in [ss getUnsubscribedEvents]) {
-         MAEvent *tEvent = [[MAEvent alloc] init];
-         event.textColor = [UIColor whiteColor];
-         event.allDay = NO;
-         event.userInfo = NULL;
-         [event setChecked:NO];
-         event.backgroundColor = [UIColor purpleColor];
-         [event setTitle:[e getTheme]];
-         [event setStart:[e getStartDate]];
-         [event setSsID:[(SuperSession*)ss getID]];
-         [event setSID:[(Event*)e getID]];
-         
-         [eventsInSS addObject:tEvent];
-         }*/
-        
-        [event setEventsOfSS:eventsInSS];
-        
-        [tempEvents addObject:event];
-    }
-    
-    return tempEvents;
-}
-
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     
@@ -278,12 +186,10 @@
         
         [[self MenuView] reloadData];
         
-        [[self slidingViewController] anchorTopViewOffScreenTo:ECRight animations:nil onComplete:^{
-            CGRect frame = [[[[self slidingViewController] topViewController] view] frame];
-            [[self slidingViewController] setTopViewController:newTopViewController];
-            [[[[self slidingViewController] topViewController] view] setFrame:frame];
-            [[self slidingViewController] resetTopView];
-        }];
+        CGRect frame = [[[[self slidingViewController] topViewController] view] frame];
+        [[self slidingViewController] setTopViewController:newTopViewController];
+        [[[[self slidingViewController] topViewController] view] setFrame:frame];
+        [[self slidingViewController] resetTopView];
     }else if ([indexPath section] == 1){
         NSString *iD = [NSString stringWithFormat:@"%@", [self.MenuView cellForRowAtIndexPath:indexPath].textLabel.text];
         
@@ -291,13 +197,11 @@
         
         [[self MenuView] deselectRowAtIndexPath:indexPath animated:NO];
         
-        [[self slidingViewController] anchorTopViewOffScreenTo:ECRight animations:nil onComplete:^{
-            CGRect frame = [[[[self slidingViewController] topViewController] view] frame];
-            [[self slidingViewController] setTopViewController:newTopViewController];
-            [[[[self slidingViewController] topViewController] view] setFrame:frame];
+        CGRect frame = [[[[self slidingViewController] topViewController] view] frame];
+        [[self slidingViewController] setTopViewController:newTopViewController];
+        [[[[self slidingViewController] topViewController] view] setFrame:frame];
             
-            [[self slidingViewController] resetTopView];
-        }];
+        [[self slidingViewController] resetTopView];
     }else{
         selectedConf = (Conference*)[confs objectAtIndex:[indexPath row]];
         showMenuConf = YES;
@@ -317,12 +221,10 @@
 {
     UIViewController *newTopViewController = [[self storyboard]instantiateViewControllerWithIdentifier:@"Home"];
     
-    [[self slidingViewController] anchorTopViewOffScreenTo:ECRight animations:nil onComplete:^{
-        CGRect frame = [[[[self slidingViewController] topViewController] view] frame];
-        [[self slidingViewController] setTopViewController:newTopViewController];
-        [[[[self slidingViewController] topViewController] view] setFrame:frame];
-        [[self slidingViewController] resetTopView];
-    }];
+    CGRect frame = [[[[self slidingViewController] topViewController] view] frame];
+    [[self slidingViewController] setTopViewController:newTopViewController];
+    [[[[self slidingViewController] topViewController] view] setFrame:frame];
+    [[self slidingViewController] resetTopView];
 }
 
 - (void)setSelectedConf:(Conference *)sConf

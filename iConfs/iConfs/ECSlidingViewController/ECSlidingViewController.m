@@ -253,38 +253,48 @@ NSString *const ECSlidingViewTopDidReset             = @"ECSlidingViewTopDidRese
   CGPoint currentTouchPoint     = [recognizer locationInView:self.view];
   CGFloat currentTouchPositionX = currentTouchPoint.x;
   
-  if (recognizer.state == UIGestureRecognizerStateBegan) {
-    self.initialTouchPositionX = currentTouchPositionX;
-    self.initialHoizontalCenter = self.topView.center.x;
-  } else if (recognizer.state == UIGestureRecognizerStateChanged) {
+    if (currentTouchPoint.x < 250) {
+        if (recognizer.state == UIGestureRecognizerStateBegan) {
+            self.initialTouchPositionX = currentTouchPositionX;
+            self.initialHoizontalCenter = self.topView.center.x;
+        } else if (recognizer.state == UIGestureRecognizerStateChanged) {
     
-    CGPoint translation = [recognizer translationInView:self.view];
+            CGPoint translation = [recognizer translationInView:self.view];
     
-    if(fabs(translation.x) > fabs(translation.y))
-    {
-      CGFloat panAmount = self.initialTouchPositionX - currentTouchPositionX;
-      CGFloat newCenterPosition = self.initialHoizontalCenter - panAmount;
+            if(fabs(translation.x) > fabs(translation.y))
+            {
+                CGFloat panAmount = self.initialTouchPositionX - currentTouchPositionX;
+                CGFloat newCenterPosition = self.initialHoizontalCenter - panAmount;
       
-      if ((newCenterPosition < self.resettedCenter && self.anchorLeftTopViewCenter == NSNotFound) || (newCenterPosition > self.resettedCenter && self.anchorRightTopViewCenter == NSNotFound)) {
-        newCenterPosition = self.resettedCenter;
-      }
+                if ((newCenterPosition < self.resettedCenter && self.anchorLeftTopViewCenter == NSNotFound) || (newCenterPosition > self.resettedCenter && self.anchorRightTopViewCenter == NSNotFound)) {
+                    newCenterPosition = self.resettedCenter;
+                }
       
-      [self topViewHorizontalCenterWillChange:newCenterPosition];
-      [self updateTopViewHorizontalCenter:newCenterPosition];
-      [self topViewHorizontalCenterDidChange:newCenterPosition];
-    }
-  } else if (recognizer.state == UIGestureRecognizerStateEnded || recognizer.state == UIGestureRecognizerStateCancelled) {
-    CGPoint currentVelocityPoint = [recognizer velocityInView:self.view];
-    CGFloat currentVelocityX     = currentVelocityPoint.x;
+                [self topViewHorizontalCenterWillChange:newCenterPosition];
+                [self updateTopViewHorizontalCenter:newCenterPosition];
+                [self topViewHorizontalCenterDidChange:newCenterPosition];
+            }
+        } else if (recognizer.state == UIGestureRecognizerStateEnded || recognizer.state == UIGestureRecognizerStateCancelled) {
+            CGPoint currentVelocityPoint = [recognizer velocityInView:self.view];
+            CGFloat currentVelocityX     = currentVelocityPoint.x;
     
-    if ([self underLeftShowing] && currentVelocityX > 100) {
-      [self anchorTopViewTo:ECRight];
-    } else if ([self underRightShowing] && currentVelocityX < 100) {
-      [self anchorTopViewTo:ECLeft];
+            if ([self underLeftShowing] && currentVelocityX > 100) {
+                [self anchorTopViewTo:ECRight];
+            } else if ([self underRightShowing] && currentVelocityX < 100) {
+                [self anchorTopViewTo:ECLeft];
+            } else {
+                [self resetTopView];
+            }
+        }
     } else {
-      [self resetTopView];
+        if ([self underLeftShowing]) {
+            [self anchorTopViewTo:ECRight];
+        } else if ([self underRightShowing]) {
+            [self anchorTopViewTo:ECLeft];
+        } else {
+            [self resetTopView];
+        }
     }
-  }
 }
 
 - (UIPanGestureRecognizer *)panGesture
