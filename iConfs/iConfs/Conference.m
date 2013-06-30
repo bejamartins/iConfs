@@ -379,6 +379,18 @@
     return supersessions;
 }
 
+-(Author*)getAuthorByID:(int)pID{
+    return [self.authors objectForKey:[NSNumber numberWithInteger: pID]];
+}
+
+-(Organizer*)getOrganizerByID:(int)pID{
+    return [self.organizers objectForKey:[NSNumber numberWithInteger: pID]];
+}
+
+-(Speaker*)getSpeakerByID:(int)pID{
+    return [self.authors objectForKey:[NSNumber numberWithInteger: pID]];
+}
+
 
 @end
 
