@@ -30,23 +30,25 @@
 
     NSMutableArray *searchPlaces;
     Blueprints *selectedBlueprint;
+    NSArray *places;
     
     
 }
 
-@synthesize MenuButton,placesContainer,bpContainer,c;
+@synthesize MenuButton,placesContainer,bpContainer,c,placesTable;
 
 //mandar para o container o mapa a mostrar!
 //mandar para o container os places a mostrar
 
 - (void)viewDidLoad
 {
- 
+    [placesTable setDelegate:self];
+    [placesTable setDataSource:self];
     c=[(MenuViewController*)[[self slidingViewController] underLeftViewController] selectedConf] ;
 
-    self.blueprints= [[(MenuViewController*)[[self slidingViewController] underLeftViewController] selectedConf] getBlueprints];
+    self.blueprints= [c getBlueprints];
 
-    NSArray *x=self.blueprints;
+    NSArray *x=[self.blueprints allValues];
     
     // NSLog(@"Tamanho bps=%d",[self.blueprints count]);
 //    NSArray *keys = [self.blueprints allKeys];
@@ -56,10 +58,15 @@
 //    Blueprints *b2=[self.blueprints objectForKey:aKey];
     
     if (selectedBlueprint==nil) {
-        NSArray *keys = [self.blueprints allKeys];
-        id aKey = [keys objectAtIndex:0];
-        id anObject = [self.blueprints objectForKey:aKey];
-        selectedBlueprint=anObject;
+        
+//        NSArray *keys = [self.blueprints allKeys];
+//        id aKey = [keys objectAtIndex:0];
+//        id anObject = [self.blueprints objectForKey:aKey];
+//        selectedBlueprint=anObject;
+   
+        selectedBlueprint =[x objectAtIndex:0];
+        places=[selectedBlueprint getEatingAreas];
+    
     }
     
     [[[self view] layer] setShadowOpacity:0.75f];
@@ -100,6 +107,26 @@
 
 -(NSInteger)numberOfSectionsInCollectionView:(UICollectionView *)collectionView{
     return 1;}
+-(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView{
+    return 1;}
+
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
+    return [places count];
+
+}
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
+    
+    static NSString *CellIdentifier = @"Cell";
+    
+    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+
+    Place* p=[places objectAtIndex:indexPath.row];
+    [[cell textLabel]setText:[p getName]];
+
+    return cell;
+
+}
+
 
 -(NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section{
     return [self.blueprints count];

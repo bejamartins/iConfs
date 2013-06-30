@@ -10,7 +10,7 @@
 #import "BlueprintContainerViewController.h"
 #import "Conference.h"
 
-@interface BluePrintsViewController : UIViewController<UICollectionViewDelegate,UICollectionViewDataSource>
+@interface BluePrintsViewController : UIViewController<UICollectionViewDelegate,UICollectionViewDataSource,UITableViewDataSource,UITableViewDelegate>
 @property (strong, nonatomic) IBOutlet UISearchBar *searchBar;
 @property (strong, nonatomic) IBOutlet UICollectionView *collection;
 @property NSMutableDictionary *blueprints;
@@ -18,5 +18,6 @@
 @property (strong, nonatomic) IBOutlet UIView *placesContainer;
 @property (strong, nonatomic) IBOutlet UIView *bpContainer;
 -(UIImage*) returnImagePath:(NSString*)imagePath;
+@property (strong, nonatomic) IBOutlet UITableView *placesTable;
 @property Conference *c;
 @end
