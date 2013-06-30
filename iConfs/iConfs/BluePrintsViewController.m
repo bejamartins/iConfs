@@ -45,7 +45,7 @@
     [placesTable setDelegate:self];
     [placesTable setDataSource:self];
     c=[(MenuViewController*)[[self slidingViewController] underLeftViewController] selectedConf] ;
-
+    
     self.blueprints= [c getBlueprints];
 
     NSArray *x=[self.blueprints allValues];

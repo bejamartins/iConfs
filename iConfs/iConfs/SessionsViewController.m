@@ -23,7 +23,7 @@
     Conference *conf;
     NSArray *sessions;
     NSArray *superSessions;
-    NSArray *autores;
+    NSMutableArray *autores;
     NSMutableArray *searchSessions;
     BOOL givenSession;
     BOOL searchItem;
@@ -231,7 +231,11 @@
     int authorID = [[selectedSession getAuthor] getID];
         Author *aut=(Author*)[selectedSession getAuthor];
     Paper *p=[aut getPaper: x];
-    autores=[p getAuthors];
+        autores=[[NSMutableArray alloc]init ];
+        for( NSString *id in[p getAuthors]){
+    [autores addObject:[conf geta]];
+        }
+    
     }
     
     [abstract setText:[selectedSession getTheme]];
