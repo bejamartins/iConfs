@@ -70,6 +70,10 @@
     
     showMenuConf = NO;
     
+    UIColor *background = [[UIColor alloc] initWithPatternImage:[UIImage imageNamed:@"WP(42).jpg"]];
+    self.view.backgroundColor = background;
+    //[background release];
+    
     
     /*[theAppData fetchConferences];
     [theAppData addConferenceWithID:@"c001"];
