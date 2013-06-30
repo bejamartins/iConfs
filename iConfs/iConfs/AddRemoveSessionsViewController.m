@@ -34,14 +34,6 @@
 
 @synthesize AgendaView, EditButton, MenuButton, HomeButton, ViewOptions, Events;
 
-- (IConfs*) appData;
-{
-	id<AppDelegateProtocol> theDelegate = (id<AppDelegateProtocol>) [UIApplication sharedApplication].delegate;
-	IConfs* theAppDataObject;
-	theAppDataObject = (IConfs*)[theDelegate appData];
-	return theAppDataObject;
-}
-
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
