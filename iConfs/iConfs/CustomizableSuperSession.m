@@ -273,7 +273,7 @@
 }
 
 -(NSDate*)calculateEndDate{
-    for (int i=0; i<[userAllEvents]; i++) {
+    for (int i=0; i<[userAllEvents count]; i++) {
         NSDate* currDate = [((Event*)userAllEvents[i]) getEventEnd];
         if(userEndDate == nil){
             userEndDate =  currDate;

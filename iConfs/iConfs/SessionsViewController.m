@@ -226,15 +226,15 @@
     
     //DEBUG EDUARDO
     
-//    int x=[selectedSession getPaperID];
-//    if(x !=-1){
-//    int authorID = [[selectedSession getAuthor] getID];
-//        Author *aut=(Author*)[selectedSession getAuthor];
-//    Paper *p=[aut getPaper: x];
-//    autores=[p getAuthors];
-    //}
+    int x=[selectedSession getPaperID];
+    if(x !=-1){
+    int authorID = [[selectedSession getAuthor] getID];
+        Author *aut=(Author*)[selectedSession getAuthor];
+    Paper *p=[aut getPaper: x];
+    autores=[p getAuthors];
+    }
     
- //   [abstract setText:[selectedSession getTheme]];
+    [abstract setText:[selectedSession getTheme]];
 
     
   
