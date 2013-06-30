@@ -186,12 +186,10 @@
         
         [[self MenuView] reloadData];
         
-        [[self slidingViewController] anchorTopViewOffScreenTo:ECRight animations:nil onComplete:^{
-            CGRect frame = [[[[self slidingViewController] topViewController] view] frame];
-            [[self slidingViewController] setTopViewController:newTopViewController];
-            [[[[self slidingViewController] topViewController] view] setFrame:frame];
-            [[self slidingViewController] resetTopView];
-        }];
+        CGRect frame = [[[[self slidingViewController] topViewController] view] frame];
+        [[self slidingViewController] setTopViewController:newTopViewController];
+        [[[[self slidingViewController] topViewController] view] setFrame:frame];
+        [[self slidingViewController] resetTopView];
     }else if ([indexPath section] == 1){
         NSString *iD = [NSString stringWithFormat:@"%@", [self.MenuView cellForRowAtIndexPath:indexPath].textLabel.text];
         
@@ -199,13 +197,11 @@
         
         [[self MenuView] deselectRowAtIndexPath:indexPath animated:NO];
         
-        [[self slidingViewController] anchorTopViewOffScreenTo:ECRight animations:nil onComplete:^{
-            CGRect frame = [[[[self slidingViewController] topViewController] view] frame];
-            [[self slidingViewController] setTopViewController:newTopViewController];
-            [[[[self slidingViewController] topViewController] view] setFrame:frame];
+        CGRect frame = [[[[self slidingViewController] topViewController] view] frame];
+        [[self slidingViewController] setTopViewController:newTopViewController];
+        [[[[self slidingViewController] topViewController] view] setFrame:frame];
             
-            [[self slidingViewController] resetTopView];
-        }];
+        [[self slidingViewController] resetTopView];
     }else{
         selectedConf = (Conference*)[confs objectAtIndex:[indexPath row]];
         showMenuConf = YES;
@@ -225,12 +221,10 @@
 {
     UIViewController *newTopViewController = [[self storyboard]instantiateViewControllerWithIdentifier:@"Home"];
     
-    [[self slidingViewController] anchorTopViewOffScreenTo:ECRight animations:nil onComplete:^{
-        CGRect frame = [[[[self slidingViewController] topViewController] view] frame];
-        [[self slidingViewController] setTopViewController:newTopViewController];
-        [[[[self slidingViewController] topViewController] view] setFrame:frame];
-        [[self slidingViewController] resetTopView];
-    }];
+    CGRect frame = [[[[self slidingViewController] topViewController] view] frame];
+    [[self slidingViewController] setTopViewController:newTopViewController];
+    [[[[self slidingViewController] topViewController] view] setFrame:frame];
+    [[self slidingViewController] resetTopView];
 }
 
 - (void)setSelectedConf:(Conference *)sConf

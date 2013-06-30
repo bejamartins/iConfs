@@ -4,38 +4,6 @@
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="2083"/>
     </dependencies>
     <scenes>
-        <!--Testing View Controller-->
-        <scene sceneID="Kea-JV-FJw">
-            <objects>
-                <viewController id="cff-pG-6Z1" customClass="TestingViewController" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="gue-L8-hQW">
-                        <rect key="frame" x="0.0" y="20" width="768" height="1004"/>
-                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                        <subviews>
-                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="No shit" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="11" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="768" translatesAutoresizingMaskIntoConstraints="NO" id="zz9-e2-Cvm">
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="493" id="YxH-av-aXR"/>
-                                </constraints>
-                                <fontDescription key="fontDescription" type="system" pointSize="11"/>
-                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                        </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
-                        <constraints>
-                            <constraint firstItem="zz9-e2-Cvm" firstAttribute="top" secondItem="gue-L8-hQW" secondAttribute="top" type="default" id="OYG-7l-G25"/>
-                            <constraint firstItem="zz9-e2-Cvm" firstAttribute="leading" secondItem="gue-L8-hQW" secondAttribute="leading" type="default" id="sd2-u4-2Kt"/>
-                            <constraint firstItem="zz9-e2-Cvm" firstAttribute="trailing" secondItem="gue-L8-hQW" secondAttribute="trailing" type="default" id="vqn-hX-VS5"/>
-                        </constraints>
-                    </view>
-                    <connections>
-                        <outlet property="testLabel" destination="zz9-e2-Cvm" id="b49-iX-Hv3"/>
-                    </connections>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="PrU-lq-Jco" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="1020" y="-1365"/>
-        </scene>
         <!--Menu View Controller-->
         <scene sceneID="ddI-Ph-BLx">
             <objects>
@@ -3250,12 +3218,6 @@
                 <relationship kind="outlet" name="collection" candidateClass="UICollectionView"/>
                 <relationship kind="outlet" name="searchBar" candidateClass="UISearchBar"/>
                 <relationship kind="outlet" name="sessionsTable" candidateClass="UITableView"/>
-            </relationships>
-        </class>
-        <class className="TestingViewController" superclassName="UIViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/TestingViewController.h"/>
-            <relationships>
-                <relationship kind="outlet" name="testLabel" candidateClass="UILabel"/>
             </relationships>
         </class>
         <class className="UICollectionReusableView" superclassName="UIView">
