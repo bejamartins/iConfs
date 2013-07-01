@@ -491,7 +491,6 @@ static const unsigned int TOP_BACKGROUND_HEIGHT               = 35;
                                 [self setConflict:YES];
                             }
                         }
-                        
                     }
                     
                     [self.gridView addEventToOffset:d event:event weekView:self sameTimeEvents:[sameTimeEvents count] whichSame:0];

@@ -141,7 +141,7 @@
                         [e setBackgroundColor:[UIColor blueColor]];
                         [arr addObject:e];
                     } else {
-                        [ss setBackgroundColor:[UIColor orangeColor]];
+                        [e setBackgroundColor:[UIColor orangeColor]];
                         [arr addObject:e];
                     }
                 }
@@ -320,7 +320,7 @@
 - (IBAction)editEvents:(id)sender {
     if (isEditing) {
         isEditing = NO;
-        
+        [self saveChanges];
         [[self EditButton] setTitle:@"Add/Remove Sessions" forState:UIControlStateNormal];
         [AgendaView reloadData];
     } else {
