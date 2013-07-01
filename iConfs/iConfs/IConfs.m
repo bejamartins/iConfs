@@ -59,7 +59,8 @@
      agendaDicByConf = [[decoder decodeObjectForKey:@"agendaDicByConf"] retain];
      agendaStartDate = [[decoder decodeObjectForKey:@"agendaStartDate"] retain];*/
     
-    
+    //used for updateNotif
+    timerTime=5;
     
     [self setAgendaPaths];
     [self loadAgendaFromDisk];
@@ -67,6 +68,26 @@
     
     return self;
 }
+
+//used for update timer
+- (void)changeTimer:(int) time{
+    
+    timerTime=time;
+    
+}
+
+//updates the notifs changed by the timerUpdate
+- (void) updateNotifs{
+    
+    if(timerTime!=0){
+        conferences = [NSMutableArray new];
+        conferencesDic = [[NSMutableDictionary alloc] init];
+        addedConfsIDs = [[NSMutableArray alloc] init];
+        [self bootableConfs];
+        
+    }
+}
+
 
 /*-(BOOL)addEventToAgenda:(Event*)event{
  BOOL isHere = false;
@@ -908,7 +929,7 @@
         [e addSuperSession: [sess[i] valueForKey:@"IDSuperSession"]];
     }
     NSDictionary* mapR = [[NSDictionary alloc]init];
-    mapR =[raw valueForKey:@"map"][0];
+    mapR =[raw valueForKey:@"map"][0];//only one map place, cycle this for more than one
     Map* map = [[Map alloc]init];
     NSString* latitude = [mapR valueForKey:@"Latitude"];
     NSString* longitude = [mapR valueForKey:@"Longitude"];
@@ -1061,6 +1082,8 @@
     return tmp1;
 }
 
+//rating set and get not in use right now
+/*
 //getRating given confID and sessionID
 //returns -1 if cannot fetch
 -(double)getRating:(NSString*)confID : (NSString*)sessionID{
@@ -1115,7 +1138,10 @@
     }else return NO;
     
 }
+*/
 
+//not in use right now, using updateConferences instead
+/*
 //getNotifs in NSDictionary for confID where notifDate > timeStamp
 //timeStamp will only count the first 10 digits ex.:1356998400
 //may return empty dictionary if none found
@@ -1148,6 +1174,7 @@
     }else return nil;
     
 }
+*/
 
 //dado o confID e a variavel imagePath (ex.: @"confImage.jpg") devolve a imagem respectiva
 // ou nil caso nao a consiga encontrar/aceder
@@ -1211,6 +1238,8 @@
     [agendaDicByConf writeToFile:agendaDicByConfFile atomically:YES];
 }
 
+//was the original method with all the variables in the JSON and how to get them
+/*
 -(void)theAlmightyGetter:(NSDictionary*)json{
     
     //NSArray *array1=[[json valueForKey:@"Name"] objectAtIndex:1];
@@ -1352,7 +1381,7 @@
     
     
 }
-
+*/
 
 
 
@@ -1366,16 +1395,22 @@
 
 //updates all conference information that is on disc
 -(void)updateConferences{
-	NSArray*tmp=[self loadConfsIDs];
-	for (int i=0; i<[tmp count]; i++) {
-        NSData* tmpData=[self getConf:[tmp objectAtIndex:i]];
-        if(tmpData!=nil){
-            NSDictionary* tmpConf=[self parseJSON:tmpData];
-            [self saveConf:tmpConf:tmpData];
+    
+    //done the if for the timer, shouldn't be a problem with the initial update
+    if(timerTime!=0){
+    
+        NSArray*tmp=[self loadConfsIDs];
+        for (int i=0; i<[tmp count]; i++) {
+            NSData* tmpData=[self getConf:[tmp objectAtIndex:i]];
+            if(tmpData!=nil){
+                NSDictionary* tmpConf=[self parseJSON:tmpData];
+                [self saveConf:tmpConf:tmpData];
+            }
+            else{
+                break;
+            }
         }
-        else{
-            break;
-        }
+        
     }
     
 }

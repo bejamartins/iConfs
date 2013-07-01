@@ -140,6 +140,18 @@
     return [self.speakers allValues];
 }
 
+
+
+//batch of news and conferences
+-(void) updateNewsNotifs:(NSMutableArray*)newsy :(NSMutableArray*)notifs{
+    
+    self.news=newsy;
+    self.notifications=notifs;
+    
+}
+
+
+
 -(BOOL)addNews:(News*)n{
     BOOL isHere = false;
     for (int i=0; i<[self.news count]; i++) {

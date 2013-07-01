@@ -178,7 +178,7 @@
     
     [super viewDidLoad];
 
-    
+
     if(conf==nil){
         conf=[(MenuViewController*)[[self slidingViewController] underLeftViewController] selectedConf];
         
