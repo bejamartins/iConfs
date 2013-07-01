@@ -155,6 +155,7 @@
             event.backgroundColor = [UIColor greenColor];
             [event setTitle:[ss getTheme]];
             [event setStart:[ss getStartDate]];
+            [event setEnd:[ss calculateEndDate]];
             [event setSsID:[(SuperSession*)ss getID]];
             
             NSMutableArray *eventsInSS = [[NSMutableArray alloc] init];
@@ -205,6 +206,7 @@
             event.backgroundColor = [UIColor brownColor];
             [event setTitle:[ss getTheme]];
             [event setStart:[ss getStartDate]];
+            [event setEnd:[ss calculateEndDate]];
             [event setSsID:[(SuperSession*)ss getID]];
             
             NSMutableArray *eventsInSS = [[NSMutableArray alloc] init];
@@ -340,7 +342,7 @@
                     if ([cSS getID] == [e ssID]) {
                         for (MAEvent* event in [e eventsOfSS]) {
                             if (![event checked]) {
-                                
+                                [cSS unsubscribeAnyEvent:[event sID]];
                             }
                         }
                         
