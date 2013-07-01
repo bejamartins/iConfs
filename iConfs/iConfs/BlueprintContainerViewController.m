@@ -28,19 +28,34 @@
 {
     [super viewDidLoad];
     //vai colocar os places! pq a planta é posta no changeBlueprint
-    NSInteger height= self.blueprint.frame.size.height;
-    NSInteger width=self.blueprint.frame.size.width;
+  
     
     [blueprint setImage:image];
-    
+    NSInteger height= self.blueprint.frame.size.height;
+    NSInteger width=self.blueprint.frame.size.width;
+
     for(int i=0; i< [self.placesToShow count];i++){
         Place *p= [self.placesToShow objectAtIndex:i];
-        UIImageView *imgView = [[UIImageView alloc] initWithFrame:CGRectMake([p getX]*width/100,[p getY]*height/100, 30, 20)];
-        UIImage *graphImage = [[UIImage alloc] initWithContentsOfFile: [p getLogo]];
+        UIImageView *imgView = [[UIImageView alloc] initWithFrame:CGRectMake([p getX]*width/100,[p getY]*height/100, 100, 100)];
+        UIImage *graphImage = [UIImage imageNamed:@"pin.png"];
         [imgView setImage:graphImage];
+        [self.view addSubview:imgView];
+         imgView = [[UIImageView alloc] initWithFrame:CGRectMake(0,0, 100, 100)];
+         graphImage = [UIImage imageNamed:@"pin.png"];
+        [imgView setImage:graphImage];
+        [self.view addSubview:imgView];
+        [self.view setNeedsDisplay];
+
+
+        
     }
-    
-    
+    UIImageView *imgView = [[UIImageView alloc] initWithFrame:CGRectMake(0,0, 100, 100)];
+
+    UIImage *graphImage = [UIImage imageNamed:@"pin.png"];
+    [imgView setImage:graphImage];
+    [self.view addSubview:imgView];
+    [self.view setNeedsDisplay];
+
 	// Do any additional setup after loading the view.
 }
 
@@ -60,6 +75,24 @@
 -(void) changePlaces:(NSArray*) places{
 
     self.placesToShow=places;
+    NSInteger height= self.blueprint.frame.size.height;
+    NSInteger width=self.blueprint.frame.size.width;
+    for(int i=0; i< [self.placesToShow count];i++){
+        Place *p= [self.placesToShow objectAtIndex:i];
+        UIImageView *imgView = [[UIImageView alloc] initWithFrame:CGRectMake([p getX]*width/100,[p getY]*height/100, 100, 100)];
+        UIImage *graphImage = [UIImage imageNamed:@"pin.png"];
+        [imgView setImage:graphImage];
+        [self.view addSubview:imgView];
+        imgView = [[UIImageView alloc] initWithFrame:CGRectMake(0,0, 100, 100)];
+        graphImage = [UIImage imageNamed:@"pin.png"];
+        [imgView setImage:graphImage];
+        [self.view addSubview:imgView];
+        [self.view setNeedsDisplay];
+        
+        
+        
+    }
+
 }
 
 

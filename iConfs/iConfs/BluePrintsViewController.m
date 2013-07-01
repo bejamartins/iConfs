@@ -42,9 +42,19 @@
 
 - (void)viewDidLoad
 {
+    
+    UIImageView *imgView = [[UIImageView alloc] initWithFrame:CGRectMake(400,500, 100, 100)];
+    UIImage *graphImage = [UIImage imageNamed:@"pin.png"];
+    [imgView setImage:graphImage];
+    [self.view addSubview:imgView];
+
+    [self.view setNeedsDisplay];
+
     [placesTable setDelegate:self];
     [placesTable setDataSource:self];
     c=[(MenuViewController*)[[self slidingViewController] underLeftViewController] selectedConf] ;
+    
+    
     
     self.blueprints= [c getBlueprints];
 
@@ -65,7 +75,7 @@
 //        selectedBlueprint=anObject;
    
         selectedBlueprint =[x objectAtIndex:0];
-        places=[selectedBlueprint getEatingAreas];
+        places=[selectedBlueprint getRooms];
     
     }
     
@@ -179,7 +189,9 @@
     selectedBlueprint=b;
 
     [self changeSelectedBlueprint:b];
-    
+    places=[selectedBlueprint getRooms];
+    [placesTable reloadData];
+
      //   NSLog(@"Detectei toque");
     
     
@@ -202,6 +214,10 @@
             //UIImage *image=[UIImage imageNamed:@"1.jpg"];
             bpController.image=image;
             [bpController changeBlueprint:image];
+            [bpController changePlaces: places];
+            [bpController viewDidLoad];
+            
+
             
             break;
         }

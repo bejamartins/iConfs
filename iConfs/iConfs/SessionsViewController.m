@@ -228,12 +228,19 @@
     
     int x=[selectedSession getPaperID];
     if(x !=-1){
-    int authorID = [[selectedSession getAuthor] getID];
-        Author *aut=(Author*)[selectedSession getAuthor];
-    Paper *p=[aut getPaper: x];
+        NSString *title=[selectedSession getTitle];
+        NSInteger *sID=[selectedSession getID];
+        Session *s=selectedSession;
+        Author *as=[s getAuthor];
+    NSInteger authorID = [[selectedSession getAuthor] getID];
+        NSArray *confAuthors=[conf getAuthors];
+        Author* aut = [conf getAuthorByID:authorID];
+    Paper *p=[aut getPaper: x]; 
         autores=[[NSMutableArray alloc]init ];
         for( NSString *id in[p getAuthors]){
-    [autores addObject:[conf geta]];
+            int currAuthorID = [[[id componentsSeparatedByString:@"p"] objectAtIndex: 1]intValue];
+            Author* currAuthor = [conf getAuthorByID:currAuthorID];
+            [autores addObject:currAuthor];
         }
     
     }
@@ -241,7 +248,6 @@
     [abstract setText:[selectedSession getTheme]];
 
     
-  
 
 
 	// Do any additional setup after loading the view.
@@ -261,9 +267,17 @@
 }
 
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
-    if (!searchItem)
+    if(tableView.tag==1){
+       if (!searchItem)
     return [sessions count];
-    else return [searchSessions count];
+       else return [searchSessions count];
+
+    }
+    
+    else{
+     return   [autores count];
+    
+    }
 
 }
 
