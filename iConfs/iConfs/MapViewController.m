@@ -75,6 +75,8 @@
         [self doMap:0 :0 :@"We are sorry" :@"but no map was defined"];
     }
     
+    UIColor *background = [[UIColor alloc] initWithPatternImage:[UIImage imageNamed:@"GB.jpg"]];
+    self.view.backgroundColor = background;
 }
 
 - (void)didReceiveMemoryWarning

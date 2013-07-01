@@ -105,6 +105,9 @@
    [ self.collection setDelegate:self];
     
 	// Do any additional setup after loading the view.
+    
+    UIColor *background = [[UIColor alloc] initWithPatternImage:[UIImage imageNamed:@"GB.jpg"]];
+    self.view.backgroundColor = background;
 }
 
 - (void)didReceiveMemoryWarning

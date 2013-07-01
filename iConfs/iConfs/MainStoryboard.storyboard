@@ -88,6 +88,9 @@
                                 <state key="highlighted">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
+                                <connections>
+                                    <action selector="do0Min:" destination="vEr-Go-9ia" eventType="touchUpInside" id="af5-lj-8T4"/>
+                                </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" reversesTitleShadowWhenHighlighted="YES" showsTouchWhenHighlighted="YES" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="25P-sU-pnN">
                                 <constraints>
@@ -101,19 +104,9 @@
                                 <state key="highlighted">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
-                            </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" reversesTitleShadowWhenHighlighted="YES" showsTouchWhenHighlighted="YES" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="yW1-P1-S2f">
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="73" id="760-yB-Arh"/>
-                                </constraints>
-                                <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
-                                <state key="normal" title="30M">
-                                    <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
-                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                                <state key="highlighted">
-                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
+                                <connections>
+                                    <action selector="do5Min:" destination="vEr-Go-9ia" eventType="touchUpInside" id="XkJ-ZZ-Xxd"/>
+                                </connections>
                             </button>
                         </subviews>
                         <color key="backgroundColor" cocoaTouchSystemColor="scrollViewTexturedBackgroundColor"/>
@@ -123,19 +116,16 @@
                             <constraint firstItem="fd6-wZ-vyO" firstAttribute="leading" secondItem="zcW-JG-i0r" secondAttribute="leading" type="default" id="8Uy-f7-xiL"/>
                             <constraint firstItem="V1a-Ly-hPC" firstAttribute="leading" secondItem="7vj-S1-zFa" secondAttribute="leading" type="default" id="FOc-kJ-jTy"/>
                             <constraint firstAttribute="bottom" secondItem="25P-sU-pnN" secondAttribute="bottom" constant="20" symbolic="YES" type="default" id="HdY-sF-R6W"/>
-                            <constraint firstItem="yW1-P1-S2f" firstAttribute="top" secondItem="25P-sU-pnN" secondAttribute="top" type="default" id="IOF-Em-Z0f"/>
                             <constraint firstItem="25P-sU-pnN" firstAttribute="top" secondItem="lFv-Km-QOw" secondAttribute="top" type="default" id="OSh-tr-BHn"/>
                             <constraint firstItem="V1a-Ly-hPC" firstAttribute="top" secondItem="7vj-S1-zFa" secondAttribute="top" type="default" id="RMx-6O-NYG"/>
                             <constraint firstItem="Y8i-aJ-S3n" firstAttribute="trailing" secondItem="7vj-S1-zFa" secondAttribute="trailing" type="default" id="S6M-zi-xBs"/>
                             <constraint firstItem="Y8i-aJ-S3n" firstAttribute="top" secondItem="7vj-S1-zFa" secondAttribute="top" constant="284" id="SGd-p9-6yo"/>
-                            <constraint firstItem="yW1-P1-S2f" firstAttribute="leading" secondItem="7vj-S1-zFa" secondAttribute="leading" constant="249" id="WnQ-Aw-0qg"/>
                             <constraint firstItem="Y8i-aJ-S3n" firstAttribute="leading" secondItem="7vj-S1-zFa" secondAttribute="leading" type="default" id="dbO-W3-OPu"/>
                             <constraint firstItem="lFv-Km-QOw" firstAttribute="leading" secondItem="fd6-wZ-vyO" secondAttribute="leading" type="default" id="eO8-bG-xfW"/>
                             <constraint firstItem="25P-sU-pnN" firstAttribute="leading" secondItem="7vj-S1-zFa" secondAttribute="leading" constant="136" id="heB-b5-QDx"/>
                             <constraint firstItem="MNn-p6-8WZ" firstAttribute="leading" secondItem="7vj-S1-zFa" secondAttribute="leading" type="default" id="iar-7e-Srv"/>
                             <constraint firstAttribute="bottom" secondItem="fd6-wZ-vyO" secondAttribute="bottom" constant="99" id="mJl-qU-T01"/>
                             <constraint firstAttribute="bottom" secondItem="lFv-Km-QOw" secondAttribute="bottom" constant="20" symbolic="YES" type="default" id="mYc-WB-3Wn"/>
-                            <constraint firstAttribute="bottom" secondItem="yW1-P1-S2f" secondAttribute="bottom" constant="20" symbolic="YES" type="default" id="vMO-i8-Hub"/>
                             <constraint firstItem="zcW-JG-i0r" firstAttribute="top" secondItem="7vj-S1-zFa" secondAttribute="top" constant="35" id="vtR-mG-2Ku"/>
                         </constraints>
                     </view>
@@ -534,7 +524,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="fVY-QE-Ch9" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="818" y="1346"/>
+            <point key="canvasLocation" x="986" y="1339"/>
         </scene>
         <!--People View Controller - Speakers-->
         <scene sceneID="Ztf-7O-oMG">
@@ -2076,7 +2066,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="7q1-y1-7x5" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-106" y="1307"/>
+            <point key="canvasLocation" x="-67" y="1339"/>
         </scene>
         <!--Map View Controller-->
         <scene sceneID="28O-90-BZJ">
