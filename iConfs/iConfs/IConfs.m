@@ -799,6 +799,8 @@
     NSArray* people = [[NSArray alloc]  init];
     people = [raw valueForKey:@"person"];
     Person* p;
+    Paper* currPaper;
+    NSArray* paperArray;
     for (int i = 0; i<[people count]; i++) {
         currID = [[[[people[i] valueForKey:@"ID"]componentsSeparatedByString:@"p"] objectAtIndex: 1]intValue];
         //int curr2 = [[[@"p001" componentsSeparatedByString:@"p"] objectAtIndex: 1]intValue];
@@ -809,8 +811,10 @@
             [authors setObject:p forKey:[NSNumber numberWithInteger:currID]];
             [conf addAuthor:(Author*)p];
             if([[papers allKeys] containsObject:[people[i] valueForKey:@"ID"]]){
-                for (int j = 0; j<[((NSArray*)[papers valueForKey:[people[i] valueForKey:@"ID"]]) count]; j++) {
-                    [((Author*)p) addPapper:(((NSArray*)[papers valueForKey:[people[i] valueForKey:@"ID"]])[j])];
+                paperArray=((NSArray*)[papers valueForKey:[people[i] valueForKey:@"ID"]]);
+                for (int j = 0; j<[paperArray count]; j++) {
+                    currPaper = ((Paper*)paperArray[j]);
+                    [((Author*)p) addPapper:currPaper];
                 }
             }
         }
@@ -1368,6 +1372,9 @@
         if(tmpData!=nil){
             NSDictionary* tmpConf=[self parseJSON:tmpData];
             [self saveConf:tmpConf:tmpData];
+        }
+        else{
+            break;
         }
     }
     

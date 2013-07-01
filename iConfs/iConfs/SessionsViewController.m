@@ -226,15 +226,15 @@
     
     //DEBUG EDUARDO
     
-//    int x=[selectedSession getPaperID];
-//    if(x !=-1){
-//    int authorID = [[selectedSession getAuthor] getID];
-//        Author *aut=(Author*)[selectedSession getAuthor];
-//    Paper *p=[aut getPaper: x];
-//    autores=[p getAuthors];
-    //}
+    int x=[selectedSession getPaperID];
+    if(x !=-1){
+    int authorID = [[selectedSession getAuthor] getID];
+        Author *aut=(Author*)[selectedSession getAuthor];
+    Paper *p=[aut getPaper: x];
+    autores=[p getAuthors];
+    }
     
- //   [abstract setText:[selectedSession getTheme]];
+    [abstract setText:[selectedSession getTheme]];
 
     
   
@@ -341,8 +341,13 @@
     else if([tableView tag]==2){
           cell=[tableView dequeueReusableCellWithIdentifier:@"authorCell" forIndexPath:indexPath];
     
-        if([autores count]!=0)
-        [[cell textLabel]setText:[[autores objectAtIndex:indexPath.row]getName]];
+        if([autores count]!=0){
+            int i = indexPath.row;
+            NSString* currIDUnparsed = [autores objectAtIndex:indexPath.row];
+            int currAuthorID = [[[currIDUnparsed componentsSeparatedByString:@"p"] objectAtIndex: 1]intValue];
+            Author* currAuthor = [conf getAuthorByID:currAuthorID];
+            [[cell textLabel]setText:[currAuthor getName]];
+        }
 
     }
     return  cell;

@@ -293,5 +293,11 @@
 
 -(NSMutableDictionary*)getSuperSessions;
 
+-(Author*)getAuthorByID:(int)pID;
+
+-(Organizer*)getOrganizerByID:(int)pID;
+
+-(Speaker*)getSpeakerByID:(int)pID;
+
 @end
 
