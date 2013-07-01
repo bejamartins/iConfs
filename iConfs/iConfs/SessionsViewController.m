@@ -228,14 +228,12 @@
     
     int x=[selectedSession getPaperID];
     if(x !=-1){
-        NSString *title=[selectedSession getTitle];
-        NSInteger *sID=[selectedSession getID];
         Session *s=selectedSession;
         Author *as=[s getAuthor];
-    NSInteger authorID = [[selectedSession getAuthor] getID];
+        NSInteger authorID = [[selectedSession getAuthor] getID];
         NSArray *confAuthors=[conf getAuthors];
         Author* aut = [conf getAuthorByID:authorID];
-    Paper *p=[aut getPaper: x]; 
+        Paper *p=[aut getPaper: x]; 
         autores=[[NSMutableArray alloc]init ];
         for( NSString *id in[p getAuthors]){
             int currAuthorID = [[[id componentsSeparatedByString:@"p"] objectAtIndex: 1]intValue];
