@@ -26,4 +26,7 @@
 
 - (NSArray*)getOtherSuperSessions:(NSString*)iD;
 
+- (IBAction)do0Min:(id)sender;
+
+- (IBAction)do5Min:(id)sender;
 @end

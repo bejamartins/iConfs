@@ -173,6 +173,8 @@
     
       menu=(MenuViewController*)[[self slidingViewController] underLeftViewController] ;
 
+    UIColor *background = [[UIColor alloc] initWithPatternImage:[UIImage imageNamed:@"GB.jpg"]];
+    self.view.backgroundColor = background;
 }
 
 - (void)didReceiveMemoryWarning

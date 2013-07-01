@@ -138,6 +138,9 @@
             speakerNameR=[speaker getName];
             numberOfCells=2;
         }
+        
+        UIColor *background = [[UIColor alloc] initWithPatternImage:[UIImage imageNamed:@"GB.jpg"]];
+        self.view.backgroundColor = background;
     }
     
 #pragma mark - retirar: dados ficticios!

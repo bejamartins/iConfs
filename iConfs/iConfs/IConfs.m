@@ -59,7 +59,8 @@
      agendaDicByConf = [[decoder decodeObjectForKey:@"agendaDicByConf"] retain];
      agendaStartDate = [[decoder decodeObjectForKey:@"agendaStartDate"] retain];*/
     
-    
+    //used for updateNotif
+    timerTime=5;
     
     [self setAgendaPaths];
     [self loadAgendaFromDisk];
@@ -67,6 +68,26 @@
     
     return self;
 }
+
+//used for update timer
+- (void)changeTimer:(int) time{
+    
+    timerTime=time;
+    
+}
+
+//updates the notifs changed by the timerUpdate
+- (void) updateNotifs{
+    
+    if(timerTime!=0){
+        conferences = [NSMutableArray new];
+        conferencesDic = [[NSMutableDictionary alloc] init];
+        addedConfsIDs = [[NSMutableArray alloc] init];
+        [self bootableConfs];
+        
+    }
+}
+
 
 /*-(BOOL)addEventToAgenda:(Event*)event{
  BOOL isHere = false;
@@ -416,11 +437,13 @@
     NSData *data;
     NSURLResponse *response;
     // NSError *error;
-    
+    NSDictionary *json=[[NSDictionary alloc]init];
     data=[NSURLConnection sendSynchronousRequest: request returningResponse: &response error: nil];
-    
-        NSDictionary *json = [NSJSONSerialization JSONObjectWithData:data options:kNilOptions error:nil];
-        return json;
+        if (data!=nil)
+             json = [NSJSONSerialization JSONObjectWithData:data options:kNilOptions error:nil];
+        else
+            json = nil;
+    return json;
 
     
     
@@ -440,14 +463,14 @@
 -(BOOL)fetchConferences{
     NSDictionary* fetch = [self getConfsFromServer];
     if(fetch == nil){
-        return false;
+        return NO;
     }
     else{
         NSArray* dataIDs = [self getConfsIDFromServer: fetch];
         NSArray* dataNames = [self getConfsNameFromServer: fetch];
         
         if(dataIDs == nil || dataNames == nil){
-            return false;
+            return NO;
         }
         
         //Tratar aqui das imagens
@@ -457,16 +480,16 @@
         for (int i=0; i < [dataIDs count]; i++) {
             current = [Conference new];
             current = [current initWithData: dataIDs[i] name: dataNames[i] image: nil /*alterar depois*/ bluePrint: NULL];
-            if ([self addToAllConference: current] == true){
+            if ([self addToAllConference: current] == YES){
                 currentImg = [self getConfImageFromServer:dataIDs[i]];
                 if(currentImg == nil){
-                    return false;
+                    return NO;
                 }
                 [((Conference*)[allConferences lastObject]) changeLogo: currentImg];
             }
             [allConferencesDic setObject:[allConferences lastObject]  forKey: ((Conference*)[allConferences lastObject]).getID];
         }
-        return true;
+        return YES;
     }
     
 }
@@ -856,7 +879,7 @@
     NSDate* date1;
     NSDate* date2;
     for (int i = 0; i<[sess count]; i++) {
-        if(![[sess[i] valueForKey:@"Speaker"] isEqual:@""]){
+        if(![[sess[i] valueForKey:@"Speaker"] isEqualToString:@""]){
             parsedIDAUX = [[[sess[i] valueForKey:@"Speaker"]componentsSeparatedByString:@"p"] objectAtIndex: 1];
             currID = [parsedIDAUX intValue];
             speakerAux = [speakers objectForKey:[NSNumber numberWithInteger:currID]];
@@ -864,7 +887,7 @@
         }else{
             speakerAux = NULL;
         }
-        if(![[sess[i] valueForKey:@"Author"] isEqual:@""]){
+        if(![[sess[i] valueForKey:@"Author"] isEqualToString:@""]){
             parsedIDAUX = [[[sess[i] valueForKey:@"Author"]componentsSeparatedByString:@"p"] objectAtIndex: 1];
             currID = [parsedIDAUX intValue];
             //authorAux = [speakers valueForKey:parsedIDAUX];
@@ -908,7 +931,7 @@
         [e addSuperSession: [sess[i] valueForKey:@"IDSuperSession"]];
     }
     NSDictionary* mapR = [[NSDictionary alloc]init];
-    mapR =[raw valueForKey:@"map"][0];
+    mapR =[raw valueForKey:@"map"][0];//only one map place, cycle this for more than one
     Map* map = [[Map alloc]init];
     NSString* latitude = [mapR valueForKey:@"Latitude"];
     NSString* longitude = [mapR valueForKey:@"Longitude"];
@@ -1061,6 +1084,8 @@
     return tmp1;
 }
 
+//rating set and get not in use right now
+/*
 //getRating given confID and sessionID
 //returns -1 if cannot fetch
 -(double)getRating:(NSString*)confID : (NSString*)sessionID{
@@ -1115,7 +1140,10 @@
     }else return NO;
     
 }
+*/
 
+//not in use right now, using updateConferences instead
+/*
 //getNotifs in NSDictionary for confID where notifDate > timeStamp
 //timeStamp will only count the first 10 digits ex.:1356998400
 //may return empty dictionary if none found
@@ -1148,6 +1176,7 @@
     }else return nil;
     
 }
+*/
 
 //dado o confID e a variavel imagePath (ex.: @"confImage.jpg") devolve a imagem respectiva
 // ou nil caso nao a consiga encontrar/aceder
@@ -1211,6 +1240,8 @@
     [agendaDicByConf writeToFile:agendaDicByConfFile atomically:YES];
 }
 
+//was the original method with all the variables in the JSON and how to get them
+/*
 -(void)theAlmightyGetter:(NSDictionary*)json{
     
     //NSArray *array1=[[json valueForKey:@"Name"] objectAtIndex:1];
@@ -1352,7 +1383,7 @@
     
     
 }
-
+*/
 
 
 
@@ -1366,16 +1397,22 @@
 
 //updates all conference information that is on disc
 -(void)updateConferences{
-	NSArray*tmp=[self loadConfsIDs];
-	for (int i=0; i<[tmp count]; i++) {
-        NSData* tmpData=[self getConf:[tmp objectAtIndex:i]];
-        if(tmpData!=nil){
-            NSDictionary* tmpConf=[self parseJSON:tmpData];
-            [self saveConf:tmpConf:tmpData];
+    
+    //done the if for the timer, shouldn't be a problem with the initial update
+    if(timerTime!=0){
+    
+        NSArray*tmp=[self loadConfsIDs];
+        for (int i=0; i<[tmp count]; i++) {
+            NSData* tmpData=[self getConf:[tmp objectAtIndex:i]];
+            if(tmpData!=nil){
+                NSDictionary* tmpConf=[self parseJSON:tmpData];
+                [self saveConf:tmpConf:tmpData];
+            }
+            else{
+                break;
+            }
         }
-        else{
-            break;
-        }
+        
     }
     
 }

@@ -105,6 +105,15 @@
     return [theAppData getUnsubscribedSuperSessionsByConferenceOrderedByDate:iD];
 }
 
+
+- (IBAction)do5Min:(id)sender {
+    [theAppData changeTimer:5];
+}
+
+- (IBAction)do0Min:(id)sender {
+    [theAppData changeTimer:0];
+}
+
 #pragma - Table View Methods
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView

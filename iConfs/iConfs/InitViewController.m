@@ -67,6 +67,7 @@
 - (void)doUpdate{
     NSLog(@"I'm at the thread");
     [theAppData updateConferences];
+    [theAppData updateNotifs];
 }
 
 

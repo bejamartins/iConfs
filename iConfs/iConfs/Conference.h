@@ -299,5 +299,7 @@
 
 -(Speaker*)getSpeakerByID:(int)pID;
 
+//used by timerStuff
+-(void) updateNewsNotifs:(NSMutableArray*)newsy :(NSMutableArray*)notifs;
 @end
 

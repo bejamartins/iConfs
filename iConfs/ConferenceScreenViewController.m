@@ -178,7 +178,7 @@
     
     [super viewDidLoad];
 
-    
+
     if(conf==nil){
         conf=[(MenuViewController*)[[self slidingViewController] underLeftViewController] selectedConf];
         
@@ -314,7 +314,8 @@
     
   
     
-    
+    UIColor *background = [[UIColor alloc] initWithPatternImage:[UIImage imageNamed:@"GB.jpg"]];
+    self.view.backgroundColor = background;
 
 }
 

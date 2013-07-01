@@ -43,6 +43,9 @@
     NSString *agendaFile;
     NSString *agendaDicFile;
     NSString *agendaDicByConfFile;
+    
+    //used for updateTimer
+    int timerTime;
 }
 
 //Subscribed conferences
@@ -61,6 +64,10 @@
  */
 -(IConfs*)initiConfs: (NSArray*)aConferences;
 
+//used for updateTimer
+- (void)changeTimer:(int) time;
+//updates all for notifs in timer
+- (void) updateNotifs;
 
 /**
  Adds a new event to the agenda

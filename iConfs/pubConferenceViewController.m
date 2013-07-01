@@ -37,7 +37,7 @@
     theAppData = [[IConfs alloc]init];
     ManageViewController *m=[ManageViewController alloc];
     theAppData= [m appData];
-    [theAppData fetchConferences];
+    //[theAppData fetchConferences];
 
     otherConfs = [theAppData getRestOfConfs];
     //NSLog(<#NSString *format, ...#>)
