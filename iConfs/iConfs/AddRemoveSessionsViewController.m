@@ -125,10 +125,22 @@
         
         if ([components day] == [componentsStart day]) {
             if ([ViewOptions selectedSegmentIndex] == 0) {
-                [arr addObject:ss];
+                if ([ss checked]) {
+                    [ss setBackgroundColor:[UIColor greenColor]];
+                    [arr addObject:ss];
+                } else {
+                    [ss setBackgroundColor:[UIColor brownColor]];
+                    [arr addObject:ss];
+                }
             } else {
                 for (id e in [ss eventsOfSS]) {
-                    [arr addObject:e];
+                    if ([e checked]) {
+                        [e setBackgroundColor:[UIColor blueColor]];
+                        [arr addObject:e];
+                    } else {
+                        [ss setBackgroundColor:[UIColor orangeColor]];
+                        [arr addObject:e];
+                    }
                 }
             }
         }
@@ -152,7 +164,6 @@
             event.allDay = NO;
             event.userInfo = NULL;
             [event setChecked:YES];
-            event.backgroundColor = [UIColor greenColor];
             [event setTitle:[ss getTheme]];
             [event setStart:[ss getStartDate]];
             [event setEnd:[ss calculateEndDate]];
@@ -166,7 +177,6 @@
                 tEvent.allDay = NO;
                 tEvent.userInfo = NULL;
                 [tEvent setChecked:YES];
-                tEvent.backgroundColor = [UIColor blueColor];
                 [tEvent setTitle:[e getTheme]];
                 [tEvent setStart:[e getDate]];
                 [tEvent setEnd:[e getEventEnd]];
@@ -182,7 +192,6 @@
                 tEvent.allDay = NO;
                 tEvent.userInfo = NULL;
                 [tEvent setChecked:NO];
-                tEvent.backgroundColor = [UIColor orangeColor];
                 [tEvent setTitle:[e getTheme]];
                 [tEvent setStart:[e getDate]];
                 [tEvent setEnd:[e getEventEnd]];
@@ -203,7 +212,6 @@
             event.allDay = NO;
             event.userInfo = NULL;
             [event setChecked:NO];
-            event.backgroundColor = [UIColor brownColor];
             [event setTitle:[ss getTheme]];
             [event setStart:[ss getStartDate]];
             [event setEnd:[ss calculateEndDate]];
@@ -217,7 +225,6 @@
                 tEvent.allDay = NO;
                 tEvent.userInfo = NULL;
                 [tEvent setChecked:NO];
-                tEvent.backgroundColor = [UIColor orangeColor];
                 [tEvent setTitle:[e getTheme]];
                 [tEvent setStart:[e getDate]];
                 [tEvent setEnd:[e getEventEnd]];
@@ -245,10 +252,8 @@
                 for (MAEvent *ss in Events) {
                     if ([ss ssID] == [event ssID]){
                         [ss setChecked:NO];
-                        [ss setBackgroundColor:[UIColor brownColor]];
                         for (MAEvent *e in [ss eventsOfSS]) {
                             [e setChecked:NO];
-                            [e setBackgroundColor:[UIColor orangeColor]];
                         }
                         
                         break;
@@ -258,10 +263,8 @@
                 for (MAEvent *ss in Events) {
                     if ([ss ssID] == [event ssID]){
                         [ss setChecked:YES];
-                        [ss setBackgroundColor:[UIColor greenColor]];
                         for (MAEvent *e in [ss eventsOfSS]) {
                             [e setChecked:YES];
-                            [e setBackgroundColor:[UIColor blueColor]];
                         }
                         
                         break;
@@ -273,14 +276,11 @@
                 for (MAEvent *ss in Events) {
                     if ([ss ssID] == [event ssID]){
                         [ss setChecked:NO];
-                        [ss setBackgroundColor:[UIColor brownColor]];
                         for (MAEvent *e in [ss eventsOfSS]) {
                             if ([e sID] == [event sID]) {
                                 [e setChecked:NO];
-                                [e setBackgroundColor:[UIColor orangeColor]];
                             } else if ([e checked]) {
                                 [ss setChecked:YES];
-                                [ss setBackgroundColor:[UIColor greenColor]];
                             }
                         }
                         
@@ -291,11 +291,9 @@
                 for (MAEvent *ss in Events) {
                     if ([ss ssID] == [event ssID]){
                         [ss setChecked:YES];
-                        [ss setBackgroundColor:[UIColor greenColor]];
                         for (MAEvent *e in [ss eventsOfSS]) {
                             if ([e sID] == [event sID]) {
                                 [e setChecked:YES];
-                                [e setBackgroundColor:[UIColor blueColor]];
                             }
                         }
                         
@@ -336,7 +334,6 @@
     for (MAEvent* e in Events) {
             if ([e checked]) {
                  [[(MenuViewController*)[[self slidingViewController] underLeftViewController] appData] subscribeSuperSessionInAgendaByID:[e ssID] Conference:iD];
-                CustomizableSuperSession *ss = [CustomizableSuperSession alloc];
                 
                 for (CustomizableSuperSession* cSS in [[(MenuViewController*)[[self slidingViewController] underLeftViewController] appData] getAgendaByConferenceOrderedByDate:iD]) {
                     if ([cSS getID] == [e ssID]) {

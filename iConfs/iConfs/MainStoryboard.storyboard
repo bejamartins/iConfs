@@ -14,8 +14,8 @@
                         <subviews>
                             <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" image="icon.png" translatesAutoresizingMaskIntoConstraints="NO" id="zcW-JG-i0r">
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="186" id="2d0-g8-0oR"/>
-                                    <constraint firstAttribute="width" constant="245" id="P64-pd-B5H"/>
+                                    <constraint firstAttribute="width" constant="250" id="fz4-57-Qv3"/>
+                                    <constraint firstAttribute="height" constant="206" id="njG-0f-ACY"/>
                                 </constraints>
                             </imageView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="MNn-p6-8WZ">
@@ -50,10 +50,10 @@
                                     </tableViewCell>
                                 </prototypes>
                             </tableView>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="V1a-Ly-hPC">
+                            <button opaque="NO" contentMode="scaleToFill" horizontalCompressionResistancePriority="500" verticalCompressionResistancePriority="500" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="V1a-Ly-hPC">
                                 <constraints>
                                     <constraint firstAttribute="height" constant="243" id="43T-O7-2NK"/>
-                                    <constraint firstAttribute="width" constant="755" id="Djq-hF-Yuc"/>
+                                    <constraint firstAttribute="width" id="z8e-TJ-Z9U"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" name="Helvetica-Bold" family="Helvetica" pointSize="18"/>
                                 <state key="normal" image="transparente.png" backgroundImage="transparente.png">
@@ -118,12 +118,13 @@
                         </subviews>
                         <color key="backgroundColor" cocoaTouchSystemColor="scrollViewTexturedBackgroundColor"/>
                         <constraints>
-                            <constraint firstItem="zcW-JG-i0r" firstAttribute="leading" secondItem="7vj-S1-zFa" secondAttribute="leading" constant="39" id="29e-5J-ErG"/>
                             <constraint firstItem="MNn-p6-8WZ" firstAttribute="top" secondItem="7vj-S1-zFa" secondAttribute="top" constant="257" id="6yJ-WU-uX1"/>
-                            <constraint firstItem="fd6-wZ-vyO" firstAttribute="leading" secondItem="zcW-JG-i0r" secondAttribute="leading" type="default" id="8Uy-f7-xiL"/>
+                            <constraint firstItem="zcW-JG-i0r" firstAttribute="top" secondItem="7vj-S1-zFa" secondAttribute="top" constant="26" id="AKm-5j-Vkq"/>
+                            <constraint firstItem="zcW-JG-i0r" firstAttribute="leading" secondItem="7vj-S1-zFa" secondAttribute="leading" type="default" id="Exz-dm-CHd"/>
                             <constraint firstItem="V1a-Ly-hPC" firstAttribute="leading" secondItem="7vj-S1-zFa" secondAttribute="leading" type="default" id="FOc-kJ-jTy"/>
                             <constraint firstAttribute="bottom" secondItem="25P-sU-pnN" secondAttribute="bottom" constant="20" symbolic="YES" type="default" id="HdY-sF-R6W"/>
                             <constraint firstItem="yW1-P1-S2f" firstAttribute="top" secondItem="25P-sU-pnN" secondAttribute="top" type="default" id="IOF-Em-Z0f"/>
+                            <constraint firstItem="fd6-wZ-vyO" firstAttribute="leading" secondItem="7vj-S1-zFa" secondAttribute="leading" constant="39" id="Nur-Qt-hLi"/>
                             <constraint firstItem="25P-sU-pnN" firstAttribute="top" secondItem="lFv-Km-QOw" secondAttribute="top" type="default" id="OSh-tr-BHn"/>
                             <constraint firstItem="V1a-Ly-hPC" firstAttribute="top" secondItem="7vj-S1-zFa" secondAttribute="top" type="default" id="RMx-6O-NYG"/>
                             <constraint firstItem="Y8i-aJ-S3n" firstAttribute="trailing" secondItem="7vj-S1-zFa" secondAttribute="trailing" type="default" id="S6M-zi-xBs"/>
@@ -136,7 +137,6 @@
                             <constraint firstAttribute="bottom" secondItem="fd6-wZ-vyO" secondAttribute="bottom" constant="99" id="mJl-qU-T01"/>
                             <constraint firstAttribute="bottom" secondItem="lFv-Km-QOw" secondAttribute="bottom" constant="20" symbolic="YES" type="default" id="mYc-WB-3Wn"/>
                             <constraint firstAttribute="bottom" secondItem="yW1-P1-S2f" secondAttribute="bottom" constant="20" symbolic="YES" type="default" id="vMO-i8-Hub"/>
-                            <constraint firstItem="zcW-JG-i0r" firstAttribute="top" secondItem="7vj-S1-zFa" secondAttribute="top" constant="35" id="vtR-mG-2Ku"/>
                         </constraints>
                     </view>
                     <connections>
@@ -485,7 +485,7 @@
                             <constraint firstItem="pdW-gR-6p6" firstAttribute="leading" secondItem="tmA-vE-w1H" secondAttribute="leading" constant="20" symbolic="YES" type="default" id="304-M8-H0f"/>
                             <constraint firstItem="pdW-gR-6p6" firstAttribute="top" secondItem="tmA-vE-w1H" secondAttribute="top" constant="398" id="5KT-o1-15u"/>
                             <constraint firstItem="XiG-At-KK6" firstAttribute="leading" secondItem="tmA-vE-w1H" secondAttribute="leading" constant="20" symbolic="YES" type="default" id="669-pG-JB7"/>
-                            <constraint firstAttribute="bottom" secondItem="pdW-gR-6p6" secondAttribute="bottom" constant="302" id="6aU-4c-Hsw"/>
+                            <constraint firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="pdW-gR-6p6" secondAttribute="bottom" constant="302" type="user" id="6aU-4c-Hsw"/>
                             <constraint firstAttribute="bottom" secondItem="jvH-O7-wOi" secondAttribute="bottom" constant="329" id="7Wg-sh-qHP"/>
                             <constraint firstItem="FYb-Ku-8hU" firstAttribute="leading" secondItem="tmA-vE-w1H" secondAttribute="leading" constant="53" id="9HI-OB-f3c"/>
                             <constraint firstItem="RqT-X1-FGV" firstAttribute="centerX" secondItem="eKn-Dk-W5p" secondAttribute="centerX" type="default" id="AIO-ma-S0K"/>
@@ -512,6 +512,7 @@
                             <constraint firstItem="RqT-X1-FGV" firstAttribute="leading" secondItem="tmA-vE-w1H" secondAttribute="leading" constant="20" symbolic="YES" type="default" id="hLC-Jv-LxB"/>
                             <constraint firstAttribute="bottom" secondItem="FYb-Ku-8hU" secondAttribute="bottom" constant="20" symbolic="YES" type="default" id="j0i-ya-S7S"/>
                             <constraint firstItem="28E-Wa-p8g" firstAttribute="trailing" secondItem="nOi-97-Aak" secondAttribute="trailing" type="default" id="ksV-eW-1S9"/>
+                            <constraint firstAttribute="bottom" secondItem="pdW-gR-6p6" secondAttribute="bottom" constant="302" id="oed-zY-lGS"/>
                             <constraint firstItem="vaR-37-i9Q" firstAttribute="bottom" secondItem="RqT-X1-FGV" secondAttribute="bottom" type="default" id="wwT-Uv-imc"/>
                             <constraint firstItem="wDG-ps-XC4" firstAttribute="leading" secondItem="tmA-vE-w1H" secondAttribute="leading" constant="435" id="x8b-wV-Dfr"/>
                             <constraint firstItem="nOi-97-Aak" firstAttribute="trailing" secondItem="jvH-O7-wOi" secondAttribute="trailing" type="default" id="xV5-kP-YDy"/>
@@ -2794,302 +2795,6 @@
         <image name="rounded-rectangle-final.png" width="503" height="241"/>
         <image name="transparente.png" width="256" height="256"/>
     </resources>
-    <classes>
-        <class className="AddRemoveSessionsViewController" superclassName="UIViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/AddRemoveSessionsViewController.h"/>
-            <relationships>
-                <relationship kind="outlet" name="AgendaView" candidateClass="MAWeekView"/>
-                <relationship kind="outlet" name="EditButton" candidateClass="UIButton"/>
-                <relationship kind="outlet" name="HomeButton" candidateClass="UIButton"/>
-                <relationship kind="outlet" name="MenuButton" candidateClass="UIButton"/>
-                <relationship kind="outlet" name="ViewOptions" candidateClass="UISegmentedControl"/>
-            </relationships>
-        </class>
-        <class className="AgendaPreview" superclassName="UIViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/AgendaPreview.h"/>
-        </class>
-        <class className="AgendaViewController" superclassName="UIViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/AgendaViewController.h"/>
-            <relationships>
-                <relationship kind="outlet" name="AddSessionButton" candidateClass="UIButton"/>
-                <relationship kind="outlet" name="AgendaView" candidateClass="MAWeekView"/>
-                <relationship kind="outlet" name="MenuButton" candidateClass="UIButton"/>
-                <relationship kind="outlet" name="RemoveSessionsButton" candidateClass="UIButton"/>
-                <relationship kind="outlet" name="ViewOptions" candidateClass="UISegmentedControl"/>
-            </relationships>
-        </class>
-        <class className="BluePrintsViewController" superclassName="UIViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/BluePrintsViewController.h"/>
-            <relationships>
-                <relationship kind="outlet" name="bpContainer" candidateClass="UIView"/>
-                <relationship kind="outlet" name="collection" candidateClass="UICollectionView"/>
-                <relationship kind="outlet" name="firstArrow" candidateClass="UIImageView"/>
-                <relationship kind="outlet" name="placeLabel" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="placesContainer" candidateClass="UIView"/>
-                <relationship kind="outlet" name="searchBar" candidateClass="UISearchBar"/>
-                <relationship kind="outlet" name="secondArrow" candidateClass="UIImageView"/>
-                <relationship kind="outlet" name="thirdArrow" candidateClass="UIImageView"/>
-            </relationships>
-        </class>
-        <class className="BlueprintContainerViewController" superclassName="UIViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/BlueprintContainerViewController.h"/>
-            <relationships>
-                <relationship kind="outlet" name="blueprint" candidateClass="UIImageView"/>
-            </relationships>
-        </class>
-        <class className="CellMyConferences" superclassName="UICollectionViewCell">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/CellMyConferences.h"/>
-            <relationships>
-                <relationship kind="outlet" name="conferenceLabel" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="conferenceLogo" candidateClass="UIImageView"/>
-            </relationships>
-        </class>
-        <class className="ConferenceScreenViewController" superclassName="UIViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/ConferenceScreenViewController.h"/>
-            <relationships>
-                <relationship kind="action" name="changeNews:" candidateClass="UIPageControl"/>
-                <relationship kind="action" name="openNews:"/>
-                <relationship kind="outlet" name="Notification_text" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="backbutton" candidateClass="UIButton"/>
-                <relationship kind="outlet" name="bar" candidateClass="UINavigationItem"/>
-                <relationship kind="outlet" name="collection" candidateClass="UICollectionView"/>
-                <relationship kind="outlet" name="date" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="forwardButton" candidateClass="UIButton"/>
-                <relationship kind="outlet" name="newsButton" candidateClass="UIButton"/>
-                <relationship kind="outlet" name="notification_number" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="notification_title" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="pageControl" candidateClass="UIPageControl"/>
-                <relationship kind="outlet" name="picture" candidateClass="UIImageView"/>
-                <relationship kind="outlet" name="title" candidateClass="UILabel"/>
-            </relationships>
-        </class>
-        <class className="CustomCellOne" superclassName="UICollectionViewCell">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/CustomCellOne.h"/>
-            <relationships>
-                <relationship kind="outlet" name="Description" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="Image" candidateClass="UIImageView"/>
-            </relationships>
-        </class>
-        <class className="ECSlidingViewController" superclassName="UIViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/ECSlidingViewController.h"/>
-        </class>
-        <class className="FloorCell" superclassName="UICollectionViewCell">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/FloorCell.h"/>
-            <relationships>
-                <relationship kind="outlet" name="floorName" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="picture" candidateClass="UIImageView"/>
-            </relationships>
-        </class>
-        <class className="HomeViewController" superclassName="UIViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/HomeViewController.h"/>
-            <relationships>
-                <relationship kind="outlet" name="CollectionOne" candidateClass="UICollectionView"/>
-                <relationship kind="outlet" name="agendaPreviewB" candidateClass="UIButton"/>
-                <relationship kind="outlet" name="ct" candidateClass="UICollectionView"/>
-                <relationship kind="outlet" name="moreNewsButton" candidateClass="UIButton"/>
-                <relationship kind="outlet" name="noConferencesLabel" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="noConferencesPicture" candidateClass="UIImageView"/>
-                <relationship kind="outlet" name="noNewsLabel" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="noNewsPicture" candidateClass="UIImageView"/>
-            </relationships>
-        </class>
-        <class className="InitViewController" superclassName="ECSlidingViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/InitViewController.h"/>
-        </class>
-        <class className="MAWeekView" superclassName="UIView">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/MAWeekView.h"/>
-            <relationships>
-                <relationship kind="outlet" name="dataSource"/>
-                <relationship kind="outlet" name="delegate"/>
-            </relationships>
-        </class>
-        <class className="ManageConfCell" superclassName="UICollectionViewCell">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/ManageConfCell.h"/>
-            <relationships>
-                <relationship kind="action" name="checkingButton:"/>
-                <relationship kind="outlet" name="CheckButton" candidateClass="UIButton"/>
-                <relationship kind="outlet" name="IconConf" candidateClass="UIImageView"/>
-                <relationship kind="outlet" name="LabelConf" candidateClass="UILabel"/>
-            </relationships>
-        </class>
-        <class className="ManageViewController" superclassName="UIViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/ManageViewController.h"/>
-            <relationships>
-                <relationship kind="action" name="addConfs:"/>
-                <relationship kind="action" name="remConfs:"/>
-                <relationship kind="outlet" name="AddConfButton" candidateClass="UIButton"/>
-                <relationship kind="outlet" name="ConfsCollection" candidateClass="UICollectionView"/>
-                <relationship kind="outlet" name="Options" candidateClass="UISegmentedControl"/>
-                <relationship kind="outlet" name="RemConfButton" candidateClass="UIButton"/>
-            </relationships>
-        </class>
-        <class className="MapViewController" superclassName="UIViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/MapViewController.h"/>
-            <relationships>
-                <relationship kind="outlet" name="map" candidateClass="MKMapView"/>
-            </relationships>
-        </class>
-        <class className="MenuViewController" superclassName="UIViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/MenuViewController.h"/>
-            <relationships>
-                <relationship kind="action" name="homeButtonPressed:"/>
-                <relationship kind="outlet" name="MenuView" candidateClass="UITableView"/>
-            </relationships>
-        </class>
-        <class className="NSLayoutConstraint" superclassName="NSObject">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/NSLayoutConstraint.h"/>
-        </class>
-        <class className="NewsCell" superclassName="UICollectionViewCell">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/NewsCell.h"/>
-            <relationships>
-                <relationship kind="outlet" name="conferenceName" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="date" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="picture" candidateClass="UIImageView"/>
-                <relationship kind="outlet" name="text" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="title" candidateClass="UILabel"/>
-            </relationships>
-        </class>
-        <class className="NewsViewController" superclassName="UIViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/NewsViewController.h"/>
-            <relationships>
-                <relationship kind="action" name="segmentedChanged:"/>
-                <relationship kind="outlet" name="collection" candidateClass="UICollectionView"/>
-                <relationship kind="outlet" name="segmentedControl" candidateClass="UISegmentedControl"/>
-            </relationships>
-        </class>
-        <class className="OrganizerViewController" superclassName="UIViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/OrganizerViewController.h"/>
-            <relationships>
-                <relationship kind="outlet" name="Contact" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="Image" candidateClass="UIImageView"/>
-                <relationship kind="outlet" name="Job" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="NavBar" candidateClass="UINavigationBar"/>
-            </relationships>
-        </class>
-        <class className="PDFReader" superclassName="UIViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/PDFReader.h"/>
-            <relationships>
-                <relationship kind="outlet" name="webview" candidateClass="UIWebView"/>
-            </relationships>
-        </class>
-        <class className="PeopleCell" superclassName="UICollectionViewCell">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/PeopleCell.h"/>
-            <relationships>
-                <relationship kind="outlet" name="Image" candidateClass="UIImageView"/>
-                <relationship kind="outlet" name="Name" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="type" candidateClass="UILabel"/>
-            </relationships>
-        </class>
-        <class className="PeopleViewController" superclassName="UIViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/PeopleViewController.h"/>
-            <relationships>
-                <relationship kind="action" name="selectedOption:"/>
-                <relationship kind="outlet" name="BIO" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="NavBar" candidateClass="UINavigationBar"/>
-                <relationship kind="outlet" name="Options" candidateClass="UISegmentedControl"/>
-                <relationship kind="outlet" name="PeopleCollection" candidateClass="UICollectionView"/>
-                <relationship kind="outlet" name="PresentationName" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="Search" candidateClass="UISearchBar"/>
-                <relationship kind="outlet" name="iConfsImage" candidateClass="UIImageView"/>
-                <relationship kind="outlet" name="noSelectionLabel" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="pageControl" candidateClass="UIPageControl"/>
-                <relationship kind="outlet" name="pdfPreview" candidateClass="UIView"/>
-                <relationship kind="outlet" name="peopleTable" candidateClass="UITableView"/>
-                <relationship kind="outlet" name="personNameBar" candidateClass="UIBarButtonItem"/>
-                <relationship kind="outlet" name="seePaperButton" candidateClass="UIButton"/>
-                <relationship kind="outlet" name="segmentedControl" candidateClass="UISegmentedControl"/>
-                <relationship kind="outlet" name="sessionDate" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="sessionName" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="sessionView" candidateClass="UIView"/>
-                <relationship kind="outlet" name="speakerBio" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="toolbarAgenda" candidateClass="UIToolbar"/>
-            </relationships>
-        </class>
-        <class className="PersonViewController" superclassName="UIViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/PersonViewController.h"/>
-            <relationships>
-                <relationship kind="outlet" name="NavBar" candidateClass="UINavigationBar"/>
-                <relationship kind="outlet" name="PaperButton" candidateClass="UIButton"/>
-                <relationship kind="outlet" name="TitleLabel" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="WhenLabel" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="WhereLabel" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="biography" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="picture" candidateClass="UIImageView"/>
-            </relationships>
-        </class>
-        <class className="PlaceDefaultCell" superclassName="UICollectionViewCell">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/PlaceDefaultCell.h"/>
-            <relationships>
-                <relationship kind="outlet" name="name" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="picture" candidateClass="UIImageView"/>
-            </relationships>
-        </class>
-        <class className="PlacesContainerViewController" superclassName="UIViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/PlacesContainerViewController.h"/>
-            <relationships>
-                <relationship kind="outlet" name="collection" candidateClass="UICollectionView"/>
-            </relationships>
-        </class>
-        <class className="SScell" superclassName="UICollectionViewCell">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/SScell.h"/>
-            <relationships>
-                <relationship kind="outlet" name="sessionName" candidateClass="UILabel"/>
-            </relationships>
-        </class>
-        <class className="SessionViewController" superclassName="UIViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/SessionViewController.h"/>
-            <relationships>
-                <relationship kind="action" name="addToAgenda:"/>
-                <relationship kind="action" name="showInPlant:"/>
-                <relationship kind="outlet" name="MenuButton" candidateClass="UIButton"/>
-                <relationship kind="outlet" name="abstract" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="collection" candidateClass="UICollectionView"/>
-                <relationship kind="outlet" name="sessionName" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="sessionWhen" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="sessionWhere" candidateClass="UILabel"/>
-            </relationships>
-        </class>
-        <class className="SessionsViewController" superclassName="UIViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/SessionsViewController.h"/>
-            <relationships>
-                <relationship kind="action" name="openPaper:"/>
-                <relationship kind="outlet" name="AuthorsTable" candidateClass="UITableView"/>
-                <relationship kind="outlet" name="abstract" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="collection" candidateClass="UICollectionView"/>
-                <relationship kind="outlet" name="searchBar" candidateClass="UISearchBar"/>
-                <relationship kind="outlet" name="sessionsTable" candidateClass="UITableView"/>
-            </relationships>
-        </class>
-        <class className="UICollectionReusableView" superclassName="UIView">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/UICollectionReusableView.h"/>
-        </class>
-        <class className="UICollectionViewCell" superclassName="UICollectionReusableView">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/UICollectionViewCell.h"/>
-        </class>
-        <class className="UICollectionViewFlowLayout" superclassName="UICollectionViewLayout">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/UICollectionViewFlowLayout.h"/>
-        </class>
-        <class className="newConferenceContainer" superclassName="UIViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/newConferenceContainer.h"/>
-            <relationships>
-                <relationship kind="outlet" name="collection" candidateClass="UICollectionView"/>
-            </relationships>
-        </class>
-        <class className="peopleInSessionCell" superclassName="UICollectionViewCell">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/peopleInSessionCell.h"/>
-            <relationships>
-                <relationship kind="outlet" name="institution" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="name" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="picture" candidateClass="UIImageView"/>
-            </relationships>
-        </class>
-        <class className="pubConferenceViewController" superclassName="UIViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/pubConferenceViewController.h"/>
-            <relationships>
-                <relationship kind="outlet" name="picture" candidateClass="UIImageView"/>
-            </relationships>
-        </class>
-    </classes>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar" statusBarStyle="blackTranslucent"/>
         <simulatedOrientationMetrics key="orientation"/>
