@@ -437,11 +437,13 @@
     NSData *data;
     NSURLResponse *response;
     // NSError *error;
-    
+    NSDictionary *json=[[NSDictionary alloc]init];
     data=[NSURLConnection sendSynchronousRequest: request returningResponse: &response error: nil];
-    
-        NSDictionary *json = [NSJSONSerialization JSONObjectWithData:data options:kNilOptions error:nil];
-        return json;
+        if (data!=nil)
+             json = [NSJSONSerialization JSONObjectWithData:data options:kNilOptions error:nil];
+        else
+            json = nil;
+    return json;
 
     
     
@@ -461,14 +463,14 @@
 -(BOOL)fetchConferences{
     NSDictionary* fetch = [self getConfsFromServer];
     if(fetch == nil){
-        return false;
+        return NO;
     }
     else{
         NSArray* dataIDs = [self getConfsIDFromServer: fetch];
         NSArray* dataNames = [self getConfsNameFromServer: fetch];
         
         if(dataIDs == nil || dataNames == nil){
-            return false;
+            return NO;
         }
         
         //Tratar aqui das imagens
@@ -478,16 +480,16 @@
         for (int i=0; i < [dataIDs count]; i++) {
             current = [Conference new];
             current = [current initWithData: dataIDs[i] name: dataNames[i] image: nil /*alterar depois*/ bluePrint: NULL];
-            if ([self addToAllConference: current] == true){
+            if ([self addToAllConference: current] == YES){
                 currentImg = [self getConfImageFromServer:dataIDs[i]];
                 if(currentImg == nil){
-                    return false;
+                    return NO;
                 }
                 [((Conference*)[allConferences lastObject]) changeLogo: currentImg];
             }
             [allConferencesDic setObject:[allConferences lastObject]  forKey: ((Conference*)[allConferences lastObject]).getID];
         }
-        return true;
+        return YES;
     }
     
 }
@@ -877,7 +879,7 @@
     NSDate* date1;
     NSDate* date2;
     for (int i = 0; i<[sess count]; i++) {
-        if(![[sess[i] valueForKey:@"Speaker"] isEqual:@""]){
+        if(![[sess[i] valueForKey:@"Speaker"] isEqualToString:@""]){
             parsedIDAUX = [[[sess[i] valueForKey:@"Speaker"]componentsSeparatedByString:@"p"] objectAtIndex: 1];
             currID = [parsedIDAUX intValue];
             speakerAux = [speakers objectForKey:[NSNumber numberWithInteger:currID]];
@@ -885,7 +887,7 @@
         }else{
             speakerAux = NULL;
         }
-        if(![[sess[i] valueForKey:@"Author"] isEqual:@""]){
+        if(![[sess[i] valueForKey:@"Author"] isEqualToString:@""]){
             parsedIDAUX = [[[sess[i] valueForKey:@"Author"]componentsSeparatedByString:@"p"] objectAtIndex: 1];
             currID = [parsedIDAUX intValue];
             //authorAux = [speakers valueForKey:parsedIDAUX];
