@@ -176,6 +176,12 @@
         
         [[cell floorName]setText:[bp getTitle]];
         
+        
+        
+        
+        
+        
+        
         return cell;
     }
     else{
@@ -274,7 +280,15 @@
     [placesTable reloadData];
         selectedFloor=indexPath.item;
             [placesTable deselectRowAtIndexPath:[placesTable indexPathForSelectedRow]animated:YES];
-         //   [placesTable reloadData];
+  
+        selectedPlaceType=2;
+        
+        //      NSIndexPath *selection = [NSIndexPath indexPathForItem:2 inSection:0];
+   //     [placeCollection selectItemAtIndexPath:selection animated:YES scrollPosition:UICollectionViewScrollPositionNone];
+        
+        
+        
+        [placeCollection reloadData];
         
         
   

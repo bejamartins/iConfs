@@ -78,7 +78,6 @@
     [[self view] addSubview:HomeButton];
     
     isEditing = NO;
-    conflict = NO;
     
     [self sessionToMAEvents];
     
@@ -153,20 +152,20 @@
         }
     }
     
-    conflict = NO;
+    NSArray *newArr = [[NSArray alloc] initWithArray:[arr sortedArrayUsingFunction:MAEvent_sortByStartTime context:NULL]];
     
-    [self isThereConflict:arr willChangeSS:arrSS];
+    NSArray *newArrSS = [[NSArray alloc] initWithArray:[arrSS sortedArrayUsingFunction:MAEvent_sortByStartTime context:NULL]];
+    
+    [self isThereConflict:newArr willChangeSS:newArrSS];
     
     if ([ViewOptions selectedSegmentIndex] == 0) {
-        [self sameTimeSS:arrSS];
-        return arrSS;
+        [self sameTimeSS:newArrSS];
+        return newArrSS;
     } else
-        return arr;
+        return newArr;
 }
 
 - (void)sameTimeSS:(NSArray*)events {
-    
-    [events sortedArrayUsingFunction:MAEvent_sortByStartTime context:NULL];
     
     for (int i = 0; i < [events count]; i++) {
         
@@ -212,8 +211,6 @@
 }
 
 - (void)isThereConflict:(NSArray*)events willChangeSS:(NSArray*)eventsSS {
-    
-    [events sortedArrayUsingFunction:MAEvent_sortByStartTime context:NULL];
     
     for (int i = 0; i < [events count]; i++) {
         
@@ -382,8 +379,9 @@
 /* Implementation for the MAWeekViewDelegate protocol */
 
 - (void)weekView:(MAWeekView *)weekView eventTapped:(MAEvent *)event {
-    
     if (isEditing) {
+        conflict = NO;
+        
         if ([ViewOptions selectedSegmentIndex] == 0) {
             if ([event checked]) {
                 for (MAEvent *ss in Events) {
@@ -464,17 +462,24 @@
     if (buttonIndex != [alertView cancelButtonIndex]) {
         NSString *iD = @"Session Detail";
         
-        UIViewController *newTopViewController = [[self storyboard]instantiateViewControllerWithIdentifier:iD];
+        SessionsViewController *newTopViewController = [[self storyboard]instantiateViewControllerWithIdentifier:iD];
         
-        [(SessionsViewController*)newTopViewController setPrevious:[[self slidingViewController] topViewController]];
+        [newTopViewController viewDidLoad];
+        
+        [newTopViewController setPrevious:[[self slidingViewController] topViewController]];
         
         Conference *conf = [(MenuViewController*)[[self slidingViewController] underLeftViewController] selectedConf];
+        
+        CGRect frame = [[[[self slidingViewController] topViewController] view] frame];
+        [[self slidingViewController] setTopViewController:newTopViewController];
+        [[[[self slidingViewController] topViewController] view] setFrame:frame];
+
         
         NSArray *superSessions = [[NSArray alloc] initWithArray:[[conf getSuperSessions] allValues]];
         SuperSession *selectedSuperSession;
         for (int i = 0; i < [superSessions count]; i++) {
             if ([tappedEvent ssID] == [(SuperSession*)superSessions[i] getID]) {
-                [(SessionsViewController*)newTopViewController auxChangeSuperSession:i];
+                [newTopViewController auxChangeSuperSession:i];
                 selectedSuperSession=[superSessions objectAtIndex:i];
                 break;
             }
@@ -484,17 +489,13 @@
         if ([tappedEvent sID] != 0) {
             for (int i = 0; i < [sessions count]; i++) {
                 if ([tappedEvent sID] == [(Session*)sessions[i] getID]) {
-                    [(SessionsViewController*)newTopViewController changeSession:i];
+                    [newTopViewController changeSession:i];
                     break;
                 }
             }
+        } else {
+            [newTopViewController changeSession:0];
         }
-        
-        CGRect frame = [[[[self slidingViewController] topViewController] view] frame];
-        [[self slidingViewController] setTopViewController:newTopViewController];
-        [[[[self slidingViewController] topViewController] view] setFrame:frame];
-        
-        [[self slidingViewController] resetTopView];
     }
 }
 
