@@ -73,7 +73,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" showsTouchWhenHighlighted="YES" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="lFv-Km-QOw">
-                                <color key="backgroundColor" red="0.65882354974746704" green="0.11764706671237946" blue="0.086274512112140656" alpha="1" colorSpace="deviceRGB"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="73" id="4Qi-87-WGd"/>
                                     <constraint firstAttribute="height" constant="38" id="b4L-aP-Y0G"/>
@@ -95,7 +95,7 @@
                                 <constraints>
                                     <constraint firstAttribute="width" constant="73" id="7CE-Nc-f5x"/>
                                 </constraints>
-                                <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="19"/>
                                 <state key="normal" title="5 min">
                                     <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
@@ -130,6 +130,8 @@
                     </view>
                     <connections>
                         <outlet property="MenuView" destination="Y8i-aJ-S3n" id="mS6-uT-cea"/>
+                        <outlet property="button5" destination="25P-sU-pnN" id="z7a-f0-0O7"/>
+                        <outlet property="xbutton" destination="lFv-Km-QOw" id="Nsj-xE-ulZ"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="NCl-1b-KlZ" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -3169,6 +3171,8 @@
                 <relationship kind="action" name="do5Min:"/>
                 <relationship kind="action" name="homeButtonPressed:"/>
                 <relationship kind="outlet" name="MenuView" candidateClass="UITableView"/>
+                <relationship kind="outlet" name="button5" candidateClass="UIButton"/>
+                <relationship kind="outlet" name="xbutton" candidateClass="UIButton"/>
             </relationships>
         </class>
         <class className="NSLayoutConstraint" superclassName="NSObject">
