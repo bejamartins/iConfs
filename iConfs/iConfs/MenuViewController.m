@@ -73,20 +73,6 @@
     UIColor *background = [[UIColor alloc] initWithPatternImage:[UIImage imageNamed:@"WP(42).jpg"]];
     self.view.backgroundColor = background;
     //[background release];
-    
-    
-    /*[theAppData fetchConferences];
-    [theAppData addConferenceWithID:@"c001"];
-    Conference* c = ((Conference*)[theAppData getMyConferences][0]);
-    NSLog(@"This is it: %@", [((SuperSession*)[[c getSuperSessions] allValues][0]) getTheme]);
-    [theAppData subscribeSuperSessionInAgenda: ((SuperSession*)[[c getSuperSessions]allValues][0]) Conference:@"c001"];
-    [theAppData getUnsubscribedSuperSessions];
-    NSArray* s = [theAppData getUnsubscribedSuperSessionsByConferenceOrderedByDate:@"c001"];
-    SuperSession* ss = ((SuperSession*)s[0]);
-    //NSDictionary* eventsDic = [ss getAllEventsDicionary];
-    NSArray* events = [ss getAllEventsOrderedByDate];
-    Event* event = ((Event*)events[0]);
-    //Event* eventD = ((Event*)[eventsDic allValues][0]);*/
 }
 
 - (void)didReceiveMemoryWarning
@@ -169,7 +155,7 @@
 {
     UIView* headerView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, [tableView bounds].size.width, 30)];
     
-    UILabel* headerLabel = [[UILabel alloc] initWithFrame:CGRectMake(50, 8, [tableView bounds].size.width - 10, 18)];
+    UILabel* headerLabel = [[UILabel alloc] initWithFrame:CGRectMake(40, 8, [tableView bounds].size.width - 10, 18)];
     
     [headerLabel setTextColor:[UIColor whiteColor]];
     
@@ -203,8 +189,6 @@
         NSString *iD = [NSString stringWithFormat:@"%@", [self.MenuView cellForRowAtIndexPath:indexPath].textLabel.text];
         
         UIViewController *newTopViewController = [[self storyboard]instantiateViewControllerWithIdentifier:iD];
-        
-        [[self MenuView] deselectRowAtIndexPath:indexPath animated:NO];
         
         CGRect frame = [[[[self slidingViewController] topViewController] view] frame];
         [[self slidingViewController] setTopViewController:newTopViewController];

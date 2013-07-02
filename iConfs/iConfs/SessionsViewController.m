@@ -448,22 +448,16 @@
 
 - (IBAction)goHome:(id)sender{
     
-  //  menu=(MenuViewController*)[[self slidingViewController] underLeftViewController] ;
-
-    
     NSString *iD = @"Home";
     
     UIViewController *newTopViewController = [[self storyboard]instantiateViewControllerWithIdentifier:iD];
-
     
+    [(MenuViewController*)[[self slidingViewController] underLeftViewController] deselectConf];
+    
+    [[self slidingViewController] anchorTopViewTo:ECRight];
     CGRect frame = [[[[self slidingViewController] topViewController] view] frame];
     [[self slidingViewController] setTopViewController:newTopViewController];
     [[[[self slidingViewController] topViewController] view] setFrame:frame];
-
-    
-
-    [menu setSelectedConf:nil];
-    [[menu MenuView ]reloadData];
 }
 
 

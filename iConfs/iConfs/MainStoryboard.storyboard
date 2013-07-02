@@ -2229,7 +2229,7 @@
                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
-                                    <action selector="RemoveSessions:" destination="ItE-Rr-hyx" eventType="touchUpInside" id="ZDZ-Ze-5Wp"/>
+                                    <action selector="removeEvents:" destination="ItE-Rr-hyx" eventType="touchUpInside" id="E2m-V8-YAv"/>
                                 </connections>
                             </button>
                             <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="bar" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="m5j-49-1He">
@@ -2241,7 +2241,7 @@
                                     <segment title="Events"/>
                                 </segments>
                                 <connections>
-                                    <action selector="changedOption:" destination="ItE-Rr-hyx" eventType="valueChanged" id="afO-ed-2gZ"/>
+                                    <action selector="chengedOption:" destination="ItE-Rr-hyx" eventType="valueChanged" id="YxP-gd-F03"/>
                                 </connections>
                             </segmentedControl>
                         </subviews>
@@ -2789,6 +2789,10 @@
         <class className="AddRemoveSessionsViewController" superclassName="UIViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/AddRemoveSessionsViewController.h"/>
             <relationships>
+                <relationship kind="action" name="changedOption:"/>
+                <relationship kind="action" name="editEvents:"/>
+                <relationship kind="action" name="goHome:"/>
+                <relationship kind="action" name="revealMenu:"/>
                 <relationship kind="outlet" name="AgendaView" candidateClass="MAWeekView"/>
                 <relationship kind="outlet" name="EditButton" candidateClass="UIButton"/>
                 <relationship kind="outlet" name="HomeButton" candidateClass="UIButton"/>
@@ -2802,7 +2806,6 @@
         <class className="AgendaViewController" superclassName="UIViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/AgendaViewController.h"/>
             <relationships>
-                <relationship kind="outlet" name="AddSessionButton" candidateClass="UIButton"/>
                 <relationship kind="outlet" name="AgendaView" candidateClass="MAWeekView"/>
                 <relationship kind="outlet" name="MenuButton" candidateClass="UIButton"/>
                 <relationship kind="outlet" name="RemoveSessionsButton" candidateClass="UIButton"/>
