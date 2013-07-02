@@ -120,6 +120,7 @@
     
     
     NSMutableArray *arr = [[NSMutableArray alloc] init];
+    NSMutableArray *arrSS = [[NSMutableArray alloc] init];
     
     for (MAEvent* ss in Events) {
         
@@ -127,29 +128,152 @@
         NSDateComponents *componentsStart = [CURRENT_CALENDAR components:DATE_COMPONENTS fromDate:startDate];
         
         if ([components day] == [componentsStart day]) {
-            if ([ViewOptions selectedSegmentIndex] == 0) {
-                if ([ss checked]) {
-                    [ss setBackgroundColor:[UIColor greenColor]];
-                    [arr addObject:ss];
-                } else {
-                    [ss setBackgroundColor:[UIColor brownColor]];
-                    [arr addObject:ss];
-                }
+            if ([ss checked]) {
+                [ss setBackgroundColor:[UIColor greenColor]];
+                [arrSS addObject:ss];
             } else {
-                for (id e in [ss eventsOfSS]) {
-                    if ([e checked]) {
+                [ss setBackgroundColor:[UIColor brownColor]];
+                [arrSS addObject:ss];
+            }
+            
+            for (id e in [ss eventsOfSS]) {
+                if ([e checked]) {
                         [e setBackgroundColor:[UIColor blueColor]];
                         [arr addObject:e];
-                    } else {
+                } else {
                         [e setBackgroundColor:[UIColor orangeColor]];
                         [arr addObject:e];
-                    }
                 }
             }
         }
     }
     
-	return arr;
+    
+    
+    [self isThereConflict:arr willChangeSS:arrSS];
+    
+    if ([ViewOptions selectedSegmentIndex] == 0) {
+        [self sameTimeSS:arrSS];
+        return arrSS;
+    } else
+        return arr;
+}
+
+- (void)sameTimeSS:(NSArray*)events {
+    for (int i = 0; i < [events count]; i++) {
+        
+        MAEvent *event = [events objectAtIndex:i];
+        
+        if (i == ([events count] - 1)) {
+            
+            [event setSameTimeEvents:1];
+            [event setWhichSame:0];
+            
+        } else {
+            int count = 1;
+            MAEvent *e;
+            NSMutableArray *sameTimeEvents = [[NSMutableArray alloc] init];
+            [sameTimeEvents addObject:event];
+            
+            for (; (count + i) < [events count]; count++) {
+                e = [events objectAtIndex:count + i];
+                
+                NSDate *eventStart = [e start];
+                
+                if (!([eventStart compare:[event start]] == NSOrderedSame || [eventStart compare:[event end]] == NSOrderedAscending)) {
+                    break;
+                }
+                
+                [sameTimeEvents addObject:e];
+            }
+            
+            [event setSameTimeEvents:[sameTimeEvents count]];
+            [event setWhichSame:0];
+            
+            for (int y = 1; y < count; y++) {
+                
+                e = [events objectAtIndex:y + i];
+                
+                [e setSameTimeEvents:[sameTimeEvents count]];
+                [e setWhichSame:y];
+            }
+            
+            i += (count - 1);
+        }
+    }
+}
+
+- (void)isThereConflict:(NSArray*)events willChangeSS:(NSArray*)eventsSS {
+    
+    for (int i = 0; i < [events count]; i++) {
+        
+        MAEvent *event = [events objectAtIndex:i];
+        
+        if (i == ([events count] - 1)) {
+        
+            [event setSameTimeEvents:1];
+            [event setWhichSame:0];
+        
+        } else {
+            int count = 1;
+            MAEvent *e;
+            NSMutableArray *sameTimeEvents = [[NSMutableArray alloc] init];
+            [sameTimeEvents addObject:event];
+        
+            for (; (count + i) < [events count]; count++) {
+                e = [events objectAtIndex:count + i];
+            
+                NSDate *eventStart = [e start];
+            
+                if (!([eventStart compare:[event start]] == NSOrderedSame || [eventStart compare:[event end]] == NSOrderedAscending)) {
+                    break;
+                }
+            
+            [sameTimeEvents addObject:e];
+            }
+        
+            if ([event checked]){
+                for (MAEvent *e in sameTimeEvents) {
+                    if ([e checked] && event != e) {
+                        [event setBackgroundColor:[UIColor redColor]];
+                        for (MAEvent* eventSS in eventsSS) {
+                            if ([eventSS ssID] == [event ssID]) {
+                                [eventSS setBackgroundColor:[UIColor redColor]];
+                                break;
+                            }
+                        }
+                    }
+                }
+            }
+        
+            [event setSameTimeEvents:[sameTimeEvents count]];
+            [event setWhichSame:0];
+        
+            for (int y = 1; y < count; y++) {
+            
+                e = [events objectAtIndex:y + i];
+            
+                if ([e checked]){
+                    for (MAEvent *anotherEvent in sameTimeEvents) {
+                        if ([anotherEvent checked] && e != anotherEvent) {
+                            [e setBackgroundColor:[UIColor redColor]];
+                            for (MAEvent* eventSS in eventsSS) {
+                                if ([eventSS ssID] == [e ssID]) {
+                                    [eventSS setBackgroundColor:[UIColor redColor]];
+                                    break;
+                                }
+                            }
+                        }
+                    }
+                }
+            
+                [e setSameTimeEvents:[sameTimeEvents count]];
+                [e setWhichSame:y];
+            }
+        
+            i += (count - 1);
+        }
+    }
 }
 
 - (void)sessionToMAEvents {

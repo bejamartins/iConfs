@@ -462,7 +462,7 @@ static const unsigned int TOP_BACKGROUND_HEIGHT               = 35;
                 
 			} else {
                 
-                if (i == ([events count] - 1)) {
+                /*if (i == ([events count] - 1)) {
                     
                     [self.gridView addEventToOffset:d event:event weekView:self sameTimeEvents:1 whichSame:0];
                     
@@ -512,7 +512,9 @@ static const unsigned int TOP_BACKGROUND_HEIGHT               = 35;
                     }
                     
                     i += (count - 1);
-                }
+                }*/
+                
+                [self.gridView addEventToOffset:d event:event weekView:self sameTimeEvents:[event sameTimeEvents] whichSame:[event whichSame]];
 			}
 		}
 		d++;
