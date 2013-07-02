@@ -54,6 +54,7 @@
     agendaDic = [[NSMutableDictionary alloc] init];
     agendaDicByConf = [[NSMutableDictionary alloc] init];
     agendaStartDate = [[NSDate alloc] init];
+    votes = [[NSMutableDictionary alloc] init];
     /*agenda = [[decoder decodeObjectForKey:@"agenda"] retain];
      agendaDic = [[decoder decodeObjectForKey:@"agendaDic"] retain];
      agendaDicByConf = [[decoder decodeObjectForKey:@"agendaDicByConf"] retain];
@@ -1207,6 +1208,7 @@
         agenda = [[NSMutableArray alloc] initWithContentsOfFile: agendaFile];
         agendaDic = [[NSMutableDictionary alloc] initWithContentsOfFile: agendaDicFile];
         agendaDicByConf = [[NSMutableDictionary alloc] initWithContentsOfFile: agendaDicByConfFile];
+        votes = [[NSMutableDictionary alloc] initWithContentsOfFile: votesFile];
         if(agenda == nil)
         {
             //Array file didn't exist... create a new one
@@ -1226,14 +1228,15 @@
 -(void)setAgendaPaths{
     //Creating a file path under iOS:
     //1) Search for the app's documents directory (copy+paste from Documentation)
-    //paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
-    //documentsDirectory = [paths objectAtIndex:0];
+    paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+    documentsDirectory = [paths objectAtIndex:0];
     
-    documentsDirectory=[NSString stringWithFormat:@"%@",[NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES)objectAtIndex:0]];
+    //documentsDirectory=[NSString stringWithFormat:@"%@",[NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES)objectAtIndex:0]];
     //2) Create the full file path by appending the desired file name
     agendaFile = [documentsDirectory stringByAppendingPathComponent:@"agenda.dat"];
     agendaDicFile = [documentsDirectory stringByAppendingPathComponent:@"agendaDic.dat"];
     agendaDicByConfFile = [documentsDirectory stringByAppendingPathComponent:@"agendaDicByConf.dat"];
+    votesFile = [documentsDirectory stringByAppendingPathComponent:@"votes.dat"];
 }
 
 -(void)saveAgendaToDisk{
@@ -1243,6 +1246,7 @@
     [agenda writeToFile:agendaFile atomically:YES];
     [agendaDic writeToFile:agendaDicFile atomically:YES];
     [agendaDicByConf writeToFile:agendaDicByConfFile atomically:YES];
+    [votes writeToFile:votesFile atomically:YES];
     
     
     
@@ -1521,7 +1525,7 @@
     return retDate;
 }
 
--(BOOL)subscribeSuperSessionInAgendaByID: (NSString*)ssID Conference: (NSString*)cID;{
+-(BOOL)subscribeSuperSessionInAgendaByID: (NSString*)ssID Conference: (NSString*)cID{
     if([agendaDic objectForKey:ssID] ==nil){
         Conference* c = [conferencesDic objectForKey:cID];
         NSMutableDictionary* ssessions = [c getSuperSessions];
@@ -1536,6 +1540,20 @@
     else{
         return false;
     }
+}
+
+-(void)vote:(int)value event:(int)eventID Confeference:(NSString*)cID{
+    NSString* key = [cID stringByAppendingFormat:@"%i", eventID];
+    [votes setObject:key forKey:[NSNumber numberWithInteger:eventID]];
+    [self saveAgendaToDisk];
+}
+
+-(int)getVote:(int)eventID Confeference:(NSString*)cID{
+    [self loadAgendaFromDisk];
+    NSString* key = [cID stringByAppendingFormat:@"%i", eventID];
+    NSNumber* n = [votes objectForKey:key];
+    int ret = [n intValue];
+    return ret;
 }
 
 

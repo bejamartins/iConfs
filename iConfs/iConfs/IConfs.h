@@ -43,7 +43,8 @@
     NSString *agendaFile;
     NSString *agendaDicFile;
     NSString *agendaDicByConfFile;
-    
+    NSString *votesFile;
+    NSMutableDictionary* votes;
     //used for updateTimer
     int timerTime;
 }
@@ -221,5 +222,9 @@
 -(NSArray*)getAllNotifOrderedByDate;
 
 -(Conference*)getConferenceWithID:(NSString*)cID;
+
+-(void)vote:(int)value event:(int)eventID Confeference:(NSString*)cID;
+
+-(int)getVote:(int)eventID Confeference:(NSString*)cID;
 
 @end
