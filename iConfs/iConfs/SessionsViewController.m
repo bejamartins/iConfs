@@ -140,7 +140,6 @@
 
 
 -(void)changeSession:(int)indexSession{
-    //seleciona autor
     selectedSession =[sessions objectAtIndex:indexSession];
     
     
@@ -159,7 +158,7 @@
     
     
     
-    
+    //////////////////////////////////////
     
     
     [collection reloadData];
@@ -455,17 +454,19 @@
           cell=[tableView dequeueReusableCellWithIdentifier:@"authorCell" forIndexPath:indexPath];
     
         if([autores count]!=0){
-            int i = indexPath.row;
-            NSString* currIDUnparsed = [autores objectAtIndex:indexPath.row];
-            int currAuthorID = [[[currIDUnparsed componentsSeparatedByString:@"p"] objectAtIndex: 1]intValue];
-            Author* currAuthor = [conf getAuthorByID:currAuthorID];
-            [[cell textLabel]setText:[currAuthor getName]];
+//            int i = indexPath.row;
+//            NSString* currIDUnparsed = [autores objectAtIndex:indexPath.row];
+//            int currAuthorID = [[[currIDUnparsed componentsSeparatedByString:@"p"] objectAtIndex: 1]intValue];
+//            Author* currAuthor = [conf getAuthorByID:currAuthorID];
+//            [[cell textLabel]setText:[currAuthor getName]];
         }
 
     }
     return  cell;
 
 }
+    
+
 
 
 

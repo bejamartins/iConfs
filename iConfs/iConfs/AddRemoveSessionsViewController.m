@@ -471,15 +471,24 @@
         Conference *conf = [(MenuViewController*)[[self slidingViewController] underLeftViewController] selectedConf];
         
         NSArray *superSessions = [[NSArray alloc] initWithArray:[[conf getSuperSessions] allValues]];
-        
+        SuperSession *selectedSuperSession;
         for (int i = 0; i < [superSessions count]; i++) {
             if ([tappedEvent ssID] == [(SuperSession*)superSessions[i] getID]) {
                 [(SessionsViewController*)newTopViewController auxChangeSuperSession:i];
+                selectedSuperSession=[superSessions objectAtIndex:i];
                 break;
             }
         }
-        
-        [(SessionsViewController*)newTopViewController changeSession:[tappedEvent sID]];
+               NSArray *sessions=[selectedSuperSession getSessionsOrderedByDate];
+
+        if ([tappedEvent sID] != 0) {
+            for (int i = 0; i < [sessions count]; i++) {
+                if ([tappedEvent sID] == [(Session*)sessions[i] getID]) {
+                    [(SessionsViewController*)newTopViewController changeSession:i];
+                    break;
+                }
+            }
+        }
         
         CGRect frame = [[[[self slidingViewController] topViewController] view] frame];
         [[self slidingViewController] setTopViewController:newTopViewController];

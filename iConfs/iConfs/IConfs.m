@@ -1226,8 +1226,10 @@
 -(void)setAgendaPaths{
     //Creating a file path under iOS:
     //1) Search for the app's documents directory (copy+paste from Documentation)
-    paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
-    documentsDirectory = [paths objectAtIndex:0];
+    //paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+    //documentsDirectory = [paths objectAtIndex:0];
+    
+    documentsDirectory=[NSString stringWithFormat:@"%@",[NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES)objectAtIndex:0]];
     //2) Create the full file path by appending the desired file name
     agendaFile = [documentsDirectory stringByAppendingPathComponent:@"agenda.dat"];
     agendaDicFile = [documentsDirectory stringByAppendingPathComponent:@"agendaDic.dat"];
@@ -1241,6 +1243,9 @@
     [agenda writeToFile:agendaFile atomically:YES];
     [agendaDic writeToFile:agendaDicFile atomically:YES];
     [agendaDicByConf writeToFile:agendaDicByConfFile atomically:YES];
+    
+    
+    
 }
 
 //was the original method with all the variables in the JSON and how to get them

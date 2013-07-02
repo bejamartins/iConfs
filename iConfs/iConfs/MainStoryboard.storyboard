@@ -2977,12 +2977,8 @@
         <class className="ConferenceScreenViewController" superclassName="UIViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/ConferenceScreenViewController.h"/>
             <relationships>
-                <relationship kind="action" name="backButton:"/>
                 <relationship kind="action" name="changeNews:" candidateClass="UIPageControl"/>
-                <relationship kind="action" name="forwardButton:"/>
-                <relationship kind="action" name="goHome:"/>
                 <relationship kind="action" name="openNews:"/>
-                <relationship kind="action" name="revealMenu:"/>
                 <relationship kind="action" name="seeMoreNews:"/>
                 <relationship kind="outlet" name="Notification_text" candidateClass="UILabel"/>
                 <relationship kind="outlet" name="backbutton" candidateClass="UIButton"/>
