@@ -78,7 +78,7 @@ NSInteger MAEvent_sortByStartTime(id ev1, id ev2, void *keyForSorting) {
 @synthesize backgroundColor=_backgroundColor;
 @synthesize textColor=_textColor;
 @synthesize userInfo=_userInfo;
-@synthesize checked, sameTimeEvents, ssID, sID, eventsOfSS;
+@synthesize checked, sameTimeEvents, ssID, sID, eventsOfSS, whichSame;
 
 #define DATE_CMP(X, Y) ([X year] == [Y year] && [X month] == [Y month] && [X day] == [Y day])
 
