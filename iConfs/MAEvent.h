@@ -40,7 +40,7 @@ NSInteger MAEvent_sortByStartTime(id ev1, id ev2, void *keyForSorting);
 	UIColor *backgroundColor;
 	UIColor *textColor;
 	
-	NSDictionary *userInfo;
+	NSString *userInfo;
 }
 
 @property (nonatomic,copy) NSString *title;
@@ -50,7 +50,7 @@ NSInteger MAEvent_sortByStartTime(id ev1, id ev2, void *keyForSorting);
 @property (readwrite,assign) BOOL allDay;
 @property (nonatomic,strong) UIColor *backgroundColor;
 @property (nonatomic,strong) UIColor *textColor;
-@property (nonatomic,strong) NSDictionary *userInfo;
+@property (nonatomic,strong) NSString *userInfo;
 @property (nonatomic) BOOL checked;
 @property (nonatomic) int sameTimeEvents;
 @property (nonatomic) int whichSame;
