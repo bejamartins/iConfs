@@ -113,8 +113,6 @@
 
 - (NSArray *)weekView:(MAWeekView *)weekView eventsForDate:(NSDate *)startDate {
     
-    
-    
     NSMutableArray *arr = [[NSMutableArray alloc] init];
     NSMutableArray *arrSS = [[NSMutableArray alloc] init];
     
@@ -144,15 +142,16 @@
         }
     }
     
+    NSArray *newArr = [[NSArray alloc] initWithArray:[arr sortedArrayUsingFunction:MAEvent_sortByStartTime context:NULL]];
     
-    
+    NSArray *newArrSS = [[NSArray alloc] initWithArray:[arrSS sortedArrayUsingFunction:MAEvent_sortByStartTime context:NULL]];
     
     if ([ViewOptions selectedSegmentIndex] == 0) {
-        [self sameTimeSS:arrSS];
-        return arrSS;
+        [self sameTimeSS:newArrSS];
+        return newArrSS;
     } else {
-        [self sameTimeSS:arr];
-        return arr;
+        [self sameTimeSS:newArr];
+        return newArr;
     }
 }
 
@@ -177,8 +176,8 @@
                 
                 NSDate *eventStart = [e start];
                 
-                if ([eventStart compare:[event start]] == NSOrderedSame || [eventStart compare:[event end]] == NSOrderedAscending) {
-                    [sameTimeEvents addObject:e];
+                if (!([eventStart compare:[event start]] == NSOrderedSame || [eventStart compare:[event end]] == NSOrderedAscending)) {
+                    break;
                 }
                 
                 [sameTimeEvents addObject:e];
@@ -211,7 +210,7 @@
         MAEvent *event = [[MAEvent alloc] init];
         event.textColor = [UIColor whiteColor];
         event.allDay = NO;
-        event.userInfo = NULL;
+        event.userInfo = [ss getTheme];
         [event setChecked:YES];
         [event setTitle:[ss getTheme]];
         [event setStart:[ss getStartDate]];
@@ -224,7 +223,7 @@
             MAEvent *tEvent = [[MAEvent alloc] init];
             tEvent.textColor = [UIColor whiteColor];
             tEvent.allDay = NO;
-            tEvent.userInfo = NULL;
+            event.userInfo = [ss getTheme];
             [tEvent setChecked:YES];
             [tEvent setTitle:[e getTheme]];
             [tEvent setStart:[e getDate]];
@@ -328,28 +327,40 @@
     if (buttonIndex != [alertView cancelButtonIndex]) {
         NSString *iD = @"Session Detail";
         
-        UIViewController *newTopViewController = [[self storyboard]instantiateViewControllerWithIdentifier:iD];
+        SessionsViewController *newTopViewController = [[self storyboard]instantiateViewControllerWithIdentifier:iD];
         
-        [(SessionsViewController*)newTopViewController setPrevious:[[self slidingViewController] topViewController]];
+        [newTopViewController viewDidLoad];
+        
+        [newTopViewController setPrevious:[[self slidingViewController] topViewController]];
         
         Conference *conf = [(MenuViewController*)[[self slidingViewController] underLeftViewController] selectedConf];
-        
-        NSArray *superSessions = [[NSArray alloc] initWithArray:[[conf getSuperSessions] allValues]];
-        
-        for (int i = 0; i < [superSessions count]; i++) {
-            if ([tappedEvent ssID] == [(SuperSession*)superSessions[i] getID]) {
-                [(SessionsViewController*)newTopViewController auxChangeSuperSession:i];
-                break;
-            }
-        }
-        
-        [(SessionsViewController*)newTopViewController changeSession:[tappedEvent sID]];
         
         CGRect frame = [[[[self slidingViewController] topViewController] view] frame];
         [[self slidingViewController] setTopViewController:newTopViewController];
         [[[[self slidingViewController] topViewController] view] setFrame:frame];
         
-        [[self slidingViewController] resetTopView];
+        
+        NSArray *superSessions = [[NSArray alloc] initWithArray:[[conf getSuperSessions] allValues]];
+        SuperSession *selectedSuperSession;
+        for (int i = 0; i < [superSessions count]; i++) {
+            if ([tappedEvent ssID] == [(SuperSession*)superSessions[i] getID]) {
+                [newTopViewController auxChangeSuperSession:i];
+                selectedSuperSession=[superSessions objectAtIndex:i];
+                break;
+            }
+        }
+        NSArray *sessions=[selectedSuperSession getSessionsOrderedByDate];
+        
+        if ([tappedEvent sID] != 0) {
+            for (int i = 0; i < [sessions count]; i++) {
+                if ([tappedEvent sID] == [(Session*)sessions[i] getID]) {
+                    [newTopViewController changeSession:i];
+                    break;
+                }
+            }
+        } else {
+            [newTopViewController changeSession:0];
+        }
     }
 }
 

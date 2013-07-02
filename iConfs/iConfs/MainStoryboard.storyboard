@@ -3043,6 +3043,10 @@
         <class className="AgendaViewController" superclassName="UIViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/AgendaViewController.h"/>
             <relationships>
+                <relationship kind="action" name="chengedOption:"/>
+                <relationship kind="action" name="goHome:"/>
+                <relationship kind="action" name="removeEvents:"/>
+                <relationship kind="action" name="revealMenu:"/>
                 <relationship kind="outlet" name="AgendaView" candidateClass="MAWeekView"/>
                 <relationship kind="outlet" name="MenuButton" candidateClass="UIButton"/>
                 <relationship kind="outlet" name="RemoveSessionsButton" candidateClass="UIButton"/>
