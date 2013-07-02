@@ -61,6 +61,15 @@
 -(int)getRate{
     return rating;
 }
+//the true ones
+-(void)rateTrue:(float)r{
+    ratingTrue = r;
+}
+
+-(float)getRateTrue{
+    return ratingTrue;
+}
+
 
 -(NSDate*)getDate{
     return date;

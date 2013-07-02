@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="2.0" toolsVersion="3084" systemVersion="12C54" targetRuntime="iOS.CocoaTouch.iPad" propertyAccessControl="none" useAutolayout="YES" initialViewController="Srd-QG-135">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="2.0" toolsVersion="3084" systemVersion="12E55" targetRuntime="iOS.CocoaTouch.iPad" propertyAccessControl="none" useAutolayout="YES" initialViewController="Srd-QG-135">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="2083"/>
     </dependencies>
@@ -64,9 +64,8 @@
                                     <action selector="homeButtonPressed:" destination="vEr-Go-9ia" eventType="touchUpInside" id="Rgo-I7-q1Y"/>
                                 </connections>
                             </button>
-                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Notifications" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fd6-wZ-vyO">
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Updates" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fd6-wZ-vyO">
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="21" id="QhY-xg-252"/>
                                     <constraint firstAttribute="width" constant="149" id="oGH-hg-V29"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="21"/>
@@ -97,7 +96,7 @@
                                     <constraint firstAttribute="width" constant="73" id="7CE-Nc-f5x"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
-                                <state key="normal" title="5M">
+                                <state key="normal" title="5 min">
                                     <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
@@ -2635,19 +2634,126 @@
                                         <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
+                                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gjZ-vF-k7p">
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="130" id="9G0-G1-Ygu"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="pOi-Yp-dVl">
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="50" id="pdC-DX-X8F"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
+                                        <state key="normal" title="1">
+                                            <color key="titleColor" red="0.19607843459999999" green="0.30980393290000002" blue="0.52156865600000002" alpha="1" colorSpace="calibratedRGB"/>
+                                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
+                                        <state key="highlighted">
+                                            <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="rate1:" destination="fqq-NK-Iso" eventType="touchUpInside" id="LSJ-q9-TU5"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="LJX-97-0v8">
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="50" id="bqE-Py-3ke"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
+                                        <state key="normal" title="2">
+                                            <color key="titleColor" red="0.19607843459999999" green="0.30980393290000002" blue="0.52156865600000002" alpha="1" colorSpace="calibratedRGB"/>
+                                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
+                                        <state key="highlighted">
+                                            <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="rate2:" destination="fqq-NK-Iso" eventType="touchUpInside" id="om5-8k-FWp"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="WlG-2c-Oyd">
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="50" id="LTu-e9-koB"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
+                                        <state key="normal" title="3">
+                                            <color key="titleColor" red="0.19607843459999999" green="0.30980393290000002" blue="0.52156865600000002" alpha="1" colorSpace="calibratedRGB"/>
+                                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
+                                        <state key="highlighted">
+                                            <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="rate3:" destination="fqq-NK-Iso" eventType="touchUpInside" id="UOv-Vn-zMG"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6II-Y4-ErC">
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="50" id="oyJ-tC-luT"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
+                                        <state key="normal" title="4">
+                                            <color key="titleColor" red="0.19607843459999999" green="0.30980393290000002" blue="0.52156865600000002" alpha="1" colorSpace="calibratedRGB"/>
+                                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
+                                        <state key="highlighted">
+                                            <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="rate4:" destination="fqq-NK-Iso" eventType="touchUpInside" id="ITW-am-y3V"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="AvP-Pg-brO">
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="50" id="QTH-M3-Iho"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
+                                        <state key="normal" title="5">
+                                            <color key="titleColor" red="0.19607843459999999" green="0.30980393290000002" blue="0.52156865600000002" alpha="1" colorSpace="calibratedRGB"/>
+                                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
+                                        <state key="highlighted">
+                                            <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="rate5:" destination="fqq-NK-Iso" eventType="touchUpInside" id="HkL-N4-HBo"/>
+                                        </connections>
+                                    </button>
+                                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Rate:" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ide-ds-bFY">
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
                                 </subviews>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                                 <constraints>
+                                    <constraint firstItem="LJX-97-0v8" firstAttribute="baseline" secondItem="pOi-Yp-dVl" secondAttribute="baseline" type="default" id="1co-gC-1l0"/>
+                                    <constraint firstItem="AvP-Pg-brO" firstAttribute="baseline" secondItem="6II-Y4-ErC" secondAttribute="baseline" type="default" id="1s5-wL-YWv"/>
+                                    <constraint firstItem="pOi-Yp-dVl" firstAttribute="leading" secondItem="ide-ds-bFY" secondAttribute="trailing" constant="8" symbolic="YES" type="default" id="2Pj-1a-VQz"/>
+                                    <constraint firstItem="gjZ-vF-k7p" firstAttribute="leading" secondItem="8jR-fm-1V0" secondAttribute="leading" type="default" id="5QJ-Mw-NpL"/>
+                                    <constraint firstItem="6II-Y4-ErC" firstAttribute="leading" secondItem="WlG-2c-Oyd" secondAttribute="trailing" constant="8" symbolic="YES" type="default" id="5u3-Pr-x2Z"/>
+                                    <constraint firstItem="WlG-2c-Oyd" firstAttribute="leading" secondItem="LJX-97-0v8" secondAttribute="trailing" constant="8" symbolic="YES" type="default" id="6RV-Qn-GhS"/>
                                     <constraint firstItem="8jR-fm-1V0" firstAttribute="bottom" secondItem="Acx-Y4-R3W" secondAttribute="bottom" type="default" id="7Pn-Td-6UZ"/>
                                     <constraint firstItem="wSS-vC-WPb" firstAttribute="top" secondItem="UEf-dJ-fab" secondAttribute="top" type="default" id="G0v-0Q-D1E"/>
-                                    <constraint firstItem="8jR-fm-1V0" firstAttribute="leading" secondItem="Acx-Y4-R3W" secondAttribute="leading" constant="9" id="QlJ-AO-rFw"/>
+                                    <constraint firstItem="WlG-2c-Oyd" firstAttribute="baseline" secondItem="LJX-97-0v8" secondAttribute="baseline" type="default" id="O4I-Sh-uqh"/>
                                     <constraint firstItem="iru-Yc-5FW" firstAttribute="top" secondItem="Acx-Y4-R3W" secondAttribute="top" constant="36" id="Qxe-se-vOZ"/>
+                                    <constraint firstItem="WlG-2c-Oyd" firstAttribute="centerX" secondItem="Acx-Y4-R3W" secondAttribute="centerX" type="default" id="TUw-JS-SmB"/>
                                     <constraint firstItem="SJ0-Nr-azY" firstAttribute="top" secondItem="Acx-Y4-R3W" secondAttribute="top" constant="12" id="Xw3-pD-e9K"/>
+                                    <constraint firstItem="gjZ-vF-k7p" firstAttribute="leading" secondItem="Acx-Y4-R3W" secondAttribute="leading" constant="9" id="Y6K-Lt-tjl"/>
+                                    <constraint firstAttribute="bottom" secondItem="gjZ-vF-k7p" secondAttribute="bottom" constant="255" id="a1I-yn-hRa"/>
                                     <constraint firstItem="SJ0-Nr-azY" firstAttribute="leading" secondItem="Acx-Y4-R3W" secondAttribute="leading" constant="29" id="a7Q-AD-DmI"/>
+                                    <constraint firstItem="ide-ds-bFY" firstAttribute="baseline" secondItem="pOi-Yp-dVl" secondAttribute="baseline" type="default" id="ciz-bd-wLy"/>
+                                    <constraint firstItem="AvP-Pg-brO" firstAttribute="leading" secondItem="6II-Y4-ErC" secondAttribute="trailing" constant="8" symbolic="YES" type="default" id="lR2-wz-oFq"/>
+                                    <constraint firstItem="LJX-97-0v8" firstAttribute="leading" secondItem="pOi-Yp-dVl" secondAttribute="trailing" constant="8" symbolic="YES" type="default" id="mBP-rv-yVE"/>
+                                    <constraint firstItem="6II-Y4-ErC" firstAttribute="baseline" secondItem="WlG-2c-Oyd" secondAttribute="baseline" type="default" id="nMC-iL-Zjt"/>
                                     <constraint firstAttribute="bottom" secondItem="wSS-vC-WPb" secondAttribute="bottom" constant="369" id="p0z-hw-Sd8"/>
                                     <constraint firstItem="iru-Yc-5FW" firstAttribute="leading" secondItem="Acx-Y4-R3W" secondAttribute="leading" constant="20" symbolic="YES" type="default" id="p6a-3b-E9d"/>
                                     <constraint firstAttribute="trailing" secondItem="wSS-vC-WPb" secondAttribute="trailing" constant="8" id="vYf-hx-L9Q"/>
                                     <constraint firstAttribute="trailing" secondItem="UEf-dJ-fab" secondAttribute="trailing" constant="36" id="xrD-KH-5h0"/>
+                                    <constraint firstItem="8jR-fm-1V0" firstAttribute="top" secondItem="pOi-Yp-dVl" secondAttribute="bottom" constant="8" symbolic="YES" type="default" id="ys4-aC-NNT"/>
                                 </constraints>
                             </view>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" alwaysBounceHorizontal="YES" showsVerticalScrollIndicator="NO" minimumZoomScale="0.0" maximumZoomScale="0.0" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="z2M-yS-Fvj">
@@ -2758,6 +2864,7 @@
                     <toolbarItems/>
                     <connections>
                         <outlet property="AuthorsTable" destination="8jR-fm-1V0" id="UUG-6H-lVq"/>
+                        <outlet property="RatingLabel" destination="gjZ-vF-k7p" id="dRs-zL-AtM"/>
                         <outlet property="abstract" destination="iru-Yc-5FW" id="5hf-Ov-sDl"/>
                         <outlet property="collection" destination="z2M-yS-Fvj" id="TJQ-zU-fOu"/>
                         <outlet property="searchBar" destination="loB-ub-bZP" id="IoY-qH-oQW"/>
@@ -3049,7 +3156,13 @@
             <source key="sourceIdentifier" type="project" relativePath="./Classes/SessionsViewController.h"/>
             <relationships>
                 <relationship kind="action" name="openPaper:"/>
+                <relationship kind="action" name="rate1:"/>
+                <relationship kind="action" name="rate2:"/>
+                <relationship kind="action" name="rate3:"/>
+                <relationship kind="action" name="rate4:"/>
+                <relationship kind="action" name="rate5:"/>
                 <relationship kind="outlet" name="AuthorsTable" candidateClass="UITableView"/>
+                <relationship kind="outlet" name="RatingLabel" candidateClass="UILabel"/>
                 <relationship kind="outlet" name="abstract" candidateClass="UILabel"/>
                 <relationship kind="outlet" name="collection" candidateClass="UICollectionView"/>
                 <relationship kind="outlet" name="searchBar" candidateClass="UISearchBar"/>

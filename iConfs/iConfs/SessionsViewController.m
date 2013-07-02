@@ -30,6 +30,11 @@
     int ssIndex;
     MenuViewController *menu;
     int load;
+    
+    //usado para o rating
+    NSString *sessionID;
+    NSString *confID;
+
 }
 
 @property (strong, nonatomic) IBOutlet UISearchBar *searchBar;
@@ -46,6 +51,55 @@
         givenSession=NO;
     }
     return self;
+}
+
+
+//sets rating, this function shouldn't be here but I can' access IConfs to call the original...
+-(BOOL)setRating:(NSString*)confyID : (NSString*)sessionyID : (NSInteger)rating{
+    
+    NSString* post=[NSString stringWithFormat:@"%@%@%@%@%@%ld%@",@"Conf=",confyID,@"&&Session=",sessionyID,@"&&Rating=",(long)rating,@"&SubmitCheck=Sent"];
+    NSData* postData=[post dataUsingEncoding:NSASCIIStringEncoding allowLossyConversion:NO];
+    NSString* postLength=[NSString stringWithFormat:@"%d",[postData length]];
+    
+    NSMutableURLRequest* request=[[NSMutableURLRequest alloc] init];
+    [request setURL:[NSURL URLWithString:@"http://193.136.122.141/ratingSet.php"]];
+    [request setHTTPMethod:@"POST"];
+    [request setValue:postLength forHTTPHeaderField:@"Content-Length"];
+    [request setValue:@"application/x-www-form-urlencoded" forHTTPHeaderField:@"Content-Type"];
+    [request setHTTPBody:postData];
+    [request setTimeoutInterval:5];
+    
+    
+    NSURLResponse* response;
+    NSData* data=[NSURLConnection sendSynchronousRequest:request returningResponse:&response error:nil];
+    
+    if(data!=nil){
+        return YES;
+    }else return NO;
+    
+}
+
+
+
+
+- (IBAction)rate1:(id)sender {
+    [self setRating:confID:sessionID:1];
+}
+
+- (IBAction)rate2:(id)sender {
+    [self setRating:confID:sessionID:2];
+}
+
+- (IBAction)rate3:(id)sender {
+    [self setRating:confID:sessionID:3];
+}
+
+- (IBAction)rate4:(id)sender {
+    [self setRating:confID:sessionID:4];
+}
+
+- (IBAction)rate5:(id)sender {
+    [self setRating:confID:sessionID:5];
 }
 
 
@@ -83,10 +137,31 @@
 
 }
 
+
+
 -(void)changeSession:(int)indexSession{
     //seleciona autor
     selectedSession =[sessions objectAtIndex:indexSession];
-
+    
+    
+    //usado para o rating
+    confID=conf.getID;
+    int tmpy=selectedSession.getID;
+    //STUPID THING I HAD TO MAKE BECAUSE YOU CONVERTED THE GODDAMN ID TO A INT!!!
+    //THIS TYPE OF PROGRAMMING SUCKS!!!
+    if(tmpy<10)
+        sessionID= [NSString stringWithFormat:@"%@%i",@"s00",selectedSession.getID];
+    else if(tmpy<100)
+        sessionID= [NSString stringWithFormat:@"%@%i",@"s0",selectedSession.getID];
+    else
+        sessionID= [NSString stringWithFormat:@"%@%i",@"s",selectedSession.getID];
+    self.RatingLabel.text=[NSString stringWithFormat:@"%@%.1f",@"Rating: ",selectedSession.getRateTrue];
+    
+    
+    
+    
+    
+    
     [collection reloadData];
 
     NSIndexPath *indexPath=[NSIndexPath indexPathForRow:indexSession inSection:0 ];
@@ -158,6 +233,25 @@
         
         selectedSession =[[selectedSuperSession getSessionsOrderedByDate]objectAtIndex:0];
     
+        
+        
+        //usado para o rating
+        confID=conf.getID;
+        int tmpy=selectedSession.getID;
+        //STUPID THING I HAD TO MAKE BECAUSE YOU CONVERTED THE GODDAMN ID TO A INT!!!
+        //THIS TYPE OF PROGRAMMING SUCKS!!!
+        if(tmpy<10)
+            sessionID= [NSString stringWithFormat:@"%@%i",@"s00",selectedSession.getID];
+        else if(tmpy<100)
+            sessionID= [NSString stringWithFormat:@"%@%i",@"s0",selectedSession.getID];
+        else
+            sessionID= [NSString stringWithFormat:@"%@%i",@"s",selectedSession.getID];
+        self.RatingLabel.text=[NSString stringWithFormat:@"%@%.1f",@"Rating: ",selectedSession.getRateTrue];
+        
+        
+        
+        
+        
         //adicionar abstract e autores
     
   //      [abstract setText:[selectedSession getTheme]];
@@ -392,6 +486,26 @@
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     
     selectedSession=[sessions objectAtIndex:indexPath.row];
+    
+    
+    
+    
+    //usado para o rating
+    confID=conf.getID;
+    int tmpy=selectedSession.getID;
+    //STUPID THING I HAD TO MAKE BECAUSE YOU CONVERTED THE GODDAMN ID TO A INT!!!
+    //THIS TYPE OF PROGRAMMING SUCKS!!!
+    if(tmpy<10)
+        sessionID= [NSString stringWithFormat:@"%@%i",@"s00",selectedSession.getID];
+    else if(tmpy<100)
+        sessionID= [NSString stringWithFormat:@"%@%i",@"s0",selectedSession.getID];
+    else
+        sessionID= [NSString stringWithFormat:@"%@%i",@"s",selectedSession.getID];
+    self.RatingLabel.text=[NSString stringWithFormat:@"%@%.1f",@"Rating: ",selectedSession.getRateTrue];
+    
+    
+    
+    
 
 
     //adicionar abstract e autores
