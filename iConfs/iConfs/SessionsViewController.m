@@ -319,7 +319,7 @@
     //////////////////////////////////////////////////////////
     
     //DEBUG EDUARDO
-    
+
     int x=[selectedSession getPaperID];
     if(x !=-1){
         Session *s=selectedSession;
@@ -560,8 +560,12 @@
 }
 
 - (IBAction)openPaper:(id)sender {
+    
+//   IConfs *ic= [(MenuViewController*)[[self slidingViewController] underLeftViewController] appData];
+  //  [ic getPaper:<#(NSString *)#> :<#(NSString *)#>];
     NSString *iD = @"PDFReader";
     PDFReader *newTopViewController = [[self storyboard]instantiateViewControllerWithIdentifier:iD];
+    
     NSString *paperPath=[[[autores objectAtIndex:0] getPaper:[selectedSession getPaperID]]getLink];
     [newTopViewController changePath:paperPath];
     [newTopViewController changeToFullScreen];
@@ -582,7 +586,6 @@
     
     UIViewController *newTopViewController = [[self storyboard]instantiateViewControllerWithIdentifier:iD];
     
-    [(MenuViewController*)[[self slidingViewController] underLeftViewController] deselectConf];
     
     [[self slidingViewController] anchorTopViewTo:ECRight];
     CGRect frame = [[[[self slidingViewController] topViewController] view] frame];

@@ -45,6 +45,7 @@
 
 
 
+
 -(NSInteger)numberOfSectionsInCollectionView:(UICollectionView *)collectionView{
     return 1;
 }
@@ -258,6 +259,7 @@
     
     
     
+    
     if(size>=3){
     for(int i =size-1; i>size-4;i--){
         News *n=[news objectAtIndex:i];
@@ -440,4 +442,24 @@
 
 
 
+- (IBAction)seeMoreNews:(id)sender {
+    NSString *iD = @"News";
+    
+    NSArray *news=[conf getNews];
+    NewsViewController *newTopViewController =[[self storyboard]instantiateViewControllerWithIdentifier:iD];
+    NSArray *aux=[conf getNews];
+    NSArray* reversedArray = [[aux reverseObjectEnumerator] allObjects];
+    NSArray *result=[[NSArray alloc] init];
+    
+       result=[result arrayByAddingObjectsFromArray:reversedArray];
+    
+    [newTopViewController changeNews:result];
+    [newTopViewController changePrevious:self];
+    [newTopViewController viewDidLoad];
+    
+    CGRect frame = [[[[self slidingViewController] topViewController] view] frame];
+    [[self slidingViewController] setTopViewController:newTopViewController];
+    [[[[self slidingViewController] topViewController] view] setFrame:frame];
+    
+}
 @end

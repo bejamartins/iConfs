@@ -195,6 +195,8 @@
  Fetch conferences from the server
  @returns true, if the the proceed worked as intended, false if there was a connection issue
  */
+-(NSString*)getPaper:(NSString*)confID : (NSString*)paperPath;
+
 -(BOOL)fetchConferences;
 
 /**

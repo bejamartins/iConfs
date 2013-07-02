@@ -26,6 +26,7 @@
 @property (strong, nonatomic) IBOutlet UILabel *date;
 @property (strong, nonatomic) IBOutlet UIButton *newsButton;
 
+- (IBAction)seeMoreNews:(id)sender;
 @property (strong, nonatomic) IBOutlet UIImageView *picture;
 
 
