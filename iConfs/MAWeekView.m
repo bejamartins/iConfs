@@ -426,6 +426,8 @@ static const unsigned int TOP_BACKGROUND_HEIGHT               = 35;
 }
 
 - (void)reloadData {
+    [self setConflict:NO];
+    
 	for (id view in self.allDayEventView.subviews) {
 		if ([NSStringFromClass([view class])isEqualToString:@"MAEventView"]) {
 			[view removeFromSuperview];
@@ -460,14 +462,15 @@ static const unsigned int TOP_BACKGROUND_HEIGHT               = 35;
                 
 			} else {
                 
-                if (i == ([events count] - 1)) {
+                /*if (i == ([events count] - 1)) {
                     
                     [self.gridView addEventToOffset:d event:event weekView:self sameTimeEvents:1 whichSame:0];
                     
                 } else {
                     int count = 1;
                     MAEvent *e;
-                    NSMutableArray *sameTimeEvents = [[NSMutableArray alloc] initWithObjects:event, nil];
+                    NSMutableArray *sameTimeEvents = [[NSMutableArray alloc] init];
+                    [sameTimeEvents addObject:event];
                     
                     for (; (count + i) < [events count]; count++) {
                         e = [events objectAtIndex:count + i];
@@ -481,13 +484,9 @@ static const unsigned int TOP_BACKGROUND_HEIGHT               = 35;
                         [sameTimeEvents addObject:e];
                     }
                     
-                    [sameTimeEvents removeObject:event];
-                    [event setSameTimeEvents:sameTimeEvents];
-                    [sameTimeEvents addObject:event];
-                    
                     if ([event checked]){
-                        for (id e in [event sameTimeEvents]) {
-                            if ([e checked]) {
+                        for (MAEvent *e in sameTimeEvents) {
+                            if ([e checked] && event != e) {
                                 [event setBackgroundColor:[UIColor redColor]];
                                 [self setConflict:YES];
                             }
@@ -500,14 +499,9 @@ static const unsigned int TOP_BACKGROUND_HEIGHT               = 35;
                         
                         e = [events objectAtIndex:y + i];
                         
-                        [sameTimeEvents removeObject:e];
-                        [e setSameTimeEvents:sameTimeEvents];
-                        [sameTimeEvents addObject:e];
-                        
                         if ([e checked]){
-                            [e setBackgroundColor:[UIColor brownColor]];
-                            for (id anotherEvent in [e sameTimeEvents]) {
-                                if ([anotherEvent checked]) {
+                            for (MAEvent *anotherEvent in sameTimeEvents) {
+                                if ([anotherEvent checked] && e != anotherEvent) {
                                     [e setBackgroundColor:[UIColor redColor]];
                                 }
                             }
@@ -518,7 +512,9 @@ static const unsigned int TOP_BACKGROUND_HEIGHT               = 35;
                     }
                     
                     i += (count - 1);
-                }
+                }*/
+                
+                [self.gridView addEventToOffset:d event:event weekView:self sameTimeEvents:[event sameTimeEvents] whichSame:[event whichSame]];
 			}
 		}
 		d++;

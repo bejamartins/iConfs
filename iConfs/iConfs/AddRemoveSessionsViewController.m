@@ -120,6 +120,7 @@
     
     
     NSMutableArray *arr = [[NSMutableArray alloc] init];
+    NSMutableArray *arrSS = [[NSMutableArray alloc] init];
     
     for (MAEvent* ss in Events) {
         
@@ -127,17 +128,152 @@
         NSDateComponents *componentsStart = [CURRENT_CALENDAR components:DATE_COMPONENTS fromDate:startDate];
         
         if ([components day] == [componentsStart day]) {
-            if ([ViewOptions selectedSegmentIndex] == 0) {
-                [arr addObject:ss];
+            if ([ss checked]) {
+                [ss setBackgroundColor:[UIColor greenColor]];
+                [arrSS addObject:ss];
             } else {
-                for (id e in [ss eventsOfSS]) {
-                    [arr addObject:e];
+                [ss setBackgroundColor:[UIColor brownColor]];
+                [arrSS addObject:ss];
+            }
+            
+            for (id e in [ss eventsOfSS]) {
+                if ([e checked]) {
+                        [e setBackgroundColor:[UIColor blueColor]];
+                        [arr addObject:e];
+                } else {
+                        [e setBackgroundColor:[UIColor orangeColor]];
+                        [arr addObject:e];
                 }
             }
         }
     }
     
-	return arr;
+    
+    
+    [self isThereConflict:arr willChangeSS:arrSS];
+    
+    if ([ViewOptions selectedSegmentIndex] == 0) {
+        [self sameTimeSS:arrSS];
+        return arrSS;
+    } else
+        return arr;
+}
+
+- (void)sameTimeSS:(NSArray*)events {
+    for (int i = 0; i < [events count]; i++) {
+        
+        MAEvent *event = [events objectAtIndex:i];
+        
+        if (i == ([events count] - 1)) {
+            
+            [event setSameTimeEvents:1];
+            [event setWhichSame:0];
+            
+        } else {
+            int count = 1;
+            MAEvent *e;
+            NSMutableArray *sameTimeEvents = [[NSMutableArray alloc] init];
+            [sameTimeEvents addObject:event];
+            
+            for (; (count + i) < [events count]; count++) {
+                e = [events objectAtIndex:count + i];
+                
+                NSDate *eventStart = [e start];
+                
+                if (!([eventStart compare:[event start]] == NSOrderedSame || [eventStart compare:[event end]] == NSOrderedAscending)) {
+                    break;
+                }
+                
+                [sameTimeEvents addObject:e];
+            }
+            
+            [event setSameTimeEvents:[sameTimeEvents count]];
+            [event setWhichSame:0];
+            
+            for (int y = 1; y < count; y++) {
+                
+                e = [events objectAtIndex:y + i];
+                
+                [e setSameTimeEvents:[sameTimeEvents count]];
+                [e setWhichSame:y];
+            }
+            
+            i += (count - 1);
+        }
+    }
+}
+
+- (void)isThereConflict:(NSArray*)events willChangeSS:(NSArray*)eventsSS {
+    
+    for (int i = 0; i < [events count]; i++) {
+        
+        MAEvent *event = [events objectAtIndex:i];
+        
+        if (i == ([events count] - 1)) {
+        
+            [event setSameTimeEvents:1];
+            [event setWhichSame:0];
+        
+        } else {
+            int count = 1;
+            MAEvent *e;
+            NSMutableArray *sameTimeEvents = [[NSMutableArray alloc] init];
+            [sameTimeEvents addObject:event];
+        
+            for (; (count + i) < [events count]; count++) {
+                e = [events objectAtIndex:count + i];
+            
+                NSDate *eventStart = [e start];
+            
+                if (!([eventStart compare:[event start]] == NSOrderedSame || [eventStart compare:[event end]] == NSOrderedAscending)) {
+                    break;
+                }
+            
+            [sameTimeEvents addObject:e];
+            }
+        
+            if ([event checked]){
+                for (MAEvent *e in sameTimeEvents) {
+                    if ([e checked] && event != e) {
+                        [event setBackgroundColor:[UIColor redColor]];
+                        for (MAEvent* eventSS in eventsSS) {
+                            if ([eventSS ssID] == [event ssID]) {
+                                [eventSS setBackgroundColor:[UIColor redColor]];
+                                break;
+                            }
+                        }
+                    }
+                }
+            }
+        
+            [event setSameTimeEvents:[sameTimeEvents count]];
+            [event setWhichSame:0];
+        
+            for (int y = 1; y < count; y++) {
+            
+                e = [events objectAtIndex:y + i];
+            
+                if ([e checked]){
+                    for (MAEvent *anotherEvent in sameTimeEvents) {
+                        if ([anotherEvent checked] && e != anotherEvent) {
+                            [e setBackgroundColor:[UIColor redColor]];
+                            for (MAEvent* eventSS in eventsSS) {
+                                if ([eventSS ssID] == [e ssID]) {
+                                    [eventSS setBackgroundColor:[UIColor redColor]];
+                                    break;
+                                }
+                            }
+                        }
+                    }
+                }
+            
+                [e setSameTimeEvents:[sameTimeEvents count]];
+                [e setWhichSame:y];
+            }
+        
+            i += (count - 1);
+        }
+    }
 }
 
 - (void)sessionToMAEvents {
@@ -155,9 +291,9 @@
             event.allDay = NO;
             event.userInfo = NULL;
             [event setChecked:YES];
-            event.backgroundColor = [UIColor greenColor];
             [event setTitle:[ss getTheme]];
             [event setStart:[ss getStartDate]];
+            [event setEnd:[ss calculateEndDate]];
             [event setSsID:[(SuperSession*)ss getID]];
             
             NSMutableArray *eventsInSS = [[NSMutableArray alloc] init];
@@ -168,7 +304,6 @@
                 tEvent.allDay = NO;
                 tEvent.userInfo = NULL;
                 [tEvent setChecked:YES];
-                tEvent.backgroundColor = [UIColor blueColor];
                 [tEvent setTitle:[e getTheme]];
                 [tEvent setStart:[e getDate]];
                 [tEvent setEnd:[e getEventEnd]];
@@ -184,7 +319,6 @@
                 tEvent.allDay = NO;
                 tEvent.userInfo = NULL;
                 [tEvent setChecked:NO];
-                tEvent.backgroundColor = [UIColor orangeColor];
                 [tEvent setTitle:[e getTheme]];
                 [tEvent setStart:[e getDate]];
                 [tEvent setEnd:[e getEventEnd]];
@@ -205,9 +339,9 @@
             event.allDay = NO;
             event.userInfo = NULL;
             [event setChecked:NO];
-            event.backgroundColor = [UIColor brownColor];
             [event setTitle:[ss getTheme]];
             [event setStart:[ss getStartDate]];
+            [event setEnd:[ss calculateEndDate]];
             [event setSsID:[(SuperSession*)ss getID]];
             
             NSMutableArray *eventsInSS = [[NSMutableArray alloc] init];
@@ -218,7 +352,6 @@
                 tEvent.allDay = NO;
                 tEvent.userInfo = NULL;
                 [tEvent setChecked:NO];
-                tEvent.backgroundColor = [UIColor orangeColor];
                 [tEvent setTitle:[e getTheme]];
                 [tEvent setStart:[e getDate]];
                 [tEvent setEnd:[e getEventEnd]];
@@ -246,10 +379,8 @@
                 for (MAEvent *ss in Events) {
                     if ([ss ssID] == [event ssID]){
                         [ss setChecked:NO];
-                        [ss setBackgroundColor:[UIColor brownColor]];
                         for (MAEvent *e in [ss eventsOfSS]) {
                             [e setChecked:NO];
-                            [e setBackgroundColor:[UIColor orangeColor]];
                         }
                         
                         break;
@@ -259,10 +390,8 @@
                 for (MAEvent *ss in Events) {
                     if ([ss ssID] == [event ssID]){
                         [ss setChecked:YES];
-                        [ss setBackgroundColor:[UIColor greenColor]];
                         for (MAEvent *e in [ss eventsOfSS]) {
                             [e setChecked:YES];
-                            [e setBackgroundColor:[UIColor blueColor]];
                         }
                         
                         break;
@@ -274,14 +403,11 @@
                 for (MAEvent *ss in Events) {
                     if ([ss ssID] == [event ssID]){
                         [ss setChecked:NO];
-                        [ss setBackgroundColor:[UIColor brownColor]];
                         for (MAEvent *e in [ss eventsOfSS]) {
                             if ([e sID] == [event sID]) {
                                 [e setChecked:NO];
-                                [e setBackgroundColor:[UIColor orangeColor]];
                             } else if ([e checked]) {
                                 [ss setChecked:YES];
-                                [ss setBackgroundColor:[UIColor greenColor]];
                             }
                         }
                         
@@ -292,11 +418,9 @@
                 for (MAEvent *ss in Events) {
                     if ([ss ssID] == [event ssID]){
                         [ss setChecked:YES];
-                        [ss setBackgroundColor:[UIColor greenColor]];
                         for (MAEvent *e in [ss eventsOfSS]) {
                             if ([e sID] == [event sID]) {
                                 [e setChecked:YES];
-                                [e setBackgroundColor:[UIColor blueColor]];
                             }
                         }
                         
@@ -320,7 +444,7 @@
 - (IBAction)editEvents:(id)sender {
     if (isEditing) {
         isEditing = NO;
-        
+        [self saveChanges];
         [[self EditButton] setTitle:@"Add/Remove Sessions" forState:UIControlStateNormal];
         [AgendaView reloadData];
     } else {
@@ -337,13 +461,12 @@
     for (MAEvent* e in Events) {
             if ([e checked]) {
                  [[(MenuViewController*)[[self slidingViewController] underLeftViewController] appData] subscribeSuperSessionInAgendaByID:[e ssID] Conference:iD];
-                CustomizableSuperSession *ss = [CustomizableSuperSession alloc];
                 
                 for (CustomizableSuperSession* cSS in [[(MenuViewController*)[[self slidingViewController] underLeftViewController] appData] getAgendaByConferenceOrderedByDate:iD]) {
                     if ([cSS getID] == [e ssID]) {
                         for (MAEvent* event in [e eventsOfSS]) {
                             if (![event checked]) {
-                                
+                                [cSS unsubscribeAnyEvent:[event sID]];
                             }
                         }
                         
