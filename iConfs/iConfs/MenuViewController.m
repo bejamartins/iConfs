@@ -187,6 +187,14 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     
+    //testing if it is not too much stress on the system to update here
+    //basically this updates all the data on the app regarding server updates
+    //whenever the tableview is called
+    theAppData = [self appData];
+    confs = [[NSArray alloc] initWithArray:[theAppData getMyConferences]];
+    
+    
+    
     if ([indexPath section] == 0){
         showMenuConf = NO;
         NSString *iD = [NSString stringWithFormat:@"%@", [self.MenuView cellForRowAtIndexPath:indexPath].textLabel.text];

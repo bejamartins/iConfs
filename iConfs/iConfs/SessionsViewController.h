@@ -24,4 +24,19 @@
 -(void)changeSession:(int)indexSession;
 -(void)auxChangeSuperSession:(int)index;
 
+- (IBAction)rate1:(id)sender;
+
+- (IBAction)rate2:(id)sender;
+
+- (IBAction)rate3:(id)sender;
+
+- (IBAction)rate4:(id)sender;
+
+- (IBAction)rate5:(id)sender;
+
+
+
+
+@property (weak, nonatomic) IBOutlet UILabel *RatingLabel;
+
 @end
