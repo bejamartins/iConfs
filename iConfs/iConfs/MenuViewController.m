@@ -23,7 +23,9 @@
     NSArray *menuConf;
     NSArray *confs;
     BOOL showMenuConf;
+    IBOutlet UIButton *button5;
     IConfs *theAppData;
+    IBOutlet UIButton *xbutton;
 }
 
 @end
@@ -58,6 +60,7 @@
     
     [[self MenuView] setDelegate:self];
     [[self MenuView] setDataSource:self];
+    [button5 setBackgroundColor:[UIColor colorWithRed:168/255.0 green:30/255.0 blue:22/255.0 alpha:1]];
     
     theAppData = [self appData];
     
@@ -94,10 +97,18 @@
 
 - (IBAction)do5Min:(id)sender {
     [theAppData changeTimer:5];
+    [button5 setBackgroundColor:[UIColor colorWithRed:168/255.0 green:30/255.0 blue:22/255.0 alpha:1]];
+
+    [xbutton  setBackgroundColor:[UIColor clearColor]];
+
 }
 
 - (IBAction)do0Min:(id)sender {
     [theAppData changeTimer:0];
+    [xbutton setBackgroundColor:[UIColor colorWithRed:168/255.0 green:30/255.0 blue:22/255.0 alpha:1]];
+
+    [button5 setBackgroundColor:[UIColor clearColor]];
+
 }
 
 #pragma - Table View Methods
