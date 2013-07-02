@@ -38,7 +38,7 @@
     [blueprint setImage:image];
     NSInteger height= self.blueprint.frame.size.height;
     NSInteger width=self.blueprint.frame.size.width;
-    [self changePlaces:placesToShow];
+ //   [self changePlaces:placesToShow];
         
 
 
@@ -54,7 +54,9 @@
 
 -(void) changeBlueprint:(UIImage*)print{
     [self.blueprint setImage:print];
-    [self viewDidLoad];
+    [self.view setNeedsDisplay];
+
+  //  [self viewDidLoad];
     //  TODO: confirmar
 }
 

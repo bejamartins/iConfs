@@ -22,6 +22,8 @@
     IBOutlet UIImageView *secondArrow;
     IBOutlet UIImageView *firstArrow;
     IBOutlet UILabel *placeLabel;
+    int selectedFloor;
+    int selectedPlaceType;
     
   //  NSMutableDictionary *bps;
 }
@@ -44,6 +46,8 @@
 
 - (void)viewDidLoad
 {
+    selectedFloor=0;
+    selectedPlaceType=2;
     [placeCollection setDelegate:self];
     [placeCollection setDataSource:self];
     [placesTable setDelegate:self];
@@ -148,8 +152,11 @@
 //    
 //    if ([anObject isKindOfClass:[WC class]]){
     if(collectionView.tag==0){
-        static NSString *CellIdentifier=@"floor";
-    
+        static NSString *CellIdentifier;
+        if(selectedFloor!=indexPath.item){
+        CellIdentifier=@"floor";
+        }
+        else{CellIdentifier=@"selected_floor";}
     
         FloorCell *cell= [collectionView dequeueReusableCellWithReuseIdentifier:CellIdentifier forIndexPath:indexPath];
         NSArray *keys = [self.blueprints allKeys];
@@ -172,19 +179,39 @@
         return cell;
     }
     else{
-        static NSString *CellIdentifier=@"default_place";
+        
+        static NSString *CellIdentifier;
+        if(indexPath.item!=selectedPlaceType){
+            CellIdentifier=@"default_place";
+        }
+        
+        else{
+            CellIdentifier=@"selected_cell";
+            if(selectedPlaceType==0){
+                [placeLabel setText:@"Eating Spots"];
+            }
+            else if(selectedPlaceType==1){
+                [placeLabel setText:@"WC"];
+            }
+            else{
+                [placeLabel setText:@"Rooms"];
+            }
+
+        
+        }
         UIImage *picture;
         PlaceDefaultCell *cell= [collectionView dequeueReusableCellWithReuseIdentifier:CellIdentifier forIndexPath:indexPath];
-        NSLog(@"Item: %d", indexPath.item);
         
-        if(indexPath.row==0){
+        if(indexPath.item==0){
+            
+        
             [[cell picture]setImage:[UIImage imageNamed:@"clip_art_food.gif"]];
             
-            [[cell name]setText:@"Eating Spot"];
+            [[cell name]setText:@"Eating Spots"];
             
         }
-        if(indexPath.row==1){
-            [[cell picture]setImage:[UIImage imageNamed:@"Bathroom-gender-sign.png"]];
+        if(indexPath.item==1){
+                      [[cell picture]setImage:[UIImage imageNamed:@"Bathroom-gender-sign.png"]];
             
             [[cell name]setText:@"WC"];
             
@@ -193,7 +220,6 @@
             [[cell picture]setImage:[UIImage imageNamed:@"pulpito.png"]];
             
             [[cell name]setText:@"Rooms"];
-            
             
         }
         return cell;
@@ -207,6 +233,11 @@
 }
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
 
+    NSArray *aux= [[NSArray alloc]initWithObjects:[places objectAtIndex:indexPath.row], nil ];
+    [self changePlacesToShow:aux];
+    
+    
+    
 
 //por no view did load da coleçao de tipo de colecçao
     
@@ -241,15 +272,22 @@
     [self changeSelectedBlueprint:b];
     
     [placesTable reloadData];
+        selectedFloor=indexPath.item;
+            [placesTable deselectRowAtIndexPath:[placesTable indexPathForSelectedRow]animated:YES];
+         //   [placesTable reloadData];
+        
+        
+  
     }
-    
+
+
     
     else{
-            if(indexPath.row==0){
+            if(indexPath.item==0){
                 places=[selectedBlueprint getEatingAreas];
         
             }
-            else if(indexPath.row ==1){
+            else if(indexPath.item ==1){
                 places=[selectedBlueprint getWCs];
         
             }
@@ -257,11 +295,13 @@
             places=[selectedBlueprint getRooms];
            }
         [self changePlacesToShow:places];
-    
+        selectedPlaceType=indexPath.item;
     }
      //   NSLog(@"Detectei toque");
     
-    
+    [collectionView reloadData];
+    [placesTable reloadData];
+  
     
     for (UIViewController *childViewController in [self childViewControllers])
     {
@@ -281,8 +321,8 @@
             //UIImage *image=[UIImage imageNamed:@"1.jpg"];
             bpController.image=image;
             [bpController changeBlueprint:image];
-            [bpController changePlaces: places];
-            [bpController viewDidLoad];
+    //        [bpController changePlaces: places];
+        //    [bpController viewDidLoad];
             
 
             
