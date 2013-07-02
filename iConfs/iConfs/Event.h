@@ -19,6 +19,7 @@
     BOOL userVoted;
     int vote;
     int rating;
+    float ratingTrue;
     int eventID;
     NSString* placeID;
     NSDate* eventEnd;
@@ -46,6 +47,9 @@
 
 //Overall rating of the event
 @property (nonatomic) int rating;
+
+//Overall rating of the event
+@property (nonatomic) float ratingTrue;
 
 //ID of the event
 @property (nonatomic) int eventID;
@@ -133,6 +137,10 @@
  @returns rating or -1 if there are no votes on the event
  */
 -(int)getRate;
+
+//the real rating functions
+-(void)rateTrue:(float)r;
+-(float)getRateTrue;
 
 /**
  Gets event's overall rating

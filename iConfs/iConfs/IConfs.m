@@ -604,11 +604,13 @@
         [addedConfsIDs addObject:[current getID]];
         
         //agenda here, not totally TODO: this load agenda must pass the NSDictionary to a variable
-        [agendaDic setValue:[self loadAgenda:[tmpConfs objectAtIndex:i]] forKey:[tmpConfs objectAtIndex:i]];
+        //[agendaDic setValue:[self loadAgenda:[tmpConfs objectAtIndex:i]] forKey:[tmpConfs objectAtIndex:i]];
         
-        [self setAgendaPaths];
-        [self loadAgendaFromDisk];
+        
     }
+    
+    [self setAgendaPaths];
+    [self loadAgendaFromDisk];
 }
 
 
@@ -907,6 +909,7 @@
             }else currIDAUX=-1;
             e = [(Session*)e initWithDataAndSpeaker:currID date: date1 title:[sess[i] valueForKey:@"Name"] theme:[sess[i] valueForKey:@"Description"] speaker: speakerAux athor: authorAux paper:currIDAUX];
             [e setEventEnd:date2];
+            [e rateTrue:[[sess[i] valueForKey:@"Rating"] floatValue]];
             //[sessions addObject:e];
             [conf addSessions:(Session*)e];
             [((SuperSession*)[supersessions valueForKey:[sess[i] valueForKey:@"IDSuperSession"]]) addSession:(Session*)e];

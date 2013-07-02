@@ -17,6 +17,7 @@
     theme = th;
     vote = -1;
     rating = -1;
+    ratingTrue = -1;
     supersessions = [[NSMutableArray alloc] init];
     return self;
 }
@@ -71,6 +72,13 @@
 
 -(int)getRate{
     return rating;
+}
+//doing the right thing here...
+-(float)getRateTrue{
+    return ratingTrue;
+}
+-(void)rateTrue:(float)r{
+    ratingTrue = r;
 }
 
 -(NSDate*)getDate{

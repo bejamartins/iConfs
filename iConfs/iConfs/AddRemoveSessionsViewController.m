@@ -12,6 +12,7 @@
 #import "MAEventKitDataSource.h"
 #import "ECSlidingViewController.h"
 #import "MenuViewController.h"
+#import "SessionsViewController.h"
 
 #import "AppDelegateProtocol.h"
 
@@ -20,6 +21,8 @@
 
 @interface AddRemoveSessionsViewController (){
     BOOL isEditing;
+    BOOL conflict;
+    MAEvent *tappedEvent;
 }
 
 @property (readonly) MAEventKitDataSource *eventKitDataSource;
@@ -75,6 +78,7 @@
     [[self view] addSubview:HomeButton];
     
     isEditing = NO;
+    conflict = NO;
     
     [self sessionToMAEvents];
     
@@ -103,6 +107,7 @@
     
     UIViewController *newTopViewController = [[self storyboard]instantiateViewControllerWithIdentifier:iD];
     
+    [(MenuViewController*)[[self slidingViewController] underLeftViewController] deselectConf];
     
     CGRect frame = [[[[self slidingViewController] topViewController] view] frame];
     [[self slidingViewController] setTopViewController:newTopViewController];
@@ -147,8 +152,6 @@
             }
         }
     }
-    
-    
     
     [self isThereConflict:arr willChangeSS:arrSS];
     
@@ -236,6 +239,7 @@
                 for (MAEvent *e in sameTimeEvents) {
                     if ([e checked] && event != e) {
                         [event setBackgroundColor:[UIColor redColor]];
+                        conflict = YES;
                         for (MAEvent* eventSS in eventsSS) {
                             if ([eventSS ssID] == [event ssID]) {
                                 [eventSS setBackgroundColor:[UIColor redColor]];
@@ -257,6 +261,7 @@
                     for (MAEvent *anotherEvent in sameTimeEvents) {
                         if ([anotherEvent checked] && e != anotherEvent) {
                             [e setBackgroundColor:[UIColor redColor]];
+                            conflict = YES;
                             for (MAEvent* eventSS in eventsSS) {
                                 if ([eventSS ssID] == [e ssID]) {
                                     [eventSS setBackgroundColor:[UIColor redColor]];
@@ -432,21 +437,52 @@
         
         [AgendaView reloadData];
     } else {
+        tappedEvent = [[MAEvent alloc] init];
+        
+        tappedEvent = event;
+        
         NSDateComponents *components = [CURRENT_CALENDAR components:DATE_COMPONENTS fromDate:event.start];
         NSString *eventInfo = [NSString stringWithFormat:@"Event tapped: %02i:%02i. Userinfo: %@", [components hour], [components minute], [event.userInfo objectForKey:@"test"]];
         
         UIAlertView *alert = [[UIAlertView alloc] initWithTitle:event.title
-                                                        message:eventInfo delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
+                                                        message:eventInfo delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:@"More Info", nil];
         [alert show];
+    }
+}
+
+- (void)alertView:(UIAlertView*)alertView clickedButtonAtIndex:(NSInteger)buttonIndex {
+    
+    if (buttonIndex != [alertView cancelButtonIndex]) {
+        NSString *iD = @"Session Detail";
+        
+        UIViewController *newTopViewController = [[self storyboard]instantiateViewControllerWithIdentifier:iD];
+        
+        [(SessionsViewController*)newTopViewController setPrevious:[[self slidingViewController] topViewController]];
+        
+        [(SessionsViewController*)newTopViewController auxChangeSuperSession:[tappedEvent ssID]];
+        
+        [(SessionsViewController*)newTopViewController changeSession:[tappedEvent sID]];
+        
+        CGRect frame = [[[[self slidingViewController] topViewController] view] frame];
+        [[self slidingViewController] setTopViewController:newTopViewController];
+        [[[[self slidingViewController] topViewController] view] setFrame:frame];
+        
+        [[self slidingViewController] resetTopView];
     }
 }
 
 - (IBAction)editEvents:(id)sender {
     if (isEditing) {
-        isEditing = NO;
-        [self saveChanges];
-        [[self EditButton] setTitle:@"Add/Remove Sessions" forState:UIControlStateNormal];
-        [AgendaView reloadData];
+        if (conflict) {
+            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Conflict" message:@"Resolve the conflict between sessions to save changes." delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
+
+            [alert show];
+        } else {
+            isEditing = NO;
+            [self saveChanges];
+            [[self EditButton] setTitle:@"Add/Remove Sessions" forState:UIControlStateNormal];
+            [AgendaView reloadData];
+        }
     } else {
         isEditing = YES;
         [[self EditButton] setTitle:@"Finished" forState:UIControlStateNormal];
