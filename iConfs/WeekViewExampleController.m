@@ -108,15 +108,11 @@ static int counter = 7 * 5;
 - (MAEvent *)event {
 	static int counter;
 	
-	NSMutableDictionary *dict = [[NSMutableDictionary alloc] init];
-	
-	[dict setObject:[NSString stringWithFormat:@"number %i", counter++] forKey:@"test"];
-	
 	MAEvent *event = [[MAEvent alloc] init];
 	event.backgroundColor = [UIColor purpleColor];
 	event.textColor = [UIColor whiteColor];
 	event.allDay = NO;
-	event.userInfo = dict;
+	event.userInfo = @"";
 	return event;
 }
 
@@ -131,7 +127,7 @@ static int counter = 7 * 5;
 
 - (void)weekView:(MAWeekView *)weekView eventTapped:(MAEvent *)event {
 	NSDateComponents *components = [CURRENT_CALENDAR components:DATE_COMPONENTS fromDate:event.start];
-	NSString *eventInfo = [NSString stringWithFormat:@"Event tapped: %02i:%02i. Userinfo: %@", [components hour], [components minute], [event.userInfo objectForKey:@"test"]];
+	NSString *eventInfo = [NSString stringWithFormat:@"Event tapped: %02i:%02i. Userinfo: %@", [components hour], [components minute], event.userInfo];
 	
 	UIAlertView *alert = [[UIAlertView alloc] initWithTitle:event.title
 													 message:eventInfo delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
@@ -140,7 +136,7 @@ static int counter = 7 * 5;
 
 - (void)weekView:(MAWeekView *)weekView eventDragged:(MAEvent *)event {
 	NSDateComponents *components = [CURRENT_CALENDAR components:DATE_COMPONENTS fromDate:event.start];
-	NSString *eventInfo = [NSString stringWithFormat:@"Event dragged to %02i:%02i. Userinfo: %@", [components hour], [components minute], [event.userInfo objectForKey:@"test"]];
+	NSString *eventInfo = [NSString stringWithFormat:@"Event dragged to %02i:%02i. Userinfo: %@", [components hour], [components minute], event.userInfo];
 	
 	UIAlertView *alert = [[UIAlertView alloc] initWithTitle:event.title
                                                     message:eventInfo delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];

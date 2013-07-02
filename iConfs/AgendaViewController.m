@@ -177,8 +177,8 @@
                 
                 NSDate *eventStart = [e start];
                 
-                if (!([eventStart compare:[event start]] == NSOrderedSame || [eventStart compare:[event end]] == NSOrderedAscending)) {
-                    break;
+                if ([eventStart compare:[event start]] == NSOrderedSame || [eventStart compare:[event end]] == NSOrderedAscending) {
+                    [sameTimeEvents addObject:e];
                 }
                 
                 [sameTimeEvents addObject:e];
@@ -311,10 +311,14 @@
         tappedEvent = event;
         
         NSDateComponents *components = [CURRENT_CALENDAR components:DATE_COMPONENTS fromDate:event.start];
-        NSString *eventInfo = [NSString stringWithFormat:@"Event tapped: %02i:%02i. Userinfo: %@", [components hour], [components minute], [event.userInfo objectForKey:@"test"]];
+        NSDateComponents *componentsEnd = [CURRENT_CALENDAR components:DATE_COMPONENTS fromDate:event.end];
+        NSString *eventInfo = [NSString stringWithFormat:@"%@.\n Start: %02i:%02i.\n End: %02i:%02i." , event.userInfo, [components hour], [components minute], [componentsEnd hour], [componentsEnd minute]];
         
         UIAlertView *alert = [[UIAlertView alloc] initWithTitle:event.title
                                                         message:eventInfo delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:@"More Info", nil];
+        
+        [alert setDelegate:self];
+        
         [alert show];
     }
 }
@@ -328,7 +332,16 @@
         
         [(SessionsViewController*)newTopViewController setPrevious:[[self slidingViewController] topViewController]];
         
-        [(SessionsViewController*)newTopViewController auxChangeSuperSession:[tappedEvent ssID]];
+        Conference *conf = [(MenuViewController*)[[self slidingViewController] underLeftViewController] selectedConf];
+        
+        NSArray *superSessions = [[NSArray alloc] initWithArray:[[conf getSuperSessions] allValues]];
+        
+        for (int i = 0; i < [superSessions count]; i++) {
+            if ([tappedEvent ssID] == [(SuperSession*)superSessions[i] getID]) {
+                [(SessionsViewController*)newTopViewController auxChangeSuperSession:i];
+                break;
+            }
+        }
         
         [(SessionsViewController*)newTopViewController changeSession:[tappedEvent sID]];
         

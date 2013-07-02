@@ -153,6 +153,8 @@
         }
     }
     
+    conflict = NO;
+    
     [self isThereConflict:arr willChangeSS:arrSS];
     
     if ([ViewOptions selectedSegmentIndex] == 0) {
@@ -163,6 +165,9 @@
 }
 
 - (void)sameTimeSS:(NSArray*)events {
+    
+    [events sortedArrayUsingFunction:MAEvent_sortByStartTime context:NULL];
+    
     for (int i = 0; i < [events count]; i++) {
         
         MAEvent *event = [events objectAtIndex:i];
@@ -208,15 +213,15 @@
 
 - (void)isThereConflict:(NSArray*)events willChangeSS:(NSArray*)eventsSS {
     
+    [events sortedArrayUsingFunction:MAEvent_sortByStartTime context:NULL];
+    
     for (int i = 0; i < [events count]; i++) {
         
         MAEvent *event = [events objectAtIndex:i];
         
-        if (i == ([events count] - 1)) {
-        
+        if (i == [events count] - 1) {
             [event setSameTimeEvents:1];
             [event setWhichSame:0];
-        
         } else {
             int count = 1;
             MAEvent *e;
@@ -231,8 +236,8 @@
                 if (!([eventStart compare:[event start]] == NSOrderedSame || [eventStart compare:[event end]] == NSOrderedAscending)) {
                     break;
                 }
-            
-            [sameTimeEvents addObject:e];
+                
+                [sameTimeEvents addObject:e];
             }
         
             if ([event checked]){
@@ -294,7 +299,7 @@
             MAEvent *event = [[MAEvent alloc] init];
             event.textColor = [UIColor whiteColor];
             event.allDay = NO;
-            event.userInfo = NULL;
+            event.userInfo = [ss getTheme];
             [event setChecked:YES];
             [event setTitle:[ss getTheme]];
             [event setStart:[ss getStartDate]];
@@ -307,7 +312,7 @@
                 MAEvent *tEvent = [[MAEvent alloc] init];
                 tEvent.textColor = [UIColor whiteColor];
                 tEvent.allDay = NO;
-                tEvent.userInfo = NULL;
+                tEvent.userInfo = [ss getTheme];
                 [tEvent setChecked:YES];
                 [tEvent setTitle:[e getTheme]];
                 [tEvent setStart:[e getDate]];
@@ -322,7 +327,7 @@
                 MAEvent *tEvent = [[MAEvent alloc] init];
                 tEvent.textColor = [UIColor whiteColor];
                 tEvent.allDay = NO;
-                tEvent.userInfo = NULL;
+                tEvent.userInfo = [ss getTheme];
                 [tEvent setChecked:NO];
                 [tEvent setTitle:[e getTheme]];
                 [tEvent setStart:[e getDate]];
@@ -342,7 +347,7 @@
             MAEvent *event = [[MAEvent alloc] init];
             event.textColor = [UIColor whiteColor];
             event.allDay = NO;
-            event.userInfo = NULL;
+            event.userInfo = [ss getTheme];
             [event setChecked:NO];
             [event setTitle:[ss getTheme]];
             [event setStart:[ss getStartDate]];
@@ -355,7 +360,7 @@
                 MAEvent *tEvent = [[MAEvent alloc] init];
                 tEvent.textColor = [UIColor whiteColor];
                 tEvent.allDay = NO;
-                tEvent.userInfo = NULL;
+                tEvent.userInfo = [ss getTheme];
                 [tEvent setChecked:NO];
                 [tEvent setTitle:[e getTheme]];
                 [tEvent setStart:[e getDate]];
@@ -442,10 +447,14 @@
         tappedEvent = event;
         
         NSDateComponents *components = [CURRENT_CALENDAR components:DATE_COMPONENTS fromDate:event.start];
-        NSString *eventInfo = [NSString stringWithFormat:@"Event tapped: %02i:%02i. Userinfo: %@", [components hour], [components minute], [event.userInfo objectForKey:@"test"]];
+        NSDateComponents *componentsEnd = [CURRENT_CALENDAR components:DATE_COMPONENTS fromDate:event.end];
+        NSString *eventInfo = [NSString stringWithFormat:@"%@.\n Start: %02i:%02i.\n End: %02i:%02i." , event.userInfo, [components hour], [components minute], [componentsEnd hour], [componentsEnd minute]];
         
         UIAlertView *alert = [[UIAlertView alloc] initWithTitle:event.title
                                                         message:eventInfo delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:@"More Info", nil];
+        
+        [alert setDelegate:self];
+        
         [alert show];
     }
 }
@@ -459,7 +468,16 @@
         
         [(SessionsViewController*)newTopViewController setPrevious:[[self slidingViewController] topViewController]];
         
-        [(SessionsViewController*)newTopViewController auxChangeSuperSession:[tappedEvent ssID]];
+        Conference *conf = [(MenuViewController*)[[self slidingViewController] underLeftViewController] selectedConf];
+        
+        NSArray *superSessions = [[NSArray alloc] initWithArray:[[conf getSuperSessions] allValues]];
+        
+        for (int i = 0; i < [superSessions count]; i++) {
+            if ([tappedEvent ssID] == [(SuperSession*)superSessions[i] getID]) {
+                [(SessionsViewController*)newTopViewController auxChangeSuperSession:i];
+                break;
+            }
+        }
         
         [(SessionsViewController*)newTopViewController changeSession:[tappedEvent sID]];
         
@@ -496,10 +514,12 @@
     
     for (MAEvent* e in Events) {
             if ([e checked]) {
-                 [[(MenuViewController*)[[self slidingViewController] underLeftViewController] appData] subscribeSuperSessionInAgendaByID:[e ssID] Conference:iD];
+                [[(MenuViewController*)[[self slidingViewController] underLeftViewController] appData] subscribeSuperSessionInAgendaByID:[e ssID] Conference:iD];
+                
                 
                 for (CustomizableSuperSession* cSS in [[(MenuViewController*)[[self slidingViewController] underLeftViewController] appData] getAgendaByConferenceOrderedByDate:iD]) {
                     if ([cSS getID] == [e ssID]) {
+                        [cSS subscribeAllEvents];
                         for (MAEvent* event in [e eventsOfSS]) {
                             if (![event checked]) {
                                 [cSS unsubscribeAnyEvent:[event sID]];
