@@ -30,7 +30,12 @@
     int ssIndex;
     MenuViewController *menu;
     int load;
+    IBOutlet UIButton *r2;
     
+    IBOutlet UIButton *r5;
+    IBOutlet UIButton *r4;
+    IBOutlet UIButton *r3;
+    IBOutlet UIButton *r1;
     //usado para o rating
     NSString *sessionID;
     NSString *confID;
@@ -74,8 +79,21 @@
     NSData* data=[NSURLConnection sendSynchronousRequest:request returningResponse:&response error:nil];
     
     if(data!=nil){
+        [self checkRatingButtons];
         return YES;
-    }else return NO;
+    }else {
+        
+        
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Rating error"
+                                                        message:@"Please check your Internet Connection"
+                                                       delegate:nil
+                                              cancelButtonTitle:@"Back"
+                                              otherButtonTitles:nil];
+        [alert show];
+
+        
+        
+        return NO;}
     
 }
 
@@ -84,22 +102,42 @@
 
 - (IBAction)rate1:(id)sender {
     [self setRating:confID:sessionID:1];
+    [selectedSession vote:1];
+
+    [self checkRatingButtons];
+
+    
 }
 
 - (IBAction)rate2:(id)sender {
     [self setRating:confID:sessionID:2];
+    [selectedSession vote:3];
+
+    [self checkRatingButtons];
+
 }
 
 - (IBAction)rate3:(id)sender {
     [self setRating:confID:sessionID:3];
+    [selectedSession vote:3];
+    [self checkRatingButtons];
+
 }
 
 - (IBAction)rate4:(id)sender {
     [self setRating:confID:sessionID:4];
+    [selectedSession vote:4];
+
+    [self checkRatingButtons];
+
 }
 
 - (IBAction)rate5:(id)sender {
     [self setRating:confID:sessionID:5];
+    [selectedSession vote:5];
+
+    [self checkRatingButtons];
+
 }
 
 
@@ -116,7 +154,6 @@
     superSessions=[[conf getSuperSessions] allValues];
     selectedSuperSession =[[[conf getSuperSessions]allValues] objectAtIndex:index];
     sessions=[selectedSuperSession getSessionsOrderedByDate];
-    
     
     
     
@@ -156,7 +193,8 @@
         sessionID= [NSString stringWithFormat:@"%@%i",@"s",selectedSession.getID];
     self.RatingLabel.text=[NSString stringWithFormat:@"%@%.1f",@"Rating: ",selectedSession.getRateTrue];
     
-    
+    [self checkRatingButtons];
+
     
     //////////////////////////////////////
     
@@ -183,7 +221,67 @@
 }
 
 
+-(void)checkRatingButtons{
+    [r1 setTitleColor:[UIColor blueColor] forState:UIControlStateNormal];
+    [r2 setTitleColor:[UIColor blueColor] forState:UIControlStateNormal];
+    [r3 setTitleColor:[UIColor blueColor] forState:UIControlStateNormal];
+    [r4 setTitleColor:[UIColor blueColor] forState:UIControlStateNormal];
+    [r5 setTitleColor:[UIColor blueColor] forState:UIControlStateNormal];
 
+    
+    [r1 setEnabled:YES];
+    [r2 setEnabled:YES];
+    [r3 setEnabled:YES];
+    [r4 setEnabled:YES];
+    [r5 setEnabled:YES];
+    
+    if([selectedSession getVote] !=0){ 
+    
+        if([selectedSession getVote] ==1){
+            [r1 setTitleColor:[UIColor redColor] forState:UIControlStateNormal];
+
+            
+            [r1 setSelected:YES];
+
+            }
+
+        
+      else  if([selectedSession getVote] ==2){
+            [r2 setSelected:YES];
+          [r2 setTitleColor:[UIColor redColor] forState:UIControlStateNormal];
+
+          
+        }
+     else   if([selectedSession getVote] ==3){
+            [r3 setSelected:YES];
+         [r3 setTitleColor:[UIColor redColor] forState:UIControlStateNormal];
+
+        }
+     else   if([selectedSession getVote] ==4){
+            [r4 setSelected:YES];
+         [r4 setTitleColor:[UIColor redColor] forState:UIControlStateNormal];
+
+        }
+        else            {
+            [r5 setSelected:YES];
+            [r5 setTitleColor:[UIColor redColor] forState:UIControlStateNormal];
+
+        }
+        
+        
+        
+        [r1 setEnabled:NO];
+        [r2 setEnabled:NO];
+        [r3 setEnabled:NO];
+        [r4 setEnabled:NO];
+        [r5 setEnabled:NO];
+
+        [self.view setNeedsDisplay];
+    }
+    
+    
+    
+}
 - (void)viewDidLoad
 {
     [super viewDidLoad];
@@ -232,7 +330,7 @@
         
         selectedSession =[[selectedSuperSession getSessionsOrderedByDate]objectAtIndex:0];
     
-        
+        [self checkRatingButtons];
         
         //usado para o rating
         confID=conf.getID;
@@ -504,7 +602,8 @@
     
     selectedSession=[sessions objectAtIndex:indexPath.row];
     
-    
+    [self checkRatingButtons];
+
     
     
     //usado para o rating

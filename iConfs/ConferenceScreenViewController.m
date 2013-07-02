@@ -27,6 +27,7 @@
       MenuViewController *menu;
 
 
+    IBOutlet UICollectionView *presentationCollection;
 
     
 
@@ -51,14 +52,16 @@
 }
 
 -(NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section{
-
-    return 3;
+    if(collectionView.tag==0) return 1;
+    else
+    return 2;
 }
 
 -(UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath{
+    
     static NSString *CellIdentifier=@"author_cell";
     PeopleCell *cell= [collectionView dequeueReusableCellWithReuseIdentifier:CellIdentifier forIndexPath:indexPath];
-    if(indexPath.item<2){
+    if(collectionView.tag==1){
     int aux = arc4random() % [[conf getAuthors] count];
     while([self checkInAuthorsShown:aux]){
         aux = arc4random() % [[conf getAuthors] count];
@@ -89,7 +92,7 @@
         [[cell Name]setText:[selectedSession getTitle]];
 
     
-        [[cell Image]setImage:[UIImage imageNamed:@"profile_icon.png"]];
+      //  [[cell Image]setImage:[UIImage imageNamed:@"profile_icon.png"]];
 
 
     }
@@ -101,7 +104,7 @@
 }
 
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath{
-    if(indexPath.item<2){
+    if(collectionView.tag==1){
     
     NSString *iD = @"People";
     
@@ -176,7 +179,8 @@
   
     [self.collection setDelegate:self];
     [self.collection setDataSource:self];
-    
+    [presentationCollection setDelegate:self];
+    [presentationCollection setDataSource:self];
     [super viewDidLoad];
 
 
