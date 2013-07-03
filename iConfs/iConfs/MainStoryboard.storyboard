@@ -323,7 +323,8 @@
                         <subviews>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" minimumZoomScale="0.0" maximumZoomScale="0.0" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="RqT-X1-FGV">
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="303" id="bqx-jD-XS9"/>
+                                    <constraint firstAttribute="height" constant="303" id="ADV-SK-dln"/>
+                                    <constraint firstAttribute="height" relation="lessThanOrEqual" constant="303" type="user" id="bqx-jD-XS9"/>
                                 </constraints>
                                 <collectionViewFlowLayout key="collectionViewLayout" scrollDirection="horizontal" minimumLineSpacing="10" minimumInteritemSpacing="10" id="SJj-MG-gMi">
                                     <size key="itemSize" width="412" height="204"/>
@@ -400,14 +401,11 @@
                             </label>
                             <containerView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="pdW-gR-6p6">
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" relation="lessThanOrEqual" constant="304" type="user" id="5wU-cm-eW2"/>
+                                </constraints>
                                 <connections>
                                     <segue destination="WUm-2i-l32" kind="embed" id="9od-jS-MfL"/>
-                                </connections>
-                            </containerView>
-                            <containerView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="FYb-Ku-8hU">
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
-                                <connections>
-                                    <segue destination="b4l-gw-vNf" kind="embed" id="DJe-5G-shO"/>
                                 </connections>
                             </containerView>
                             <navigationBar contentMode="scaleToFill" barStyle="blackTranslucent" translatesAutoresizingMaskIntoConstraints="NO" id="6AR-pd-1Yf">
@@ -421,25 +419,6 @@
                                     <segue destination="M2h-Xp-Okl" kind="embed" id="hPm-DX-eNB"/>
                                 </connections>
                             </containerView>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="XiG-At-KK6">
-                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="260" id="1Z7-oI-V3u"/>
-                                    <constraint firstAttribute="width" constant="413" id="4aB-5Z-hBO"/>
-                                </constraints>
-                                <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
-                                <color key="tintColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
-                                <state key="normal" backgroundImage="transparente.png">
-                                    <color key="titleColor" red="0.19607843459999999" green="0.30980393290000002" blue="0.52156865600000002" alpha="1" colorSpace="calibratedRGB"/>
-                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                                <state key="highlighted">
-                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                                <connections>
-                                    <action selector="clickAgendaPreview:" destination="ajv-CM-JT5" eventType="touchUpInside" id="5Gw-gb-xHk"/>
-                                </connections>
-                            </button>
                             <imageView hidden="YES" userInteractionEnabled="NO" contentMode="scaleToFill" image="pulpito.png" translatesAutoresizingMaskIntoConstraints="NO" id="eKn-Dk-W5p">
                                 <color key="backgroundColor" red="1" green="0.80000001190000003" blue="0.40000000600000002" alpha="0.58999999999999997" colorSpace="calibratedRGB"/>
                                 <constraints>
@@ -471,40 +450,44 @@
                                 <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="fXH-Ud-bFM" customClass="MAWeekView">
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                                <connections>
+                                    <outlet property="dataSource" destination="ajv-CM-JT5" id="NXS-bi-Kys"/>
+                                    <outlet property="delegate" destination="ajv-CM-JT5" id="5mX-EP-N53"/>
+                                </connections>
+                            </view>
                         </subviews>
                         <color key="backgroundColor" cocoaTouchSystemColor="scrollViewTexturedBackgroundColor"/>
                         <constraints>
                             <constraint firstItem="pdW-gR-6p6" firstAttribute="leading" secondItem="tmA-vE-w1H" secondAttribute="leading" constant="20" symbolic="YES" type="default" id="304-M8-H0f"/>
-                            <constraint firstItem="pdW-gR-6p6" firstAttribute="top" secondItem="tmA-vE-w1H" secondAttribute="top" constant="398" id="5KT-o1-15u"/>
-                            <constraint firstItem="XiG-At-KK6" firstAttribute="leading" secondItem="tmA-vE-w1H" secondAttribute="leading" constant="20" symbolic="YES" type="default" id="669-pG-JB7"/>
-                            <constraint firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="pdW-gR-6p6" secondAttribute="bottom" constant="302" type="user" id="6aU-4c-Hsw"/>
-                            <constraint firstAttribute="bottom" secondItem="jvH-O7-wOi" secondAttribute="bottom" constant="329" id="7Wg-sh-qHP"/>
-                            <constraint firstItem="FYb-Ku-8hU" firstAttribute="leading" secondItem="tmA-vE-w1H" secondAttribute="leading" constant="53" id="9HI-OB-f3c"/>
-                            <constraint firstItem="RqT-X1-FGV" firstAttribute="centerX" secondItem="eKn-Dk-W5p" secondAttribute="centerX" type="default" id="AIO-ma-S0K"/>
+                            <constraint firstItem="pdW-gR-6p6" firstAttribute="top" secondItem="tmA-vE-w1H" secondAttribute="top" constant="398" type="user" id="5KT-o1-15u"/>
+                            <constraint firstAttribute="trailing" secondItem="fXH-Ud-bFM" secondAttribute="trailing" constant="364" id="8mc-D1-zSZ"/>
+                            <constraint firstItem="eKn-Dk-W5p" firstAttribute="centerX" secondItem="RqT-X1-FGV" secondAttribute="centerX" type="default" id="9FC-Js-tdY"/>
                             <constraint firstItem="6AR-pd-1Yf" firstAttribute="leading" secondItem="tmA-vE-w1H" secondAttribute="leading" type="default" id="Bw1-dx-dMw"/>
                             <constraint firstAttribute="trailing" secondItem="RqT-X1-FGV" secondAttribute="trailing" constant="20" symbolic="YES" type="default" id="DG0-iO-CiI"/>
+                            <constraint firstItem="fXH-Ud-bFM" firstAttribute="top" secondItem="tmA-vE-w1H" secondAttribute="top" constant="723" id="Dgf-5g-FTV"/>
                             <constraint firstItem="6AR-pd-1Yf" firstAttribute="trailing" secondItem="tmA-vE-w1H" secondAttribute="trailing" type="default" id="EA9-vI-yat"/>
+                            <constraint firstAttribute="bottom" secondItem="fXH-Ud-bFM" secondAttribute="bottom" constant="20" symbolic="YES" type="default" id="FGZ-QZ-pxJ"/>
                             <constraint firstItem="vaR-37-i9Q" firstAttribute="baseline" secondItem="mUf-oo-pfF" secondAttribute="baseline" type="default" id="FaT-iQ-cIC"/>
-                            <constraint firstAttribute="bottom" secondItem="wDG-ps-XC4" secondAttribute="bottom" constant="54" id="GA1-2R-jAf"/>
+                            <constraint firstAttribute="bottom" secondItem="wDG-ps-XC4" secondAttribute="bottom" constant="54" id="H2w-xH-R2o"/>
                             <constraint firstAttribute="trailing" secondItem="wDG-ps-XC4" secondAttribute="trailing" constant="20" symbolic="YES" type="default" id="HvA-9a-RNZ"/>
                             <constraint firstItem="28E-Wa-p8g" firstAttribute="leading" secondItem="eKn-Dk-W5p" secondAttribute="leading" type="default" id="KQ0-hM-jU3"/>
                             <constraint firstItem="eKn-Dk-W5p" firstAttribute="trailing" secondItem="28E-Wa-p8g" secondAttribute="trailing" type="default" id="LcM-Yt-v8A"/>
                             <constraint firstItem="wDG-ps-XC4" firstAttribute="top" secondItem="tmA-vE-w1H" secondAttribute="top" constant="760" id="QFu-gS-KVT"/>
                             <constraint firstItem="vaR-37-i9Q" firstAttribute="centerY" secondItem="mUf-oo-pfF" secondAttribute="centerY" type="default" id="RdN-Cp-LD6"/>
                             <constraint firstItem="nOi-97-Aak" firstAttribute="leading" secondItem="28E-Wa-p8g" secondAttribute="leading" type="default" id="VpV-mB-vMK"/>
-                            <constraint firstItem="FYb-Ku-8hU" firstAttribute="top" secondItem="tmA-vE-w1H" secondAttribute="top" constant="725" id="Z1Y-wO-9TH"/>
+                            <constraint firstAttribute="bottom" secondItem="jvH-O7-wOi" secondAttribute="bottom" constant="329" id="ZG7-cr-nyc"/>
                             <constraint firstAttribute="trailing" secondItem="vaR-37-i9Q" secondAttribute="trailing" constant="20" symbolic="YES" type="default" id="aA7-sQ-nQ4"/>
                             <constraint firstItem="6AR-pd-1Yf" firstAttribute="top" secondItem="tmA-vE-w1H" secondAttribute="top" type="default" id="aXr-qB-6AR"/>
-                            <constraint firstAttribute="trailing" secondItem="FYb-Ku-8hU" secondAttribute="trailing" constant="348" id="apk-b4-OME"/>
                             <constraint firstItem="28E-Wa-p8g" firstAttribute="top" secondItem="tmA-vE-w1H" secondAttribute="top" constant="305" id="bRU-F8-QNd"/>
                             <constraint firstItem="eKn-Dk-W5p" firstAttribute="top" secondItem="tmA-vE-w1H" secondAttribute="top" constant="97" id="cWH-ug-t6b"/>
                             <constraint firstItem="RqT-X1-FGV" firstAttribute="top" secondItem="tmA-vE-w1H" secondAttribute="top" constant="74" id="f2M-0t-2FX"/>
-                            <constraint firstAttribute="bottom" secondItem="XiG-At-KK6" secondAttribute="bottom" constant="26" id="frV-Nw-sS6"/>
                             <constraint firstItem="nOi-97-Aak" firstAttribute="top" secondItem="tmA-vE-w1H" secondAttribute="top" constant="412" id="h6N-Ng-Qek"/>
                             <constraint firstItem="RqT-X1-FGV" firstAttribute="leading" secondItem="tmA-vE-w1H" secondAttribute="leading" constant="20" symbolic="YES" type="default" id="hLC-Jv-LxB"/>
-                            <constraint firstAttribute="bottom" secondItem="FYb-Ku-8hU" secondAttribute="bottom" constant="20" symbolic="YES" type="default" id="j0i-ya-S7S"/>
                             <constraint firstItem="28E-Wa-p8g" firstAttribute="trailing" secondItem="nOi-97-Aak" secondAttribute="trailing" type="default" id="ksV-eW-1S9"/>
-                            <constraint firstAttribute="bottom" secondItem="pdW-gR-6p6" secondAttribute="bottom" constant="302" id="oed-zY-lGS"/>
+                            <constraint firstItem="fXH-Ud-bFM" firstAttribute="leading" secondItem="tmA-vE-w1H" secondAttribute="leading" constant="20" symbolic="YES" type="default" id="m7t-75-ghi"/>
+                            <constraint firstAttribute="bottom" secondItem="pdW-gR-6p6" secondAttribute="bottom" constant="302" type="user" id="oed-zY-lGS"/>
                             <constraint firstItem="vaR-37-i9Q" firstAttribute="bottom" secondItem="RqT-X1-FGV" secondAttribute="bottom" type="default" id="wwT-Uv-imc"/>
                             <constraint firstItem="wDG-ps-XC4" firstAttribute="leading" secondItem="tmA-vE-w1H" secondAttribute="leading" constant="435" id="x8b-wV-Dfr"/>
                             <constraint firstItem="nOi-97-Aak" firstAttribute="trailing" secondItem="jvH-O7-wOi" secondAttribute="trailing" type="default" id="xV5-kP-YDy"/>
@@ -516,8 +499,8 @@
                     <toolbarItems/>
                     <nil key="simulatedTopBarMetrics"/>
                     <connections>
+                        <outlet property="AgendaView" destination="fXH-Ud-bFM" id="i3t-CL-Y9I"/>
                         <outlet property="CollectionOne" destination="RqT-X1-FGV" id="7B9-O5-0BF"/>
-                        <outlet property="agendaPreviewB" destination="XiG-At-KK6" id="2db-DI-Yz6"/>
                         <outlet property="moreNewsButton" destination="vaR-37-i9Q" id="QQS-WM-1lY"/>
                         <outlet property="noConferencesLabel" destination="jvH-O7-wOi" id="Sbh-nc-NPa"/>
                         <outlet property="noConferencesPicture" destination="nOi-97-Aak" id="dt6-iZ-bKw"/>
@@ -1584,7 +1567,7 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="Woq-x4-TV1" firstAttribute="trailing" secondItem="79U-dc-YEg" secondAttribute="trailing" type="default" id="CC9-A7-JMZ"/>
-                            <constraint firstItem="2t9-NW-r3q" firstAttribute="leading" secondItem="79U-dc-YEg" secondAttribute="leading" constant="597" id="L6N-fe-eOM"/>
+                            <constraint firstItem="2t9-NW-r3q" firstAttribute="trailing" secondItem="79U-dc-YEg" secondAttribute="trailing" type="default" id="EsU-ZI-z40"/>
                             <constraint firstItem="2t9-NW-r3q" firstAttribute="bottom" secondItem="79U-dc-YEg" secondAttribute="bottom" type="default" id="U1L-He-fXg"/>
                             <constraint firstAttribute="bottom" secondItem="31N-TC-F28" secondAttribute="bottom" constant="2" id="akB-aW-2RJ"/>
                             <constraint firstItem="31N-TC-F28" firstAttribute="leading" secondItem="79U-dc-YEg" secondAttribute="leading" constant="12" id="q7h-q4-XAe"/>
@@ -2514,32 +2497,6 @@
             </objects>
             <point key="canvasLocation" x="-67" y="2579"/>
         </scene>
-        <!--Agenda Preview-->
-        <scene sceneID="BIq-bG-z4q">
-            <objects>
-                <viewController id="b4l-gw-vNf" customClass="AgendaPreview" sceneMemberID="viewController">
-                    <view key="view" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="f6P-LE-HAW">
-                        <rect key="frame" x="0.0" y="0.0" width="367" height="259"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="5oA-Ci-tQM" customClass="MAWeekView">
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
-                            </view>
-                        </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                        <constraints>
-                            <constraint firstItem="5oA-Ci-tQM" firstAttribute="leading" secondItem="f6P-LE-HAW" secondAttribute="leading" type="default" id="QiW-EF-gXH"/>
-                            <constraint firstItem="5oA-Ci-tQM" firstAttribute="bottom" secondItem="f6P-LE-HAW" secondAttribute="bottom" type="default" id="nJN-T4-HDb"/>
-                            <constraint firstItem="5oA-Ci-tQM" firstAttribute="trailing" secondItem="f6P-LE-HAW" secondAttribute="trailing" type="default" id="spz-Qr-VtZ"/>
-                            <constraint firstItem="5oA-Ci-tQM" firstAttribute="top" secondItem="f6P-LE-HAW" secondAttribute="top" type="default" id="yeH-ay-IW8"/>
-                        </constraints>
-                    </view>
-                    <toolbarItems/>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="zU8-TJ-8Wr" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="1080" y="3068"/>
-        </scene>
         <!--Pub Conference View Controller-->
         <scene sceneID="zaY-63-GBC">
             <objects>
@@ -3050,16 +3007,9 @@
                 <relationship kind="outlet" name="ViewOptions" candidateClass="UISegmentedControl"/>
             </relationships>
         </class>
-        <class className="AgendaPreview" superclassName="UIViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/AgendaPreview.h"/>
-        </class>
         <class className="AgendaViewController" superclassName="UIViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/AgendaViewController.h"/>
             <relationships>
-                <relationship kind="action" name="chengedOption:"/>
-                <relationship kind="action" name="goHome:"/>
-                <relationship kind="action" name="removeEvents:"/>
-                <relationship kind="action" name="revealMenu:"/>
                 <relationship kind="outlet" name="AgendaView" candidateClass="MAWeekView"/>
                 <relationship kind="outlet" name="MenuButton" candidateClass="UIButton"/>
                 <relationship kind="outlet" name="RemoveSessionsButton" candidateClass="UIButton"/>
@@ -3135,6 +3085,10 @@
         <class className="HomeViewController" superclassName="UIViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/HomeViewController.h"/>
             <relationships>
+                <relationship kind="action" name="clickAgendaPreview:"/>
+                <relationship kind="action" name="clickMoreNews:"/>
+                <relationship kind="action" name="revealMenu:"/>
+                <relationship kind="outlet" name="AgendaView" candidateClass="MAWeekView"/>
                 <relationship kind="outlet" name="CollectionOne" candidateClass="UICollectionView"/>
                 <relationship kind="outlet" name="agendaPreviewB" candidateClass="UIButton"/>
                 <relationship kind="outlet" name="ct" candidateClass="UICollectionView"/>
@@ -3208,9 +3162,6 @@
         <class className="NewsViewController" superclassName="UIViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/NewsViewController.h"/>
             <relationships>
-                <relationship kind="action" name="goBack:"/>
-                <relationship kind="action" name="goHome:"/>
-                <relationship kind="action" name="revealMenu:"/>
                 <relationship kind="action" name="segmentedChanged:"/>
                 <relationship kind="outlet" name="collection" candidateClass="UICollectionView"/>
                 <relationship kind="outlet" name="segmentedControl" candidateClass="UISegmentedControl"/>

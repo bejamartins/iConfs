@@ -65,7 +65,7 @@
 @property (nonatomic,unsafe_unretained) IBOutlet id<MAWeekViewDataSource> dataSource;
 @property (nonatomic,unsafe_unretained) IBOutlet id<MAWeekViewDelegate> delegate;
 @property (nonatomic) NSDate *startDate;
-@property (nonatomic, assign) BOOL conflict;
+@property(nonatomic) BOOL small;
 
 - (void)reloadData;
 

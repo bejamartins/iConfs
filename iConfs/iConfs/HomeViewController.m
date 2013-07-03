@@ -14,6 +14,13 @@
 #import "newConferenceContainer.h"
 #import "News.h"
 #import "NewsViewController.h"
+#import "MAWeekView.h"
+#import "MAEvent.h"
+#import "MAEventKitDataSource.h"
+
+#define DATE_COMPONENTS (NSYearCalendarUnit| NSMonthCalendarUnit | NSDayCalendarUnit | NSWeekCalendarUnit |  NSHourCalendarUnit | NSMinuteCalendarUnit | NSSecondCalendarUnit | NSWeekdayCalendarUnit | NSWeekdayOrdinalCalendarUnit)
+#define CURRENT_CALENDAR [NSCalendar currentCalendar]
+
 @interface HomeViewController (){
     NSArray *news;
     NSMutableArray *pictures;
@@ -22,12 +29,13 @@
 }
 @property (strong, nonatomic) IBOutlet UICollectionView *ct;
 @property (strong, nonatomic) IBOutlet UIButton *agendaPreviewB;
+@property (weak, nonatomic) IBOutlet MAWeekView *AgendaView;
 
 @end
 
 @implementation HomeViewController
 
-@synthesize MenuButton,noConferencesLabel,noConferencesPicture,noNewsLabel,noNewsPicture;
+@synthesize MenuButton,noConferencesLabel,noConferencesPicture,noNewsLabel,noNewsPicture,Events,AgendaView;
 
 - (void)viewDidLoad
 {
@@ -63,7 +71,13 @@
     self.view.backgroundColor = background;
     
     
-
+    [self sessionToMAEvents];
+    
+    [AgendaView setStartDate:[NSDate date]];
+    
+    [AgendaView setSmall:YES];
+    
+    [AgendaView setupCustomInitialisation];
 
     
     //confPeople = [[(MenuViewController*)[[self slidingViewController] underLeftViewController] selectedConf] getSpeakers];
@@ -229,7 +243,103 @@ CGRect frame = [[[[self slidingViewController] topViewController] view] frame];
 
 }
 
+/* Implementation for the MAWeekViewDataSource protocol */
 
+- (NSArray *)weekView:(MAWeekView *)weekView eventsForDate:(NSDate *)startDate {
+    
+    NSMutableArray *arr = [[NSMutableArray alloc] init];
+    
+    for (MAEvent* ss in Events) {
+        
+        NSDateComponents *components = [CURRENT_CALENDAR components:DATE_COMPONENTS fromDate:[(MAEvent*)ss start]];
+        NSDateComponents *componentsStart = [CURRENT_CALENDAR components:DATE_COMPONENTS fromDate:startDate];
+        
+        if ([components day] == [componentsStart day] && [components month] == [componentsStart month] && [components year] == [componentsStart year]) {
+            if ([ss checked]) {
+                [ss setBackgroundColor:[UIColor colorWithRed:(34/255) green:(177/255) blue:(76/255) alpha:1]];
+                [arr addObject:ss];
+            } else {
+                [ss setBackgroundColor:[UIColor brownColor]];
+                [arr addObject:ss];
+            }
+        }
+    }
+    
+    NSArray *newArr = [[NSArray alloc] initWithArray:[arr sortedArrayUsingFunction:MAEvent_sortByStartTime context:NULL]];
+    
+    [self sameTimeSS:newArr];
+    return newArr;
+}
 
+- (void)sameTimeSS:(NSArray*)events {
+    for (int i = 0; i < [events count]; i++) {
+        
+        MAEvent *event = [events objectAtIndex:i];
+        
+        if (i == ([events count] - 1)) {
+            
+            [event setSameTimeEvents:1];
+            [event setWhichSame:0];
+            
+        } else {
+            int count = 1;
+            MAEvent *e;
+            NSMutableArray *sameTimeEvents = [[NSMutableArray alloc] init];
+            [sameTimeEvents addObject:event];
+            
+            for (; (count + i) < [events count]; count++) {
+                e = [events objectAtIndex:count + i];
+                
+                NSDate *eventStart = [e start];
+                
+                if (!([eventStart compare:[event start]] == NSOrderedSame || [eventStart compare:[event end]] == NSOrderedAscending)) {
+                    break;
+                }
+                
+                [sameTimeEvents addObject:e];
+            }
+            
+            [event setSameTimeEvents:[sameTimeEvents count]];
+            [event setWhichSame:0];
+            
+            for (int y = 1; y < count; y++) {
+                
+                e = [events objectAtIndex:y + i];
+                
+                [e setSameTimeEvents:[sameTimeEvents count]];
+                [e setWhichSame:y];
+            }
+            
+            i += (count - 1);
+        }
+    }
+}
+
+- (void)sessionToMAEvents {
+    
+    NSMutableArray *myDict = [[NSMutableArray alloc] init];
+	
+    for (Conference *c in [[(MenuViewController*)[[self slidingViewController] underLeftViewController] appData] getMyConferences]) {
+        [myDict addObjectsFromArray:[[(MenuViewController*)[[self slidingViewController] underLeftViewController] appData] getAgendaByConferenceOrderedByDate:[c getID]]];
+    }
+	
+    NSMutableArray *tempEvents = [[NSMutableArray alloc] init];
+    
+    for (CustomizableSuperSession* ss in myDict) {
+        MAEvent *event = [[MAEvent alloc] init];
+        event.textColor = [UIColor whiteColor];
+        event.allDay = NO;
+        event.userInfo = [ss getTheme];
+        [event setChecked:YES];
+        [event setTitle:[ss getTheme]];
+        [event setStart:[ss getStartDate]];
+        [event setEnd:[ss calculateEndDate]];
+        [event setSsID:[(SuperSession*)ss getID]];
+        
+        [tempEvents addObject:event];
+    }
+    
+    Events = tempEvents;
+}
 
 @end

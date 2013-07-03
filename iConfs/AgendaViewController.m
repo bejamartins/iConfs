@@ -79,6 +79,8 @@
     
     [AgendaView setStartDate:[NSDate date]];
     
+    [AgendaView setSmall:NO];
+    
     [AgendaView setupCustomInitialisation];
     
     UIColor *background = [[UIColor alloc] initWithPatternImage:[UIImage imageNamed:@"GB.jpg"]];
@@ -126,7 +128,7 @@
         
         if ([components day] == [componentsStart day] && [components month] == [componentsStart month] && [components year] == [componentsStart year]) {
             if ([ss checked]) {
-                [ss setBackgroundColor:[UIColor greenColor]];
+                [ss setBackgroundColor:[UIColor colorWithRed:(34/255) green:(177/255) blue:(76/255) alpha:1]];
                 [arrSS addObject:ss];
             } else {
                 [ss setBackgroundColor:[UIColor brownColor]];

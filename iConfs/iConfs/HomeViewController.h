@@ -7,8 +7,11 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "MAWeekView.h"
 
-@interface HomeViewController : UIViewController<UIPopoverControllerDelegate, UICollectionViewDelegate, UICollectionViewDataSource>
+@interface HomeViewController : UIViewController<UIPopoverControllerDelegate, UICollectionViewDelegate, UICollectionViewDataSource, MAWeekViewDataSource, MAWeekViewDelegate>
+
+@property (nonatomic) NSArray* Events;
 
 @property (weak, nonatomic) IBOutlet UICollectionView *CollectionOne;
 

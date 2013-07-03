@@ -83,6 +83,8 @@
     
     [AgendaView setStartDate:[(MAEvent*)[Events objectAtIndex:0] start]];
     
+    [AgendaView setSmall:NO];
+    
     [AgendaView setupCustomInitialisation];
     
     UIColor *background = [[UIColor alloc] initWithPatternImage:[UIImage imageNamed:@"GB.jpg"]];

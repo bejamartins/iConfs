@@ -109,6 +109,7 @@ static const unsigned int TOP_BACKGROUND_HEIGHT               = 35;
 @property (nonatomic,copy) NSDate *week;
 @property (nonatomic, strong) UIColor *textColor, *sundayColor, *todayColor;
 @property (nonatomic, strong) UIFont *textFont;
+@property (nonatomic) BOOL weekdaySmall;
 @property (weak, readonly) NSDateFormatter *dateFormatter;
 @property (readonly) NSArray *weekdays;
 
@@ -163,7 +164,7 @@ static const unsigned int TOP_BACKGROUND_HEIGHT               = 35;
 
 @synthesize labelFontSize=_labelFontSize;
 @synthesize delegate=_delegate;
-@synthesize eventDraggingEnabled, startDate, conflict;
+@synthesize eventDraggingEnabled, startDate, small;
 
 - (id)initWithFrame:(CGRect)frame {
     if (self = [super initWithFrame:frame]) {
@@ -185,7 +186,6 @@ static const unsigned int TOP_BACKGROUND_HEIGHT               = 35;
 	self.labelFontSize = DEFAULT_LABEL_FONT_SIZE;
 	self.eventDraggingEnabled = NO;
     self.week = startDate;
-    [self setConflict:NO];
     
 	[self addSubview:self.topBackground];
 	[self addSubview:self.leftArrow];
@@ -344,7 +344,10 @@ static const unsigned int TOP_BACKGROUND_HEIGHT               = 35;
 		_weekdayBarView.sundayColor     = [UIColor colorWithRed:0.6 green:0 blue:0 alpha:1.f];
 		_weekdayBarView.todayColor      = [UIColor colorWithRed:0.1 green:0.5 blue:0.9 alpha:1.f];
 		_weekdayBarView.textFont        = self.regularFont;
-	}
+        [_weekdayBarView setWeekdaySmall:small];
+	} else if ([_weekdayBarView weekdaySmall] != small)
+        [_weekdayBarView setWeekdaySmall:small];
+    
 	return _weekdayBarView;
 }
 
@@ -426,7 +429,6 @@ static const unsigned int TOP_BACKGROUND_HEIGHT               = 35;
 }
 
 - (void)reloadData {
-    [self setConflict:NO];
     
 	for (id view in self.allDayEventView.subviews) {
 		if ([NSStringFromClass([view class])isEqualToString:@"MAEventView"]) {
@@ -461,59 +463,6 @@ static const unsigned int TOP_BACKGROUND_HEIGHT               = 35;
 				[self.allDayEventView addEventToOffset:d event:event];
                 
 			} else {
-                
-                /*if (i == ([events count] - 1)) {
-                    
-                    [self.gridView addEventToOffset:d event:event weekView:self sameTimeEvents:1 whichSame:0];
-                    
-                } else {
-                    int count = 1;
-                    MAEvent *e;
-                    NSMutableArray *sameTimeEvents = [[NSMutableArray alloc] init];
-                    [sameTimeEvents addObject:event];
-                    
-                    for (; (count + i) < [events count]; count++) {
-                        e = [events objectAtIndex:count + i];
-                        
-                        NSDate *eventStart = [e start];
-                        
-                        if (!([eventStart compare:[event start]] == NSOrderedSame || [eventStart compare:[event end]] == NSOrderedAscending)) {
-                            break;
-                        }
-                        
-                        [sameTimeEvents addObject:e];
-                    }
-                    
-                    if ([event checked]){
-                        for (MAEvent *e in sameTimeEvents) {
-                            if ([e checked] && event != e) {
-                                [event setBackgroundColor:[UIColor redColor]];
-                                [self setConflict:YES];
-                            }
-                        }
-                    }
-                    
-                    [self.gridView addEventToOffset:d event:event weekView:self sameTimeEvents:[sameTimeEvents count] whichSame:0];
-                    
-                    for (int y = 1; y < count; y++) {
-                        
-                        e = [events objectAtIndex:y + i];
-                        
-                        if ([e checked]){
-                            for (MAEvent *anotherEvent in sameTimeEvents) {
-                                if ([anotherEvent checked] && e != anotherEvent) {
-                                    [e setBackgroundColor:[UIColor redColor]];
-                                }
-                            }
-                        }
-                        
-                        [self.gridView addEventToOffset:d event:e weekView:self sameTimeEvents:[sameTimeEvents count] whichSame:y];
-                        
-                    }
-                    
-                    i += (count - 1);
-                }*/
-                
                 [self.gridView addEventToOffset:d event:event weekView:self sameTimeEvents:[event sameTimeEvents] whichSame:[event whichSame]];
 			}
 		}
@@ -689,6 +638,7 @@ static NSString const * const HOURS_24[] = {
 @synthesize textColor=_textColor, sundayColor=_sundayColor, todayColor=_todayColor;
 @synthesize textFont=_textFont;
 @synthesize weekdays=_weekdays;
+@synthesize weekdaySmall;
 
 - (void)setWeek:(NSDate *)week {
 	_week = week;
@@ -720,7 +670,14 @@ static NSString const * const HOURS_24[] = {
 	
 	NSDateComponents *todayComponents = [CURRENT_CALENDAR components:DATE_COMPONENTS fromDate:[NSDate date]];
 	
-	NSArray *weekdaySymbols = [self.dateFormatter weekdaySymbols];
+    NSArray *weekdaySymbols;
+    
+    if (weekdaySmall) {
+        weekdaySymbols = [self.dateFormatter shortWeekdaySymbols];
+    } else {
+        weekdaySymbols = [self.dateFormatter weekdaySymbols];
+    }
+    
 	CFCalendarRef currentCalendar = CFCalendarCopyCurrent();
 	int d = CFCalendarGetFirstWeekday(currentCalendar) - 1;
 	CFRelease(currentCalendar);
