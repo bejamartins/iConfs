@@ -20,10 +20,9 @@
 @interface AgendaViewController ()
 {
     BOOL isRemoving;
-    NSArray *Events;
     MAEvent *tappedEvent;
 }
-@property (readonly) MAEvent *event;
+
 @property (readonly) MAEventKitDataSource *eventKitDataSource;
 @property (weak, nonatomic) IBOutlet UIButton *RemoveSessionsButton;
 @property (weak, nonatomic) IBOutlet MAWeekView *AgendaView;
@@ -32,7 +31,7 @@
 
 @implementation AgendaViewController
 
-@synthesize MenuButton, RemoveSessionsButton,HomeButton, AgendaView, ViewOptions;
+@synthesize MenuButton, RemoveSessionsButton, HomeButton, AgendaView, ViewOptions, Events;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -74,7 +73,11 @@
     
     [[self view] addSubview:HomeButton];
     
+    isRemoving = NO;
+    
     [self sessionToMAEvents];
+    
+    [AgendaView setStartDate:[NSDate date]];
     
     [AgendaView setupCustomInitialisation];
     
@@ -121,7 +124,7 @@
         NSDateComponents *components = [CURRENT_CALENDAR components:DATE_COMPONENTS fromDate:[(MAEvent*)ss start]];
         NSDateComponents *componentsStart = [CURRENT_CALENDAR components:DATE_COMPONENTS fromDate:startDate];
         
-        if ([components day] == [componentsStart day]) {
+        if ([components day] == [componentsStart day] && [components month] == [componentsStart month] && [components year] == [componentsStart year]) {
             if ([ss checked]) {
                 [ss setBackgroundColor:[UIColor greenColor]];
                 [arrSS addObject:ss];
@@ -200,9 +203,12 @@
 }
 
 - (void)sessionToMAEvents {
-	NSString *iD = [[NSString alloc] initWithString:[[(MenuViewController*)[[self slidingViewController] underLeftViewController] selectedConf] getID]];
     
-    NSArray *myDict = [[(MenuViewController*)[[self slidingViewController] underLeftViewController] appData] getAgendaByConferenceOrderedByDate:iD];
+    NSMutableArray *myDict = [[NSMutableArray alloc] init];
+	
+    for (Conference *c in [[(MenuViewController*)[[self slidingViewController] underLeftViewController] appData] getMyConferences]) {
+        [myDict addObjectsFromArray:[[(MenuViewController*)[[self slidingViewController] underLeftViewController] appData] getAgendaByConferenceOrderedByDate:[c getID]]];
+    }
 	
     NSMutableArray *tempEvents = [[NSMutableArray alloc] init];
     

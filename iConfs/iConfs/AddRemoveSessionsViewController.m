@@ -131,9 +131,9 @@
         NSDateComponents *components = [CURRENT_CALENDAR components:DATE_COMPONENTS fromDate:[(MAEvent*)ss start]];
         NSDateComponents *componentsStart = [CURRENT_CALENDAR components:DATE_COMPONENTS fromDate:startDate];
         
-        if ([components day] == [componentsStart day]) {
+        if ([components day] == [componentsStart day] && [components month] == [componentsStart month] && [components year] == [componentsStart year]) {
             if ([ss checked]) {
-                [ss setBackgroundColor:[UIColor greenColor]];
+                [ss setBackgroundColor:[UIColor colorWithRed:(34/255) green:(177/255) blue:(76/255) alpha:1]];
                 [arrSS addObject:ss];
             } else {
                 [ss setBackgroundColor:[UIColor brownColor]];
@@ -230,8 +230,10 @@
             
                 NSDate *eventStart = [e start];
             
-                if (!([eventStart compare:[event start]] == NSOrderedSame || [eventStart compare:[event end]] == NSOrderedAscending)) {
-                    break;
+                if (!([eventStart compare:[event start]] == NSOrderedSame)) {
+                    if (!([eventStart compare:[event end]] == NSOrderedAscending)) {
+                        break;
+                    }
                 }
                 
                 [sameTimeEvents addObject:e];

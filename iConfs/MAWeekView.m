@@ -574,11 +574,11 @@ static const unsigned int TOP_BACKGROUND_HEIGHT               = 35;
 	NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
 	NSDateComponents *components = [CURRENT_CALENDAR components:DATE_COMPONENTS fromDate:_week];
 	
-	NSArray *monthSymbols = [formatter shortMonthSymbols];
+	NSArray *monthSymbols = [formatter monthSymbols];
 	
-	return [NSString stringWithFormat:@"%@, week %i",
+	return [NSString stringWithFormat:@"%@, %i",
 			[monthSymbols objectAtIndex:[components month] - 1],
-			[components week]];
+			[components year]];
 }
 
 - (void)isEditing{
@@ -720,7 +720,7 @@ static NSString const * const HOURS_24[] = {
 	
 	NSDateComponents *todayComponents = [CURRENT_CALENDAR components:DATE_COMPONENTS fromDate:[NSDate date]];
 	
-	NSArray *weekdaySymbols = [self.dateFormatter veryShortWeekdaySymbols];
+	NSArray *weekdaySymbols = [self.dateFormatter weekdaySymbols];
 	CFCalendarRef currentCalendar = CFCalendarCopyCurrent();
 	int d = CFCalendarGetFirstWeekday(currentCalendar) - 1;
 	CFRelease(currentCalendar);
