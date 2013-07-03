@@ -17,4 +17,6 @@
 @property (strong, nonatomic) UIButton *HomeButton;
 @property (strong, nonatomic) IBOutlet UIButton *MenuButton;
 
+@property (nonatomic) NSArray* Events;
+
 @end
