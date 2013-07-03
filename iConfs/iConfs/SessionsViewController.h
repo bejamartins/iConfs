@@ -17,6 +17,7 @@
 @property (strong, nonatomic) UIButton *MenuButton;
 
 @property UIViewController *previous;
+@property (strong, nonatomic) UIButton *BackButton;
 
 @property (strong, nonatomic) UIButton *HomeButton;
 
@@ -34,6 +35,7 @@
 
 - (IBAction)rate5:(id)sender;
 
+- (void)changePrevious:(UIViewController*)vc;
 
 
 

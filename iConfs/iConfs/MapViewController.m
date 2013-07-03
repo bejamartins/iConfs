@@ -18,7 +18,7 @@
 @end
 
 @implementation MapViewController
-@synthesize MenuButton,HomeButton,BackButton;
+@synthesize MenuButton,HomeButton,BackButton,ConferenceHome,previous;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -55,7 +55,22 @@
     
     [[self view] addSubview:HomeButton];
     
+    [self setBackButton:[UIButton buttonWithType:UIButtonTypeCustom]];
     
+    [BackButton setFrame:CGRectMake(717, 4, 43, 40)];
+    [BackButton setBackgroundImage:[UIImage imageNamed:@"back3.png"] forState:UIControlStateNormal];
+    [BackButton addTarget:self action:@selector(goBack:) forControlEvents:UIControlEventTouchUpInside];
+    
+    [[self view] addSubview:BackButton];
+    
+    [self setConferenceHome:[UIButton buttonWithType:UIButtonTypeCustom]];
+    
+    [ConferenceHome setFrame:CGRectMake(660, 4, 43, 40)];
+    [ConferenceHome setBackgroundImage:[UIImage imageNamed:@"white_home_conf2.png"] forState:UIControlStateNormal];
+    [ConferenceHome addTarget:self action:@selector(goToConferenceHome:) forControlEvents:UIControlEventTouchUpInside];
+    
+    [[self view] addSubview:ConferenceHome];
+
     
     
     Map* map= [[(MenuViewController*)[[self slidingViewController] underLeftViewController] selectedConf] getMap];
@@ -114,7 +129,18 @@
 
 
 
-
+- (IBAction)goToConferenceHome:(id)sender{
+    
+    NSString *iD = @"Conference";
+    
+    UIViewController *newTopViewController = [[self storyboard]instantiateViewControllerWithIdentifier:iD];
+    
+    
+    CGRect frame = [[[[self slidingViewController] topViewController] view] frame];
+    [[self slidingViewController] setTopViewController:newTopViewController];
+    [[[[self slidingViewController] topViewController] view] setFrame:frame];
+    
+}
 
 - (IBAction)revealMenu:(id)sender
 {
@@ -128,24 +154,33 @@
     
     UIViewController *newTopViewController = [[self storyboard]instantiateViewControllerWithIdentifier:iD];
     
+    [(MenuViewController*)[[self slidingViewController] underLeftViewController] deselectConf];
     
     CGRect frame = [[[[self slidingViewController] topViewController] view] frame];
     [[self slidingViewController] setTopViewController:newTopViewController];
     [[[[self slidingViewController] topViewController] view] setFrame:frame];
+}
+
+- (IBAction)goBack:(id)sender{
+    CGRect frame = [[[[self slidingViewController] topViewController] view] frame];
+    if(previous!=nil)
+        [[self slidingViewController] setTopViewController:previous];
+    else{
+        
+        NSString *iD = @"Conference";
+        
+        UIViewController *newTopViewController = [[self storyboard]instantiateViewControllerWithIdentifier:iD];
+        [[self slidingViewController] setTopViewController:newTopViewController];
+        
+    }
+    [[[[self slidingViewController] topViewController] view] setFrame:frame];
     
 }
-/*
- - (IBAction)goBack:(id)sender{
- CGRect frame = [[[[self slidingViewController] topViewController] view] frame];
- [[self slidingViewController] setTopViewController:previous];
- [[[[self slidingViewController] topViewController] view] setFrame:frame];
- 
- }
  - (void)changePrevious:(UIViewController*)vc{
- inConference =YES;
+ //inConference =YES;
  previous=vc;
  
  }
- */
+ 
 
 @end

@@ -21,7 +21,7 @@
 
 @implementation PDFReader
 
-@synthesize webview,BackButton,HomeButton,MenuButton,fullView,previous;
+@synthesize webview,BackButton,HomeButton,MenuButton,fullView,previous,ConferenceHome;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -90,6 +90,16 @@
     [BackButton addTarget:self action:@selector(goBack:) forControlEvents:UIControlEventTouchUpInside];
     
     [[self view] addSubview:BackButton];
+        
+        
+        [self setConferenceHome:[UIButton buttonWithType:UIButtonTypeCustom]];
+        
+        [ConferenceHome setFrame:CGRectMake(660, 4, 43, 40)];
+        [ConferenceHome setBackgroundImage:[UIImage imageNamed:@"white_home_conf2.png"] forState:UIControlStateNormal];
+        [ConferenceHome addTarget:self action:@selector(goToConferenceHome:) forControlEvents:UIControlEventTouchUpInside];
+        
+        [[self view] addSubview:ConferenceHome];
+
     }
     
     
@@ -111,15 +121,11 @@
     
     UIViewController *newTopViewController = [[self storyboard]instantiateViewControllerWithIdentifier:iD];
     
+    [(MenuViewController*)[[self slidingViewController] underLeftViewController] deselectConf];
     
     CGRect frame = [[[[self slidingViewController] topViewController] view] frame];
     [[self slidingViewController] setTopViewController:newTopViewController];
     [[[[self slidingViewController] topViewController] view] setFrame:frame];
-    
-    
-    
-    [menu setSelectedConf:nil];
-    [[menu MenuView ]reloadData];
 }
 
 - (IBAction)revealMenu:(id)sender
@@ -133,16 +139,17 @@
     
 }
 
+- (void)changePrevious:(UIViewController*)vc{
+    
+    previous=vc;
+    
+}
 -(void)changeToFullScreen{
     fullView =YES;
 
 }
 
-- (void)changePrevious:(UIViewController*)vc{
 
-    previous=vc;
-
-}
 
 
 @end

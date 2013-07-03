@@ -44,14 +44,16 @@
     
     NSString *paperPath;
     NSArray *authores;
+    Author *currentAuthor;
     
+    IBOutlet UITableView *paperCollection;
     
 }
 @end
 
 @implementation PeopleViewController
 
-@synthesize MenuButton,peopleTable,noSelectionLabel,personNameBar,iConfsImage,speakerBio,BIO,HomeButton,ConferenceHome,previous,segmentedControl;
+@synthesize MenuButton,peopleTable,noSelectionLabel,personNameBar,iConfsImage,speakerBio,BIO,HomeButton,ConferenceHome,previous,segmentedControl,BackButton;
 
 
 -(void)changeAuthor:(int)index{
@@ -118,6 +120,8 @@
   //  [[self PeopleCollection]setDataSource:self];
     
     
+    [paperCollection setDelegate:self];
+    [paperCollection setDataSource:self];
     [[self peopleTable] setDelegate:self];
     [[self peopleTable] setDataSource:self];
     [[self Search]setDelegate:self];
@@ -163,16 +167,33 @@
     
     [self setConferenceHome:[UIButton buttonWithType:UIButtonTypeCustom]];
     
-    [ConferenceHome setFrame:CGRectMake(717, 4, 43, 40)];
+    [ConferenceHome setFrame:CGRectMake(660, 4, 43, 40)];
     [ConferenceHome setBackgroundImage:[UIImage imageNamed:@"white_home_conf2.png"] forState:UIControlStateNormal];
     [ConferenceHome addTarget:self action:@selector(goToConferenceHome:) forControlEvents:UIControlEventTouchUpInside];
     
     [[self view] addSubview:ConferenceHome];
 
     
+    [self setBackButton:[UIButton buttonWithType:UIButtonTypeCustom]];
     
+    [BackButton setFrame:CGRectMake(717, 4, 43, 40)];
+    [BackButton setBackgroundImage:[UIImage imageNamed:@"back3.png"] forState:UIControlStateNormal];
+    [BackButton addTarget:self action:@selector(goBack:) forControlEvents:UIControlEventTouchUpInside];
+    
+    [[self view] addSubview:BackButton];
+    
+    [self setHomeButton:[UIButton buttonWithType:UIButtonTypeCustom]];
+    
+    [HomeButton setFrame:CGRectMake(45, 0, 43, 40)];
+    [HomeButton setBackgroundImage:[UIImage imageNamed:@"white_home.png"] forState:UIControlStateNormal];
+    [HomeButton addTarget:self action:@selector(goHome:) forControlEvents:UIControlEventTouchUpInside];
+    
+    [[self view] addSubview:HomeButton];
       menu=(MenuViewController*)[[self slidingViewController] underLeftViewController] ;
 
+    
+
+    
     UIColor *background = [[UIColor alloc] initWithPatternImage:[UIImage imageNamed:@"GB.jpg"]];
     self.view.backgroundColor = background;
 }
@@ -196,16 +217,41 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
 
-//collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section{
+    if(tableView.tag==0){
     if (!searchItem)
         return [confPeople count];
     else
         return [confSearchPeople count];
-}
+    }
+    
+    
+    
+    
+    if(tableView.tag ==1){
+        return 0;
+    
+        NSIndexPath *ip=[peopleTable indexPathForSelectedRow];
+        if([confPeople count]!=0&& ip.row<[confPeople count]){
+            
+            if([[confPeople objectAtIndex:ip.row] isKindOfClass:[Author class]]){
+            
+            
+        currentAuthor=(Author*)[confPeople objectAtIndex:ip.row];
+        
+        
+            return [[currentAuthor getAllPapers]count];
+    
+    
+    }
+        }
 
+}
+            return 0;
+
+}
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     
-    
+    if(tableView.tag==0){
     UITableViewCell *cell=[tableView dequeueReusableCellWithIdentifier:@"peopleCell" forIndexPath:indexPath];
     
         
@@ -216,8 +262,10 @@
         
         [[cell textLabel]setText:[(Person*)[confPeople objectAtIndex:[indexPath row]] getName]];
         [[cell detailTextLabel]setText:[(Person*)[confPeople objectAtIndex:[indexPath row]] getWork]];
-    }else {
-     //   [[cell Image] setImage:[[(MenuViewController*)[[self slidingViewController] underLeftViewController] selectedConf] loadImage:tmpS :[(Person*)[confSearchPeople objectAtIndex:[indexPath row]] getImagePath]]];
+    }
+    
+    
+    else {
         [[cell textLabel]setText:[(Person*)[confSearchPeople objectAtIndex:[indexPath row]] getName]];
         [[cell detailTextLabel]setText:[(Person*)[confSearchPeople objectAtIndex:[indexPath row]] getWork]];
     }
@@ -236,14 +284,50 @@
     }
     
     return cell;
-}
+    }
+    
+    else{
+        UITableViewCell *cell=[tableView dequeueReusableCellWithIdentifier:@"paperCell" forIndexPath:indexPath];
 
+        
+   NSIndexPath *ip=[peopleTable indexPathForSelectedRow];
+        
+        currentAuthor=(Author*)[confPeople objectAtIndex:ip.row];
+        
+        Paper *p=[[currentAuthor getAllPapers]objectAtIndex:indexPath.row ] ;
+        
+        [[cell textLabel]setText:[p getTitle]];
+    
+        
+        
+        
+        
+        if(indexPath.row==0){
+            [paperCollection
+             selectRowAtIndexPath:indexPath
+             animated:TRUE
+             scrollPosition:UITableViewScrollPositionNone
+             ];
+            
+            [[paperCollection delegate]
+             tableView:peopleTable
+             didSelectRowAtIndexPath:indexPath
+             ];
+    
+    
+    }
+    
+    
+    
+
+}
+    
+}
 //- (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath{
     
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     
-    NSLog(@"Section e row :%d,%d ",indexPath.section, indexPath.row);
-    
+    if(tableView.tag==0){
     if(![iConfsImage isHidden]){
     
         [iConfsImage setHidden:YES];
@@ -263,6 +347,7 @@
         [sessionView setHidden:YES];
         [pdfPreview setHidden:YES];
         [BIO setText:@"Bio"];
+        [paperCollection setHidden:YES];
 
         
         NSArray *Events=[s getEventList];
@@ -290,11 +375,12 @@
     
     
     if ([[confPeople objectAtIndex:indexPath.row] isKindOfClass:[Author class]]) {
+        [paperCollection setHidden:NO];
         Author *a=[confPeople objectAtIndex:indexPath.row];
         [speakerBio setHidden:YES];
         [BIO setHidden:YES];
         
-        [sessionView setHidden:NO];
+ //       [sessionView setHidden:NO];
         [seePaperButton setHidden:NO];
 
         
@@ -344,7 +430,8 @@
     }
     
     else     if ([[confPeople objectAtIndex:indexPath.row] isKindOfClass:[Organizer class]]) {
-        
+        [paperCollection setHidden:YES];
+
         Organizer *o =[confPeople objectAtIndex:indexPath.row];
         [pdfPreview setHidden:YES];
         [sessionView setHidden:YES];
@@ -360,7 +447,15 @@
     Person  *p= [confPeople objectAtIndex:indexPath.row];
     
     [personNameBar setTitle:[p getName]];
+    }
     
+    
+    
+    //paper table!
+    
+    
+    
+    else{}
 
 }
 
@@ -420,30 +515,38 @@
 
 - (IBAction)goHome:(id)sender{
     
-    
-    
     NSString *iD = @"Home";
     
     UIViewController *newTopViewController = [[self storyboard]instantiateViewControllerWithIdentifier:iD];
     
+    [(MenuViewController*)[[self slidingViewController] underLeftViewController] deselectConf];
     
     CGRect frame = [[[[self slidingViewController] topViewController] view] frame];
     [[self slidingViewController] setTopViewController:newTopViewController];
     [[[[self slidingViewController] topViewController] view] setFrame:frame];
-    
-    
-    
-    [menu setSelectedConf:nil];
-    [[menu MenuView ]reloadData];
 }
 
+- (IBAction)goBack:(id)sender{
+    CGRect frame = [[[[self slidingViewController] topViewController] view] frame];
+    if(previous!=nil)
+        [[self slidingViewController] setTopViewController:previous];
+    else{
+        
+        NSString *iD = @"Conference";
+        
+        UIViewController *newTopViewController = [[self storyboard]instantiateViewControllerWithIdentifier:iD];
+        [[self slidingViewController] setTopViewController:newTopViewController];
+        
+    }
+    [[[[self slidingViewController] topViewController] view] setFrame:frame];
+    
+}
 
-//- (IBAction)goBack:(id)sender{
-//    CGRect frame = [[[[self slidingViewController] topViewController] view] frame];
-//    [[self slidingViewController] setTopViewController:previous];
-//    [[[[self slidingViewController] topViewController] view] setFrame:frame];
-//    
-//}
+- (void)changePrevious:(UIViewController*)vc{
+    
+    previous=vc;
+    
+}
 
 - (IBAction)goToConferenceHome:(id)sender{
     
@@ -460,11 +563,6 @@
 
 
 
-- (void)changePrevious:(UIViewController*)vc{
-    
-    previous=vc;
-    
-}
 
 
 

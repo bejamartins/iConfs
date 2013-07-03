@@ -233,7 +233,7 @@
             tEvent.allDay = NO;
             event.userInfo = [ss getTheme];
             [tEvent setChecked:YES];
-            [tEvent setTitle:[e getTheme]];
+            [tEvent setTitle:[e getTitle]];
             [tEvent setStart:[e getDate]];
             [tEvent setEnd:[e getEventEnd]];
             [tEvent setSsID:[(SuperSession*)ss getID]];

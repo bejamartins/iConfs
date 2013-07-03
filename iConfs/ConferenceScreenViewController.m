@@ -104,6 +104,7 @@
 }
 
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath{
+    
     if(collectionView.tag==1){
     
     NSString *iD = @"People";
@@ -117,8 +118,10 @@
     [newTopViewController viewDidLoad];
 
     [newTopViewController changeAuthor:[cell getIndex]];
-    
+            [newTopViewController changePrevious:self];
+
     CGRect frame = [[[[self slidingViewController] topViewController] view] frame];
+
     [[self slidingViewController] setTopViewController:newTopViewController];
     [[[[self slidingViewController] topViewController] view] setFrame:frame];
     [newTopViewController changeAuthor:[cell getIndex]];
@@ -144,7 +147,8 @@
      //   [newTopViewController changeSession:[cell getIndexSession]];
 
         
-        
+        [newTopViewController changePrevious:self];
+
         CGRect frame = [[[[self slidingViewController] topViewController] view] frame];
         [[self slidingViewController] setTopViewController:newTopViewController];
         [[[[self slidingViewController] topViewController] view] setFrame:frame];

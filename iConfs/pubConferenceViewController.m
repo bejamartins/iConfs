@@ -14,6 +14,8 @@
     NSArray *otherConfs;
     IConfs *theAppData;
 
+    IBOutlet UIImageView *pulpito;
+    IBOutlet UILabel *allConfs;
 }
 
 @end
@@ -36,26 +38,36 @@
 {
     theAppData = [[IConfs alloc]init];
     ManageViewController *m=[ManageViewController alloc];
+    
     theAppData= [m appData];
-    //[theAppData fetchConferences];
-
-    otherConfs = [theAppData getRestOfConfs];
-    //NSLog(<#NSString *format, ...#>)
+    [theAppData fetchConferences];
+    otherConfs=[theAppData getRestOfConfs];
+    
+    
+    
+    
     if([otherConfs count] != 0){
-        Conference *final=[otherConfs objectAtIndex:0];
-        //Event *e= [[final getAllEvents] objectAtIndex:0];
-        // int counter=0;
+     //   [pulpito setHidden:YES];
+     //   [allConfs setHidden:YES];
+        int aux = arc4random() % [otherConfs count];
+
+        Conference *final=[otherConfs objectAtIndex:aux];
         for (Conference *c in otherConfs) {
-            //        NSArray *ev=[c getAllEvents];
-            //      Event *eAux=[ev objectAtIndex:<#(NSUInteger)#>];
-            //  if([[eAux getDate] )
+
             
             UIImage *im=[final getLogo];
             
             [picture setImage:im];
         }
-    }
-    
+        
+           }
+//else{
+//    [pulpito setHidden:NO];
+//    [allConfs setHidden:NO];
+//
+//}
+
+[self.view setNeedsDisplay];
 
     [super viewDidLoad];
 	// Do any additional setup after loading the view.
