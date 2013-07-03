@@ -532,6 +532,7 @@
                 
                 
                 for (CustomizableSuperSession* cSS in [[(MenuViewController*)[[self slidingViewController] underLeftViewController] appData] getAgendaByConferenceOrderedByDate:iD]) {
+                    [cSS subscribeAllEvents];
                     if ([cSS getID] == [e ssID]) {
                         [cSS subscribeAllEvents];
                         for (MAEvent* event in [e eventsOfSS]) {

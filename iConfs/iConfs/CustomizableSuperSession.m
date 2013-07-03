@@ -54,12 +54,18 @@
 }
 
 -(void)subscribeAllEvents{
-    userSessions = [sessions copy];
-    userSessionsDic = [sessionsDic copy];
-    userWorkshops = [workshops copy];
-    userWorkshopsDic = [workshopsDic copy];
-    userAllEvents = [allEvents copy];
-    userAllEventsDic = [allEventsDic copy];
+    //userSessions = [sessions copy];
+    userSessions = [[NSMutableArray alloc] initWithArray:[sessions copy]];
+    //userSessionsDic = [sessionsDic copy];
+    userSessionsDic = [[NSMutableDictionary alloc] initWithDictionary:[sessionsDic copy]];
+    //userWorkshops = [workshops copy];
+    userWorkshops = [[NSMutableArray alloc] initWithArray:[workshops copy]];
+    //userWorkshopsDic = [workshopsDic copy];
+    userWorkshopsDic = [[NSMutableDictionary alloc] initWithDictionary:[workshopsDic copy]];
+    //userAllEvents = [allEvents copy];
+    userAllEvents = [[NSMutableArray alloc] initWithArray:[allEvents copy]];
+    //userAllEventsDic = [allEventsDic copy];
+    userAllEventsDic = [[NSMutableDictionary alloc] initWithDictionary:[allEventsDic copy]];
 }
 
 -(void)subscribeAllSessions{
@@ -129,8 +135,23 @@
     }
     else{
         Session* s = [userSessionsDic objectForKey:[NSNumber numberWithInteger: sessionID]];
-        [userSessions removeObject:s];
-        [userAllEvents removeObject: s];
+        //[userSessions removeObjectIdenticalTo:s];
+        for (int i = 0; i < [userSessions count]; i++) {
+            if ([s getID] == [((Session*) userSessions[i]) getID]) {
+                int i1 = [s getID];
+                int i2 = [((Session*) userSessions[i]) getID];
+                [userSessions removeObjectAtIndex:i];
+                break;
+            }
+        }
+        //[userAllEvents removeObject: s];
+        //[userAllEvents removeObjectIdenticalTo:s];
+        for (int i = 0; i < [userAllEvents count]; i++) {
+            if ([s getID] == [((Event*) userAllEvents[i]) getID]) {
+                [userAllEvents removeObjectAtIndex:i];
+                break;
+            }
+        }
         [userSessionsDic removeObjectForKey:[NSNumber numberWithInteger: sessionID]];
         [userAllEventsDic removeObjectForKey:[NSNumber numberWithInteger: sessionID]];
         [userSessions sortUsingSelector:@selector(compare:)];
