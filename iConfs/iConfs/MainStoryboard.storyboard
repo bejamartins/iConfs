@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="2.0" toolsVersion="3084" systemVersion="12C54" targetRuntime="iOS.CocoaTouch.iPad" propertyAccessControl="none" useAutolayout="YES" initialViewController="Srd-QG-135">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="2.0" toolsVersion="3084" systemVersion="12E55" targetRuntime="iOS.CocoaTouch.iPad" propertyAccessControl="none" useAutolayout="YES" initialViewController="Srd-QG-135">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="2083"/>
     </dependencies>
@@ -583,7 +583,7 @@
                             </toolbar>
                             <searchBar contentMode="redraw" barStyle="blackOpaque" translatesAutoresizingMaskIntoConstraints="NO" id="E02-vX-n9D">
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="320" id="AvS-ze-dlO"/>
+                                    <constraint firstAttribute="width" constant="320" id="XuI-e5-Hqx"/>
                                 </constraints>
                                 <textInputTraits key="textInputTraits"/>
                             </searchBar>
@@ -734,30 +734,50 @@
                                     <action selector="openPDF:" destination="1RG-f5-rQn" eventType="touchUpInside" id="9nR-6X-d9Z"/>
                                 </connections>
                             </button>
+                            <tableView clipsSubviews="YES" tag="1" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" rowHeight="98" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="hBE-Dz-Dg6">
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="148" id="OQg-8D-ICm"/>
+                                </constraints>
+                                <prototypes>
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="paperCell" rowHeight="98" id="cVM-Eg-VrV">
+                                        <rect key="frame" x="0.0" y="22" width="350" height="98"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                                            <rect key="frame" x="0.0" y="0.0" width="350" height="97"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                        </view>
+                                    </tableViewCell>
+                                </prototypes>
+                            </tableView>
                         </subviews>
                         <color key="backgroundColor" cocoaTouchSystemColor="scrollViewTexturedBackgroundColor"/>
                         <constraints>
-                            <constraint firstItem="l4F-sJ-WgB" firstAttribute="trailing" secondItem="h4F-67-YNr" secondAttribute="trailing" type="default" id="04Y-hd-jN9"/>
-                            <constraint firstItem="l4F-sJ-WgB" firstAttribute="top" secondItem="i2R-Pf-2IV" secondAttribute="top" type="default" id="0xE-bj-rch"/>
                             <constraint firstItem="pyD-PK-PAq" firstAttribute="bottom" secondItem="h4F-67-YNr" secondAttribute="bottom" type="default" id="1Lt-Fd-4OB"/>
                             <constraint firstItem="l4F-sJ-WgB" firstAttribute="trailing" secondItem="E02-vX-n9D" secondAttribute="trailing" type="default" id="4RQ-MC-Moq"/>
+                            <constraint firstItem="h4F-67-YNr" firstAttribute="top" secondItem="l4F-sJ-WgB" secondAttribute="bottom" type="default" id="9xs-da-lcw"/>
                             <constraint firstItem="E02-vX-n9D" firstAttribute="top" secondItem="l4F-sJ-WgB" secondAttribute="top" type="default" id="AZn-4M-asC"/>
-                            <constraint firstItem="l4F-sJ-WgB" firstAttribute="leading" secondItem="E02-vX-n9D" secondAttribute="leading" type="default" id="Ch2-YK-NMr"/>
                             <constraint firstItem="i2R-Pf-2IV" firstAttribute="leading" secondItem="xjg-QO-dYD" secondAttribute="leading" constant="61" id="FHP-uo-f2f"/>
                             <constraint firstItem="XW2-UU-8S4" firstAttribute="trailing" secondItem="xjg-QO-dYD" secondAttribute="trailing" type="default" id="Fex-Ia-Bua"/>
-                            <constraint firstItem="E02-vX-n9D" firstAttribute="leading" secondItem="i2R-Pf-2IV" secondAttribute="trailing" type="default" id="HEr-Ho-T7b"/>
-                            <constraint firstItem="h4F-67-YNr" firstAttribute="top" secondItem="E02-vX-n9D" secondAttribute="bottom" type="default" id="Mhs-bx-4Fi"/>
+                            <constraint firstItem="l4F-sJ-WgB" firstAttribute="leading" secondItem="i2R-Pf-2IV" secondAttribute="trailing" type="default" id="GFf-Tg-Hv4"/>
+                            <constraint firstItem="E02-vX-n9D" firstAttribute="top" secondItem="i2R-Pf-2IV" secondAttribute="top" type="default" id="KZc-IS-CBc"/>
                             <constraint firstItem="XW2-UU-8S4" firstAttribute="top" secondItem="xjg-QO-dYD" secondAttribute="top" type="default" id="QD2-tm-Iw7"/>
                             <constraint firstItem="iVp-br-iXK" firstAttribute="top" secondItem="xjg-QO-dYD" secondAttribute="top" constant="203" id="SPf-g4-mGT"/>
                             <constraint firstItem="iVp-br-iXK" firstAttribute="centerX" secondItem="i2R-Pf-2IV" secondAttribute="centerX" type="default" id="WZS-qX-ZHZ"/>
                             <constraint firstItem="ZFs-iT-m0Y" firstAttribute="top" secondItem="xjg-QO-dYD" secondAttribute="top" constant="67" id="X1z-Yp-gar"/>
+                            <constraint firstAttribute="bottom" secondItem="hBE-Dz-Dg6" secondAttribute="bottom" constant="270" id="ZLQ-ys-QJy"/>
+                            <constraint firstItem="hBE-Dz-Dg6" firstAttribute="trailing" secondItem="i2R-Pf-2IV" secondAttribute="trailing" type="default" id="aPJ-sV-ckg"/>
                             <constraint firstItem="E02-vX-n9D" firstAttribute="trailing" secondItem="ZFs-iT-m0Y" secondAttribute="trailing" type="default" id="agk-tB-kTi"/>
-                            <constraint firstItem="i2R-Pf-2IV" firstAttribute="leading" secondItem="pyD-PK-PAq" secondAttribute="leading" type="default" id="bCX-AG-Nxe"/>
+                            <constraint firstItem="pyD-PK-PAq" firstAttribute="leading" secondItem="hBE-Dz-Dg6" secondAttribute="leading" type="default" id="hvX-DS-igN"/>
                             <constraint firstItem="h4F-67-YNr" firstAttribute="leading" secondItem="E02-vX-n9D" secondAttribute="leading" type="default" id="mR1-IU-pDd"/>
                             <constraint firstItem="XW2-UU-8S4" firstAttribute="leading" secondItem="xjg-QO-dYD" secondAttribute="leading" type="default" id="ndF-lD-CrT"/>
                             <constraint firstItem="pyD-PK-PAq" firstAttribute="top" secondItem="i2R-Pf-2IV" secondAttribute="bottom" type="default" id="oBe-FM-KzL"/>
-                            <constraint firstItem="pyD-PK-PAq" firstAttribute="trailing" secondItem="i2R-Pf-2IV" secondAttribute="trailing" type="default" id="qMU-v9-SJg"/>
+                            <constraint firstItem="E02-vX-n9D" firstAttribute="leading" secondItem="l4F-sJ-WgB" secondAttribute="leading" type="default" id="sA6-Ef-8oE"/>
+                            <constraint firstItem="E02-vX-n9D" firstAttribute="trailing" secondItem="h4F-67-YNr" secondAttribute="trailing" type="default" id="tk3-c0-Bqg"/>
                             <constraint firstItem="i2R-Pf-2IV" firstAttribute="top" secondItem="xjg-QO-dYD" secondAttribute="top" constant="137" id="ucf-AH-Hia"/>
+                            <constraint firstItem="hBE-Dz-Dg6" firstAttribute="trailing" secondItem="pyD-PK-PAq" secondAttribute="trailing" type="default" id="v2D-R6-8EG"/>
+                            <constraint firstItem="i2R-Pf-2IV" firstAttribute="leading" secondItem="hBE-Dz-Dg6" secondAttribute="leading" type="default" id="yZd-qK-rco"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Speakers" id="kq7-sG-T1k"/>
@@ -770,6 +790,7 @@
                         <outlet property="iConfsImage" destination="xLe-kV-HcE" id="E5N-5y-ITE"/>
                         <outlet property="noSelectionLabel" destination="uAB-g0-JIE" id="Aq7-oL-bWa"/>
                         <outlet property="pageControl" destination="PWN-jf-vh9" id="lUG-1L-JmI"/>
+                        <outlet property="paperCollection" destination="hBE-Dz-Dg6" id="o2g-Re-7to"/>
                         <outlet property="pdfPreview" destination="SQU-oN-KRx" id="qm8-TM-IWN"/>
                         <outlet property="peopleTable" destination="h4F-67-YNr" id="M1t-g6-WyF"/>
                         <outlet property="personNameBar" destination="qtZ-Wb-jjW" id="rkV-wM-Pr3"/>
@@ -2532,7 +2553,7 @@
                     </view>
                     <toolbarItems/>
                     <connections>
-                        <outlet property="picture" destination="IRT-UJ-Ux4" id="JWo-VE-f0k"/>
+                        <outlet property="picture" destination="IRT-UJ-Ux4" id="n8m-Ra-3AE"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="fwm-zg-Gsj" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -3085,9 +3106,6 @@
         <class className="HomeViewController" superclassName="UIViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/HomeViewController.h"/>
             <relationships>
-                <relationship kind="action" name="clickAgendaPreview:"/>
-                <relationship kind="action" name="clickMoreNews:"/>
-                <relationship kind="action" name="revealMenu:"/>
                 <relationship kind="outlet" name="AgendaView" candidateClass="MAWeekView"/>
                 <relationship kind="outlet" name="CollectionOne" candidateClass="UICollectionView"/>
                 <relationship kind="outlet" name="agendaPreviewB" candidateClass="UIButton"/>
@@ -3162,6 +3180,9 @@
         <class className="NewsViewController" superclassName="UIViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/NewsViewController.h"/>
             <relationships>
+                <relationship kind="action" name="goBack:"/>
+                <relationship kind="action" name="goHome:"/>
+                <relationship kind="action" name="revealMenu:"/>
                 <relationship kind="action" name="segmentedChanged:"/>
                 <relationship kind="outlet" name="collection" candidateClass="UICollectionView"/>
                 <relationship kind="outlet" name="segmentedControl" candidateClass="UISegmentedControl"/>
@@ -3203,6 +3224,7 @@
                 <relationship kind="outlet" name="iConfsImage" candidateClass="UIImageView"/>
                 <relationship kind="outlet" name="noSelectionLabel" candidateClass="UILabel"/>
                 <relationship kind="outlet" name="pageControl" candidateClass="UIPageControl"/>
+                <relationship kind="outlet" name="paperCollection" candidateClass="UITableView"/>
                 <relationship kind="outlet" name="pdfPreview" candidateClass="UIView"/>
                 <relationship kind="outlet" name="peopleTable" candidateClass="UITableView"/>
                 <relationship kind="outlet" name="personNameBar" candidateClass="UIBarButtonItem"/>
@@ -3272,6 +3294,8 @@
                 <relationship kind="outlet" name="r4" candidateClass="UIButton"/>
                 <relationship kind="outlet" name="r5" candidateClass="UIButton"/>
                 <relationship kind="outlet" name="searchBar" candidateClass="UISearchBar"/>
+                <relationship kind="outlet" name="seeMoreButton" candidateClass="UIButton"/>
+                <relationship kind="outlet" name="seeMoreLabel" candidateClass="UILabel"/>
                 <relationship kind="outlet" name="sessionsTable" candidateClass="UITableView"/>
             </relationships>
         </class>
@@ -3301,7 +3325,9 @@
         <class className="pubConferenceViewController" superclassName="UIViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/pubConferenceViewController.h"/>
             <relationships>
+                <relationship kind="outlet" name="allConfs" candidateClass="UILabel"/>
                 <relationship kind="outlet" name="picture" candidateClass="UIImageView"/>
+                <relationship kind="outlet" name="pulpito" candidateClass="UIImageView"/>
             </relationships>
         </class>
     </classes>

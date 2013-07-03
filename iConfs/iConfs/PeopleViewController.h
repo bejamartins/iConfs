@@ -26,6 +26,7 @@
 @property (strong, nonatomic) UIButton *ConferenceHome;
 @property UIViewController *previous;
 @property (strong, nonatomic) IBOutlet UISegmentedControl *segmentedControl;
+@property (strong, nonatomic) UIButton *BackButton;
 
 @property (strong, nonatomic) UIButton *HomeButton;
 - (void)changePrevious:(UIViewController*)vc;

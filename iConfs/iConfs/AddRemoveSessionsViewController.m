@@ -81,6 +81,8 @@
     
     [self sessionToMAEvents];
     
+    Events = [Events sortedArrayUsingFunction:MAEvent_sortByStartTime context:NULL];
+    
     [AgendaView setStartDate:[(MAEvent*)[Events objectAtIndex:0] start]];
     
     [AgendaView setSmall:NO];
@@ -315,7 +317,7 @@
                 tEvent.allDay = NO;
                 tEvent.userInfo = [ss getTheme];
                 [tEvent setChecked:YES];
-                [tEvent setTitle:[e getTheme]];
+                [tEvent setTitle:[e getTitle]];
                 [tEvent setStart:[e getDate]];
                 [tEvent setEnd:[e getEventEnd]];
                 [tEvent setSsID:[(SuperSession*)ss getID]];
@@ -330,7 +332,7 @@
                 tEvent.allDay = NO;
                 tEvent.userInfo = [ss getTheme];
                 [tEvent setChecked:NO];
-                [tEvent setTitle:[e getTheme]];
+                [tEvent setTitle:[e getTitle]];
                 [tEvent setStart:[e getDate]];
                 [tEvent setEnd:[e getEventEnd]];
                 [tEvent setSsID:[(SuperSession*)ss getID]];
@@ -363,7 +365,7 @@
                 tEvent.allDay = NO;
                 tEvent.userInfo = [ss getTheme];
                 [tEvent setChecked:NO];
-                [tEvent setTitle:[e getTheme]];
+                [tEvent setTitle:[e getTitle]];
                 [tEvent setStart:[e getDate]];
                 [tEvent setEnd:[e getEventEnd]];
                 [tEvent setSsID:[(SuperSession*)ss getID]];
@@ -548,6 +550,8 @@
                 [[(MenuViewController*)[[self slidingViewController] underLeftViewController] appData] unsubscribeSuperSessionInAgenda:[e ssID]];
         }
     }
+    
+    //[[(MenuViewController*)[[self slidingViewController] underLeftViewController] appData] saveAgendaToDisk];
 }
 
 - (IBAction)changedOption:(id)sender {

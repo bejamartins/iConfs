@@ -14,6 +14,8 @@
 #import "MenuViewController.h"
 #import "PDFReader.h"
 #import "SScell.h"
+#import "PeopleViewController.h"
+#import "PeopleCell.h"
 
 
 @interface SessionsViewController (){
@@ -39,6 +41,8 @@
     //usado para o rating
     NSString *sessionID;
     NSString *confID;
+    IBOutlet UIButton *seeMoreButton;
+    IBOutlet UILabel *seeMoreLabel;
 
 }
 
@@ -47,7 +51,7 @@
 @end
 
 @implementation SessionsViewController
-@synthesize collection,sessionsTable, abstract,AuthorsTable,HomeButton,MenuButton,ConferenceHome,previous;
+@synthesize collection,sessionsTable,BackButton, abstract,AuthorsTable,HomeButton,MenuButton,ConferenceHome,previous;
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
@@ -97,47 +101,66 @@
     
 }
 
-
+//-(void)vote:(int)value event:(int)eventID Confeference:(NSString*)cID;
+//
+//-(int)getVote:(int)eventID Confeference:(NSString*)cID;
 
 
 - (IBAction)rate1:(id)sender {
-    [self setRating:confID:sessionID:1];
+  BOOL success=  [self setRating:confID:sessionID:1];
+    if(success){
     [selectedSession vote:1];
 
     [self checkRatingButtons];
-
+    IConfs *ic= [(MenuViewController*)[[self slidingViewController] underLeftViewController] appData];
+  //  [ic  vote:1 event:[selectedSession getID] Confeference:[conf getID]];
+    }
     
 }
 
 - (IBAction)rate2:(id)sender {
-    [self setRating:confID:sessionID:2];
-    [selectedSession vote:3];
+    BOOL success=  [self setRating:confID:sessionID:2];
+    if(success){    [selectedSession vote:3];
+    IConfs *ic= [(MenuViewController*)[[self slidingViewController] underLeftViewController] appData];
+    //[ic  vote:2 event:[selectedSession getID] Confeference:[conf getID]];
 
     [self checkRatingButtons];
-
+    }
 }
 
 - (IBAction)rate3:(id)sender {
-    [self setRating:confID:sessionID:3];
+    BOOL success=  [self setRating:confID:sessionID:3];
+    if(success){
+        IConfs *ic= [(MenuViewController*)[[self slidingViewController] underLeftViewController] appData];
+
+  //  [ic  vote:3 event:[selectedSession getID] Confeference:[conf getID]];
+
     [selectedSession vote:3];
     [self checkRatingButtons];
-
+    }
 }
 
 - (IBAction)rate4:(id)sender {
-    [self setRating:confID:sessionID:4];
+    BOOL success=  [self setRating:confID:sessionID:4];
+    if(success){    IConfs *ic= [(MenuViewController*)[[self slidingViewController] underLeftViewController] appData];
+
     [selectedSession vote:4];
+ //   [ic  vote:4 event:[selectedSession getID] Confeference:[conf getID]];
+
 
     [self checkRatingButtons];
-
+    }
 }
 
 - (IBAction)rate5:(id)sender {
-    [self setRating:confID:sessionID:5];
-    [selectedSession vote:5];
+    IConfs *ic= [(MenuViewController*)[[self slidingViewController] underLeftViewController] appData];
+
+    BOOL success=  [self setRating:confID:sessionID:1];
+    if(success){    [selectedSession vote:5];
+ //   [ic  vote:5 event:[selectedSession getID] Confeference:[conf getID]];
 
     [self checkRatingButtons];
-
+    }
 }
 
 
@@ -235,9 +258,14 @@
     [r4 setEnabled:YES];
     [r5 setEnabled:YES];
     
-    if([selectedSession getVote] !=0){ 
+    if(selectedSession !=nil&& conf!=nil){
+    IConfs *ic= [(MenuViewController*)[[self slidingViewController] underLeftViewController] appData];
+        conf=[(MenuViewController*)[[self slidingViewController] underLeftViewController]selectedConf];
+  // int v=[ ic getVote:[selectedSession getID] Confeference:[conf getID]];
+        int v=[selectedSession getVote];
+    if(v !=0){
     
-        if([selectedSession getVote] ==1){
+        if(v ==1){
             [r1 setTitleColor:[UIColor redColor] forState:UIControlStateNormal];
 
             
@@ -246,18 +274,18 @@
             }
 
         
-      else  if([selectedSession getVote] ==2){
+      else  if(v ==2){
             [r2 setSelected:YES];
           [r2 setTitleColor:[UIColor redColor] forState:UIControlStateNormal];
 
           
         }
-     else   if([selectedSession getVote] ==3){
+     else   if(v ==3){
             [r3 setSelected:YES];
          [r3 setTitleColor:[UIColor redColor] forState:UIControlStateNormal];
 
         }
-     else   if([selectedSession getVote] ==4){
+     else   if(v ==4){
             [r4 setSelected:YES];
          [r4 setTitleColor:[UIColor redColor] forState:UIControlStateNormal];
 
@@ -277,6 +305,7 @@
         [r5 setEnabled:NO];
 
         [self.view setNeedsDisplay];
+    }
     }
     
     
@@ -314,7 +343,7 @@
 
         sessions=[[NSArray alloc]init];
         superSessions=[[NSArray alloc]init];
-        autores=[[NSArray alloc]init];
+        autores=[[NSMutableArray alloc]init];
         searchSessions = [[NSMutableArray alloc] init];
 
         superSessions=[[conf getSuperSessions]allValues];
@@ -390,15 +419,21 @@
         
         
         
-        [self setConferenceHome:[UIButton buttonWithType:UIButtonTypeCustom]];
-        
-        [ConferenceHome setFrame:CGRectMake(717, 4, 43, 40)];
-        [ConferenceHome setBackgroundImage:[UIImage imageNamed:@"white_home_conf2.png"] forState:UIControlStateNormal];
-        [ConferenceHome addTarget:self action:@selector(goToConferenceHome:) forControlEvents:UIControlEventTouchUpInside];
-        
-        [[self view] addSubview:ConferenceHome];
+//        [self setConferenceHome:[UIButton buttonWithType:UIButtonTypeCustom]];
+//        
+//        [ConferenceHome setFrame:CGRectMake(717, 4, 43, 40)];
+//        [ConferenceHome setBackgroundImage:[UIImage imageNamed:@"white_home_conf2.png"] forState:UIControlStateNormal];
+//        [ConferenceHome addTarget:self action:@selector(goToConferenceHome:) forControlEvents:UIControlEventTouchUpInside];
+//        
+//        [[self view] addSubview:ConferenceHome];
 
-
+        [self setBackButton:[UIButton buttonWithType:UIButtonTypeCustom]];
+        
+        [BackButton setFrame:CGRectMake(717, 4, 43, 40)];
+        [BackButton setBackgroundImage:[UIImage imageNamed:@"back3.png"] forState:UIControlStateNormal];
+        [BackButton addTarget:self action:@selector(goBack:) forControlEvents:UIControlEventTouchUpInside];
+        
+        [[self view] addSubview:BackButton];
     }
     
     
@@ -419,6 +454,8 @@
 
     int x=[selectedSession getPaperID];
     if(x !=-1){
+        [seeMoreButton setHidden:NO];
+        [seeMoreLabel setText:@"See more in Paper"];
         Session *s=selectedSession;
         Author *as=[s getAuthor];
         NSInteger authorID = [[selectedSession getAuthor] getID];
@@ -431,9 +468,15 @@
             Author* currAuthor = [conf getAuthorByID:currAuthorID];
             [autores addObject:currAuthor];
         }
-    
+           
     }
-    
+else{
+    autores =[[NSMutableArray alloc]init];
+    [seeMoreButton setHidden:YES];
+    [seeMoreLabel setText:@"No Paper available"];
+}
+
+
     [abstract setText:[selectedSession getTheme]];
 
     
@@ -506,12 +549,7 @@
                   NSArray *aut=autores;
         [[cell textLabel]setText:[s getTitle]];
         
-        //  NSString* tmpS=[[(MenuViewController*)[[self slidingViewController] underLeftViewController] selectedConf] getID];
-        
-  //      if (!searchItem) {
-            //   [[cell Image] setImage:[[(MenuViewController*)[[self slidingViewController] underLeftViewController] selectedConf] loadImage:tmpS :[(Person*)[confPeople objectAtIndex:[indexPath row]] getImagePath]]];
-            
-        //    [[cell textLabel]setText:[(Person*)[confPeople objectAtIndex:[indexPath row]] getName]];
+;
               
                   if(indexPath.row==0&&!givenSession){
                       [sessionsTable
@@ -552,6 +590,10 @@
           cell=[tableView dequeueReusableCellWithIdentifier:@"authorCell" forIndexPath:indexPath];
     
         if([autores count]!=0){
+            
+            [[cell textLabel] setText:[[autores objectAtIndex:indexPath.row] getName]];
+            [[cell detailTextLabel] setText:[[autores objectAtIndex:indexPath.row] getWork]];
+
 //            int i = indexPath.row;
 //            NSString* currIDUnparsed = [autores objectAtIndex:indexPath.row];
 //            int currAuthorID = [[[currIDUnparsed componentsSeparatedByString:@"p"] objectAtIndex: 1]intValue];
@@ -585,23 +627,32 @@
     SScell *cell= [collectionView dequeueReusableCellWithReuseIdentifier:CellIdentifier forIndexPath:indexPath];
     SuperSession *ss=[superSessions objectAtIndex:indexPath.item];
     [[cell sessionName] setText:[ss getTheme]];
-    NSString *x =[ss getTheme];
-    NSLog(@"Theme da sessão: %@",x);
-//    NSArray *keys = [self.blueprints allKeys];
-//    NSString *key = [keys objectAtIndex:indexPath.item];
-//    // NSLog(@"Vou buscar o 1º Mapa! :D item=%d",indexPath.item );
-//    Blueprints *bp=[self.blueprints objectForKey:key];
-//    // NSLog(self.blueprints);
-//    NSString *imagePath=[bp getImagePath];
-//    //   UIImage *graphImage = [[UIImage alloc] initWithContentsOfFile: imagePath];
-//    
+ 
     
     return cell;
 }
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     
-    selectedSession=[sessions objectAtIndex:indexPath.row];
+    if(tableView.tag==1){
     
+    selectedSession=[sessions objectAtIndex:indexPath.row];
+        int x=[selectedSession getPaperID];
+        if(x !=-1){
+            Session *s=selectedSession;
+            Author *as=[s getAuthor];
+            NSInteger authorID = [[selectedSession getAuthor] getID];
+            NSArray *confAuthors=[conf getAuthors];
+            Author* aut = [conf getAuthorByID:authorID];
+            Paper *p=[aut getPaper: x];
+            autores=[[NSMutableArray alloc]init ];
+            for( NSString *id in[p getAuthors]){
+                int currAuthorID = [[[id componentsSeparatedByString:@"p"] objectAtIndex: 1]intValue];
+                Author* currAuthor = [conf getAuthorByID:currAuthorID];
+                [autores addObject:currAuthor];
+            }
+         
+            [AuthorsTable reloadData];
+        }
     [self checkRatingButtons];
 
     
@@ -619,17 +670,50 @@
         sessionID= [NSString stringWithFormat:@"%@%i",@"s",selectedSession.getID];
     self.RatingLabel.text=[NSString stringWithFormat:@"%@%.1f",@"Rating: ",selectedSession.getRateTrue];
     
-    
-    
-    
 
-
-    //adicionar abstract e autores
-    
     [abstract setText:[selectedSession getTheme]];
     [self viewDidLoad];
     
     [AuthorsTable reloadData];
+    }
+    else{
+    
+        
+        
+        NSString *iD = @"People";
+        
+        PeopleViewController *newTopViewController =[[self storyboard]instantiateViewControllerWithIdentifier:iD];
+        int index = 0;
+        Author *currentAuthor;
+        if([autores count]!=0){
+        currentAuthor=[autores objectAtIndex:indexPath.row];
+        }
+        for(int i=0;i<[[conf getAuthors] count];i++){
+            Author * aut=[[conf getAuthors] objectAtIndex:i];
+            
+            if([aut getID]==[currentAuthor getID]){
+            
+                index=i;
+                break;
+            }
+            
+            
+        }
+        [newTopViewController changePrevious:self];
+
+        [newTopViewController changeAuthor:index];
+        
+        [newTopViewController viewDidLoad];
+        
+        [newTopViewController changeAuthor:index];
+        
+        CGRect frame = [[[[self slidingViewController] topViewController] view] frame];
+        [[self slidingViewController] setTopViewController:newTopViewController];
+        [[[[self slidingViewController] topViewController] view] setFrame:frame];
+        [newTopViewController changeAuthor:index];
+    
+    
+    }
 }
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath{
     
@@ -661,12 +745,28 @@
 
 - (IBAction)openPaper:(id)sender {
     
-//   IConfs *ic= [(MenuViewController*)[[self slidingViewController] underLeftViewController] appData];
-  //  [ic getPaper:<#(NSString *)#> :<#(NSString *)#>];
+   IConfs *ic= [(MenuViewController*)[[self slidingViewController] underLeftViewController] appData];
+    int auxPaperID=[selectedSession getPaperID];
+    NSString* stringPaperID;
+    if(auxPaperID>10){
+        stringPaperID = [@"p0" stringByAppendingFormat:@"%i", auxPaperID];
+
+    }
+    else{
+    stringPaperID = [@"p00" stringByAppendingFormat:@"%i", auxPaperID];
+        NSLog(@"%@",stringPaperID);
+    }
+
+    
+   NSString *auxpaperPath=[[[autores objectAtIndex:0] getPaper:[selectedSession getPaperID]]getLink];
+
     NSString *iD = @"PDFReader";
     PDFReader *newTopViewController = [[self storyboard]instantiateViewControllerWithIdentifier:iD];
     
-    NSString *paperPath=[[[autores objectAtIndex:0] getPaper:[selectedSession getPaperID]]getLink];
+    NSString *paperPath=    [ic getPaper:[[(MenuViewController*)[[self slidingViewController] underLeftViewController] selectedConf]getID]:auxpaperPath];
+
+    
+    
     [newTopViewController changePath:paperPath];
     [newTopViewController changeToFullScreen];
     [newTopViewController changePrevious:self];
@@ -686,20 +786,29 @@
     
     UIViewController *newTopViewController = [[self storyboard]instantiateViewControllerWithIdentifier:iD];
     
+    [(MenuViewController*)[[self slidingViewController] underLeftViewController] deselectConf];
     
-    [[self slidingViewController] anchorTopViewTo:ECRight];
     CGRect frame = [[[[self slidingViewController] topViewController] view] frame];
     [[self slidingViewController] setTopViewController:newTopViewController];
     [[[[self slidingViewController] topViewController] view] setFrame:frame];
 }
 
 
-//- (IBAction)goBack:(id)sender{
-//    CGRect frame = [[[[self slidingViewController] topViewController] view] frame];
-//    [[self slidingViewController] setTopViewController:previous];
-//    [[[[self slidingViewController] topViewController] view] setFrame:frame];
-//
-//}
+- (IBAction)goBack:(id)sender{
+    CGRect frame = [[[[self slidingViewController] topViewController] view] frame];
+    if(previous!=nil)
+    [[self slidingViewController] setTopViewController:previous];
+    else{
+    
+        NSString *iD = @"Conference";
+        
+        UIViewController *newTopViewController = [[self storyboard]instantiateViewControllerWithIdentifier:iD];
+        [[self slidingViewController] setTopViewController:newTopViewController];
+
+    }
+    [[[[self slidingViewController] topViewController] view] setFrame:frame];
+
+}
 
 - (IBAction)goToConferenceHome:(id)sender{
     

@@ -20,4 +20,11 @@
 -(UIImage*) returnImagePath:(NSString*)imagePath;
 @property (strong, nonatomic) IBOutlet UITableView *placesTable;
 @property Conference *c;
+@property UIViewController *previous;
+
+@property (strong, nonatomic) UIButton *ConferenceHome;
+@property (strong, nonatomic) UIButton *BackButton;
+
+
+- (void)changePrevious:(UIViewController*)vc;
 @end

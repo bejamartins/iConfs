@@ -20,6 +20,7 @@
 @property (strong, nonatomic) UIButton *MenuButton;
 @property UIViewController *previous;
 
+@property (strong, nonatomic) UIButton *ConferenceHome;
 
 
 - (void)changePrevious:(UIViewController*)vc;

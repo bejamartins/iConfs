@@ -39,7 +39,7 @@
     
 }
 
-@synthesize MenuButton,placesContainer,bpContainer,c,placesTable;
+@synthesize MenuButton,placesContainer,bpContainer,c,placesTable,previous,BackButton,ConferenceHome;
 
 //mandar para o container o mapa a mostrar!
 //mandar para o container os places a mostrar
@@ -91,7 +91,23 @@
     
     [[self view] addSubview:MenuButton];
     
+    [self setBackButton:[UIButton buttonWithType:UIButtonTypeCustom]];
     
+    [BackButton setFrame:CGRectMake(717, 4, 43, 40)];
+    [BackButton setBackgroundImage:[UIImage imageNamed:@"back3.png"] forState:UIControlStateNormal];
+    [BackButton addTarget:self action:@selector(goBack:) forControlEvents:UIControlEventTouchUpInside];
+    
+    
+    [self setConferenceHome:[UIButton buttonWithType:UIButtonTypeCustom]];
+    
+    [ConferenceHome setFrame:CGRectMake(660, 4, 43, 40)];
+    [ConferenceHome setBackgroundImage:[UIImage imageNamed:@"white_home_conf2.png"] forState:UIControlStateNormal];
+    [ConferenceHome addTarget:self action:@selector(goToConferenceHome:) forControlEvents:UIControlEventTouchUpInside];
+    
+    [[self view] addSubview:ConferenceHome];
+
+    
+    [[self view] addSubview:BackButton];
     [self changeSelectedBlueprint:selectedBlueprint];
    // [ self sendPlacesToContainer];
     [super viewDidLoad];
@@ -398,6 +414,18 @@
     }
 
 }
+- (IBAction)goHome:(id)sender{
+    
+    NSString *iD = @"Home";
+    
+    UIViewController *newTopViewController = [[self storyboard]instantiateViewControllerWithIdentifier:iD];
+    
+    [(MenuViewController*)[[self slidingViewController] underLeftViewController] deselectConf];
+    
+    CGRect frame = [[[[self slidingViewController] topViewController] view] frame];
+    [[self slidingViewController] setTopViewController:newTopViewController];
+    [[[[self slidingViewController] topViewController] view] setFrame:frame];
+}
 
 -(void)changePlacesToShow:(NSArray*)pl{
     
@@ -433,4 +461,26 @@
     return image;
 }
 
+
+- (IBAction)goBack:(id)sender{
+    CGRect frame = [[[[self slidingViewController] topViewController] view] frame];
+    if(previous!=nil)
+        [[self slidingViewController] setTopViewController:previous];
+    else{
+        
+        NSString *iD = @"Conference";
+        
+        UIViewController *newTopViewController = [[self storyboard]instantiateViewControllerWithIdentifier:iD];
+        [[self slidingViewController] setTopViewController:newTopViewController];
+        
+    }
+    [[[[self slidingViewController] topViewController] view] setFrame:frame];
+    
+}
+
+- (void)changePrevious:(UIViewController*)vc{
+    
+    previous=vc;
+    
+}
 @end
