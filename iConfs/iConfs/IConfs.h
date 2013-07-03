@@ -45,6 +45,15 @@
     NSString *agendaDicByConfFile;
     NSString *votesFile;
     NSMutableDictionary* votes;
+    
+    NSMutableArray* agendaSSsave;
+    NSMutableDictionary* agendaSsave;
+    NSMutableDictionary* agendaWsave;
+    
+    NSString *agendaSSsaveFile;
+    NSString *agendaSsaveFile;
+    NSString *agendaWsaveFile;
+    //NSMutableDictionary *agendaIDsDicByConf;
     //used for updateTimer
     int timerTime;
 }
@@ -226,5 +235,7 @@
 -(void)vote:(int)value event:(int)eventID Confeference:(NSString*)cID;
 
 -(int)getVote:(int)eventID Confeference:(NSString*)cID;
+
+-(void)saveAgendaToDisk;
 
 @end

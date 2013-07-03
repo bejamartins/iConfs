@@ -60,6 +60,10 @@
      agendaDicByConf = [[decoder decodeObjectForKey:@"agendaDicByConf"] retain];
      agendaStartDate = [[decoder decodeObjectForKey:@"agendaStartDate"] retain];*/
     
+    agendaSSsave = [[NSMutableArray alloc] init];
+    agendaSsave = [[NSMutableDictionary alloc] init];
+    agendaWsave = [[NSMutableDictionary alloc] init];;
+    
     //used for updateNotif
     timerTime=5;
     
@@ -161,7 +165,7 @@
         //[agendaDicByConf setObject:css forKey:[css getID]];
         [agenda sortUsingSelector:@selector(compare:)];
         agendaStartDate = [((CustomizableSuperSession*)[agenda objectAtIndex:0]) getUserStartDate];
-        [self saveAgendaToDisk];
+        //[self saveAgendaToDisk];
         return true;
     }
 }
@@ -194,7 +198,7 @@
         if ([array count] == 0) {
             [agendaDicByConf removeObjectForKey:[s getConfID]];
         }
-        [self saveAgendaToDisk];
+        //[self saveAgendaToDisk];
         return true;
     }
 }
@@ -218,7 +222,7 @@
         for (int i=0; i<[ids count]; i++) {
             [self unsubscribeSuperSessionInAgenda:ids[i]];
         }
-        [self saveAgendaToDisk];
+        //[self saveAgendaToDisk];
         return true;
     }
     else
@@ -232,7 +236,7 @@
     for(int i =0; i<[supersessions count];i++){
         [self subscribeSuperSessionInAgenda:((SuperSession*)supersessions[i]) Conference:cID];
     }
-    [self saveAgendaToDisk];
+    //[self saveAgendaToDisk];
 }
 
 -(NSDate*)getAgendaStartDate{
@@ -1205,21 +1209,75 @@
         return;
     }
     else{
-        agenda = [[NSMutableArray alloc] initWithContentsOfFile: agendaFile];
+        /*agenda = [[NSMutableArray alloc] initWithContentsOfFile: agendaFile];
         agendaDic = [[NSMutableDictionary alloc] initWithContentsOfFile: agendaDicFile];
-        agendaDicByConf = [[NSMutableDictionary alloc] initWithContentsOfFile: agendaDicByConfFile];
+        agendaDicByConf = [[NSMutableDictionary alloc] initWithContentsOfFile: agendaDicByConfFile];*/
+        
+        agenda = [[NSMutableArray alloc] init];
+        agendaDic = [[NSMutableDictionary alloc] init];
+        agendaDicByConf = [[NSMutableDictionary alloc] init];
+        agendaStartDate = [[NSDate alloc] init];
+        
+        agendaSSsave = [[NSMutableArray alloc] initWithContentsOfFile: agendaSSsaveFile];
+        agendaSsave = [[NSMutableDictionary alloc] initWithContentsOfFile: agendaSsaveFile];
+        agendaWsave = [[NSMutableDictionary alloc] initWithContentsOfFile: agendaWsaveFile];
         votes = [[NSMutableDictionary alloc] initWithContentsOfFile: votesFile];
-        if(agenda == nil)
+        if(agendaSSsave == nil)
         {
             //Array file didn't exist... create a new one
-            agenda = [[NSMutableArray alloc] init];
+            agendaSSsave = [[NSMutableArray alloc] init];
+            agendaSsave = [[NSMutableDictionary alloc] init];
+            agendaWsave = [[NSMutableDictionary alloc] init];
+            /*agenda = [[NSMutableArray alloc] init];
             agendaDic = [[NSMutableDictionary alloc] init];
             agendaDicByConf = [[NSMutableDictionary alloc] init];
-            agendaStartDate = [[NSDate alloc] init];
+            agendaStartDate = [[NSDate alloc] init];*/
             //Fill with default values
             
         }
         else{
+            SuperSession* currentSS;
+            NSString* currentString;
+            NSString* currentConfID;
+            NSString* currentSSID;
+            Conference* currentConf;
+            NSArray* events;
+            NSArray* workshops;
+            int currentEvent;
+            CustomizableSuperSession* currentCSS;
+            Session* currentS;
+            EventWorkshop* currentW;
+            int loop = [agendaSSsave count];
+            for (int i = 0; i<[agendaSSsave count]; i++) {
+                currentString = ((NSString*)agendaSSsave[i]);
+                currentConfID = [[currentString componentsSeparatedByString:@"|"] objectAtIndex: 0];
+                currentSSID = [[currentString componentsSeparatedByString:@"|"] objectAtIndex: 1];
+                currentConf = ((Conference*)[conferencesDic valueForKey:currentConfID]);
+                currentSS = ((SuperSession*)[[currentConf getSuperSessions] valueForKey:currentSSID]);
+                [self subscribeSuperSessionInAgenda:currentSS Conference:currentConfID];
+                events = [[agendaSsave valueForKey:currentSSID] componentsSeparatedByString:@"|"];
+                for (int g = 0; g<[agenda count]; g++) {
+                    if([[((CustomizableSuperSession*)agenda[g]) getID] isEqualToString:currentSSID]){
+                        currentCSS = ((CustomizableSuperSession*)agenda[g]);
+                        //break;
+                    }
+                }
+                for (int j = 0; j<[events count]; j++) {
+                    currentString = ((NSString*)events[i]);
+                    currentEvent = [currentString intValue];
+                    currentS = [[currentCSS getSessionsDicionary]objectForKey:[NSNumber numberWithInt:currentEvent]];
+                    [currentCSS subscribeSession:currentS];
+                }
+                if([[agendaWsave allKeys] count] != 0){
+                workshops = [[agendaWsave valueForKey:currentSSID] componentsSeparatedByString:@"|"];
+                    for (int j = 0; j<[workshops count]; j++) {
+                        currentString = ((NSString*)workshops[i]);
+                        currentEvent = [currentString intValue];
+                        currentW = [[currentCSS getSessionsDicionary]objectForKey:[NSNumber numberWithInt:currentEvent]];
+                        [currentCSS subscribeWorksop:currentW];
+                    }
+                }
+            }
             agendaStartDate = [((CustomizableSuperSession*)agenda[0]) getUserStartDate];
         }
     }
@@ -1233,20 +1291,84 @@
     
     //documentsDirectory=[NSString stringWithFormat:@"%@",[NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES)objectAtIndex:0]];
     //2) Create the full file path by appending the desired file name
-    agendaFile = [documentsDirectory stringByAppendingPathComponent:@"agenda.dat"];
+    /*agendaFile = [documentsDirectory stringByAppendingPathComponent:@"agenda.dat"];
     agendaDicFile = [documentsDirectory stringByAppendingPathComponent:@"agendaDic.dat"];
-    agendaDicByConfFile = [documentsDirectory stringByAppendingPathComponent:@"agendaDicByConf.dat"];
+    agendaDicByConfFile = [documentsDirectory stringByAppendingPathComponent:@"agendaDicByConf.dat"];*/
+    
+    
+
+    
     votesFile = [documentsDirectory stringByAppendingPathComponent:@"votes.dat"];
+    agendaSSsaveFile = [documentsDirectory stringByAppendingPathComponent:@"agendaSSsave.dat"];
+    agendaSsaveFile = [documentsDirectory stringByAppendingPathComponent:@"agendaSsave.dat"];
+    agendaWsaveFile = [documentsDirectory stringByAppendingPathComponent:@"agendaWsave.dat"];
+    NSFileManager *fileManager = [NSFileManager defaultManager];
+    NSError *error = nil;
+    
+    //UNCOMMENT IN CASE OF EMERGENCY
+    /*[fileManager removeItemAtPath:votesFile error:&error];
+    [fileManager removeItemAtPath:agendaSSsaveFile error:&error];
+    [fileManager removeItemAtPath:agendaSsaveFile error:&error];
+    [fileManager removeItemAtPath:agendaWsaveFile error:&error];*/
 }
 
 -(void)saveAgendaToDisk{
+    
+    NSFileManager *fileManager = [NSFileManager defaultManager];
+    NSError *error = nil;
+    [fileManager removeItemAtPath:votesFile error:&error];
+    [fileManager removeItemAtPath:agendaSSsaveFile error:&error];
+    [fileManager removeItemAtPath:agendaSsaveFile error:&error];
+    [fileManager removeItemAtPath:agendaWsaveFile error:&error];
+    
+    NSString* s1;
+    NSString* s2;
+    NSArray* sessions;
+    NSArray* workshops;
+    NSMutableString* s;
+    NSMutableString* w;
+    NSString * idAux;
+    NSString * idAux2;
+    for (int i = 0; i < [agenda count]; i++) {
+        idAux = [((CustomizableSuperSession*)agenda[i]) getConfID];
+        s1 = [idAux stringByAppendingString: @"|"];
+        idAux2 = [((CustomizableSuperSession*)agenda[i]) getID];
+        s2 = [s1 stringByAppendingString: idAux];
+        [agendaSSsave addObject:s2];
+        sessions = [((CustomizableSuperSession*)agenda[i]) getSessionsOrderedByDate];
+        workshops = [((CustomizableSuperSession*)agenda[i]) getWorkshopsOrderedByDate];
+        s = [@"" mutableCopy];
+        w = [@"" mutableCopy];
+        for (int j = 0; j < [sessions count]; j++) {
+            if(![s isEqualToString:@""]){
+                [s appendString:@"|"];
+            }
+            [s stringByAppendingFormat:@"%d", [((Session*) sessions[j]) getID]];
+        }
+        [agendaSsave setObject:sessions forKey:s2];
+        
+        for (int j = 0; j < [workshops count]; j++) {
+            if(![w isEqualToString:@""]){
+                [w appendString:@"|"];
+            }
+            [w stringByAppendingFormat:@"%d", [((EventWorkshop*) workshops[j]) getID]];
+        }
+        if([workshops count] != 0){
+            [agendaWsave setObject:workshops forKey:s2];
+        }
+        
+        
+    }
     if(paths == NULL){
         [self setAgendaPaths];
     }
-    [agenda writeToFile:agendaFile atomically:YES];
-    [agendaDic writeToFile:agendaDicFile atomically:YES];
-    [agendaDicByConf writeToFile:agendaDicByConfFile atomically:YES];
-    [votes writeToFile:votesFile atomically:YES];
+    
+    [agendaSSsave writeToFile:agendaSSsaveFile atomically:YES];
+    [agendaSsave writeToFile:agendaSsaveFile atomically:YES];
+    [agendaWsave writeToFile:agendaWsaveFile atomically:YES];
+    //[agendaDic writeToFile:agendaDicFile atomically:YES];
+    //[agendaDicByConf writeToFile:agendaDicByConfFile atomically:YES];
+    //[votes writeToFile:votesFile atomically:YES];
     
     
     
@@ -1545,7 +1667,7 @@
 -(void)vote:(int)value event:(int)eventID Confeference:(NSString*)cID{
     NSString* key = [cID stringByAppendingFormat:@"%i", eventID];
     [votes setObject:key forKey:[NSNumber numberWithInteger:eventID]];
-    [self saveAgendaToDisk];
+    //[self saveAgendaToDisk];
 }
 
 -(int)getVote:(int)eventID Confeference:(NSString*)cID{
